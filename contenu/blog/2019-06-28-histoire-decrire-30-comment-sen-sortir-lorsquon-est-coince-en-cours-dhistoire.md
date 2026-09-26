@@ -50,7 +50,7 @@ Changez de support (papier / ordi / téléphone)
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

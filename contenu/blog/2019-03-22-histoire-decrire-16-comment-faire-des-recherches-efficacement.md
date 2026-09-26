@@ -37,7 +37,7 @@ Les recherches externes, ce sont toutes les informations que vous allez glâner 
 
 > Hello ! Le [#Histoiredecrire](https://twitter.com/hashtag/Histoiredecrire?src=hash&ref_src=twsrc%5Etfw) (des conseils d'écriture que je donne chaque semaine) portera sur les recherches à faire, pour écrire son bouquin. D'où ma question du jour : quel support utilisez vous pour effectuer vos recherches ?
 >
-> Antonin Atger (@AntoninAtger) [March 20, 2019](https://twitter.com/AntoninAtger/status/1108486434011447296?ref_src=twsrc%5Etfw)
+> — Antonin Atger (@AntoninAtger) [March 20, 2019](https://twitter.com/AntoninAtger/status/1108486434011447296?ref_src=twsrc%5Etfw)
 
 ## Ma préférence (à moi)
 
@@ -77,7 +77,7 @@ A bientôt !
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

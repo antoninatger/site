@@ -116,7 +116,7 @@ La semaine prochaine, nous verrons comment simplifier votre style d’écriture 
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

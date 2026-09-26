@@ -95,7 +95,7 @@ J’espère que ces conseils d’écriture vous ont plu ! La semaine prochaine, 
 
  Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

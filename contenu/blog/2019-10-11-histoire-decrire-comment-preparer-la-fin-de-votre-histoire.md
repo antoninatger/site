@@ -99,7 +99,7 @@ Nous verrons la semaine prochaine comment bien terminer une histoire jusqu’à 
 
 En conclusion pour réussir un bon climax pensez-y déjà de début de votre histoire et de votre écriture, faites en sorte que les conflits générés entre vos héros se résolvent à ce moment, surprenez le spectateur, et prévoyez la suite, c’est à dire la conclusion de votre histoire. Et pour cette partie précisément… Rendez vous la semaine prochaine !
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

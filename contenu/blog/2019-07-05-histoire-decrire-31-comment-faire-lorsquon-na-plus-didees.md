@@ -111,7 +111,7 @@ La semaine prochaine, nous verrons quoi faire lorsqu’on ne veut PLUS écrire !
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

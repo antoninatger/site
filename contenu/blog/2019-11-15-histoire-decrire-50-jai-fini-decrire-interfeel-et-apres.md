@@ -78,7 +78,7 @@ Et alors, votre petit bébé ne vous appartient plus – vraiment. Il devient un
 
 À la semaine prochaine, donc !
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

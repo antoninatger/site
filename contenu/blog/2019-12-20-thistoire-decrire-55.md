@@ -64,7 +64,7 @@ PS : si vous êtes professeurs et souhaitez me faire intervenir, ce sera avec gr
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

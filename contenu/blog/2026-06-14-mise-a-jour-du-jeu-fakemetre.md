@@ -58,7 +58,7 @@ Ton corps émet en permanence une très faible lumière, invisible à l’œil n
 
 La France est le pays qui possède le plus grand nombre de fuseaux horaires au monde.
 
-On peut passer d’un pays à un autre (de l’Espagne au Portugal) en tyrolienne, en survolant un fleuve.
+On peut passer d’un pays à un autre — de l’Espagne au Portugal — en tyrolienne, en survolant un fleuve.
 
 L’Alaska est à la fois l’État le plus à l’ouest ET le plus à l’est des États-Unis.
 
@@ -94,7 +94,7 @@ Face à un nouveau danger, une espèce fabrique la mutation dont elle a besoin p
 
 En physique quantique, c’est la conscience humaine qui crée la réalité : tant que personne ne regarde, rien n’est vraiment déterminé.
 
-L’entropie doit toujours augmenter partout, donc l’apparition de la vie, qui est très ordonnée, contredit les lois de la thermodynamique.
+L’entropie doit toujours augmenter partout, donc l’apparition de la vie — qui est très ordonnée — contredit les lois de la thermodynamique.
 
 Un trou noir aspire tout ce qui se trouve autour de lui, comme un gigantesque aspirateur cosmique.
 
@@ -104,7 +104,7 @@ La cosmologie est aujourd’hui un modèle complet et bouclé : on connaît la v
 
 Les scientifiques savent désormais comment la vie est apparue à partir de matière non vivante.
 
-Le climat se réchauffe à cause des humains, c’est sûr, et on connaît aussi précisément les seuils exacts à partir desquels tout va basculer.
+Le climat se réchauffe à cause des humains, c’est sûr — et on connaît aussi précisément les seuils exacts à partir desquels tout va basculer.
 
 Les intelligences artificielles actuelles comprennent vraiment ce qu’elles disent et sont peut-être déjà un peu conscientes.
 

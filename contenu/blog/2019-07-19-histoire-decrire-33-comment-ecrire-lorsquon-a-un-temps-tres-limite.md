@@ -77,7 +77,7 @@ A bientôt !
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

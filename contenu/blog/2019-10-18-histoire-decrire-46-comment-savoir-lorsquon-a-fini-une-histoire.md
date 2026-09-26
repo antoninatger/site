@@ -121,7 +121,7 @@ Mais nous, écrivains, savons que la plume qui se lève ne signifie pas la fin d
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

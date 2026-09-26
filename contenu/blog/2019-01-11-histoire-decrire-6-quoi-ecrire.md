@@ -110,7 +110,7 @@ A bientôt !
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu ! Le suivant arrivera vendredi prochain, 18 heures bien sûr ! Il répondra à la question « pour qui écrire ? », Que nous avons déjà vu succintement dans celui-là.
 

@@ -115,7 +115,7 @@ Antonin A.
 
 PS : si vous avez des suggestions d’articles, n’hésitez pas, il me reste des créneaux !
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

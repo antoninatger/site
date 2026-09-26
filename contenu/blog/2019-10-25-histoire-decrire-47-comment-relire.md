@@ -133,7 +133,7 @@ Voilà pour tous ces conseils de lecture lecture et un moment difficile frustran
 
  Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

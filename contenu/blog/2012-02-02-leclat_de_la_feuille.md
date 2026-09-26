@@ -98,7 +98,7 @@ amanalat@hotmail.fr
 
  L’éclat de la feuille de Antonin ATGER est mis à disposition selon les termes de la [licence Creative Commons Attribution – Pas d’Utilisation Commerciale – Pas de Modification 3.0 non transposé](http://creativecommons.org/licenses/by-nc-nd/3.0/).
 
-* * *
+——————————————————————————————-
 
 Petit historique du poème :
 

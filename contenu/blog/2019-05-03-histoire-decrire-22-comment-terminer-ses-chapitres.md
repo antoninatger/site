@@ -81,7 +81,7 @@ Donc pour conclure, un chaptre, c’est l’équivalent en musique d’un phras�
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

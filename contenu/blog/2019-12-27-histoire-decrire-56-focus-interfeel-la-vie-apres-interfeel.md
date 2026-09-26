@@ -71,7 +71,7 @@ A très vite et… À vos stylos !
 
  Antonin A.
 
-* * *
+—-
 
 J’espère que ce (dernier) conseil d’écriture vous a plu !
 

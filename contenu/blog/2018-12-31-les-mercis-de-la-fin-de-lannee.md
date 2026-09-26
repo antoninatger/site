@@ -38,7 +38,7 @@ Merci à Vérino d’avoir parlé de mon livre ;).
 
 > Je viens de finir Interfeel… Et en tant que gros consommateur de science-fiction, j’envoie un énorme merci à [@AntoninAtger](https://twitter.com/AntoninAtger?ref_src=twsrc%5Etfw). J’ai vécu dans un autre monde pendant ces derniers jours où je n’ai pas réussi à lever le nez de ce roman. Merci !! [pic.twitter.com/wPxcd7KY5H](https://t.co/wPxcd7KY5H)
 >
-> Vérino (@verinaze) [20 novembre 2018](https://twitter.com/verinaze/status/1064938830418141185?ref_src=twsrc%5Etfw)
+> — Vérino (@verinaze) [20 novembre 2018](https://twitter.com/verinaze/status/1064938830418141185?ref_src=twsrc%5Etfw)
 
 [https://platform.twitter.com/widgets.js](https://platform.twitter.com/widgets.js)
 

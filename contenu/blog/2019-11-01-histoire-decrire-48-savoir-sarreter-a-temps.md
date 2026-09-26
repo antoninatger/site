@@ -75,7 +75,7 @@ Il vous faut savoir si votre retouche est vraiment nécessaire en soi, ou si c�
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

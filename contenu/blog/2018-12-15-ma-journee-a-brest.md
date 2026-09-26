@@ -84,6 +84,6 @@ A bientôt !
 
 Antonin A.
 
-* * *
+—
 
 Question pour toi, lecteur : aimes tu ces retours que je fais sur le vif, de mes expériences d’écrivain ? Si oui, je continurais ! Et si tu veux recevoir directement les informations sur ta boîte email, n’hésite pas à t’abonner au site ! Promis, pas de spams :). Tu peux aussi passer par les réseaux sociaux !

@@ -119,7 +119,7 @@ Voilà, j’espère que ces conseils (très spécifiques !) vous ont aidé !
 
 A bientôt !
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

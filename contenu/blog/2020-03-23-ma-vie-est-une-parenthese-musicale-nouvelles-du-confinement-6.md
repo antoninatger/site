@@ -20,7 +20,7 @@ Sylvain Quèvre est arrivé à la fin de la répétition alors que je rangeais m
 
 Les règles, je les avais parfaitement saisies. C’était la seule chose. Dans mes pensées tremblantes d’adrénaline, je ne voyais pas la raison de ce défi morbide. Et surtout, je ne comprenais pas pourquoi Sylvain Quèvre avait attendu près de vingt ans pour me le lancer. Je le connaissais assez bien pour savoir qu’il ne me raterait pas. Je connaissais assez bien ma musique pour savoir que j’avais moi aussi une chance de ne pas me rater. Que peut-être je pourrais faire le poids musical face au canon qu’il m’imposait. J’ai pris une grande inspiration et, d’un souffle dans mon hautbois, j’ai commencé la première note de ma putain de musique. Quinze minutes de sursis venaient de démarrer.
 
-* * *
+—
 
 Certaines mélodies changent la vie. D’autres, c’est plus rare, l’abrègent. Je suis un cas exceptionnel : une musique a initié ma naissance et va certainement provoquer ma mort. Mon existence n’aura été qu’une parenthèse ouverte et fermée par le sceau des mêmes notes.
 
@@ -34,11 +34,11 @@ Mon parcours scolaire, quant à lui, se résumait à la drague lourdingue des é
 
 Tous les soirs, je crachais ma haine dans un garage insonorisé avec trois personnes qui jouaient aussi bien que je chantais, c’est-à-dire mal. Mes paroles se résumaient à du cri, les instruments étaient autant saturés d’effets que je l’étais d’adrénaline. Lorsque j’ai quitté le groupe, je n’ai jamais revu le batteur et le bassiste qui n’étaient que des figurants dans ma vie. J’ai par contre croisé le guitariste à plusieurs occasions. Maintenant, par exemple. Il s’agit de mon meilleur ami, Sylvain Quèvre.
 
-* * *
+—
 
 Aujourd’hui, tout comme moi, Sylvain Quèvre s’approche de la cinquantaine. D’un point de vue physique néanmoins, il est en avance sur son temps. Sa peau traduit les années de picole, de clopes et de plusieurs autres substances bues, fumées, ingérées ou injectées. Son regard, par contre, est resté le même. Il est du même matériau que l’arme qu’il pointe dans ma direction. Sa volonté n’a pas changé. Son principe existentiel, immuable, est qu’il vaut mieux brûler franchement sa vie que de s’éteindre à petit feu. La phrase est de Neil Young, Kurt se l’est approprié en l’écrivant dans sa lettre de suicide.
 
-* * *
+—
 
 Son suicide… à l’âge mythique de 27 ans. Ce moment appartient à la légende. La nôtre, en tout cas. Pour Sylvain et moi, l’occasion était trop belle pour ne pas suivre notre mentor. Nous nous lançâmes à corps perdu dans les tentatives de suicide. Ce fut un échec, je survécus. Mes balafres sur les bras restaient transversales et superficielles. Mes cuites me laissaient plus ivre que mort et je prenais toujours le dessus lors de mes castagnes.
 
@@ -46,13 +46,13 @@ Sylvain mit beaucoup plus de cœur à l’ouvrage. Il passait la moitié de son 
 
 Malgré tout le cœur qu’il mit, il ne parvint pas à faire arrêter le sien. Au bout d’un moment, nous acceptâmes la réalité : nous ne pouvions pas disparaître tout de suite. Après une profonde introspection mâtinée d’alcool et d’ecstasy, nous trouvâmes la raison. Pour pouvoir mourir ainsi, il fallait avoir vécu. Kurt avait dirigé le plus grand groupe de tous les temps. Qu’avions-nous fait ? Pas grand-chose et certainement rien d’aussi important. Nous nous accordâmes un sursis d’une dizaine d’années. La fin de notre course se ferait donc à nos vingt-sept ans. D’ici là, il faudrait avoir vécu. Vraiment. Avoir accompli quelque chose. Le compte à rebours lancé, la date limite imposée, notre existence serait intense, enfin. Nous devions vivre, désormais. Nous scellâmes notre pacte dans le sang, ajoutant une entaille à notre répertoire gravé sur le bras.
 
-* * *
+—
 
 Cinq minutes de musique, dix à venir. Ensuite… nous verrons. Je pianote sur les différentes touches de mon instrument, les notes fusent, la mélodie est parfaite. Je connais ce morceau sur le bout des doigts. Je quitte Sylvain des yeux pour m’attarder sur son pistolet. Entre le manche de l’arme et la manche de sa chemise, son bras est labouré des cicatrices de notre jeunesse. L’une d’entre elles symbolise notre pacte, je ne sais plus laquelle. Lui s’en souvient certainement. Il a été un ami bien plus fidèle.
 
 Est-ce pour cela qu’il m’en veut à mort ? Car je n’ai pas respecté notre promesse, à cause de cette putain de musique que je joue actuellement ? Je ne sais pas. Je ne comprends toujours pas. Je replonge dans mon passé et j’arrive au moment où tout a changé.
 
-* * *
+—
 
 Cette putain de musique est entrée dans ma vie à mes dix-huit ans et ma véritable naissance a eu lieu. Les conditions de ma conception avaient été recréées : dans une voiture, sur le bas-côté. Comme pour n’importe quelle rencontre existentielle, ça m’est tombé dessus sans que je m’y attende. Clope au bec, j’étais saoul, il pleuvait des cordes de pendus et j’avais juste assez de présence d’esprit pour me garer et attendre qu’à défaut de mon état, le temps s’améliore. La radio grésillait d’une musique punk-rock que je n’écoutais pas. Les yeux clos, je m’explosais la tête à coup de lattes de nicotine pure.
 
@@ -68,7 +68,7 @@ Elle se résumait en une simple phrase : tout lâcher et apprendre à jouer ce m
 
 Tourner une telle page, bien sûr, ne fut pas sans conséquences. Si je ne voulais désormais plus brûler ma vie, il me fallait incendier les feuillets précédents de mon histoire. Embrassant mon nouvel objectif, j’embrasais ce qui l’avait précédé d’un feu que j’espérai salvateur. Je provoquai l’étincelle en annonçant à Sylvain ma désertion du groupe.
 
-* * *
+—
 
 Soufflant dorénavant à corps perdu dans mon hautbois, je ranime dans ma tête les braises de cette discussion que nous avons eue Sylvain et moi. Il avait ce même regard de glace que maintenant. Ce regard que je ne suis jamais parvenu à faire fondre.
 
@@ -98,11 +98,11 @@ J’avais beau être incomplet, je n’en fus pas moins motivé et hargneux. Je 
 
 Cette décennie fut marquée par ma dernière rencontre avec Sylvain jusqu’à aujourd’hui, lors de l’inévitable rendez-vous de nos vingt-sept ans.
 
-* * *
+—
 
 Alors que mes doigts glissent sur les différentes touches, que les notes et les secondes s’écoulent irrémédiablement, que je commence pour la dixième fois le thème invariable du Boléro, je revis très clairement la conversation de ce rendez-vous que je savais inévitable.
 
-* * *
+—
 
 Il y avait son regard, inchangé, lapidaires. En quelques mots cinglants, il me rappela notre promesse, sensé diriger notre existence.
 
@@ -120,13 +120,13 @@ Il a retiré sa manche d’un geste ferme a désigné sans la moindre hésitatio
 
 « Nous l’avons décidé ensemble. »
 
-* * *
+—
 
 Je n’ai pas honoré ce rendez-vous de jeunesse et il veut se venger. La voilà, l’’explication. Cet engagement justifiait sa vie mais ce n’était désormais plus la mienne. Devant ces deux réalités inconciliables, il ne lui reste plus qu’à provoquer ma mort.
 
 Mais pourquoi maintenant ? Pourquoi aussi tard ? Je ne plus que quelques phrasées musicales pour trouver.
 
-* * *
+—
 
 Je regardais son bras saturé de cicatrices, marquant les années aussi précisément que les veines d’un arbre. La nôtre était perdue dans cette forêt de stries. En fixant son regard de glace, avec tout le courage que m’avait apporté ma nouvelle vie, je lui ai dis :
 
@@ -140,11 +140,11 @@ La violence de ces mots me faisait mal, bien sûr. Je savais désormais ce que j
 
  « J’y croyais, c’est sûr. Dans une autre vie. Ma nouvelle a commencé lorsque j’ai écouté cette « putain de musique » comme tu dis et je ne compte pas l’arrêter tout de suite, que tu le veuille ou non. »
 
-* * *
+—
 
 Un détail me perturbe soudain. Mes doigts continuent de filer sur mon hautbois, bien sûr, mais mon esprit frémit. Un indice vient d’apparaître, je le sais, je le sens, mais il est trop ténu encore pour que je puisse l’appréhender. Il s’implante dans un coin de ma tête, comme une piqure de rappel. Je continue de jouer et repars dans mes souvenirs.
 
-* * *
+—
 
 Après cette discussion et mon choix de ne pas me jeter à l’eau, j’ai définitivement coupé les ponts avec Sylvain. Moi d’un côté, je le laissais sur l’autre rive. J’avais faillis à ma promesse de jeunesse et à cause de moi il se résigna à vivre, lui aussi. Sa vingt-septième année s’écoula, l’entraînant dans une vie qu’il ne désirait plus. J’eue de ces nouvelles à travers quelques journaux locaux, catégorie faits divers. Dans cette prolongation que je lui avais imposé, ce qu’il devenait n’était pas beau. Il rendait son existence encore plus extrême, sans doute pour compensé l’excitation perdue à l’expiration de sa date limite.
 

@@ -89,7 +89,7 @@ Après, bien sûr, ma méthode n’est pas universelle ! Mais si vous décidez d
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

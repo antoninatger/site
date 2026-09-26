@@ -16,7 +16,7 @@ Quand écrire ? Vaste question. Et la réponse n’est pas simple. Car elle dép
 
 > Question ! Vous écrivez PRINCIPALEMENT :[https://t.co/T3sM2TwoCY](https://t.co/T3sM2TwoCY)
 >
-> Antonin Atger (@AntoninAtger) [January 29, 2019](https://twitter.com/AntoninAtger/status/1090200649936056320?ref_src=twsrc%5Etfw)
+> — Antonin Atger (@AntoninAtger) [January 29, 2019](https://twitter.com/AntoninAtger/status/1090200649936056320?ref_src=twsrc%5Etfw)
 
 Cette question est la plus personnelle qui soit. Certains préfèreront le matin, d’autres le soir, et quelques uns, s’ils le peuvent, en journée. Chacun le fait à sa manière.
 
@@ -83,7 +83,7 @@ A bientôt !
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

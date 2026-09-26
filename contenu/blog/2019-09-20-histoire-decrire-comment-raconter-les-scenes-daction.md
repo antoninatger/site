@@ -22,7 +22,7 @@ Et bien, au risque de faire criser les réfractares de [mon article de la semain
 >
 > Mes anciens articles : [https://t.co/T3sM2TwoCY](https://t.co/T3sM2TwoCY)
 >
-> Antonin Atger (@AntoninAtger) [September 15, 2019](https://twitter.com/AntoninAtger/status/1173310359177969664?ref_src=twsrc%5Etfw)
+> — Antonin Atger (@AntoninAtger) [September 15, 2019](https://twitter.com/AntoninAtger/status/1173310359177969664?ref_src=twsrc%5Etfw)
 
 Cette fois, on décrit un mouvement, et aussi une tension. Voilà le premier point :
 
@@ -113,7 +113,7 @@ Antonin A.
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

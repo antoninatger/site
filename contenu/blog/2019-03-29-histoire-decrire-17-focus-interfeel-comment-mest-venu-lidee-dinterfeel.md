@@ -116,7 +116,7 @@ Voilà, j’espère que cet « Histoire d’Ecrire » un peu particulier vous au
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

@@ -53,7 +53,7 @@ Marre du stylo ? Accordez vous une pause, et faite un dessin. Mais optimisez ce 
 
 ![Description de cette image, également commentée ci-après](https://upload.wikimedia.org/wikipedia/commons/6/6d/Type_O_Negative_-_Coliseu_dos_Recreios.jpg)
 *Je te jure chérie, je bosse sur mon roman
-Par Manuel Lino, originally posted to Flickr as Type O Negative – Coliseu dos Recreios, CC BY-SA 2.0, [https://commons.wikimedia.org/w/index.php?curid=10042559](https://commons.wikimedia.org/w/index.php?curid=10042559)*
+Par Manuel Lino — originally posted to Flickr as Type O Negative – Coliseu dos Recreios, CC BY-SA 2.0, [https://commons.wikimedia.org/w/index.php?curid=10042559](https://commons.wikimedia.org/w/index.php?curid=10042559)*
 
 ### Se concentrer sur le processus et pas sur la finalité.
 
@@ -114,7 +114,7 @@ Et vous, quelles sont vos trucs et astuces pour maintenir la motivation intacte 
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

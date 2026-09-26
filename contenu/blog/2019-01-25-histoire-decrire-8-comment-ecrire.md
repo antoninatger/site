@@ -24,7 +24,7 @@ Voici tout d’abord le résultat du sondage à propos de ce sujet, lancé sur T
 >
 > Pour écrire, préférez-vous
 >
-> Antonin Atger (@AntoninAtger) [January 21, 2019](https://twitter.com/AntoninAtger/status/1087432927837908993?ref_src=twsrc%5Etfw)
+> — Antonin Atger (@AntoninAtger) [January 21, 2019](https://twitter.com/AntoninAtger/status/1087432927837908993?ref_src=twsrc%5Etfw)
 
 (J’avoue que, même si ce sondage n’a AUCUNE valeur scientifique, je m’attendais à une plus grande prépondérance du papier ! Comme quoi, outre le fait de vous faire participer, ces sondages permettent de secouer mes propres idées reçues !)
 
@@ -130,7 +130,7 @@ Et vous, quels sont les outils que vous utilisez ?
 
  Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

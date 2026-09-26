@@ -71,7 +71,7 @@ Cet article était un premier brossage des différents points à aborder pour af
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

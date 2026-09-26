@@ -46,7 +46,7 @@ That’s the goal of the “Self Data” Digital Cultural Class by the Métropol
 
 [![](/images/uploads/2023/12/college-balzac-self-data.png)](/images/uploads/2023/12/college-balzac-self-data.png)
 
-We are working with classes in the Lyon area through June on an ambitious story: a Lyon-based resistance fighter from 1942 suddenly gains access to a modern smartphone. The device is extremely practical but also dangerous: any small bit of information she lets slip could be fatal!
+We are working with classes in the Lyon area through June on an ambitious story: a Lyon-based resistance fighter from 1942 suddenly gains access to a modern smartphone. The device is extremely practical but also dangerous—any small bit of information she lets slip could be fatal!
 
 [![](/images/uploads/2023/12/image.png)](/images/uploads/2023/12/image.png)
 

@@ -62,7 +62,7 @@ Voilà pour le fond ! La semaine prochaine, nous verrons la forme : comment simp
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

@@ -16,7 +16,7 @@ id_wordpress: 3098
 >
 > D'où ma question de la semaine : êtes vous partisants de longues descriptions ? Si oui, pourquoi ? Et si non, pourquoi ?
 >
-> Antonin Atger (@AntoninAtger) [September 11, 2019](https://twitter.com/AntoninAtger/status/1171906721591320576?ref_src=twsrc%5Etfw)
+> — Antonin Atger (@AntoninAtger) [September 11, 2019](https://twitter.com/AntoninAtger/status/1171906721591320576?ref_src=twsrc%5Etfw)
 
 La description… Le cauchemar de vos lecteurs d’école. Bouh, le Bonheur des Dames ! Ouh, le père Goriot !
 
@@ -91,7 +91,7 @@ Donc n’oubliez pas : le choix de décrire ou pas, dépend du sens que vous vou
 
 ![Eugène Delacroix - Le 28 Juillet. La Liberté guidant le peuple.jpg](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/1920px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg)
 *Que voilà. Eugène Delacroix, *La liberté guidant le peuple.*
-Par Eugène Delacroix, Erich Lessing Culture and Fine Arts Archives via artsy.net, Domaine public, [https://commons.wikimedia.org/w/index.php?curid=27539198](https://commons.wikimedia.org/w/index.php?curid=27539198)*
+Par Eugène Delacroix — Erich Lessing Culture and Fine Arts Archives via artsy.net, Domaine public, [https://commons.wikimedia.org/w/index.php?curid=27539198](https://commons.wikimedia.org/w/index.php?curid=27539198)*
 
 Ce problème de description à outrance se retrouve généralement dans les univers créés de toute pièce. (Tiens, Interfeel ? Te revoilà ?). Le piège de base, surtout si l’on a bossé un sacré de temps pour faire un univers cohérent, est de vouloir tout décrire. De peur d’avoir creuser son univers pour rien. Pouvoir dire « regarde, j’ai aussi pensé à cela ». Sauf qu’une fois de plus, il faut penser au lecteur : trop d’informations parasites la lecture. Encore une fois, il faut une cohérence, et un choix rédactionnel.
 

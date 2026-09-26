@@ -14,7 +14,7 @@ id_wordpress: 1719
 >
 > ([https://t.co/T3sM2TwoCY](https://t.co/T3sM2TwoCY))
 >
-> Antonin Atger (@AntoninAtger) [March 5, 2019](https://twitter.com/AntoninAtger/status/1102908767740547072?ref_src=twsrc%5Etfw)
+> — Antonin Atger (@AntoninAtger) [March 5, 2019](https://twitter.com/AntoninAtger/status/1102908767740547072?ref_src=twsrc%5Etfw)
 
 ## La question qui fâche
 
@@ -108,7 +108,7 @@ A bientôt !
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

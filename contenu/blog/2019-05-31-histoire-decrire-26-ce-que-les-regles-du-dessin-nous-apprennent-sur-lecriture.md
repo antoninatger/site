@@ -103,7 +103,7 @@ Et son site, que j’ai personnellement utilisé pour apprendre les bases du des
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

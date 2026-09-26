@@ -44,6 +44,5 @@ Cet échange n’aura AUCUN effet bénéfique.
 
 Parfois, la programmation même d’un débat mettant en avant des personnalités qui ne devraient pas être exposées est une défaite, avant même que les premiers mots soient prononcés.
 
-* * *
-
+—
 Si vous souhaitez que j’intervienne sur le sujet des Fake News dans un établissement scolaire, une entreprise ou une association, n’hésitez pas à me contacter !

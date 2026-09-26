@@ -48,7 +48,7 @@ Restez dans votre univers, mais imaginez une nouvelle de quelques pages sur l’
 
 Sur ce, je vous laisse, j’ai une saga intergalactique à écrire !
 
-* * *
+—
 
 J’espère que cet article vous a plu ! Nhésitez pas à le partager sur les réseaux sociaux, ou le transférer à des personnes que vous savez lancées dans une histoire gargantuesque !
 

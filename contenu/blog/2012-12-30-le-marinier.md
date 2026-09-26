@@ -59,7 +59,7 @@ Enfin le retour. Le pied à terre s’équilibre avec le pied marin. Sept jours 
 
 Photo de Guillaume Atger: [http://www.divergence-images.com/guillaume-atger/](http://www.divergence-images.com/guillaume-atger/)
 
-* * *
+—————————————————————————————————————————————–
 
 *Après nos [péripéties apocalyptiques](http://amanalat.com/mon-premier-roman/), retour à d’autres textes et d’autres styles ! Celui-ci relate la vie d’un marinier effectuant des allers et retours sur les fleuves. Ce trajet commence à Chalon et Macon sur la Saône. Celle-ci devient Rhône et il s’arrête au Port Edouart Herriot à Lyon avant de finir à Fos-Sur-Mer. Le trajet s’effectue ensuite en sens inverse. L’objectif n’était pas un descriptif documentaire de ce métier mais d’y apporter une sensibilité artistique.*
 

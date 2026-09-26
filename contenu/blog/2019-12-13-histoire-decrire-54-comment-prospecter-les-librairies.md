@@ -65,7 +65,7 @@ Pour conclure : les festivals littéraires sont d’excellents moments à vivre 
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

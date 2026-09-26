@@ -18,7 +18,7 @@ Il existe un piège, dans l’écriture, comme dans tout art : se mettre la pres
 >
 > (Développez en commentaires :))
 >
-> Antonin Atger (@AntoninAtger) [February 8, 2019](https://twitter.com/AntoninAtger/status/1093993749108146181?ref_src=twsrc%5Etfw)
+> — Antonin Atger (@AntoninAtger) [February 8, 2019](https://twitter.com/AntoninAtger/status/1093993749108146181?ref_src=twsrc%5Etfw)
 
 ## L’éducation littéraire
 
@@ -131,7 +131,7 @@ Simple, non ?
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

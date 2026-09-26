@@ -52,7 +52,7 @@ Donc si vous sentez vraiment que ce n’est pas votre tasse de café, que ce n�
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu ! La semaine prochaine, nous verrons comment écrire, lorsqu’on a un délai particulièrement court ! Le conseil numéro 3 vous surprendra !
 

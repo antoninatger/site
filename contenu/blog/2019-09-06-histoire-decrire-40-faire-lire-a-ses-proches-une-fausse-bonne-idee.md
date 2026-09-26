@@ -104,7 +104,7 @@ Faire lire un texte, ou lire le texte d’un autre, n’est pas chose aisée. Ma
 
 ## Important !
 
-![Fichier:Nuvola apps important.svg, Wikipédia](https://i0.wp.com/s1.qwant.com/thumbr/0x380/a/7/40bec6eab80856913f1174812d0f5733d86fca9868b817740fc626306c6049/1229px-Nuvola_apps_important.svg.png)
+![Fichier:Nuvola apps important.svg — Wikipédia](https://i0.wp.com/s1.qwant.com/thumbr/0x380/a/7/40bec6eab80856913f1174812d0f5733d86fca9868b817740fc626306c6049/1229px-Nuvola_apps_important.svg.png)
 *Important, on vous dit.*
 
 **Vous avez des questions sur l’écriture ? Le mois suivant sera, une nouvelle fois, consacrez à vos demandes ! Mettez donc en commentaires les choses qui vous chiffonnent, qui vous bloquent, j’en ferai peut être un article ! Qui ne tente rien…**
@@ -113,7 +113,7 @@ Belle journée,
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

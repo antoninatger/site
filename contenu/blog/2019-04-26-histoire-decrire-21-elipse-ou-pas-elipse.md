@@ -132,7 +132,7 @@ Dans tous les cas, l’elipse est un outil, de la même manière que la descript
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

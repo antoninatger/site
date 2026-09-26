@@ -23,7 +23,7 @@ J’ai écrit Interfeel, dans lequel j’imagine un nouveau réseau social qui p
 
 Je me saisis de ce sujet depuis plusieurs années lors de mes interventions en médiathèques et en établissements scolaires. **En parallèle à l’écriture, j’étudie les sciences cognitives. **Je puise dans nos connaissances du cerveau pour expliquer pourquoi nous sommes si sensibles aux ‘’infox’’ et pourquoi les Réseaux Sociaux en raffolent. Les informations n’ont pas à être vraies : elles n’ont qu’à nous plaire pour que nous oubliions notre esprit critique. Je soumets le public à quelques illusions divertissantes pour montrer que si notre cerveau est un outil formidable, il est aussi faillible.
 
-![Échiquier d'Adelson, Wikipédia](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Grey_square_optical_illusion.svg/1200px-Grey_square_optical_illusion.svg.png)
+![Échiquier d'Adelson — Wikipédia](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Grey_square_optical_illusion.svg/1200px-Grey_square_optical_illusion.svg.png)
 *Croyez-le ou non, les cases A et B sont exactement de la même couleur.*
 
 Les Fake News circulent plus vite et plus loin sur Internet, et sont plus souvent partagées. Elles sont extrêmement attrayantes, ce qui les rendent particulièrement dangereuses. Mais nous pouvons les repérer et réduire leur influence. C’est le but de mon intervention. En comprenant comment notre cerveau se fait avoir, nous apprenons à être plus vigilants !

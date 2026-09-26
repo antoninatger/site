@@ -173,7 +173,7 @@ L’autre solution, c’est de ne pas suivre le parcours initiatique du héros !
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 

@@ -67,7 +67,7 @@ De paria, de débile, de Mussot, ou de plouc
  L’inspiration viendra comme une délivrance
  Et vous pourrez écrire….votre pseudo Facebook.
 
-* * *
+—————————————————————————————————————–
 
 Vous trouvez qu’il manque quelques paragraphes à ce poème? Que l’Ecrivain Maudit doit se développer un peu plus ? Qu’il y a encore de la matière à exploiter?
 
@@ -75,7 +75,7 @@ Vous trouvez qu’il manque quelques paragraphes à ce poème? Que l’Ecrivain 
 
 ### Proposez moi des quatrains supplémentaires ! Je me ferais une joie de les ajouter si (après un procédé démocratiquement scandaleux puisqu’il n’implique que moi même) je les aime !
 
-* * *
+———————————————————————————————————–
 
 Et voici le retour de l’Ecrivain Maudit ! Après des semaines où [Facebook ](https://www.facebook.com/pages/Amanalat/258858794183127)et [Twitter](https://twitter.com/Amanalat1) n’ont eu aucune citation (et oui, déjà quelques semaines!), il me semblait important de revenir avec quelque chose de conséquent !
 

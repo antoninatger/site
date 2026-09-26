@@ -122,7 +122,7 @@ Et voilà ! Vous avez désormais entre les mains votre bébé finalisé ! Et en 
 
 Antonin A.
 
-* * *
+—-
 
 J’espère que ce conseil d’écriture vous a plu !
 
