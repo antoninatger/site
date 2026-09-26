@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url={{ vers }}">
+<link rel="canonical" href="{{ vers if vers.startswith('http') else site.url ~ vers }}">
+<meta name="robots" content="noindex">
+<title>Redirection</title>
+</head>
+<body>
+<p>Cette page a déménagé : <a href="{{ vers }}">{{ vers }}</a></p>
+<script>location.replace("{{ vers }}");</script>
+</body>
+</html>

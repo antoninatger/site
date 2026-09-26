@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block main_attr %}{% if categorie and categorie.pilier %} class="pilier-{{ categorie.pilier }} fond-teinte"{% endif %}{% endblock %}
+{% block contenu %}
+<div class="wrap">
+  <header class="page-tete">
+    <div class="eyebrow">Blog</div>
+    <h1>{{ categorie.nom if categorie else 'Le blog' }}</h1>
+    <p class="lead">{{ categorie.description if categorie and categorie.description else "Analyses sur la désinformation, la rhétorique et les théories du complot, actualités des interventions, conseils d'écriture et textes. Depuis 2012." }}</p>
+  </header>
+  {% if not categorie or categorie.nom in ('Esprit critique', 'Écrits') %}
+  <div class="blog-portes">
+    <a class="blog-porte pilier-chercheur" href="/chroniques/"><b>Les chroniques, par thème</b><span>{% for t in themes_liste if t.nombre %}{% if loop.index <= 6 %}{{ t.nom }}{% if not loop.last and loop.index < 6 %} · {% endif %}{% endif %}{% endfor %}…</span><i>→</i></a>
+    <a class="blog-porte pilier-romancier" href="/ecrits/"><b>Nouvelles et poèmes</b><span>Les Nouvelles du confinement, les premiers textes, les poèmes</span><i>→</i></a>
+  </div>
+  {% endif %}
+  <nav class="cats-nav" aria-label="Catégories">
+    <a href="/blog/"{% if not categorie %} aria-current="page"{% endif %}>Tout</a>
+    {% for c in categories %}<a href="{{ c.url }}"{% if categorie and categorie.nom == c.nom %} aria-current="page"{% endif %}>{{ c.nom }} <span class="muted">({{ c.billets | length }})</span></a>{% endfor %}
+  </nav>
+  <div class="billets-liste">
+    {% for b in billets %}
+    <article class="billet-item">
+      <time datetime="{{ b.dt.isoformat() }}">{{ b.date_fr }}</time>
+      <div>
+        <h2><a href="{{ b.url }}">{{ b.titre }}</a></h2>
+        <p>{{ b.extrait }}</p>
+        {% if not categorie %}<div class="tags">{% for c in b.categories %}<span class="tag">{{ c }}</span>{% endfor %}</div>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% if pages_total > 1 %}
+  <nav class="pagination" aria-label="Pages">
+    {% if page_num > 1 %}<a href="{{ base if page_num == 2 else base ~ 'page/' ~ (page_num - 1) ~ '/' }}" aria-label="Page précédente">‹</a>{% endif %}
+    {% for p in range(1, pages_total + 1) %}
+      {% if p == page_num %}<span aria-current="page">{{ p }}</span>
+      {% elif p == 1 or p == pages_total or (p >= page_num - 2 and p <= page_num + 2) %}<a href="{{ base if p == 1 else base ~ 'page/' ~ p ~ '/' }}">{{ p }}</a>
+      {% elif p == page_num - 3 or p == page_num + 3 %}<span>…</span>{% endif %}
+    {% endfor %}
+    {% if page_num < pages_total %}<a href="{{ base ~ 'page/' ~ (page_num + 1) ~ '/' }}" aria-label="Page suivante">›</a>{% endif %}
+  </nav>
+  {% endif %}
+  <section class="section section--tight" id="abonnement">
+    <div class="encart">
+      <h3>Recevoir les nouveaux billets</h3>
+      <p class="muted">Par e-mail, un billet par semaine environ, aucune publicité. Le <a href="/feed.xml">flux RSS</a> est aussi disponible.</p>
+      <form class="form form--inline" method="post" action="https://subscribe.wordpress.com" accept-charset="utf-8" id="subscribe-blog">
+        <input type="hidden" name="action" value="subscribe">
+        <input type="hidden" name="blog_id" value="{{ site.blog.wordpress_id }}">
+        <input type="hidden" name="source" value="{{ site.url }}/blog/">
+        <input type="hidden" name="sub-type" value="widget">
+        <input type="hidden" name="redirect_fragment" value="abonnement">
+        <div><label for="ab-email">Adresse e-mail</label><input type="email" id="ab-email" name="email" required placeholder="vous@exemple.fr"></div>
+        <button class="btn btn--primary" type="submit">S'abonner</button>
+      </form>
+      <p class="small muted" style="margin:10px 0 0">Vous recevrez un e-mail de confirmation (la liste est gérée par WordPress.com). Désabonnement en un clic dans chaque envoi.</p>
+      <p class="alerte" data-message-abonnement hidden style="margin-top:12px"></p>
+    </div>
+  </section>
+</div>
+{% endblock %}

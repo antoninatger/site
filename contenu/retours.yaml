@@ -1,0 +1,28 @@
+# Généré par extraire_retours.py à partir de Retours.xlsx — ne pas modifier ici :
+# pour retirer ou forcer un retour, colonne « Sur le site » (oui / non) dans l'Excel ;
+# pour corriger un texte, colonne « Texte pour le site ».
+retours:
+- type: jeu
+  texte: C’était intéressant et ça permet de nous habituer à bien regarder si nos sources sont fiables
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  note: null
+  date: '2026-09-24'
+- type: eleve
+  texte: C’était bien, on nous a fait remarquer des choses qu’on ne remarquait pas avant sur les fake news.
+  qui: Élève de 4e
+  etablissement: Collège du Klosterwald
+  mode: ''
+  sujet: Fake News et esprit critique
+  note: 18
+  date: '2026-06-08'
+- type: eleve
+  texte: Super ! Antonin a été très intéressant, c’était fluide et bien expliqué !
+  qui: Élève de 4e
+  etablissement: Collège du Klosterwald Villé
+  mode: ''
+  sujet: Fake News et esprit critique
+  note: 19
+  date: '2026-06-08'

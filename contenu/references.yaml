@@ -1,0 +1,64 @@
+# Données réutilisées par plusieurs pages : références, témoignages, jeux, listes.
+
+bande:
+  - { titre: TEDx, texte: "Garder espoir sur les réseaux sociaux, 2024", url: /presse-et-medias/#tedx }
+  - { titre: Assemblée nationale, texte: "Audition sur les réseaux sociaux et les jeunes", url: /presse-et-medias/#assemblee }
+  - { titre: Prix Voices 2025, texte: "Prix européen, Zagreb, projet Self Data", url: /parcours/#self-data }
+  - { titre: France 3, texte: "Décrypter les fake news à l'école", url: /presse-et-medias/#television }
+  - { titre: 123 structures, texte: "87 établissements, 36 médiathèques, partout en France", url: /a-propos/#confiance }
+
+temoignages:
+  - texte: "Excellente intervention, parfaitement limpide, structurée, et essentielle pour les élèves qui, bien souvent, manquent cruellement d'esprit critique face aux sources d'informations auxquelles ils sont confrontés sur les réseaux sociaux. J'ai été particulièrement sensible à la distinction faite entre corrélation et causalité."
+    auteur: Samuel B.
+    fonction: enseignant, lycée Charles de Gaulle
+    intervention: fake-news-et-esprit-critique
+  - texte: "Comment développer en six séances de 40 minutes l'esprit critique d'élèves de CM1-CM2 face à l'information en ligne, sur le temps périscolaire du midi ? Défi relevé, grâce à une méthodologie minutieuse et un parcours pédagogique adapté. Les jeux créés par Antonin au fil des séances transforment les enfants en véritables enquêteurs. Merci Antonin pour ta bienveillance et ton professionnalisme."
+    auteur: Agnès P.
+    fonction: ALAE Georges Dagneaux, Léo Lagrange, Perpignan
+    intervention: parcours
+  - texte: "Une visio intéressante, interactive sur un sujet hautement d'actualité dont l'objectif est d'interpeller nos étudiants, soumis à des fake news en continu. Une façon pédagogique de développer leur esprit critique."
+    auteur: Orianne Capésius
+    fonction: enseignante en BTS, lycée Félix Mayer, Creutzwald
+    mode: Distanciel
+    intervention: a-distance
+
+partenaires:
+  - Unicef
+  - Institut français de Croatie
+  - Ambassade de France en Croatie
+  - Assemblée nationale
+  - Métropole de Lyon
+  - Département du Val d'Oise
+  - Réseau Canopé
+  - Erasme
+
+jeux_libres:
+  - { titre: Fakemètre, texte: "Mesurer la fiabilité d'une information, source par source. Trois niveaux et un mode créateur.", url: "https://antoninatger.github.io/fakemetre/", niveau: "Dès le CM2 · 15 min", icone: gauge, vignette: /images/site/jeux/fakemetre.jpg }
+  - { titre: Radar'naque, texte: "Repérer les arnaques : SMS, e-mails, faux conseiller, deepfakes.", url: "https://antoninatger.github.io/jeux/radarnaque/", niveau: "Tout âge · 15 min", icone: shield, vignette: /images/site/jeux/radarnaque.jpg }
+  - { titre: Arène de rhétorique, texte: "Reconnaître les procédés rhétoriques et les sophismes dans un discours.", url: "https://antoninatger.github.io/jeux/arene-rhetorique/", niveau: "Collège – lycée · 20 min", icone: swords, vignette: /images/site/jeux/arene-rhetorique.jpg }
+  - { titre: Planète connaissance, texte: "Distinguer les faits des opinions, en mission sur une planète inconnue.", url: "https://antoninatger.github.io/jeux/Plan%C3%A8te%20connaissance.html", niveau: "Primaire · 15 min", icone: planet, vignette: /images/site/jeux/planete-connaissance.jpg }
+
+jeux_reserves:
+  - { titre: Radar désinfo, texte: "Distinguer une information fiable d'une désinformation.", vignette: /images/site/jeux/radar-desinfo.jpg }
+  - { titre: Chasse aux biais, texte: "Débusquer les biais cognitifs du quotidien, énigme par énigme.", vignette: /images/site/jeux/chasse-aux-biais.jpg }
+  - { titre: Perceptio, texte: "Catalogue des biais cognitifs : définitions, exemples, QCM et sources.", vignette: /images/site/jeux/perceptio.jpg }
+  - { titre: Rhetor, texte: "Catalogue des outils rhétoriques : figures, sophismes, lexique de l'argumentation.", vignette: /images/site/jeux/rhetor.jpg }
+  - { titre: Cobaye, texte: "Dix expériences célèbres de psychologie : histoire, controverses, sources.", vignette: /images/site/jeux/cobaye.jpg }
+  - { titre: Répare la une, texte: "Corriger la une trompeuse d'un journal.", vignette: /images/site/jeux/repare-la-une.jpg }
+  - { titre: Graphiques trompeurs, texte: "Démasquer les graphiques qui déforment la réalité sans changer un chiffre.", vignette: /images/site/jeux/graphiques-trompeurs.jpg }
+  - { titre: Dés de la mal-information, texte: "Un jeu de dés autour de la mal-information.", vignette: /images/site/jeux/mes-des-mal.jpg }
+  - { titre: Arcade quizz, texte: "Casse-briques, snake, whac-a-quiz : les quiz des conférences en version arcade.", vignette: /images/site/jeux/arcade.jpg }
+  - { titre: Le biais de confirmation, texte: "Comprendre le biais de confirmation, dès le CM1.", vignette: /images/site/jeux/biais-confirmation.jpg }
+  - { titre: "La Terre ronde ou plate ?", texte: "Démonter le mythe platiste, preuve par preuve.", vignette: /images/site/jeux/terre-ronde-plate.jpg }
+  - { titre: "Avis « style Maps »", texte: "Une moyenne peut cacher une tendance.", vignette: /images/site/jeux/notes-google.jpg }
+  - { titre: Le Grand Oral, texte: "Convaincre un auditoire différent à chaque mission, sans un mot de trop.", vignette: /images/site/jeux/grand-oral.jpg }
+  - { titre: Illusions d'optique, texte: "Dix illusions classiques à explorer.", vignette: /images/site/jeux/illusions.jpg }
+  - { titre: Mine la Planète, texte: "Un mot remplacé peut transformer un fait en opinion.", vignette: /images/site/jeux/mine.jpg }
+  - { titre: Lignes numérotées, texte: "Mémoriser des lignes qui apparaissent une par une, puis les ranger.", vignette: /images/site/jeux/lignes-numerotees.jpg }
+  - { titre: Emprise, texte: "Reconnaître les mécanismes de l'emprise dans une conversation.", vignette: /images/site/jeux/emprise.jpg }
+
+etablissements: >-
+  Lycée Pierre Termier, Collège Gérard de Nerval, Collège Lestonnac, Collège Français Blue Pool Road, Collège Français Tseung Kwan O, Lycée Français de Köpenick, EREA de Sorbier, École Maz de la Raz, EREA Nelson Mandela, Collège Champollion, Lycée Jean-Paul Sartre, Lycée Tony Garnier, Collège Théodore Monod, Collège Champagnat, Collège Le Paruthiol, Lycée Charles de Gaulle, Lycée Jean Hanzelet, Collège Léon-Marie, Lycée Colbert, Collège Nelson Mandela, Lycée Hector Guimard, Collège Jean Moulin, Ensemble scolaire Saint-Gatien La Salle, Collège Lamartine, Collège Dargent, Lycée Albert Camus, Lycée Charlie Chaplin, Lycée Aristide Bergès, CDI Lycée Saint-Joseph, Lycée Becquerel, Collège Georges Brassens, Lycée du Premier Film, Lycée La Favorite, Lycée Fays, Lycée Henri Laurens, Lycée du Golf, Collège Alex Mezenc, Collège Simone Veil, Lycée Saint-Exupéry, Lycée Saint-Marc, Collège Yvon Morandat, Collège Saint-François d'Assise, Lycée Marcel Sembat, Collège du Pays de Gavot, Collège Geneviève Anthonioz-de-Gaulle, Collège Alphonse Daudet, Lycée Robert Doisneau, Lycée Français International de Hong Kong, Institution Saint-Joseph, Lycée Professionnel Jacques Vaucanson, Lycée Ferdinand Buisson, Lycée Privé Montesquieu, Lycée Adam de Craponne, Lycée Lakanal, Lycée Rosa Parks, Collège Charles de Gaulle, Lycée Chevreul Lestonnac, Collège François Couperin, Collège Pasteur, Collège Maryse Bastié, Cité scolaire Claude Bernard, Collège Hélène Boucher, Lycée Alexandre Dumas, École Alsacienne, Collège Bellecombe, Collège du Sauveur, Collège de la Côte Roannaise, Collège Mayorga, Notre-Dame Saint-François, Lycée Gaspard Monge, LP Saint-Joseph Vierzon, Lycée Vauban, Collège Lafayette, Collège La Salle, Centre scolaire Notre-Dame Ozanam, Lycée Condorcet, Collège du Klosterwald, École Massillon, Institution Le Bois-Robert, Lycée Hôtelier de l'Hermitage, Lycée International, Lycée Ozanam, Collège Jean de Verrazzane, Notre-Dame Saint-Joseph, Collège Privé Notre-Dame, Collège Vallon, Lycée Polyvalent Félix Mayer (Creutzwald).
+
+mediatheques: >-
+  Médiathèque de Pollionnay, Médiathèque de Saint-Aubin-lès-Elbeuf, Bibliothèque de Huningue, Médiathèque de Bourgoin-Jallieu, Médiathèque de Salon-de-Provence, Bibliothèque Méjanes, Médiathèque de Châtillon-sur-Chalaronne, Médiathèque de Charvieu-Chavagneux, Médiathèque du Viviers, Médiathèque Jacques et Aimé Bertrand, Médiathèque de Pusignan, Médiathèque d'Évian-les-Bains, Bibliothèque de Pusignan, Médiathèque Simone Veil, Bibliothèque de Ternay, Médiathèque de Voreppe, Bibliothèque Méjanes Allumettes, Bibliothèque des Deux Mondes, Médiathèque de Langeac, Médiathèque Michel Courot, Médiathèque d'Ambilly, Médiathèque de Trets, Médiathèque de Grézieu-la-Varenne, Médiathèque Paul Éluard, Bibliothèque de Montanay, Bibliothèque Jean Giono, Médiathèque de Chirens, Médiathèque de Saint-Genis-Pouilly, Médiathèque Léo Ferré, Médiathèque Champollion, Bibliothèque Départementale du Val-d'Oise, Médiathèque de Vif, Bibliothèque de la Part-Dieu, Médiathèque Visages du Monde, Médiathèque La MéMo, Bibliothèque de Mâcon.

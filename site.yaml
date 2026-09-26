@@ -1,0 +1,65 @@
+# Réglages du site — lus par construire_site.py
+titre: Antonin Atger
+accroche: Esprit critique · conférences et ateliers
+url: https://antoninatger.com
+description: >-
+  Conférences et ateliers sur les fake news, la rhétorique, les influenceurs et les arnaques en ligne,
+  du CM1 au lycée, en médiathèque, en centre social et en entreprise. Par Antonin Atger, auteur et
+  doctorant en psychologie.
+langue: fr
+auteur: Antonin Atger
+image_par_defaut: /images/site/partage.jpg      # image de partage (Open Graph) quand une page n'en a pas
+
+menu:
+  - { titre: Interventions, url: /interventions/ }
+  - { titre: Formations, url: /formations/ }
+  - { titre: Jeux, url: /jeux/ }
+  - { titre: Livres, url: /livres/ }
+  - { titre: Blog, url: /blog/ }
+  - { titre: À propos, url: /a-propos/ }
+bouton: { titre: Organiser une intervention, url: /contact/ }
+
+pied:
+  colonnes:
+    - titre: Interventions
+      liens:
+        - { titre: Toutes les interventions, url: /interventions/ }
+        - { titre: Parcours et projets sur mesure, url: /parcours/ }
+        - { titre: Interventions à distance, url: /interventions/a-distance/ }
+        - { titre: Formations, url: /formations/ }
+    - titre: Découvrir
+      liens:
+        - { titre: Jeux pédagogiques, url: /jeux/ }
+        - { titre: Livres, url: /livres/ }
+        - { titre: Blog, url: /blog/ }
+        - { titre: Chroniques par thème, url: /chroniques/ }
+        - { titre: Nouvelles et poèmes, url: /ecrits/ }
+        - { titre: Presse et médias, url: /presse-et-medias/ }
+    - titre: Contact
+      liens:
+        - { titre: Organiser une intervention, url: /contact/ }
+        - { titre: LinkedIn, url: https://www.linkedin.com/in/antonin-atger-68254217/ }
+        - { titre: Instagram, url: https://www.instagram.com/antoninatgerauteur/ }
+        - { titre: Bluesky, url: https://bsky.app/profile/antoninatger.bsky.social }
+  mentions:
+    - { titre: Mentions légales, url: /mentions-legales/ }
+    - { titre: Politique de confidentialité, url: /politique-de-confidentialite/ }
+    - { titre: Accessibilité, url: /accessibilite/ }
+    - { titre: Flux RSS, url: /feed.xml }
+
+# Formulaires : un service tiers reçoit les envois (le site est statique).
+# Créer un formulaire sur formspree.io (gratuit) et coller son adresse ici.
+formulaires:
+  # Web3Forms, comme les jeux (même clé) : les messages arrivent dans Outlook.
+  # Objets : « [Contact site] … » et « [Liste d'attente formations] … ». Gratuit jusqu'à 250 envois par mois.
+  service: https://api.web3forms.com/submit
+  cle: "ef1fe549-c616-4a27-a6c2-97f06caa913d"
+
+blog:
+  par_page: 12
+  # Abonnement par e-mail : la liste reste chez WordPress.com (site amanalat.wordpress.com, identifiant 31556844).
+  # Le formulaire envoie l'adresse à subscribe.wordpress.com, qui expédie le mail de confirmation.
+  wordpress_id: 31556844
+  categories_fichier: contenu/categories.yaml
+
+jeux_url: https://antoninatger.github.io/jeux      # à remettre sur https://jeux.antoninatger.com quand Cloudflare sera prêt

@@ -1,0 +1,86 @@
+{% import "_icones.html" as ic %}<!doctype html>
+<html lang="{{ site.langue }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if titre and url != '/' %}{{ titre }} | {{ site.titre }}{% else %}{{ site.titre }} | {{ site.accroche }}{% endif %}</title>
+<meta name="description" content="{{ (description or site.description) | striptags | truncate(300) }}">
+<link rel="canonical" href="{{ canonique }}">
+<meta property="og:type" content="{% block og_type %}website{% endblock %}">
+<meta property="og:title" content="{{ titre or site.titre }}">
+<meta property="og:description" content="{{ (description or site.description) | striptags | truncate(300) }}">
+<meta property="og:url" content="{{ canonique }}">
+<meta property="og:image" content="{{ site.url }}{{ image or site.image_par_defaut }}">
+<meta property="og:site_name" content="{{ site.titre }}">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="{{ site.titre }} | Blog" href="{{ site.url }}/feed.xml">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<script>
+  // Effets au défilement : seulement si le JS tourne et sans « réduire les animations ».
+  // Sinon tout reste visible (Google et lecteurs d'écran lisent tout).
+  (function () { var d = document.documentElement; d.classList.add('js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('anim'); })();
+</script>
+<link rel="preload" href="/static/polices/space-grotesk-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/polices/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/css/site.css">
+{% block tete %}{% endblock %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Antonin Atger","url":"{{ site.url }}","jobTitle":"Auteur, doctorant en psychologie, conférencier en éducation aux médias","knowsAbout":["fake news","esprit critique","désinformation","rhétorique","théories du complot"],"sameAs":["https://debatology.substack.com/","https://fr.linkedin.com/in/antonin-atger"]}
+</script>
+</head>
+<body>
+<a class="sr-only" href="#contenu">Aller au contenu</a>
+<div class="progression" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="brand__nom">{{ site.titre }}</span><span class="brand__accroche">{{ site.accroche }}</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      {% for m in site.menu %}
+      {% if m.url == '/jeux/' and refs and refs.jeux_libres %}
+      <div class="menu-jeux">
+        <button class="menu-jeux__bouton" type="button" aria-expanded="false" aria-controls="panneau-jeux"{% if url.startswith('/jeux/') %} aria-current="page"{% endif %}>{{ m.titre }} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="panneau-jeux" id="panneau-jeux">
+          <div class="panneau-jeux__titre">En accès libre, gratuitement</div>
+          {% for j in refs.jeux_libres %}<a class="pj" href="{{ j.url }}" target="_blank" rel="noopener"><span class="pj__ico">{{ ic.icone(j.icone) }}</span><span><b>{{ j.titre }}</b><small>{{ j.niveau }}</small></span></a>{% endfor %}
+          <div class="panneau-jeux__bas">
+            {% if site.jeux_url %}<a href="{{ site.jeux_url }}" target="_blank" rel="noopener">🔑 Jeux réservés : entrer le code de mon établissement</a>{% endif %}
+            <a href="/jeux/">Tous les jeux →</a>
+          </div>
+        </div>
+      </div>
+      {% else %}<a href="{{ m.url }}"{% if url == m.url or (m.url != '/' and url.startswith(m.url)) %} aria-current="page"{% endif %}>{{ m.titre }}</a>{% endif %}
+      {% endfor %}
+      <a class="btn btn--primary" href="{{ site.bouton.url }}">{{ site.bouton.titre }}</a>
+    </nav>
+  </div>
+</header>
+{# pilier de la page : « pilier: romancier » (ou chercheur, intervenant) dans l'en-tête d'une page, ou le bloc main_attr d'un gabarit #}
+<main id="contenu"{% block main_attr %}{% if page and page.pilier %} class="pilier-{{ page.pilier }} fond-teinte"{% endif %}{% endblock %}>
+{% block contenu %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="/"><span class="brand__nom">{{ site.titre }}</span></a>
+      <p class="small" style="margin-top:8px">Auteur, doctorant en psychologie, conférencier. Interventions en Auvergne-Rhône-Alpes, en déplacement selon les regroupements, et à distance partout.</p>
+    </div>
+    {% for col in site.pied.colonnes %}
+    <div>
+      <h2 class="pied-titre">{{ col.titre }}</h2>
+      <ul>{% for l in col.liens %}<li><a href="{{ l.url }}"{% if l.url.startswith('http') %} rel="noopener" target="_blank"{% endif %}>{{ l.titre }}</a></li>{% endfor %}</ul>
+    </div>
+    {% endfor %}
+    <div class="mentions">
+      <span>© {{ annee }} {{ site.auteur }}</span>
+      {% for l in site.pied.mentions %}<a href="{{ l.url }}">{{ l.titre }}</a>{% endfor %}
+    </div>
+  </div>
+</footer>
+<script src="/static/js/site.js" defer></script>
+</body>
+</html>

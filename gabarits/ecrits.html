@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block main_attr %} class="pilier-romancier fond-teinte"{% endblock %}
+{% block contenu %}
+<div class="wrap ecrits">
+  <header class="page-tete">
+    <div class="eyebrow">Écrits</div>
+    <h1>Nouvelles et poèmes</h1>
+    <p class="lead">Avant et à côté des romans : les nouvelles, les poèmes et les textes publiés sur ce site depuis 2012.</p>
+  </header>
+  <nav class="cats-nav" aria-label="Sections">
+    {% for g in ecrits %}<a href="#{{ g.cle }}">{{ g.titre }} <span class="muted">({{ g.elements|length }})</span></a>{% endfor %}
+  </nav>
+  {% for g in ecrits %}
+  <section class="ecrits-groupe" id="{{ g.cle }}">
+    <div class="ecrits-groupe__tete">
+      <h2>{{ g.titre }}</h2>
+      {% if g.intro %}<p class="muted">{{ g.intro }}</p>{% endif %}
+    </div>
+    <div class="ecrits-grille">
+      {% for e in g.elements %}
+      <a class="ecrit" data-rv style="--d:{{ '%.2f' % ((loop.index0 % 6) * 0.06) }}s" href="{{ e.url }}">
+        {% if g.numeroter %}<span class="ecrit__num" aria-hidden="true">{{ loop.index }}</span>{% endif %}
+        <span class="ecrit__date">{{ e.date }}</span>
+        <h3>{{ e.titre }}</h3>
+        {% if e.extrait %}<p>{{ e.extrait|striptags|truncate(130, killwords=False, end='…') }}</p>{% endif %}
+        <span class="ecrit__lire">Lire →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <p class="muted small" style="margin:40px 0 0">Les romans sont sur la page <a href="/livres/">Livres</a>.</p>
+</div>
+{% endblock %}

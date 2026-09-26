@@ -1,0 +1,58 @@
+# Page « Nouvelles et poèmes » (/ecrits/) : les textes publiés sur le site depuis 2012.
+# Chaque groupe liste des billets (par leur slug) et/ou des pages (par leur nom de fichier dans contenu/pages).
+# Pour ajouter un texte : son slug dans le bon groupe. L'ordre est celui de la liste.
+
+groupes:
+  - cle: confinement
+    titre: Nouvelles du confinement
+    intro: "Printemps 2020 : une nouvelle chaque jour du premier confinement, quatorze au total."
+    numeroter: true
+    billets:
+      - nouvelle-confinement-1-point-rouge
+      - nouvelle-confinement-2-entre-eux-deux
+      - lhorloge-2
+      - nouvelles-du-confinement-4-faits-divers
+      - le-point-dequilibre-nouvelle-du-confinement-5
+      - ma-vie-est-une-parenthese-musicale-nouvelles-du-confinement-6
+      - le-reve-americain-nouvelles-du-confinement-7
+      - letincelle
+      - ecrivons-un-poeme-nouvelles-du-confinement-9
+      - trois-secondes-dans-un-metro-nouvelles-du-confinement-10
+      - autobiographie-dune-ville-nouvelles-du-confinement-11
+      - leclat-de-la-photo-nouvelles-du-confinement-12
+      - retrouvailles-nouvelles-du-confinement-inedit-13
+      - la-preuve-par-trois-2
+  - cle: nouvelles
+    titre: Nouvelles et micro-nouvelles
+    intro: "Les premiers textes du site, de 2012 à 2017."
+    billets:
+      - un-envol
+      - leclat_de_la_feuille
+      - entre-eux-deux
+      - lhorloge
+      - escale
+      - pre-chronique-du-mysterieux-inconnu
+      - chronique-du-mysterieux-inconnu
+      - histoires-minimalistes
+      - le-marinier
+      - le-reve-americain
+      - letincelle_micro-nouvelle
+  - cle: poemes
+    titre: Poèmes
+    intro: "Des poèmes d'annonce, d'atelier et de salon du livre."
+    pages: [poemes-doccasion]
+    billets:
+      - eclat-ons-nous-a-ecrire-un-poeme
+      - weekend-decrivain-le-salon-de-montreuil
+  - cle: humeurs
+    titre: Humeurs
+    intro: "Des textes plus libres, sur l'écriture et la culture."
+    billets:
+      - recette-de-lecrivain-maudit
+      - best-of-de-lecrivain-maudit
+      - la-nudite-a-lecran
+      - ne-meprisons-pas-la-culture
+  - cle: libre
+    titre: Projet de roman
+    intro: "La note d'intention et le synopsis de 'Libre, une histoire d'amitié, de liberté et d'alien."
+    pages: [libre-note-dintention-et-synopsis]

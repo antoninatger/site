@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
+{% block contenu %}
+<div class="wrap">
+  <header class="page-tete">
+    <div class="eyebrow">{{ page.eyebrow }}</div>
+    <h1>{{ page.titre }}</h1>
+    <p class="lead">{{ page.lead }}</p>
+  </header>
+  <div class="prose">{{ page.html | safe }}</div>
+  <section class="section section--tight" id="en-ligne">
+    <div class="encart">
+      <div class="eyebrow">Bientôt</div>
+      <h3>Formations en ligne</h3>
+      <p class="muted">Enseigner l'esprit critique en six séances clés en main, un atelier pour les parents sur les influenceurs, un cycle « arnaques en ligne » pour les structures qui accompagnent les seniors : les formations en ligne arrivent. Laissez votre adresse pour être prévenu à l'ouverture, et dites-moi ce qui vous serait le plus utile.</p>
+      <form class="form" method="post" action="{{ site.formulaires.service }}" data-web3="[Liste d'attente formations]" data-objet-champs="profil email">
+        <input type="hidden" name="access_key" value="{{ site.formulaires.cle }}">
+        <input type="hidden" name="from_name" value="Site antoninatger.com">
+        <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <input type="hidden" name="formulaire" value="liste-attente-formations">
+        <input type="hidden" name="subject" value="[Liste d'attente formations] Inscription depuis antoninatger.com">
+        <input type="hidden" name="redirect" value="{{ site.url }}/formations/?envoye=1#en-ligne">
+        <div><label for="la-email">Adresse e-mail</label><input type="email" id="la-email" name="email" required></div>
+        <div><label for="la-profil">Vous êtes</label>
+          <select id="la-profil" name="profil">
+            <option>Enseignant·e, CPE, professeur·e-documentaliste</option>
+            <option>Animateur·rice, médiathèque, centre social</option>
+            <option>Parent</option>
+            <option>Entreprise, collectivité</option>
+            <option>Autre</option>
+          </select></div>
+        <div><label for="la-besoin">Ce qui vous serait le plus utile (facultatif)</label><textarea id="la-besoin" name="besoin" style="min-height:90px"></textarea></div>
+        <button class="btn btn--primary" type="submit">Me prévenir à l'ouverture</button>
+      </form>
+      <p class="alerte" data-message-envoye hidden style="margin-top:12px">Merci, vous serez prévenu·e à l'ouverture.</p>
+    </div>
+  </section>
+</div>
+{% endblock %}

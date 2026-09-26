@@ -1,0 +1,85 @@
+# Catégories du blog : quatre catégories lisibles à la place des quatorze de WordPress.
+# · correspondance : ancienne catégorie WordPress → nouvelle (vide = ignorée)
+# · surcharges     : slug d'un billet → liste de catégories, quand la correspondance ne suffit pas
+# · par_defaut     : pour les billets sans catégorie (les « Uncategorized » de 2025-2026 sont des analyses)
+# · pilier          : la couleur de la catégorie et de ses billets (chercheur, intervenant, romancier)
+# Pour changer la catégorie d'un billet : ajouter une ligne dans surcharges, ou modifier `categories:` dans son fichier.
+
+par_defaut: Esprit critique
+
+categories:
+  Esprit critique:
+    slug: esprit-critique
+    pilier: chercheur
+    ordre: 1
+    description: "Fake news, complotisme, rhétorique, influence : des analyses courtes sur l'actualité, avec les outils de la psychologie."
+  Actualités:
+    slug: actualites
+    pilier: intervenant
+    ordre: 2
+    description: "Les rencontres, les conférences, les nouveaux jeux, les parutions : la vie des interventions."
+  Conseils d'écriture:
+    slug: conseils-d-ecriture
+    pilier: romancier
+    ordre: 3
+    description: "Histoire d'écrire : les techniques de l'écriture de fiction, épisode par épisode, et les coulisses du métier."
+  Écrits:
+    slug: ecrits
+    pilier: romancier
+    ordre: 4
+    description: "Nouvelles, poèmes, textes courts publiés ici depuis 2012."
+
+correspondance:
+  Uncategorized: ""
+  Actualités: Actualités
+  "Interventions scolaires": Actualités
+  "Vidéos Youtube": Actualités
+  "atelier d'écriture": Actualités
+  "Conseils d'écriture": Conseils d'écriture
+  "Histoire d'écrire": Conseils d'écriture
+  "Vis ma vie d'Écrivain": Conseils d'écriture
+  Écrits: Écrits
+  Ecrits: Écrits
+  Nouvelles: Écrits
+  "Billet d'humeur": Écrits
+  Clair: Écrits
+  "Paroles !": Écrits
+
+surcharges:
+  # 2025-2026, billets sans catégorie qui sont des actualités et non des analyses
+  remontez-le-temps-pour-aider-les-resistants-lyonnais: [Actualités]
+  deux-articles-me-concernant-dans-science-et-pseudo-sciences: [Actualités]
+  presentation-de-mon-travail-au-centre-de-recherche-en-psychologie: [Actualités]
+  radarnaque: [Actualités]
+  rencontre-a-lalliance-francaise-de-hong-kong: [Actualités]
+  dedicace-a-hong-kong: [Actualités]
+  mise-a-jour-du-jeu-fakemetre: [Actualités]
+  jai-besoin-de-vous: [Actualités]
+  rencontre-au-lycee-carriat: [Actualités]
+  les-entretiens-pelapelaka: [Actualités]
+  les-rencontres-de-lesprit-critique-2026: [Actualités]
+  mission-esprit-critique-avec-les-eleves-de-dagneaux: [Actualités]
+  fakemetre-est-en-ligne-le-jeu-pour-valider-linformation: [Actualités]
+  former-les-plus-jeunes-cm1-cm2-a-lesprit-critique: [Actualités]
+  fin-des-rencontres: [Actualités]
+  films-et-complot-lemission: [Actualités]
+  # rangés à tort dans « Écrits » sur WordPress
+  interfeel-2-les-resistants-sort-aujourdhui: [Actualités]
+  la-librairie-panier-de-livres: [Actualités]
+  mon-audition-a-lassemblee-nationale: [Actualités]
+  ma-conference-ted-x-est-en-ligne: [Actualités]
+  une-semaine-de-rencontres-au-college-balzac: [Actualités]
+  fictions-et-complotisme-le-podcast: [Actualités]
+  un-smartphone-au-temps-de-la-resistance: [Actualités]
+  les-rencontres-de-la-semaine: [Actualités]
+  projet-dystopie: [Actualités]
+  une-grande-nouvelle: [Actualités]
+  les-cla-books-awards-escale-a-aublay-sous-bois: [Actualités]
+  interview-dantonin-atger-a-propos-de-son-livre-interfeel: [Actualités]
+  # anciens billets sans catégorie
+  la-preuve-par-trois-2: [Écrits]
+  letincelle: [Écrits]
+  "3024": [Conseils d'écriture]      # Histoire d'écrire #37
+  le-piege-du-faux-dilemme: [Esprit critique]
+  comment-lutter-contre-lemprise: [Esprit critique]
+  comment-lutter-contre-lemprise-sectaire: [Esprit critique]

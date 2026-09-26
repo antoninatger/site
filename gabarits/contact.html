@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block contenu %}
+<div class="wrap">
+  <header class="page-tete">
+    <h1>{{ page.titre }}</h1>
+    <p class="lead">{{ page.lead }}</p>
+  </header>
+  <div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:start" class="contact-grid">
+    <div>
+      <form class="form" method="post" action="{{ site.formulaires.service }}" data-web3="[Contact site]" data-objet-champs="sujet structure nom">
+        <input type="hidden" name="access_key" value="{{ site.formulaires.cle }}">
+        <input type="hidden" name="from_name" value="Site antoninatger.com">
+        <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <input type="hidden" name="subject" value="[Contact site] Message depuis antoninatger.com">
+        <input type="hidden" name="redirect" value="{{ site.url }}/contact/?envoye=1">
+        <div><label for="c-nom">Votre nom</label><input type="text" id="c-nom" name="nom" required autocomplete="name"></div>
+        <div><label for="c-email">Votre e-mail</label><input type="email" id="c-email" name="email" required autocomplete="email"></div>
+        <div><label for="c-structure">Établissement ou structure</label><input type="text" id="c-structure" name="structure" autocomplete="organization"></div>
+        <div><label for="c-sujet">Sujet</label>
+          <select id="c-sujet" name="sujet">
+            <option>Organiser une intervention</option>
+            <option>Un parcours ou un projet sur mesure</option>
+            <option>Une formation (enseignants, entreprise, collectivité)</option>
+            <option>Une rencontre autour des livres</option>
+            <option>Presse, podcast, média</option>
+            <option>Autre chose</option>
+          </select></div>
+        <div><label for="c-message">Votre message</label><textarea id="c-message" name="message" required placeholder="Le public, la période envisagée, ce que vous avez en tête…"></textarea></div>
+        <button class="btn btn--primary" type="submit">Envoyer</button>
+        <p class="aide">Vos coordonnées ne servent qu'à vous répondre.</p>
+      </form>
+      <p class="alerte" data-message-envoye hidden>Merci, votre message est bien parti. Je vous réponds dès que possible.</p>
+    </div>
+    <div class="prose">
+      {{ page.html | safe }}
+    </div>
+  </div>
+</div>
+<style>@media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr !important; } }</style>
+<script>
+  (function(){ var s = new URLSearchParams(location.search).get('sujet'); var ta = document.getElementById('c-message'); if (s && ta && !ta.value) { ta.value = 'Intervention souhaitée : ' + s + '\n\n'; } })();
+</script>
+{% endblock %}

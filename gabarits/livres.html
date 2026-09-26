@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block main_attr %} class="pilier-romancier fond-teinte"{% endblock %}
+{% block contenu %}
+<div class="wrap livres">
+  <header class="page-tete">
+    <div class="eyebrow">{{ page.eyebrow }}</div>
+    <h1 class="mots" data-mots>{{ page.titre }}</h1>
+    <p class="lead" data-rv>{{ page.lead }}</p>
+    <nav class="cats-nav" aria-label="Sections" data-rv style="--d:.15s">
+      <a href="#romans">Romans</a><a href="#recherche">Publications scientifiques</a><a href="#avant">Avant Interfeel</a><a href="/ecrits/">Nouvelles et poèmes</a>
+    </nav>
+  </header>
+
+  <!-- Romans : les trois tomes reliés par un fil qui se dessine -->
+  <section class="livres-section" id="romans">
+    <div class="eyebrow" data-rv>Romans</div>
+    <h2 class="mots" data-mots>La trilogie Interfeel.</h2>
+    <div class="romans" data-fil>
+      <span class="romans__trait" aria-hidden="true"></span>
+      {% for r in page.romans %}
+      <article class="roman">
+        <span class="roman__point" aria-hidden="true"></span>
+        <div class="roman__couv" data-rv="gauche">
+          {% if existe(r.couverture) %}<img src="{{ r.couverture }}" alt="Couverture de {{ r.titre }}" loading="lazy">{% else %}<div class="roman__couv-vide"><span>{{ r.tome }}</span></div>{% endif %}
+        </div>
+        <div class="roman__corps">
+          <div class="roman__tete" data-rv>
+            <div class="eyebrow">{{ r.tome }} · {{ r.date }}</div>
+            <h3>{{ r.titre }}</h3>
+            <div class="roman__notes">
+              {% if r.note_babelio %}<a class="roman__note" href="{{ r.babelio }}" rel="noopener" target="_blank"><b>★ {{ r.note_babelio }}</b><small>/5</small> sur Babelio{% if r.nb_notes %} · {{ r.nb_notes }} notes{% endif %}</a>{% endif %}
+              {% if r.critiques %}<a class="roman__critiques" href="{{ r.babelio }}" rel="noopener" target="_blank">{{ r.critiques }} →</a>{% elif r.babelio and not r.note_babelio %}<a class="roman__critiques" href="{{ r.babelio }}" rel="noopener" target="_blank">Voir sur Babelio →</a>{% endif %}
+            </div>
+          </div>
+          <p class="roman__resume" data-rv style="--d:.1s">{{ r.resume }}</p>
+          {% if r.distinctions %}<div class="tags roman__prix" data-rv style="--d:.15s">{% for d in r.distinctions %}<span class="tag tag--accent">🏆 {{ d }}</span>{% endfor %}</div>{% endif %}
+          {% if r.avis %}
+          <div class="roman__avis">
+            {% for a in r.avis %}
+            <figure class="avis" data-rv style="--d:{{ '%.2f' % (0.2 + loop.index0 * 0.12) }}s">
+              <blockquote>{{ a.texte }}</blockquote>
+              <figcaption><a href="{{ a.url }}" rel="noopener" target="_blank">{{ a.source }}</a>{% if a.note %} · <b>{{ a.note }}</b>{% endif %}</figcaption>
+            </figure>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if page.blogueurs %}
+    <div class="blogueurs" data-rv>
+      <h3>{{ page.blogueurs|length }} chroniques de blogueurs sur le tome 1</h3>
+      <div class="blogueurs__liste">{% for b in page.blogueurs %}<a href="{{ b.url }}" rel="noopener" target="_blank">{{ b.nom }}</a>{% endfor %}</div>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Recherche et essais -->
+  {% if page.recherche %}
+  <section class="livres-section pilier-chercheur" id="recherche">
+    <div class="eyebrow" data-rv>Recherche</div>
+    <h2 class="mots" data-mots>Publications scientifiques.</h2>
+    <p class="muted" data-rv style="max-width:40em">Doctorant en psychologie à Brunel University London (2023-2027), sur les liens entre théories du complot et stratégie politique.</p>
+    <div class="recherche-grille">
+      {% for e in page.recherche %}
+      <article class="essai{% if not (e.image and existe(e.image)) %} essai--sans-image{% endif %}" data-rv style="--d:{{ '%.2f' % ((loop.index0 % 2) * 0.12) }}s">
+        {% if e.image and existe(e.image) %}<div class="essai__img{% if e.format == 'couverture' %} essai__img--couv{% endif %}"><img src="{{ e.image }}" alt="" loading="lazy"></div>{% endif %}
+        <div class="essai__corps">
+          <div class="essai__type">{{ e.type }}</div>
+          <h3>{{ e.titre }}</h3>
+          <p>{{ e.texte }}</p>
+          {% if e.lien %}<a href="{{ e.lien.url }}" rel="noopener" target="_blank">{{ e.lien.titre }}</a>{% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Le reste du texte de la page (en classe, avant Interfeel) -->
+  <section class="livres-section prose livres-texte" id="avant" data-rv>
+    {{ page.html | safe }}
+  </section>
+
+  <div class="livres-portes" data-rv>
+    <a class="blog-porte" href="/ecrits/"><b>Nouvelles et poèmes</b><span>Les Nouvelles du confinement, les premiers textes, les poèmes, et <em>'Libre</em>, un projet de roman</span><i>→</i></a>
+    <a class="blog-porte pilier-intervenant" href="/presse-et-medias/"><b>Presse et médias</b><span>Interviews, émissions, conférences filmées</span><i>→</i></a>
+  </div>
+</div>
+{% endblock %}

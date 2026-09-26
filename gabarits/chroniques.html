@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block main_attr %} class="pilier-chercheur fond-teinte"{% endblock %}
+{% block contenu %}
+<div class="wrap chroniques">
+  <header class="page-tete">
+    <div class="eyebrow">Blog</div>
+    <h1>Chroniques de l'actualité</h1>
+    <p class="lead">Complotisme, rhétorique, désinformation, réseaux sociaux : l'actualité décortiquée avec les outils de la psychologie. Choisissez un thème, cherchez un mot, ou parcourez-les dans l'ordre.</p>
+  </header>
+
+  <div class="chron-outils" data-chron-outils>
+    <label class="chron-recherche"><span class="sr-only">Chercher dans les chroniques</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" placeholder="Chercher : Soral, algorithme, faux dilemme…" data-chron-q autocomplete="off">
+    </label>
+    <div class="chron-filtres" role="group" aria-label="Thèmes">
+      <button type="button" class="chron-filtre" data-theme="" aria-pressed="true">Tous <span>{{ chroniques|length }}</span></button>
+      {% for t in themes_liste if t.nombre %}<button type="button" class="chron-filtre" data-theme="{{ t.cle }}" aria-pressed="false" title="{{ t.description }}">{{ t.nom }} <span>{{ t.nombre }}</span></button>{% endfor %}
+    </div>
+    <p class="chron-etat muted"><b data-chron-compte>{{ chroniques|length }}</b> <span data-chron-mot>chroniques</span><span data-chron-desc></span></p>
+  </div>
+
+  {% for annee, liste in chroniques|groupby('annee')|reverse %}
+  <section class="chron-annee" data-chron-annee>
+    <h2 class="chron-annee__titre">{{ annee }}</h2>
+    <div class="chron-grille">
+      {% for b in liste %}
+      <article class="chron" data-themes="{{ b.themes|map(attribute='cle')|join(' ') }}" data-texte="{{ (b.titre ~ ' ' ~ (b.extrait|striptags))|lower }}">
+        <a class="chron__lien" href="{{ b.url }}">
+          <div class="chron__img">{% if b.vignette and existe(b.vignette) %}<img src="{{ b.vignette }}" alt="" loading="lazy">{% endif %}</div>
+          <div class="chron__corps">
+            <time datetime="{{ b.dt.isoformat() }}">{{ b.date_fr }}</time>
+            <h3>{{ b.titre }}</h3>
+            <p>{{ b.extrait|striptags|truncate(160, killwords=False, end='…') }}</p>
+          </div>
+        </a>
+        <div class="chron__tags">{% for t in b.themes %}<a class="tag" href="/chroniques/?theme={{ t.cle }}" data-theme-lien="{{ t.cle }}">{{ t.nom }}</a>{% endfor %}</div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <p class="chron-vide" data-chron-vide hidden>Aucune chronique ne correspond. <button type="button" class="lien-bouton" data-chron-raz>Tout afficher</button></p>
+
+  <p class="muted small" style="margin:40px 0 0">Les autres billets (actualités des interventions, conseils d'écriture, textes) sont sur <a href="/blog/">le blog</a>. Les nouvelles et les poèmes ont <a href="/ecrits/">leur page</a>.</p>
+</div>
+<script src="/static/js/chroniques.js" defer></script>
+{% endblock %}

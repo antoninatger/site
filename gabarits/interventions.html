@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
+{% block contenu %}
+<div class="wrap">
+  <header class="page-tete">
+    <div class="eyebrow">Du CM1 au lycée · médiathèques · centres sociaux · entreprises</div>
+    <h1>Interventions</h1>
+    <p class="lead">Des conférences et des ateliers vivants, fondés sur la recherche en psychologie, pour apprendre à ne pas se faire avoir : fake news, rhétorique, influenceurs, arnaques en ligne, écriture. Chaque format dure de 1 h à 2 h et ne demande qu'un vidéoprojecteur et le son. Les établissements scolaires réservent sur ADAGE avec la part collective du pass Culture.</p>
+  </header>
+  {% for groupe, titre in [('scolaire', 'Établissements scolaires, médiathèques, centres sociaux'), ('adultes', 'Enseignants, entreprises, collectivités'), ('autres', 'Autres formats')] %}
+  {% set lot = fiches | selectattr('groupe', 'equalto', groupe) | list %}
+  {% if lot %}
+  <section class="section section--tight">
+    <h2>{{ titre }}</h2>
+    <div class="grid grid--3" style="margin-top:18px">
+      {% for f in lot %}
+      <a class="card fiche-card" href="{{ f.url }}">
+        <div class="tags">{% for p in f.publics %}<span class="tag">{{ p }}</span>{% endfor %}{% if f.distance %}<span class="tag tag--accent">À distance possible</span>{% endif %}</div>
+        <h3>{{ f.titre }}</h3>
+        <p>{{ f.sous_titre }}</p>
+        <div class="fiche-card__pied"><span>{{ f.duree }}</span><span>La fiche →</span></div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+  <section class="section section--tight">
+    <div class="encart">
+      <h3>Parcours et projets sur mesure</h3>
+      <p>Six séances pour des CM1-CM2, un projet pluriannuel avec la Métropole de Lyon récompensé à Zagreb, une enquête interactive sur le harcèlement : quand une intervention ne suffit pas, on construit un parcours. <a href="/parcours/">Voir les parcours →</a></p>
+    </div>
+  </section>
+</div>
+{% endblock %}

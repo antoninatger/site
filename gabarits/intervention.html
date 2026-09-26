@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% import "_icones.html" as ic %}
+{% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
+{% block contenu %}
+<div class="wrap">
+  <header class="page-tete">
+    <div class="breadcrumb"><a href="/interventions/">Interventions</a><span>›</span><span>{{ page.titre }}</span></div>
+    <div class="tags" style="margin:14px 0 12px">{% for p in page.publics %}<span class="tag">{{ p }}</span>{% endfor %}{% if page.adage %}<span class="tag tag--accent">Réservable sur ADAGE · pass Culture</span>{% endif %}{% if page.distance %}<span class="tag tag--accent">À distance possible</span>{% endif %}</div>
+    <h1>{{ page.titre }}</h1>
+    {% if page.sous_titre %}<p class="lead" style="font-family:var(--serif);font-style:italic;font-size:1.5rem">{{ page.sous_titre }}</p>{% endif %}
+  </header>
+  <div class="fiche">
+    <div class="fiche__corps prose">
+      {% if page.video %}{{ youtube(page.video, page.titre) | safe }}{% endif %}
+      {{ page.html | safe }}
+      {% if page.programmes %}
+      <h2>S'inscrit dans</h2>
+      <div class="tags">{% for p in page.programmes %}<span class="tag">{{ p }}</span>{% endfor %}</div>
+      {% endif %}
+      {% set temoins = refs.temoignages | selectattr('intervention', 'equalto', page.slug) | list %}
+      {% for t in temoins %}
+      <figure class="temoignage card" style="padding:24px 28px;margin:32px 0 0">
+        {{ ic.icone('guillemet') }}
+        <blockquote>{{ t.texte }}</blockquote>
+        <figcaption><b>{{ t.auteur }}</b>, {{ t.fonction }}{% if t.mode %} · {{ t.mode|lower }}{% endif %}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    <aside class="fiche__aside">
+      <div class="card organiser">
+        <h3>Organiser cette intervention</h3>
+        <dl class="kv">
+          <dt>Durée</dt><dd>{{ page.duree }}</dd>
+          <dt>Publics</dt><dd>{{ page.publics | join(', ') }}</dd>
+          <dt>Matériel</dt><dd>{{ page.materiel or 'Un vidéoprojecteur et le son. Rien d\'autre.' }}</dd>
+          <dt>Où</dt><dd>{{ page.ou or 'Sur place en Auvergne-Rhône-Alpes et en tournée ailleurs' }}{% if page.distance %} ; à distance partout{% endif %}</dd>
+          {% if page.adage %}<dt>Scolaire</dt><dd>Réservable sur ADAGE, part collective du pass Culture</dd>{% endif %}
+        </dl>
+        <a class="btn btn--primary" href="/contact/?sujet={{ page.titre | urlencode }}">Proposer une date</a>
+        <p class="small muted" style="margin:0">Après la séance, vos participants gardent l'accès à l'ensemble des jeux pédagogiques jusqu'à la fin de l'année, avec un code propre à votre structure.</p>
+      </div>
+      {% if page.pdf %}
+      <a class="card" style="padding:16px 18px;display:flex;gap:12px;align-items:center;color:var(--ink)" href="{{ page.pdf }}">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="stroke:var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        <span><b style="font-weight:500">Fiche PDF à transmettre</b><br><span class="small muted">Programme et logistique, une page pour votre direction.</span></span>
+      </a>
+      {% endif %}
+      <div class="small muted" style="padding:0 4px"><div class="eyebrow">Références</div>TEDx 2024 · Assemblée nationale · Prix européen Voices 2025 · France 3 · 87 établissements scolaires</div>
+    </aside>
+  </div>
+  {% if autres %}
+  <section class="section section--tight">
+    <div class="section-head"><h2 style="font-size:1.8rem">Dans la même famille</h2><a class="more" href="/interventions/">Toutes les interventions →</a></div>
+    <div class="grid grid--3">
+      {% for f in autres %}
+      <a class="card fiche-card" href="{{ f.url }}" style="background:var(--paper)"><div class="tags">{% for p in f.publics[:3] %}<span class="tag">{{ p }}</span>{% endfor %}</div><h3 style="font-size:1.35rem">{{ f.titre }}</h3><p>{{ f.sous_titre }}</p></a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

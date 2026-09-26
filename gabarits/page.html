@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block contenu %}
+<div class="wrap">
+  <header class="page-tete">
+    {% if page.eyebrow %}<div class="eyebrow">{{ page.eyebrow }}</div>{% endif %}
+    <h1>{{ page.titre }}</h1>
+    {% if page.lead %}<p class="lead">{{ page.lead }}</p>{% endif %}
+  </header>
+  <div class="{{ 'prose' if not page.large else '' }}">
+    {{ page.html | safe }}
+  </div>
+</div>
+{% endblock %}

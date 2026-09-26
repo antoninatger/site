@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+{% import "_icones.html" as ic %}
+{% import "_anims_jeux.html" as aj %}
+{% block tete %}<link rel="stylesheet" href="/static/css/accueil.css">{% endblock %}
+{% block contenu %}
+<div class="accueil">
+
+<!-- 1. Ouverture : titre mot par mot, photo qui se dévoile -->
+<section class="ouverture">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-rv>{{ page.eyebrow }}</div>
+      <h1 class="mots" data-mots>{% if page.titre_accent and page.titre_accent in page.titre %}{% set morceaux = page.titre.split(page.titre_accent, 1) %}{{ morceaux[0] }}<em>{{ page.titre_accent }}</em>{{ morceaux[1] }}{% else %}{{ page.titre }}{% endif %}</h1>
+      <p class="lead" data-rv style="--d:.5s">{{ page.lead }}</p>
+      <div class="portes">
+        {% for p in page.portes %}<a class="porte" data-rv style="--d:{{ '%.2f' % (0.65 + loop.index0 * 0.1) }}s" href="{{ p.url }}"><span>{{ p.titre }}</span>{{ ic.icone('fleche') }}</a>{% endfor %}
+      </div>
+    </div>
+    <figure class="ouverture__photo" data-rv-clip>
+      <div class="cadre"><img data-parallax src="{{ page.photo }}" alt="{{ page.photo_alt }}" width="960" height="1056"></div>
+      {% if page.photo_legende %}<figcaption>{{ page.photo_legende }}</figcaption>{% endif %}
+    </figure>
+  </div>
+  <div class="defiler" aria-hidden="true">Défiler</div>
+</section>
+
+<!-- Bande de références qui défile -->
+<div class="bande" role="region" aria-label="Références (défilement en pause au survol ou au focus)" tabindex="0">
+  <div class="bande__piste" data-boucle>
+    {% for r in refs.bande %}<a class="bande__el" href="{{ r.url }}"><b>{{ r.titre }}</b><span>{{ r.texte }}</span></a>{% endfor %}
+  </div>
+</div>
+
+<!-- 2. Le texte qui s'allume mot à mot -->
+{% if page.manifeste %}
+<section class="manifeste" data-manifeste>
+  <div class="manifeste__colle">
+    <div class="wrap">
+      <div class="eyebrow">{{ page.manifeste_titre }}</div>
+      <p data-allume>{{ page.manifeste|safe }}</p>
+      {% if page.manifeste_signature %}<span class="signature">{{ page.manifeste_signature }}</span>{% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- 3. Compteurs -->
+{% if page.chiffres %}
+<section class="chiffres" aria-label="En chiffres">
+  <div class="wrap">
+    {% for c in page.chiffres %}<div class="chiffre" data-rv style="--d:{{ '%.1f' % (loop.index0 * 0.1) }}s"><b data-compte="{{ c.nombre }}" data-suffixe="{{ c.suffixe or '' }}">{{ c.nombre }}{{ c.suffixe or '' }}</b><span>{{ c.texte }}</span></div>{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- 4. Une séance en trois temps : photo collée, texte qui défile -->
+{% if page.temps %}
+<section class="recit">
+  <div class="wrap">
+    <div class="eyebrow">Une séance, en trois temps</div>
+    <h2 class="mots" data-mots>{{ page.temps_titre }}</h2>
+    <div class="recit__grille">
+      <div class="recit__visuel" aria-hidden="true">
+        {% for t in page.temps %}<img{% if loop.first %} class="actif"{% endif %} src="{{ t.photo }}" alt="" loading="lazy">{% endfor %}
+        <span class="recit__num" data-recit-num>1</span>
+      </div>
+      <div>
+        {% for t in page.temps %}
+        <div class="etape{% if loop.first %} actif{% endif %}" data-etape="{{ loop.index0 }}" data-rv-etape>
+          <img class="etape__img" src="{{ t.photo }}" alt="" loading="lazy">
+          <div class="n">{{ t.etiquette }}</div>
+          <h3>{{ t.titre }}</h3>
+          <p>{{ t.texte }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- 5. Interventions : trois formats, puis la page de toutes les interventions -->
+<section class="interventions-accueil pilier-intervenant fond-teinte" id="interventions">
+  <div class="wrap">
+    <div class="eyebrow" data-rv>Interventions</div>
+    <h2 class="mots" data-mots>Des formats de 1 h à 2 h, adaptés à chaque public.</h2>
+    <div class="grille-fiches">
+      {% for s in page.phares %}{% set rang = loop.index %}{% for f in interventions if f.slug == s %}
+      <a class="fiche-case" data-rv style="--d:{{ '%.2f' % ((rang - 1) * 0.12) }}s" href="{{ f.url }}">
+        <div class="num" aria-hidden="true">{{ '%02d' % rang }}</div>
+        <div class="tags">{% for p in f.publics %}<span class="tag">{{ p }}</span>{% endfor %}</div>
+        <h3>{{ f.titre }}</h3>
+        <p>{{ f.sous_titre }}</p>
+        <div class="pied"><span>{{ f.duree }}</span><span>La fiche →</span></div>
+      </a>
+      {% endfor %}{% endfor %}
+    </div>
+    <div class="interventions__bas" data-rv><a class="btn btn--primary" href="/interventions/">Voir toutes les interventions</a><span class="muted">{{ interventions|length }} formats, dont les formations enseignants et entreprise, et les interventions en anglais.</span></div>
+  </div>
+</section>
+
+<!-- 6. D'où je parle : trois colonnes, chacune avec sa petite chronologie -->
+{% if page.facettes %}
+<section class="facettes">
+  <div class="wrap">
+    <div class="eyebrow" data-rv>D'où je parle</div>
+    <h2 class="mots" data-mots>{{ page.facettes_titre }}</h2>
+    {% if page.facettes_intro %}<p class="lead facettes__intro" data-rv>{{ page.facettes_intro }}</p>{% endif %}
+    <div class="facettes__grille" data-facettes>
+      {% for f in page.facettes %}
+      <article class="facette pilier-{{ f.pilier or (f.nom|slug) }}{% if f.ouverte %} ouverte{% endif %}" data-rv style="--d:{{ '%.2f' % (loop.index0 * 0.15) }}s" tabindex="0" aria-expanded="{{ 'true' if f.ouverte else 'false' }}">
+        {% set couvs = (f.couvertures or [])|select('existe')|list %}
+        {% if couvs %}<div class="facette__visuel facette__visuel--couv">{% for c in couvs %}<img src="{{ c }}" alt="" loading="lazy">{% endfor %}</div>
+        {% elif f.visuel and existe(f.visuel) %}<div class="facette__visuel"><img src="{{ f.visuel }}" alt="" loading="lazy"></div>{% endif %}
+        <div class="facette__corps">
+          <h3>{{ f.nom }}</h3>
+          {% if f.sous_titre %}<div class="facette__sous">{{ f.sous_titre }}</div>{% endif %}
+          {% if f.accroche %}<p class="facette__accroche">{{ f.accroche }}</p>{% endif %}
+          <span class="facette__deplier" aria-hidden="true"><span class="sur-ordi">Survolez pour déplier</span><span class="sur-tel">Toucher pour déplier</span> ↓</span>
+          <div class="facette__detail">
+          <ul class="facette__points" data-ligne>
+            <span class="facette__trait" aria-hidden="true"></span>
+            {% for p in f.points %}{% set v = p.vignette if (p.vignette and existe(p.vignette)) else '' %}<li{% if v %} class="avec-vignette"{% endif %}><span class="an">{{ p.an }}</span><span class="txt">{{ p.texte|safe }}</span>{% if v %}<img class="facette__vignette{% if p.vignette_format == 'couv' %} facette__vignette--couv{% endif %}" src="{{ v }}" alt="" loading="lazy">{% endif %}</li>{% endfor %}
+          </ul>
+          {% if f.lieux %}<div class="facette__lieux"><b>{{ f.lieux.chiffres }}</b><span>{{ f.lieux.exemples }}</span>{% if f.lieux.lien %}<a href="{{ f.lieux.lien.url }}">{{ f.lieux.lien.titre }}</a>{% endif %}</div>{% endif %}
+          {% if f.lien %}<a class="facette__lien" href="{{ f.lien.url }}">{{ f.lien.titre }}</a>{% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- 7. Témoignages (cartes qui s'empilent) et derniers retours (bande qui défile) -->
+<section class="temoins">
+  <div class="wrap">
+    <div class="eyebrow" data-rv>Ils m'ont fait venir</div>
+    <h2 class="mots" data-mots>Retours des enseignants et des élèves.</h2>
+    {% set eleves = (retours or [])|selectattr('type', 'equalto', 'eleve')|list %}
+    <div class="pile">
+      {% for t in refs.temoignages %}
+      <figure class="temoin" style="--k:{{ loop.index0 }}">
+        <span class="tag temoin__qui">Enseignant·e</span>
+        <blockquote>{{ t.texte }}</blockquote>
+        <figcaption><b>{{ t.auteur }}</b>, {{ t.fonction }}{% if t.mode %} · {{ t.mode|lower }}{% endif %}</figcaption>
+      </figure>
+      {% endfor %}
+      {% for r in eleves[:3] %}
+      <figure class="temoin temoin--eleve" style="--k:{{ refs.temoignages|length + loop.index0 }}">
+        <span class="tag tag--accent temoin__qui">Élève</span>{% if r.note is not none %}<span class="temoin__note">{{ r.note }}<small>/20</small></span>{% endif %}
+        <blockquote>{{ r.texte }}</blockquote>
+        <figcaption><b>{{ r.qui }}</b>, {{ r.etablissement }}{% if r.mode %} · {{ r.mode|lower }}{% endif %}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+
+    {% if retours %}
+    <div class="retours" data-rv>
+      <div class="retours__tete"><div class="eyebrow">À chaud, à la sortie des séances</div><span class="muted petit">Retours reçus par le formulaire de fin d'intervention et dans les jeux</span></div>
+      <div class="retours__fenetre" tabindex="0" role="region" aria-label="Derniers retours reçus (défilement en pause au survol ou au focus)">
+        <div class="retours__piste" data-retours>
+          {% for r in retours %}
+          <figure class="retour">
+            <div class="retour__haut">
+              <div class="tags">{% if r.type == 'jeu' %}<span class="tag tag--jeu">🎮 {{ r.sujet }}</span>{% else %}{% if r.sujet %}<span class="tag">{{ r.sujet }}</span>{% endif %}{% if r.mode %}<span class="tag tag--accent">{{ r.mode }}</span>{% endif %}{% endif %}</div>
+              {% if r.note is not none %}<span class="retour__note">{{ r.note }}<small>/20</small></span>{% endif %}
+            </div>
+            <blockquote>{{ r.texte }}</blockquote>
+            <figcaption><b>{{ r.qui }}</b>{% if r.etablissement %} · {{ r.etablissement }}{% endif %}</figcaption>
+          </figure>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- 8. Comment ça se passe -->
+<section class="deroule pilier-intervenant fond-teinte">
+  <div class="wrap">
+    <h2 class="mots" data-mots>Comment ça se passe ?</h2>
+    <div class="grille-pas">
+      <div class="pas" data-rv><b>1 · On fixe une date</b><p>Un message par le formulaire, ou un appel de dix minutes. Je vous propose deux ou trois créneaux selon vos contraintes.</p></div>
+      <div class="pas" data-rv style="--d:.12s"><b>2 · Vous réservez</b><p>Établissements scolaires : sur ADAGE, avec la part collective du pass Culture. Autres structures : un devis simple.</p></div>
+      <div class="pas" data-rv style="--d:.24s"><b>3 · Le jour J, et après</b><p>Un vidéoprojecteur et le son suffisent. Vos élèves gardent ensuite l'accès aux jeux pédagogiques jusqu'à la fin de l'année.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Jeux en accès libre -->
+<section class="jeux-accueil" id="jeux">
+  <div class="wrap">
+    <div class="eyebrow" data-rv>Jeux pédagogiques</div>
+    <h2 class="mots" data-mots>Prolonger la séance, en classe ou à la maison.</h2>
+    <p class="muted" data-rv>{{ refs.jeux_libres|length }} jeux gratuits, sans inscription : cliquez et jouez.</p>
+    <div class="grille-jeux">
+      {% for j in refs.jeux_libres %}
+      <a class="jeu" data-rv="zoom" style="--d:{{ '%.1f' % (loop.index0 * 0.1) }}s" href="{{ j.url }}" target="_blank" rel="noopener">
+        {% if j.vignette and existe(j.vignette) %}<span class="jeu__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu__anim" aria-hidden="true">{{ aj.anim(j.icone) }}</span></span>{% else %}<span class="ico">{{ ic.icone(j.icone) }}</span>{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p>
+        <span class="jeu__pied"><span class="tag">{{ j.niveau }}</span><span class="jouer">Jouer →</span></span>
+      </a>
+      {% endfor %}
+    </div>
+    <p class="muted petit" data-rv style="margin-top:18px">Les autres jeux sont réservés aux structures qui m'ont fait venir : leurs élèves y accèdent avec un code, jusqu'à la fin de l'année scolaire. <a href="/jeux/">Tous les jeux →</a></p>
+  </div>
+</section>
+
+<!-- 10. Le blog : trois billets, puis la page du blog -->
+<section class="fil pilier-chercheur" id="blog">
+  <div class="wrap">
+    <div class="fil__tete">
+      <div>
+        <div class="eyebrow">Le blog</div>
+        <h2 class="mots" data-mots>Décrypter l'actualité, billet après billet.</h2>
+      </div>
+      <a class="plus" data-rv href="/blog/">Tous les billets →</a>
+    </div>
+    <div class="fil__grille">
+      {% for b in derniers_billets[:3] %}
+      <a class="carte-billet" data-rv style="--d:{{ '%.2f' % (loop.index0 * 0.12) }}s" href="{{ b.url }}">
+        <div class="carte-billet__img">{% if b.vignette %}<img src="{{ b.vignette }}" alt="" loading="lazy">{% endif %}</div>
+        <time datetime="{{ b.dt.isoformat() }}">{{ b.date_fr }}</time>
+        <h3>{{ b.titre }}</h3>
+        <p>{{ b.extrait|striptags|truncate(150, killwords=False, end='…') }}</p>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="fil__bas" data-rv><a class="btn btn--primary" href="/blog/">Voir tous les billets</a><a class="btn btn--sombre" href="/blog/#abonnement">S'abonner</a></div>
+  </div>
+</section>
+
+<!-- 11. Fin -->
+<section class="fin">
+  <div class="wrap">
+    <h2 class="mots" data-mots>On discute ?</h2>
+    <p data-rv>Un message par le formulaire, ou un appel de dix minutes. Je vous propose deux ou trois créneaux selon vos contraintes.</p>
+    <a class="btn btn--primary" data-rv style="--d:.15s" href="{{ site.bouton.url }}">{{ site.bouton.titre }} →</a>
+  </div>
+</section>
+
+</div>
+<script src="/static/js/accueil.js" defer></script>
+{% endblock %}

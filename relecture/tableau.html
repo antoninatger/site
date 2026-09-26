@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relecture du site — toutes les remarques</title>
+<style>
+  :root { --paper:#faf8f5; --ink:#1a1510; --soft:#5a5248; --mute:#8a8178; --accent:#c0392b; --border:#e2ddd7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Outfit', 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.5; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 28px 20px 80px; }
+  h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.2rem; margin: 0 0 4px; }
+  h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.5rem; margin: 30px 0 8px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  h2 a { font-family: inherit; font-size: 1rem; color: var(--accent); font-weight: 400; }
+  h2 code { font-size: .8rem; color: var(--mute); font-weight: 400; }
+  .lead { color: var(--soft); margin: 0 0 18px; }
+  .barre { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 8px; }
+  .barre a, .barre button { font: inherit; }
+  button, .btn { appearance: none; border: 1px solid #c9c2b8; background: #fff; color: var(--ink); padding: 6px 12px; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; font-size: 14px; }
+  button:hover, .btn:hover { border-color: var(--ink); }
+  .btn--principal { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn--actif { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .remarque { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin: 0 0 10px; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+  .remarque--faite { opacity: .6; }
+  .num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 600; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .remarque--faite .num { background: var(--mute); }
+  .ou { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--soft); }
+  .extrait { font-style: italic; color: var(--soft); font-size: 13px; border-left: 3px solid var(--border); padding-left: 10px; margin: 6px 0; }
+  .texte { white-space: pre-wrap; margin: 6px 0; }
+  .meta { font-size: 12px; color: var(--mute); }
+  .reponse { font-size: 13px; background: #f9ece9; color: #a82d22; padding: 6px 10px; border-radius: 4px; margin: 6px 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .actions button { font-size: 13px; padding: 4px 10px; }
+  .chip { display: inline-block; background: #efe9e0; border-radius: 10px; padding: 1px 9px; font-size: 12px; margin-right: 6px; }
+  textarea { width: 100%; border: 1px solid #c9c2b8; border-radius: 5px; padding: 8px 10px; font: inherit; min-height: 80px; resize: vertical; }
+  .encart { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; margin: 18px 0; }
+  .vide { color: var(--mute); font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Relecture du site</h1>
+  <p class="lead">Toutes les remarques, page par page. Le fichier <code>relecture/RELECTURE.md</code> est régénéré à chaque enregistrement ; c'est lui que Claude lit pour appliquer les corrections.</p>
+  <div class="barre">
+    <a class="btn btn--principal" href="/">← Retour au site</a>
+    <button type="button" data-filtre="ouvert" class="btn--actif">À traiter</button>
+    <button type="button" data-filtre="fait">Faites</button>
+    <button type="button" data-filtre="tout">Toutes</button>
+    <span class="meta" id="compte"></span>
+  </div>
+
+  <div class="encart">
+    <b>Remarque générale sur tout le site</b> (ton, couleurs, navigation, ce qui manque…)
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
+      <span id="cats"></span>
+    </div>
+    <textarea id="generale" placeholder="Par exemple : le rouge est trop présent ; je veux la photo en haut de l'accueil ; le menu devrait…"></textarea>
+    <div class="actions"><button type="button" class="btn--principal" id="envoyer">Enregistrer</button></div>
+  </div>
+
+  <div id="liste"></div>
+</div>
+<script>
+(function () {
+  var API = '/__relecture/api/commentaires';
+  var filtre = 'ouvert', donnees = { commentaires: [], categories: [] }, catGenerale = 'Autre';
+  function h(tag, attrs, enfants) {
+    var el = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'text') el.textContent = attrs[k]; else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), attrs[k]); else el.setAttribute(k, attrs[k]);
+    });
+    (enfants || []).forEach(function (e) { if (e) el.appendChild(typeof e === 'string' ? document.createTextNode(e) : e); });
+    return el;
+  }
+  function requete(m, url, corps) {
+    return fetch(url, { method: m, headers: { 'Content-Type': 'application/json' }, body: corps ? JSON.stringify(corps) : undefined }).then(function (r) { return r.json(); });
+  }
+  function charger() { return requete('GET', API).then(function (j) { donnees = j; rendre(); rendreCats(); }); }
+  function rendreCats() {
+    var s = document.getElementById('cats'); s.innerHTML = '';
+    donnees.categories.forEach(function (c) {
+      s.appendChild(h('button', { type: 'button', 'class': c === catGenerale ? 'btn--actif' : '', text: c, onclick: function () { catGenerale = c; rendreCats(); } }));
+      s.appendChild(document.createTextNode(' '));
+    });
+  }
+  function rendre() {
+    var liste = document.getElementById('liste'); liste.innerHTML = '';
+    var cs = donnees.commentaires.filter(function (c) { return filtre === 'tout' || (filtre === 'fait') === (c.statut === 'fait'); });
+    var total = donnees.commentaires.length, ouverts = donnees.commentaires.filter(function (c) { return c.statut !== 'fait'; }).length;
+    document.getElementById('compte').textContent = total + ' remarque(s), ' + ouverts + ' à traiter';
+    if (!cs.length) { liste.appendChild(h('p', { 'class': 'vide', text: 'Rien dans cette vue.' })); return; }
+    var pages = [];
+    cs.forEach(function (c) { if (pages.indexOf(c.page) < 0) pages.push(c.page); });
+    pages.forEach(function (page) {
+      var lot = cs.filter(function (c) { return c.page === page; });
+      var titre = (lot.filter(function (c) { return c.titre_page; })[0] || {}).titre_page || page;
+      liste.appendChild(h('h2', {}, [titre === '*' ? 'Tout le site' : titre, page !== '*' ? h('code', { text: page }) : null, page !== '*' ? h('a', { href: page, text: 'voir la page →' }) : null]));
+      lot.forEach(function (c) {
+        var bloc = h('div', { 'class': 'remarque' + (c.statut === 'fait' ? ' remarque--faite' : '') }, [
+          h('div', { 'class': 'num', text: c.id }),
+          h('div', {}, [
+            h('div', {}, [h('span', { 'class': 'chip', text: c.categorie || 'Autre' }), h('span', { 'class': 'ou', text: c.selecteur ? (c.balise || '') + (c.bloc ? ' dans ' + c.bloc : '') : 'remarque générale' })]),
+            c.texte_element ? h('div', { 'class': 'extrait', text: '« ' + c.texte_element.slice(0, 160) + (c.texte_element.length > 160 ? '…' : '') + ' »' }) : null,
+            h('div', { 'class': 'texte', text: c.commentaire }),
+            c.reponse ? h('div', { 'class': 'reponse', text: 'Réponse : ' + c.reponse }) : null,
+            h('div', { 'class': 'meta', text: [c.ecran ? 'écran ' + c.ecran + ' px' : '', c.cree ? c.cree.replace('T', ' ') : ''].filter(Boolean).join(' · ') }),
+            h('div', { 'class': 'actions' }, [
+              c.selecteur ? h('a', { 'class': 'btn', href: c.page + '#rl=' + c.id, text: 'Voir sur la page' }) : null,
+              h('button', { type: 'button', text: c.statut === 'fait' ? 'Rouvrir' : 'Marquer faite', onclick: function () { requete('PUT', API + '/' + c.id, { statut: c.statut === 'fait' ? 'ouvert' : 'fait' }).then(charger); } }),
+              h('button', { type: 'button', text: 'Modifier', onclick: function () {
+                var z = h('textarea', {}); z.value = c.commentaire;
+                var ok = h('button', { type: 'button', 'class': 'btn--principal', text: 'Enregistrer', onclick: function () { requete('PUT', API + '/' + c.id, { commentaire: z.value }).then(charger); } });
+                var zone = h('div', {}, [z, h('div', { 'class': 'actions' }, [ok])]);
+                bloc.lastChild.appendChild(zone); z.focus();
+              } }),
+              h('button', { type: 'button', text: 'Supprimer', onclick: function () { if (confirm('Supprimer la remarque #' + c.id + ' ?')) requete('DELETE', API + '/' + c.id).then(charger); } })
+            ])
+          ])
+        ]);
+        liste.appendChild(bloc);
+      });
+    });
+  }
+  document.querySelectorAll('[data-filtre]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filtre = b.dataset.filtre;
+      document.querySelectorAll('[data-filtre]').forEach(function (x) { x.classList.toggle('btn--actif', x === b); });
+      rendre();
+    });
+  });
+  document.getElementById('envoyer').addEventListener('click', function () {
+    var z = document.getElementById('generale'); var txt = z.value.trim();
+    if (!txt) { z.focus(); return; }
+    requete('POST', API, { page: '*', titre_page: 'Tout le site', categorie: catGenerale, commentaire: txt, ecran: window.innerWidth }).then(function () { z.value = ''; charger(); });
+  });
+  charger();
+})();
+</script>
+</body>
+</html>

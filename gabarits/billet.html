@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block og_type %}article{% endblock %}
+{% block tete %}
+<meta property="article:published_time" content="{{ page.dt.isoformat() }}">
+{% for c in page.categories %}<meta property="article:section" content="{{ c }}">{% endfor %}
+{% endblock %}
+{% block main_attr %}{% set p = page.pilier or ((cats or [])|map(attribute="pilier")|select|first) %}{% if p %} class="pilier-{{ p }} fond-teinte"{% endif %}{% endblock %}
+{% block contenu %}
+<div class="wrap">
+  <article class="article">
+    <header class="article__tete page-tete">
+      <div class="article__meta">
+        <time datetime="{{ page.dt.isoformat() }}">{{ page.date_fr }}</time>
+        {% for c in cats %}<a class="tag" href="{{ c.url }}">{{ c.nom }}</a>{% endfor %}
+        {% for t in page.themes %}<a class="tag tag--accent" href="/chroniques/?theme={{ t.cle }}">{{ t.nom }}</a>{% endfor %}
+      </div>
+      <h1>{{ page.titre }}</h1>
+    </header>
+    {% if page.image_une %}<div class="article__une"><img src="{{ page.image_une }}" alt="" loading="lazy"></div>{% endif %}
+    <div class="article__corps">
+      {{ page.html | safe }}
+    </div>
+    <footer class="article__pied">
+      <div class="encart">
+        <h3>Ces sujets en classe, en médiathèque ou en entreprise</h3>
+        <p class="muted">J'interviens sur les fake news, la rhétorique, les influenceurs et les arnaques en ligne, du CM1 au lycée et auprès des adultes. Les établissements scolaires réservent sur ADAGE.</p>
+        <a class="btn btn--primary" href="/interventions/">Voir les interventions</a>
+      </div>
+      <nav class="article__nav" aria-label="Autres billets">
+        <div>{% if precedent %}<a href="{{ precedent.url }}"><small>‹ Billet précédent</small>{{ precedent.titre }}</a>{% endif %}</div>
+        <div class="suivant">{% if suivant %}<a href="{{ suivant.url }}"><small>Billet suivant ›</small>{{ suivant.titre }}</a>{% endif %}</div>
+      </nav>
+    </footer>
+  </article>
+</div>
+{% endblock %}

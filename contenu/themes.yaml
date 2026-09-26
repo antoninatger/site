@@ -1,0 +1,108 @@
+# Thèmes des chroniques (page /chroniques/).
+# · themes : la liste des filtres, dans l'ordre d'affichage.
+# · billets : slug du billet → ses thèmes (par leur clé). Classement fait à la main en septembre 2026.
+# Pour un nouveau billet, le plus simple est d'écrire dans son en-tête :  themes: [complotisme, rhetorique]
+# (les clés sont celles ci-dessous). Un billet sans thème n'apparaît pas dans les chroniques.
+
+themes:
+  complotisme:
+    nom: Complotisme
+    description: "Théories du complot, vrais complots et accusations complotistes."
+  rhetorique:
+    nom: Rhétorique
+    description: "Procédés de discours, sophismes, éléments de langage."
+  biais:
+    nom: Biais et cerveau
+    description: "Biais cognitifs, perception, mémoire : quand notre cerveau nous trompe."
+  cadrage:
+    nom: Effet de cadrage
+    description: "Une même réalité, présentée autrement : contexte, question, montage."
+  desinformation:
+    nom: Désinformation
+    description: "Fake news, fausses images, mésinformation et désinformation."
+  reseaux:
+    nom: Réseaux sociaux et IA
+    description: "Algorithmes, plateformes, intelligence artificielle, adolescents en ligne."
+  racisme:
+    nom: Racisme et antisémitisme
+    description: "Discours de haine, dog whistles, stigmatisation."
+  politique:
+    nom: Politique
+    description: "Campagnes, partis, élus : l'esprit critique appliqué au débat public."
+  geopolitique:
+    nom: Ingérences et géopolitique
+    description: "Russie, guerre informationnelle, influences étrangères."
+  fiction:
+    nom: Fiction et réel
+    description: "Films, livres, documentaires : ce que les œuvres font au réel."
+  science:
+    nom: Science et pseudo-sciences
+    description: "Charlatans, études douteuses, rapport des complotistes à la science."
+  emprise:
+    nom: Emprise et harcèlement
+    description: "Dérives sectaires, relations d'emprise, harcèlement."
+  videos:
+    nom: Émissions et interviews
+    description: "Vidéos, podcasts et interviews auxquels j'ai participé."
+
+billets:
+  # --- chroniques (catégorie Esprit critique)
+  alain-soral-antisemite-ou-judeophobe: [racisme, rhetorique]
+  sans-titre-5: [complotisme, reseaux]                      # Google fait-il la promotion de théories du complot ?
+  soral-et-guenole-itineraire-dun-debat-inutile: [racisme, complotisme, rhetorique]
+  quand-notre-cerveau-modele-le-reel: [biais]
+  reel-et-fiction-les-liaisons-dangereuses: [fiction, videos]
+  il-ne-faut-pas-debattre-avec-alain-soral: [racisme, complotisme, rhetorique]
+  guillaume-pley-et-la-technique-de-la-concession: [rhetorique]
+  la-fiction-menace-t-elle-la-realite: [fiction, videos]
+  linterdiction-des-reseaux-sociaux-est-un-echec-et-ca-va-sempirer: [reseaux, politique]
+  sans-titre-4: [cadrage, science, reseaux]                 # Guillaume Pley et l'illusion de la neutralité
+  faut-il-expulser-xena-fedorova: [geopolitique, desinformation, politique]
+  zidane-apparait-il-dans-mission-cleopatre: [biais]
+  gilbert-collart-et-les-differents-types-de-fake-news: [desinformation, racisme, politique]
+  les-reptiliens-controlent-ils-nos-impots: [complotisme, videos]
+  interdire-les-reseaux-sociaux-aux-moins-de-15-ans-une-fausse-bonne-idee: [reseaux, politique]
+  sans-titre-3: [complotisme]                               # l'Argentine et la FIFA
+  elon-musk-ou-le-pouvoir-des-algorithmes: [reseaux, politique]
+  trump-le-carton-rouge-et-la-definition-du-complot: [complotisme, politique]
+  jordan-bardella-ou-laccusation-complotiste: [complotisme, rhetorique, politique]
+  melenchon-lukraine-et-les-etats-unis: [geopolitique, politique]
+  sans-titre-2: [complotisme]                               # Les complots sont réels ! La preuve en Corée
+  le-rapport-des-complotistes-a-la-science: [complotisme, science]
+  marjane-satrapi-et-la-recuperation-politique: [fiction, politique, racisme]
+  comment-la-russie-cherche-a-nous-destabiliser: [geopolitique, desinformation, racisme]
+  ruffin-ou-lart-du-double-langage: [rhetorique, politique]
+  sans-titre: [complotisme, desinformation, videos]         # Théories du complot autour des bovins français
+  bardella-ou-le-principe-de-reactance: [biais, politique]
+  jordan-bardella-et-leffet-stresand: [biais, politique]
+  lart-subtil-de-desinformer-avec-des-vraies-videos: [desinformation, cadrage]
+  le-piege-de-lappel-du-pied-antisemite: [racisme, rhetorique]
+  lart-du-nom-de-famille-bien-choisi: [rhetorique]
+  pourquoi-un-jeune-indien-a-cree-le-parti-des-cafards: [rhetorique, politique]
+  labandon-un-film-peut-il-decrire-le-reel: [fiction, cadrage, racisme]
+  le-piege-artistique-de-lia: [cadrage, biais, reseaux]
+  soyons-precis-avec-les-theories-du-complot: [complotisme, desinformation]
+  le-piege-des-documentaires: [fiction, cadrage, science]
+  comment-etre-vigilant-face-aux-informations-trop-belles: [science, desinformation, biais]
+  comment-lutter-contre-lemprise-sectaire: [emprise, science]
+  la-rhetorique-du-complotisme: [complotisme, rhetorique]
+  comment-lutter-contre-lemprise: [emprise]
+  le-piege-du-faux-dilemme: [rhetorique, politique]
+  comment-ne-pas-se-faire-avoir-par-les-charlatants: [rhetorique, science]
+  # --- analyses rangées dans « Actualités »
+  un-candidat-municipal-proche-dalain-soral: [complotisme, racisme, politique, videos]
+  le-complotisme-sur-les-dinosaures: [complotisme, science, videos]
+  le-complotisme-et-les-valeurs-politiques: [complotisme, politique]
+  analyse-dune-information-fallacieuse: [desinformation, cadrage, geopolitique]
+  films-et-complot-lemission: [complotisme, fiction, videos]
+  participation-a-la-nuit-zetetique: [science, complotisme]
+  fictions-et-complotisme-le-podcast: [complotisme, fiction, videos]
+  les-films-rendent-ils-complotistes: [complotisme, fiction]
+  la-fake-news-nest-pas-que-le-souci: [desinformation]
+  fake-news-et-politiques-nouvelle-intervention: [rhetorique, politique, desinformation]
+  mon-intervention-filmee-fake-news-et-politique: [desinformation, politique, videos]
+  productions-de-fake-news: [desinformation]
+  le-harcelement-scolaire-comment-lutter: [emprise]
+  on-parle-reseaux-sociaux: [reseaux, videos]
+  mon-audition-a-lassemblee-nationale: [reseaux, politique]
+  ma-conference-ted-x-est-en-ligne: [reseaux, videos]

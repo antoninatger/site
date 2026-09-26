@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block contenu %}
+<div class="wrap">
+  <header class="page-tete">
+    {% if page.eyebrow %}<div class="eyebrow">{{ page.eyebrow }}</div>{% endif %}
+    <h1>{{ page.titre }}</h1>
+    {% if page.lead %}<p class="lead">{{ page.lead }}</p>{% endif %}
+  </header>
+  <div class="fiche">
+    <div class="fiche__corps prose">
+      {% if page.photo %}<figure class="photo"><img src="{{ page.photo }}" alt="Antonin Atger en conférence" loading="lazy">{% if page.photo_legende %}<figcaption>{{ page.photo_legende }}</figcaption>{% endif %}</figure>{% endif %}
+      {{ page.html | safe }}
+    </div>
+    <aside class="fiche__aside">
+      {% if page.portrait %}<img class="portrait" src="{{ page.portrait }}" alt="Portrait d'Antonin Atger" width="320" height="316" loading="lazy">{% endif %}
+      <div class="card organiser">
+        <h3>En deux lignes</h3>
+        <p class="small" style="margin:0 0 14px">Auteur de la trilogie <i>Interfeel</i> (Pocket Jeunesse), doctorant en psychologie, conférencier. Basé à Lyon, en tournée partout en France, en visio partout ailleurs.</p>
+        <a class="btn btn--primary" href="/contact/">M'écrire</a>
+        <a class="btn" href="/interventions/">Les interventions</a>
+      </div>
+      <div class="small muted" style="padding:0 4px">
+        <div class="eyebrow">Suivre</div>
+        <a href="https://www.linkedin.com/in/antonin-atger-68254217/" rel="noopener" target="_blank">LinkedIn</a> · <a href="https://www.instagram.com/antoninatgerauteur/" rel="noopener" target="_blank">Instagram</a> · <a href="https://bsky.app/profile/antoninatger.bsky.social" rel="noopener" target="_blank">Bluesky</a> · <a href="/feed.xml">Flux RSS</a>
+      </div>
+    </aside>
+  </div>
+  <section class="section" id="confiance">
+    <div class="section-head"><h2>Ils m'ont fait confiance</h2><span class="muted small">87 établissements scolaires · 36 médiathèques et bibliothèques</span></div>
+    <details class="liste-refs" open>
+      <summary>Établissements scolaires</summary>
+      <p class="small muted">{{ refs.etablissements }}</p>
+    </details>
+    <details class="liste-refs">
+      <summary>Médiathèques et bibliothèques</summary>
+      <p class="small muted">{{ refs.mediatheques }}</p>
+    </details>
+    <details class="liste-refs">
+      <summary>Collectivités, institutions, événements</summary>
+      <p class="small muted">Métropole de Lyon, Département du Val-d'Oise, Département de la Loire, Département de la Drôme, Assemblée nationale, Ambassade de France en Croatie, UNICEF, Institut français de Croatie, Réseau Canopé, Erasme, Rencontres de l'Esprit Critique (Toulouse), TEDx Saint-Étienne, La Tronche en Biais (Nuit Zététique), ASTEC (congrès Prisme), Amis du Monde Diplomatique (Aix-en-Provence), HEP de Lyon, ISCPA Lyon, HEIP, Sup de Pub, MASNI (Aix-Marseille Université), Cres et Osijek Summer Schools (Croatie), Lycée français international de Hong Kong, Alliance française de Hong Kong, Léo Lagrange (ALAE Georges Dagneaux, Perpignan).</p>
+    </details>
+  </section>
+</div>
+{% endblock %}
