@@ -29,6 +29,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Antonin Atger","url":"{{ site.url }}","jobTitle":"Auteur, doctorant en psychologie, conférencier en éducation aux médias","knowsAbout":["fake news","esprit critique","désinformation","rhétorique","théories du complot"],"sameAs":["https://debatology.substack.com/","https://fr.linkedin.com/in/antonin-atger"]}
 </script>
+{% if site.mesure_audience %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.mesure_audience }}"}'></script>{% endif %}
 </head>
 <body>
 <a class="sr-only" href="#contenu">Aller au contenu</a>

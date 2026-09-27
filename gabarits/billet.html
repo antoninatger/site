@@ -20,6 +20,38 @@
     <div class="article__corps">
       {{ page.html | safe }}
     </div>
+    <section class="commentaires" id="commentaires" aria-labelledby="titre-commentaires">
+      <h2 id="titre-commentaires">{% if page.commentaires %}{{ page.commentaires|length }} commentaire{{ 's' if page.commentaires|length > 1 }}{% else %}Commentaires{% endif %}</h2>
+      {% if page.commentaires %}
+      <ol class="commentaires__liste">
+        {% for c in page.commentaires %}
+        <li class="commentaire{% if c.reponse %} commentaire--reponse{% endif %}{% if c.auteur_site %} commentaire--auteur{% endif %}">
+          <div class="commentaire__tete"><b>{{ c.nom }}</b>{% if c.date_fr %} · <span>{{ c.date_fr }}</span>{% endif %}</div>
+          <div class="commentaire__texte">{{ c.html | safe }}</div>
+        </li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+      <div class="reagir">
+        <h3>Réagir à ce billet</h3>
+        <form class="form" method="post" action="{{ site.formulaires.service }}" data-web3="[Commentaire site]" data-objet-champs="titre nom"{% if site.admin and site.admin.serveur %} data-serveur="{{ site.admin.serveur }}"{% endif %}>
+          <input type="hidden" name="access_key" value="{{ site.formulaires.cle }}">
+          <input type="hidden" name="from_name" value="Site antoninatger.com">
+          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <input type="hidden" name="subject" value="[Commentaire site] {{ page.titre }}">
+          <input type="hidden" name="titre" value="{{ page.titre }}">
+          <input type="hidden" name="billet" value="{{ page.slug }}">
+          <input type="hidden" name="adresse" value="{{ site.url }}{{ page.url }}">
+          <input type="hidden" name="redirect" value="{{ site.url }}{{ page.url }}?envoye=1#commentaires">
+          <div><label for="r-nom">Votre prénom ou pseudo</label><input type="text" id="r-nom" name="nom" required maxlength="80" autocomplete="given-name"></div>
+          <div><label for="r-email">Votre e-mail (facultatif, jamais affiché)</label><input type="email" id="r-email" name="email" autocomplete="email"></div>
+          <div><label for="r-message">Votre commentaire</label><textarea id="r-message" name="message" required maxlength="4000"></textarea></div>
+          <button class="btn btn--primary" type="submit">Envoyer mon commentaire</button>
+          <p class="aide">Les commentaires sont relus avant d'être publiés.</p>
+        </form>
+        <p class="alerte" data-message-envoye hidden>Merci, votre commentaire est bien arrivé. Il sera publié après relecture.</p>
+      </div>
+    </section>
     <footer class="article__pied">
       <div class="encart">
         <h3>Ces sujets en classe, en médiathèque ou en entreprise</h3>

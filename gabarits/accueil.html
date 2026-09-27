@@ -120,7 +120,7 @@
           <div class="facette__detail">
           <ul class="facette__points" data-ligne>
             <span class="facette__trait" aria-hidden="true"></span>
-            {% for p in f.points %}{% set v = p.vignette if (p.vignette and existe(p.vignette)) else '' %}<li{% if v %} class="avec-vignette"{% endif %}><span class="an">{{ p.an }}</span><span class="txt">{{ p.texte|safe }}</span>{% if v %}<img class="facette__vignette{% if p.vignette_format == 'couv' %} facette__vignette--couv{% endif %}" src="{{ v }}" alt="" loading="lazy">{% endif %}</li>{% endfor %}
+            {% for p in f.points %}{% set v = p.vignette if (p.vignette and existe(p.vignette)) else '' %}<li{% if v or p.url %} class="{{ 'avec-vignette' if v }}{{ ' ' if v and p.url }}{{ 'cliquable' if p.url }}"{% endif %}>{% if p.url %}<a class="facette__point-lien" href="{{ p.url }}" aria-label="{{ p.an }} : {{ p.texte|striptags }}"></a>{% endif %}<span class="an">{{ p.an }}</span><span class="txt">{{ p.texte|safe }}</span>{% if v %}<img class="facette__vignette{% if p.vignette_format == 'couv' %} facette__vignette--couv{% endif %}" src="{{ v }}" alt="" loading="lazy">{% endif %}</li>{% endfor %}
           </ul>
           {% if f.lieux %}<div class="facette__lieux"><b>{{ f.lieux.chiffres }}</b><span>{{ f.lieux.exemples }}</span>{% if f.lieux.lien %}<a href="{{ f.lieux.lien.url }}">{{ f.lieux.lien.titre }}</a>{% endif %}</div>{% endif %}
           {% if f.lien %}<a class="facette__lien" href="{{ f.lien.url }}">{{ f.lien.titre }}</a>{% endif %}

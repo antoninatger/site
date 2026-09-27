@@ -18,7 +18,7 @@
     <div class="romans" data-fil>
       <span class="romans__trait" aria-hidden="true"></span>
       {% for r in page.romans %}
-      <article class="roman">
+      <article class="roman" id="{{ r.titre|slug }}">
         <span class="roman__point" aria-hidden="true"></span>
         <div class="roman__couv" data-rv="gauche">
           {% if existe(r.couverture) %}<img src="{{ r.couverture }}" alt="Couverture de {{ r.titre }}" loading="lazy">{% else %}<div class="roman__couv-vide"><span>{{ r.tome }}</span></div>{% endif %}
@@ -65,7 +65,7 @@
     <p class="muted" data-rv style="max-width:40em">Doctorant en psychologie à Brunel University London (2023-2027), sur les liens entre théories du complot et stratégie politique.</p>
     <div class="recherche-grille">
       {% for e in page.recherche %}
-      <article class="essai{% if not (e.image and existe(e.image)) %} essai--sans-image{% endif %}" data-rv style="--d:{{ '%.2f' % ((loop.index0 % 2) * 0.12) }}s">
+      <article id="{{ e.titre|slug }}" class="essai{% if not (e.image and existe(e.image)) %} essai--sans-image{% endif %}" data-rv style="--d:{{ '%.2f' % ((loop.index0 % 2) * 0.12) }}s">
         {% if e.image and existe(e.image) %}<div class="essai__img{% if e.format == 'couverture' %} essai__img--couv{% endif %}"><img src="{{ e.image }}" alt="" loading="lazy"></div>{% endif %}
         <div class="essai__corps">
           <div class="essai__type">{{ e.type }}</div>

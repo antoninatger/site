@@ -130,6 +130,18 @@ th, td { text-align: left; padding: .5em .6em; border-bottom: 1px solid var(--bo
 @media (max-width: 900px) { .refs .wrap { grid-template-columns: repeat(2, 1fr); } .ref { border-right: 0; border-bottom: 1px solid var(--border); padding: 14px 0; } }
 
 /* ---------- cartes d'intervention ---------- */
+/* Filtres de la page Interventions */
+.filtres { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: flex-end; margin: 26px 0 4px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
+.filtres[hidden], .filtres__vide[hidden], .filtres__raz[hidden], .fiche-card[hidden], .groupe-fiches[hidden] { display: none; }
+.filtres__groupe { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.filtres__groupe legend { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; padding: 0; margin-bottom: 6px; }
+.filtre { font: inherit; font-size: .88rem; padding: .38em .95em; border-radius: 20px; border: 1px solid var(--border); background: var(--paper); color: var(--ink-soft); cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+.filtre:hover { border-color: var(--accent); color: var(--ink); }
+.filtre[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filtres__bilan { flex-basis: 100%; margin: 2px 0 0; font-size: .9rem; color: var(--ink-soft); display: flex; gap: 14px; align-items: center; }
+.filtres__raz { font: inherit; font-size: .88rem; background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.filtres__vide { margin: 30px 0; font-size: 1.05rem; color: var(--ink-soft); }
+@media (max-width: 640px) { .filtres { gap: 12px; padding: 14px; } .filtres__groupe { width: 100%; } }
 .fiche-card { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 20px; color: var(--ink); }
 .fiche-card:hover { border-color: var(--accent); text-decoration: none; }
 .fiche-card h3 { margin: 0; font-size: 1.55rem; }
@@ -407,6 +419,10 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 /* ---------- page Livres ---------- */
 .livres .page-tete .cats-nav { margin-top: 18px; }
 .livres-section { margin: 30px 0 70px; scroll-margin-top: 96px; }
+:target { scroll-margin-top: 96px; }
+.media:target, .roman:target, .essai:target, h2:target { animation: cible 2.6s var(--ease, ease) .3s 1 both; border-radius: 10px; }
+@keyframes cible { 0%, 35% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent); background-color: color-mix(in srgb, var(--accent) 7%, transparent); } 100% { box-shadow: 0 0 0 6px transparent; } }
+@media (prefers-reduced-motion: reduce) { .media:target, .roman:target, .essai:target, h2:target { animation: none; outline: 3px solid color-mix(in srgb, var(--accent) 30%, transparent); outline-offset: 6px; } }
 .livres-section > h2 { font-size: clamp(2rem, 4vw, 3rem); }
 .romans { position: relative; margin-top: 34px; padding-left: 34px; }
 .romans::before, .romans__trait { content: ""; position: absolute; left: 6px; top: 10px; bottom: 10px; width: 2px; background: var(--border); }
@@ -513,3 +529,18 @@ blockquote, .avis blockquote { font-style: normal; letter-spacing: -.01em; }
 
 /* page Livres : la partie recherche passe en vert sapin, sur toute la largeur */
 .livres-section.pilier-chercheur { background: var(--fond); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 50px calc(50vw - 50%); }
+
+/* ---------- commentaires sous les billets ---------- */
+.commentaires { max-width: var(--mesure); margin: 48px 0 8px; padding-top: 28px; border-top: 1px solid var(--border); scroll-margin-top: 96px; }
+.commentaires h2 { font-size: 1.6rem; margin: 0 0 18px; }
+.commentaires__liste { list-style: none; padding: 0; margin: 0 0 32px; display: grid; gap: 14px; }
+.commentaire { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; margin: 0; }
+.commentaire--reponse { margin-left: 28px; }
+.commentaire--auteur { border-left: 3px solid var(--accent); }
+.commentaire__tete { font-size: .88rem; color: var(--ink-soft); margin-bottom: 6px; }
+.commentaire__tete b { color: var(--ink); }
+.commentaire__texte p { margin: 0 0 .6em; font-size: .97rem; }
+.commentaire__texte p:last-child { margin-bottom: 0; }
+.reagir { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+.reagir h3 { margin: 0 0 12px; font-size: 1.3rem; }
+@media (max-width: 600px) { .commentaire--reponse { margin-left: 14px; } }

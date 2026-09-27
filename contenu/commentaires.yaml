@@ -1,0 +1,17 @@
+# Commentaires publiés sous les billets (en plus de ceux de l'ancien WordPress, gardés dans commentaires_wordpress.json).
+# Un commentaire envoyé par le formulaire « Réagir » arrive par mail (objet « [Commentaire site] … ») : rien ne s'affiche
+# tant qu'il n'est pas recopié ici. Pour le publier : copier le modèle ci-dessous, le remplir, puis lancer « 4 - Publier.bat ».
+#
+#   - billet: il-ne-faut-pas-debattre-avec-alain-soral     # la fin de l'adresse du billet, sans les /
+#     nom: Marie
+#     date: 2026-09-27
+#     texte: |
+#       Le texte du commentaire, tel qu'il est arrivé.
+#     reponse: |                                           # facultatif : ta réponse, affichée juste en dessous
+#       Merci Marie !
+#
+# Pour masquer un ancien commentaire WordPress : ajouter sa date exacte (celle du fichier json) dans « masques ».
+
+commentaires: []
+
+masques: []

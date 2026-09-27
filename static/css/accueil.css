@@ -256,6 +256,15 @@ html:not(.anim) .accueil .retours__fenetre { overflow-x: auto; }
 .accueil .facette__vignette { grid-column: 2; grid-row: 1 / span 2; width: 66px; height: 50px; object-fit: cover; border-radius: 4px; box-shadow: 0 8px 18px -10px rgba(20,34,44,.6); transition: transform .3s var(--ease); }
 .accueil .facette__vignette--couv { width: 48px; height: 68px; object-position: center 65%; border-radius: 3px; justify-self: end; }
 .accueil .facette__points li.on .facette__vignette { transform: rotate(-2deg); }
+/* dates cliquables : le lien couvre la ligne ; un lien déjà présent dans le texte passe au-dessus */
+.accueil .facette__point-lien { position: absolute; inset: -6px -10px; z-index: 1; border-radius: 8px; transition: background .2s; }
+.accueil .facette__points li.cliquable .txt a { position: relative; z-index: 2; }
+.accueil .facette__points li.cliquable .txt::after { content: " →"; color: var(--accent); opacity: 0; transition: opacity .2s, margin .2s var(--ease); margin-left: -4px; }
+.accueil .facette__points li.cliquable:hover .facette__point-lien { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.accueil .facette__points li.cliquable:hover .txt { color: var(--ink); }
+.accueil .facette__points li.cliquable:hover .txt::after, .accueil .facette__points li.cliquable:focus-within .txt::after { opacity: 1; margin-left: 0; }
+.accueil .facette__point-lien:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (hover: none) { .accueil .facette__points li.cliquable .txt::after { opacity: .7; margin-left: 0; } }
 /* liste courte des lieux */
 .accueil .facette__lieux { background: var(--paper); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin: 0 0 18px; display: grid; gap: 4px; font-size: .9rem; }
 .accueil .facette__lieux b { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); }

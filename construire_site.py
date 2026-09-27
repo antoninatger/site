@@ -133,6 +133,71 @@ def charger_pages():
     return pages
 
 
+# ── Filtres de la page Interventions (27 septembre 2026) ──────────────────────
+# Âge, cadre, durée et mode sont DÉDUITS des champs déjà écrits dans chaque fiche
+# (publics, duree, distance). Une fiche peut les imposer elle-même, en clair :
+#   ages: [primaire, college, lycee, superieur, adultes]
+#   cadre: [scolaire, hors-scolaire]
+#   formats: [1h, 2h]
+#   presentiel: false        (intervention uniquement à distance)
+AGES = ["primaire", "college", "lycee", "superieur", "adultes"]
+_ADULTES = ("adulte", "parent", "famille", "senior", "enseignant", "cpe", "documentaliste", "formateur",
+            "entreprise", "collectivite", "professionnel", "encadrant", "grand public", "teacher", "professional")
+
+
+def _sans_accents(s):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", str(s).lower()) if unicodedata.category(c) != "Mn")
+
+
+def _ages_de(public):
+    p = _sans_accents(public)
+    trouves = []
+    if re.search(r"\bcm[12]\b|primaire|\becole\b", p): trouves.append("primaire")
+    if "college" in p: trouves.append("college")
+    if re.search(r"lycee|\b2de\b|\bbts\b", p): trouves.append("lycee")
+    if re.search(r"superieur|student|etudiant|\bbts\b", p): trouves.append("superieur")
+    if any(m in p for m in _ADULTES): trouves.append("adultes")
+    if "etablissements scolaires" in p or "schools" in p: trouves += ["college", "lycee"]
+    # « CM1 → lycée » : tout ce qu'il y a entre les deux bouts.
+    if "→" in p and len(trouves) >= 2:
+        rangs = sorted(AGES.index(a) for a in trouves)
+        trouves = AGES[rangs[0]:rangs[-1] + 1]
+    return trouves
+
+
+def facettes(meta):
+    publics = meta.get("publics") or []
+    ages = meta.get("ages")
+    if not ages:
+        ages = []
+        for pub in publics:
+            ages += [a for a in _ages_de(pub) if a not in ages]
+    ages = [a for a in AGES if a in ages]
+    cadre = meta.get("cadre")
+    if not cadre:
+        texte = _sans_accents(" ".join(map(str, publics)))
+        cadre = []
+        if any(a in ages for a in ("primaire", "college", "lycee")) or "scolaire" in texte or "enseignant" in texte:
+            cadre.append("scolaire")
+        if "adultes" in ages or "superieur" in ages or re.search(r"mediath|entreprise|collectivit|parent|famille|senior|grand public", texte):
+            cadre.append("hors-scolaire")
+    formats = meta.get("formats")
+    if not formats:
+        d = _sans_accents(meta.get("duree", ""))
+        minutes = []
+        for h, m in re.findall(r"(\d+)\s*h(?:\s*(\d+))?", d):
+            minutes.append(int(h) * 60 + int(m or 0))
+        minutes += [int(m) for m in re.findall(r"(\d+)\s*min", d)]
+        formats = []
+        if any(x <= 75 for x in minutes): formats.append("1h")
+        if any(x >= 90 for x in minutes) or "demi-journee" in d: formats.append("2h")
+    modes = []
+    if meta.get("presentiel", True) is not False: modes.append("presentiel")
+    if meta.get("distance"): modes.append("distanciel")
+    return {"ages": ages, "cadre": cadre, "formats": formats, "modes": modes}
+
+
 def charger_interventions():
     fiches = []
     for f in sorted((ICI / "contenu/interventions").glob("*.md")):
@@ -142,6 +207,7 @@ def charger_interventions():
         meta["html"] = rendre_md(corps)
         meta.setdefault("ordre", 99)
         meta.setdefault("description", meta.get("sous_titre") or extrait_de(meta["html"], 160))
+        meta["facettes"] = facettes(meta)
         fiches.append(meta)
     fiches.sort(key=lambda m: (m["ordre"], m["titre"]))
     return fiches
@@ -168,7 +234,8 @@ def charger_billets(cats):
             dt = datetime.datetime.fromisoformat(str(d)[:19])
         meta["dt"] = dt
         meta["date_fr"] = date_fr(dt)
-        meta.setdefault("slug", f.stem[11:] if re.match(r"\d{4}-\d{2}-\d{2}-", f.stem) else f.stem)
+        if not meta.get("slug"):   # absent ou vide (article créé dans le back-office) : on le tire du nom du fichier
+            meta["slug"] = f.stem[11:] if re.match(r"\d{4}-\d{2}-\d{2}-", f.stem) else f.stem
         meta["url"] = f"/{dt:%Y/%m/%d}/{meta['slug']}/"
         # catégories : surcharge par slug, sinon correspondance, sinon défaut
         if meta["slug"] in surch:
@@ -192,6 +259,50 @@ def charger_billets(cats):
         billets.append(meta)
     billets.sort(key=lambda m: m["dt"], reverse=True)
     return billets
+
+
+def texte_en_html(t):
+    """Texte brut d'un commentaire → paragraphes HTML (échappés : aucun balisage des visiteurs ne passe)."""
+    blocs = [b.strip() for b in re.split(r"\n\s*\n|\n", str(t or "").strip()) if b.strip()]
+    return "".join("<p>" + html.escape(b) + "</p>" for b in blocs)
+
+
+def attacher_commentaires(billets):
+    """Commentaires sous chaque billet : ceux de l'ancien WordPress (par id_wordpress) puis ceux
+    validés dans contenu/commentaires.yaml (par slug), dans l'ordre chronologique."""
+    ancien = ICI / "contenu/commentaires_wordpress.json"
+    nouveaux = ICI / "contenu/commentaires.yaml"
+    wp = json.loads(ancien.read_text(encoding="utf-8")) if ancien.exists() else {}
+    conf = (yaml.safe_load(nouveaux.read_text(encoding="utf-8")) or {}) if nouveaux.exists() else {}
+    serveur = ICI / "contenu/commentaires.json"          # écrit par le serveur (bouton « Publier » du mail, page de modération)
+    publies = json.loads(serveur.read_text(encoding="utf-8")) if serveur.exists() else {}
+    masques = {str(m) for m in (conf.get("masques") or [])} | {str(m.get("cle")) for m in (publies.get("masques") or [])}
+    par_slug = {}
+    for c in (conf.get("commentaires") or []) + [dict(c, id=c.get("id")) for c in (publies.get("publies") or [])]:
+        par_slug.setdefault(str(c.get("billet", "")).strip("/"), []).append(c)
+    for b in billets:
+        liste = []
+        for c in wp.get(str(b.get("id_wordpress", "")), []):
+            cle = "wp-" + str(c.get("date", ""))
+            if c.get("type", "comment") != "comment" or str(c.get("date")) in masques or cle in masques:
+                continue
+            liste.append({"cle": cle, "texte": str(c.get("contenu") or ""), "nom": c.get("auteur") or "Anonyme", "dt": str(c.get("date", "")), "html": texte_en_html(c.get("contenu")),
+                          "reponse": bool(c.get("en_reponse_a")), "auteur_site": (c.get("auteur") or "").strip() == "Antonin Atger"})
+        for c in par_slug.get(b["slug"], []):
+            d = str(c.get("date", ""))
+            cle = str(c.get("id") or ("site-" + d + "-" + str(c.get("nom", ""))))
+            if cle in masques:
+                continue
+            liste.append({"cle": cle, "texte": str(c.get("texte") or ""), "nom": c.get("nom") or "Anonyme", "dt": d, "html": texte_en_html(c.get("texte")), "reponse": False, "auteur_site": False})
+            if c.get("reponse"):
+                liste.append({"cle": cle + "-reponse", "texte": str(c.get("reponse") or ""), "nom": "Antonin Atger", "dt": d + "~", "html": texte_en_html(c.get("reponse")), "reponse": True, "auteur_site": True})
+        liste.sort(key=lambda c: c["dt"])
+        for c in liste:
+            try:
+                c["date_fr"] = date_fr(c["dt"].rstrip("~")[:10])
+            except ValueError:
+                c["date_fr"] = ""
+        b["commentaires"] = liste
 
 
 def copier_dossier(src, dst):
@@ -332,6 +443,7 @@ def construire(verifier=False):
     rendre("ecrits.html", "/ecrits/", titre="Nouvelles et poèmes",
            description="Les nouvelles, poèmes et textes d'Antonin Atger publiés depuis 2012, dont les Nouvelles du confinement.",
            ecrits=ecrits)
+    attacher_commentaires(billets)
     for i, b in enumerate(billets):
         precedent = billets[i + 1] if i + 1 < len(billets) else None
         suivant = billets[i - 1] if i > 0 else None
@@ -341,7 +453,18 @@ def construire(verifier=False):
     ecrire("/feed.xml", env.get_template("feed.xml").render(billets=billets[:20], maj=datetime.datetime.now()))
     urls = ["/", "/interventions/", "/blog/", "/chroniques/", "/ecrits/"] + [p["url"] for p in pages.values() if p["url"] != "/"] + [f["url"] for f in fiches] + [c["url"] for c in cats_ordonnees] + [b["url"] for b in billets]
     ecrire("/sitemap.xml", env.get_template("sitemap.xml").render(urls=urls))
-    ecrire("/robots.txt", f"User-agent: *\nAllow: /\nSitemap: {CONF['url']}/sitemap.xml\n")
+    ecrire("/robots.txt", f"User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: {CONF['url']}/sitemap.xml\n")
+    # index des commentaires affichés (pour la page de modération du serveur), les plus récents d'abord
+    index = [{"cle": c["cle"], "titre": b["titre"], "url": b["url"], "nom": c["nom"], "date_fr": c.get("date_fr", ""), "dt": c["dt"],
+              "extrait": (c["texte"][:140] + "…") if len(c["texte"]) > 140 else c["texte"]} for b in billets for c in b.get("commentaires", [])]
+    index.sort(key=lambda c: c["dt"], reverse=True)
+    ecrire("/commentaires-index.json", json.dumps(index, ensure_ascii=False))
+    # back-office : /admin/ (Decap CMS), réglé par site.yaml → admin → serveur
+    themes_bo = (yaml.safe_load((ICI / "contenu/themes.yaml").read_text(encoding="utf-8")) or {}).get("themes", {})
+    simples = [{"nom": n, "titre": p.get("titre", n)} for n, p in sorted((p["slug"], p) for p in pages.values())
+               if n not in ("accueil", "livres")]
+    ecrire("/admin/config.yml", env.get_template("admin-config.yml").render(site=CONF, themes=themes_bo, pages_simples=simples))
+    ecrire("/admin/", env.get_template("admin.html").render(site=CONF))
     (SORTIE / "404.html").write_text(env.get_template("404.html").render(titre="Page introuvable", url="/404.html", canonique=CONF["url"] + "/404.html"), encoding="utf-8")
     for ancienne, nouvelle in redirs.items():
         ecrire(ancienne if ancienne.endswith("/") else ancienne + "/", env.get_template("redirection.html").render(vers=nouvelle))

@@ -6,6 +6,8 @@ publics: [Établissements scolaires, Médiathèques, Entreprises, Lycées franç
 groupe: autres
 ordre: 30
 distance: true
+presentiel: false
+ages: [primaire, college, lycee, superieur, adultes]
 materiel: Un vidéoprojecteur, le son, et une connexion stable ; je fournis le lien.
 ou: Partout, y compris à l'étranger
 programmes: [ADAGE (format « à distance »), AEFE, Mission laïque française]

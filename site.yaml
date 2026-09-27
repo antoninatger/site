@@ -49,6 +49,14 @@ pied:
 
 # Formulaires : un service tiers reçoit les envois (le site est statique).
 # Créer un formulaire sur formspree.io (gratuit) et coller son adresse ici.
+# Mesure d'audience (Cloudflare Web Analytics, sans cookie) : coller ici le jeton donné par Cloudflare.
+mesure_audience: ""
+
+admin:
+  # Adresse du petit serveur Cloudflare (back-office /admin/ et bouton « Publier » des commentaires).
+  # À coller une fois le serveur créé (voir serveur-cloudflare/GUIDE.md), par exemple https://site-antonin.xxxx.workers.dev
+  serveur: ""
+
 formulaires:
   # Web3Forms, comme les jeux (même clé) : les messages arrivent dans Outlook.
   # Objets : « [Contact site] … » et « [Liste d'attente formations] … ». Gratuit jusqu'à 250 envois par mois.

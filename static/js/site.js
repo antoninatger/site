@@ -116,7 +116,17 @@
       var erreur = form.querySelector('.form-erreur');
       if (erreur) erreur.hidden = true;
       if (bouton) { bouton.disabled = true; bouton.textContent = 'Envoi…'; }
-      fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(donnees) })
+      // commentaire : le serveur fournit un lien « Publier » signé, ajouté au mail (si le serveur ne répond pas, le mail part quand même)
+      var serveur = form.getAttribute('data-serveur');
+      var lien = !serveur ? Promise.resolve(null) : Promise.race([
+        fetch(serveur.replace(/\/$/, '') + '/commentaire', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(donnees) })
+          .then(function (r) { return r.ok ? r.json() : null; }).then(function (r) { return r && r.lien; }),
+        new Promise(function (ok) { setTimeout(function () { ok(null); }, 6000); })
+      ]).catch(function () { return null; });
+      lien.then(function (l) {
+        if (l) donnees.message = donnees.message + '\n\n----------\nPour publier ce commentaire sur le site, un clic : ' + l;
+        return fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(donnees) });
+      })
         .then(function (r) { return r.json(); })
         .then(function (r) {
           if (!r.success) throw new Error(r.message || 'refus');

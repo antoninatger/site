@@ -69,3 +69,18 @@ L'adresse sera `/2026/09/10/mon-titre/`. `categories` : Esprit critique, Actuali
 ## Vérifier avant la mise en ligne
 
 `2 - Construire le site.bat` doit finir sans lien cassé ; la liste des images manquantes doit être vide après l'import (les 14 images que l'export n'a pas pu récupérer sont listées dans `blog/export/RAPPORT.txt` : elles resteront cassées dans les vieux billets, sauf à les remettre à la main dans `images/uploads/`).
+
+## Filtres de la page Interventions (27 septembre 2026)
+
+La page `/interventions/` se filtre par **âge** (primaire, collège, lycée, supérieur, adultes), **cadre**
+(scolaire, hors scolaire), **durée** (1 h, 2 h) et **format** (présentiel, à distance). Dans un même groupe
+les choix s'additionnent, entre groupes ils se cumulent ; l'adresse garde les filtres
+(`/interventions/?age=college&mode=distanciel`), on peut donc envoyer un lien déjà filtré.
+
+Rien à remplir : tout est déduit de `publics`, `duree` et `distance`. Si une déduction est fausse, on
+l'impose dans l'en-tête de la fiche :
+
+    ages: [college, lycee]            # primaire, college, lycee, superieur, adultes
+    cadre: [scolaire]                 # scolaire, hors-scolaire
+    formats: [1h]                     # 1h, 2h
+    presentiel: false                 # seulement à distance (cas de « Intervention à distance »)

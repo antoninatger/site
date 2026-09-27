@@ -1,0 +1,114 @@
+# Back-office (Decap CMS) : produit par construire_site.py à partir de gabarits/admin-config.yml.
+# Ne pas modifier _site/admin/config.yml : il est réécrit à chaque construction.
+backend:
+  name: github
+  repo: antoninatger/site
+  branch: main
+  base_url: {{ site.admin.serveur }}
+  auth_endpoint: auth
+{% raw %}
+  commit_messages:
+    create: "Back-office : nouveau « {{slug}} »"
+    update: "Back-office : modification de « {{slug}} »"
+    delete: "Back-office : suppression de « {{slug}} »"
+    uploadMedia: "Back-office : image {{path}}"
+    deleteMedia: "Back-office : suppression de l'image {{path}}"
+{% endraw %}
+locale: fr
+site_url: {{ site.url }}
+display_url: {{ site.url }}
+logo_url: /static/img/favicon.svg
+media_folder: images/uploads/admin
+public_folder: /images/uploads/admin
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: billets
+    label: Articles du blog
+    label_singular: article
+    description: "Les articles du blog. Un nouvel article est en ligne environ 2 minutes après « Publier »."
+    folder: contenu/blog
+    create: true
+    delete: true
+{% raw %}
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{titre}} · {{date | date('DD/MM/YYYY')}}"
+{% endraw %}
+    identifier_field: titre
+    sortable_fields: [date, titre]
+    fields:
+      - {label: Titre, name: titre, widget: string}
+      - {label: Date de publication, name: date, widget: datetime, format: "YYYY-MM-DDTHH:mm:ss", date_format: "DD/MM/YYYY", time_format: "HH:mm"}
+      - label: Catégories
+        name: categories
+        widget: list
+        default: ["Esprit critique"]
+        hint: "Une ou plusieurs parmi : Esprit critique, Actualités, Conseils d'écriture, Écrits."
+      - label: Thèmes des chroniques
+        name: themes
+        widget: select
+        multiple: true
+        required: false
+        hint: "Pour les analyses : le billet apparaît dans la page Chroniques, sous ces thèmes."
+        options:
+{% for cle, t in themes.items() %}          - {label: "{{ t.nom }}", value: "{{ cle }}"}
+{% endfor %}
+      - {label: Image à la une, name: image_une, widget: image, required: false}
+      - {label: "Résumé (facultatif, sinon le début du texte)", name: extrait, widget: text, required: false}
+      - {label: Texte, name: body, widget: markdown, modes: [rich_text, raw]}
+      - {name: slug, widget: hidden, required: false}
+      - {name: url, widget: hidden, required: false}
+      - {name: id_wordpress, widget: hidden, required: false}
+      - {name: etiquettes, widget: hidden, required: false}
+
+  - name: interventions
+    label: Fiches d'intervention
+    label_singular: fiche
+    folder: contenu/interventions
+    create: true
+{% raw %}
+    slug: "{{slug}}"
+{% endraw %}
+    identifier_field: titre
+    sortable_fields: [ordre, titre]
+    fields:
+      - {label: Titre, name: titre, widget: string}
+      - {label: Sous-titre, name: sous_titre, widget: string}
+      - {label: "Résumé (Google et partages)", name: description, widget: text}
+      - {label: Durée, name: duree, widget: string, hint: "Par exemple : 1 h à 2 h"}
+      - {label: Publics, name: publics, widget: list}
+      - {label: Groupe, name: groupe, widget: select, options: [{label: "Établissements scolaires, médiathèques", value: scolaire}, {label: Adultes, value: adultes}, {label: Autres, value: autres}]}
+      - {label: "Ordre d'affichage", name: ordre, widget: number, value_type: int}
+      - {label: "Réservable sur ADAGE", name: adage, widget: boolean, required: false, default: false}
+      - {label: Possible à distance, name: distance, widget: boolean, required: false, default: false}
+      - {label: "Programmes (EMI, EMC…)", name: programmes, widget: list, required: false}
+      - {label: "Vidéo YouTube (identifiant, facultatif)", name: video, widget: string, required: false}
+      - {label: "Matériel (facultatif)", name: materiel, widget: text, required: false}
+      - {label: "Où (facultatif)", name: ou, widget: string, required: false}
+      - {label: "Fiche PDF (facultatif)", name: pdf, widget: file, required: false}
+      - {label: Texte, name: body, widget: markdown, modes: [rich_text, raw]}
+
+  - name: pages
+    label: Pages
+    label_singular: page
+    description: "Les pages simples du site. L'accueil et la page Livres se modifient avec Claude (leur mise en page est plus complexe)."
+    files:
+{% for p in pages_simples %}      - label: "{{ p.titre }}"
+        name: "{{ p.nom }}"
+        file: "contenu/pages/{{ p.nom }}.md"
+        fields:
+          - {label: Titre, name: titre, widget: string}
+          - {label: "Surtitre (facultatif)", name: eyebrow, widget: string, required: false}
+          - {label: "Chapeau (facultatif)", name: lead, widget: text, required: false}
+          - {label: "Résumé (Google et partages)", name: description, widget: text, required: false}
+          - {label: "Image de partage (facultatif)", name: image, widget: image, required: false}
+{% if p.nom == 'a-propos' %}          - {label: Portrait, name: portrait, widget: image, required: false}
+          - {label: Photo, name: photo, widget: image, required: false}
+          - {label: Légende de la photo, name: photo_legende, widget: string, required: false}
+{% endif %}          - {name: gabarit, widget: hidden, required: false}
+          - {name: large, widget: hidden, required: false}
+          - {label: Texte, name: body, widget: markdown, modes: [rich_text, raw]}
+{% endfor %}

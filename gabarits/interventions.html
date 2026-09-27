@@ -7,14 +7,32 @@
     <h1>Interventions</h1>
     <p class="lead">Des conférences et des ateliers vivants, fondés sur la recherche en psychologie, pour apprendre à ne pas se faire avoir : fake news, rhétorique, influenceurs, arnaques en ligne, écriture. Chaque format dure de 1 h à 2 h et ne demande qu'un vidéoprojecteur et le son. Les établissements scolaires réservent sur ADAGE avec la part collective du pass Culture.</p>
   </header>
+  {# Filtres (27/09/2026) : dans un même groupe, « ou » ; entre groupes, « et ». #}
+  {% set groupes_filtres = [
+    ('age', 'Âge', [('primaire', 'Primaire'), ('college', 'Collège'), ('lycee', 'Lycée'), ('superieur', 'Supérieur'), ('adultes', 'Adultes')]),
+    ('cadre', 'Cadre', [('scolaire', 'Scolaire'), ('hors-scolaire', 'Hors scolaire')]),
+    ('duree', 'Durée', [('1h', '1 h'), ('2h', '2 h')]),
+    ('mode', 'Format', [('presentiel', 'Présentiel'), ('distanciel', 'À distance')]),
+  ] %}
+  <form class="filtres" id="filtres-interventions" aria-label="Filtrer les interventions" hidden>
+    {% for cle, libelle, choix in groupes_filtres %}
+    <fieldset class="filtres__groupe">
+      <legend>{{ libelle }}</legend>
+      {% for val, txt in choix %}<button type="button" class="filtre" data-groupe="{{ cle }}" data-valeur="{{ val }}" aria-pressed="false">{{ txt }}</button>{% endfor %}
+    </fieldset>
+    {% endfor %}
+    <p class="filtres__bilan" aria-live="polite"><span id="filtres-compte">{{ fiches|length }} interventions</span>
+      <button type="button" class="filtres__raz" id="filtres-raz" hidden>Tout afficher</button></p>
+  </form>
+  <p class="filtres__vide" id="filtres-vide" hidden>Aucune intervention ne réunit tous ces critères. <button type="button" class="filtres__raz" data-raz>Tout afficher</button></p>
   {% for groupe, titre in [('scolaire', 'Établissements scolaires, médiathèques, centres sociaux'), ('adultes', 'Enseignants, entreprises, collectivités'), ('autres', 'Autres formats')] %}
   {% set lot = fiches | selectattr('groupe', 'equalto', groupe) | list %}
   {% if lot %}
-  <section class="section section--tight">
+  <section class="section section--tight groupe-fiches">
     <h2>{{ titre }}</h2>
     <div class="grid grid--3" style="margin-top:18px">
       {% for f in lot %}
-      <a class="card fiche-card" href="{{ f.url }}">
+      <a class="card fiche-card" href="{{ f.url }}" data-age="{{ f.facettes.ages|join(' ') }}" data-cadre="{{ f.facettes.cadre|join(' ') }}" data-duree="{{ f.facettes.formats|join(' ') }}" data-mode="{{ f.facettes.modes|join(' ') }}">
         <div class="tags">{% for p in f.publics %}<span class="tag">{{ p }}</span>{% endfor %}{% if f.distance %}<span class="tag tag--accent">À distance possible</span>{% endif %}</div>
         <h3>{{ f.titre }}</h3>
         <p>{{ f.sous_titre }}</p>
@@ -32,4 +50,5 @@
     </div>
   </section>
 </div>
+<script src="/static/js/interventions.js" defer></script>
 {% endblock %}

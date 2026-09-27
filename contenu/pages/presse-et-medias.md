@@ -54,7 +54,7 @@ large: true
 <div class="media">{youtube: qHw-_LPoWE4 | ISCPA Lyon}<h3>ISCPA Lyon, colloque « Ficelles invisibles »</h3><p>Désinformation : au-delà de la fake news.</p></div>
 <div class="media">{youtube: Sy6iHxZvT3U | HEP Lyon 2023}<h3>HEP Lyon, conférence fake news (mars 2023)</h3><p>Devant les étudiants de l'école.</p></div>
 <div class="media">{youtube: Zo4jnL5C-ZE | Département de la Drôme}<h3>Département de la Drôme : harcèlement</h3><p>Une synthèse des éléments connus de la recherche, pour les professionnels et le grand public.</p></div>
-<div class="media">{youtube: EIxKPIHPSHI | Rencontres de l'Esprit Critique}<h3>Rencontres de l'Esprit Critique : fiction et complotisme</h3><p>Les liens entre récit fictionnel et pensée conspirationniste.</p></div>
+<div class="media" id="rec">{youtube: EIxKPIHPSHI | Rencontres de l'Esprit Critique}<h3>Rencontres de l'Esprit Critique : fiction et complotisme</h3><p>Les liens entre récit fictionnel et pensée conspirationniste.</p></div>
 <div class="media">{youtube: CWY1vbGvsY0 | REC, l'art et l'esprit critique}<h3>REC : l'art permet-il de développer son esprit critique ?</h3><p>Avec Maelys Girasol et Samah Karaki.</p></div>
 <div class="media">{youtube: Ovo8ml58CQ4 | Congrès Prisme}<h3>Congrès Prisme, ASTEC : lutte contre l'emprise sectaire</h3><p>13 décembre 2025, table ronde n°2, avec traduction intégrale en langue des signes.</p></div>
 <div class="media">{youtube: snlQR0LdPK4 | Nuit Zététique 2026}<h3>Nuit Zététique 2026, La Tronche en Biais</h3><p>Tables rondes « Science et politique » et « Humour, satire, fiction ».</p></div>

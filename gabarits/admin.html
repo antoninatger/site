@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Back-office | {{ site.titre }}</title>
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+</head>
+<body>
+{% if site.admin and site.admin.serveur %}
+<script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+<script>CMS.registerPreviewStyle("/static/css/site.css");</script>
+{% else %}
+<main style="font:17px/1.6 system-ui,sans-serif;max-width:36em;margin:10vh auto;padding:0 20px;color:#14222c">
+  <h1 style="font-size:1.6rem">Le back-office n'est pas encore branché</h1>
+  <p>Il faut d'abord créer le petit serveur Cloudflare et coller son adresse dans <code>site.yaml</code>, à la ligne <code>serveur:</code> sous <code>admin:</code>. Le guide est dans le dossier <code>serveur-cloudflare</code>.</p>
+</main>
+{% endif %}
+</body>
+</html>
