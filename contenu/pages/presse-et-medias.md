@@ -1,6 +1,6 @@
 ---
 titre: Presse et médias
-eyebrow: Télévision, radio, podcasts, presse écrite, conférences filmées
+eyebrow: Télévision, vidéastes, podcasts, presse écrite, conférences filmées
 lead: >-
   Pour voir comment je travaille avant de m'inviter, ou pour un journaliste qui prépare un sujet : les enregistrements
   sont ici, classés par type. Pour une interview, passez par la page contact.
@@ -24,23 +24,28 @@ large: true
 <div class="media">{youtube: scZahm60bpU | Audition à l'Assemblée nationale}<h3>Audition parlementaire : l'impact des réseaux sociaux sur les jeunes</h3><p>Auditionné en tant que spécialiste de la désinformation et de l'éducation aux médias.</p></div>
 </div>
 
+<h2 id="collaborations">Avec des vidéastes et podcasteurs</h2>
+<div class="prose"><p>Des émissions et des vidéos de la communauté esprit critique et vulgarisation, où j'interviens comme invité.</p></div>
+<div class="medias">
+<div class="media">{youtube: Xaq04RI_On4 | La Tronche en Live}<h3>La Tronche en Live : la fiction impacte-t-elle le réel ?</h3><p>11 août 2026, avec Isabelle Bauthian, Jeannie C. Moria et Vled Tapas.</p></div>
+<div class="media">{youtube: qohPvXsYdjI | Dave Sheik}<h3>Dave Sheik, « Les gens ne croient pas aux dinosaures »</h3><p>Intervention dans la vidéo pour expliquer les ressorts psychologiques et sociaux du complotisme.</p></div>
+<div class="media">{youtube: g1LgqCQErjA | RageBait}<h3>RageBait : complots et cinéma</h3><p>27 novembre 2025, avec Charlie Danger, Regelegorila et Mr Paf.</p></div>
+<div class="media">{youtube: PSnRm-UxbiE | Impôts et complots}<h3>Paix, Amour et Droit Fiscal (Khiox) : impôts et complots</h3><p>Théories du complot et fiscalité, avec Yannis.</p></div>
+<div class="media">{youtube: ZEMtp9dR5Qk | Projet Utopia, partie 1}<h3>Projet Utopia : esprit critique et fiction, partie 1</h3><p><a href="https://smartlink.ausha.co/projet-utopia-2/esprit-critique-et-fiction-part-1-antonin-atger" rel="noopener" target="_blank">Écouter l'épisode</a>.</p></div>
+<div class="media">{youtube: 9rwuhV0703k | Projet Utopia, partie 2}<h3>Projet Utopia : esprit critique et fiction, partie 2</h3><p>Littérature et complotisme.</p></div>
+</div>
+
 <h2 id="television">Télévision et vidéo</h2>
 <div class="medias">
 <div class="media">{youtube: tkSZ_XyKoho | France 3 Auvergne-Rhône-Alpes}<h3>France 3 Auvergne-Rhône-Alpes</h3><p>Apprendre à décrypter les fake news à l'école : reportage en classe.</p></div>
 <div class="media">{youtube: w7Q_ifVgAfM | France 3 Nouvelle-Aquitaine}<h3>France 3 Nouvelle-Aquitaine</h3><p>Alain Soral et le complotisme.</p></div>
 <div class="media">{youtube: Q_8wrMxX5N8 | L'Effet Pelapelaka}<h3>L'Effet Pelapelaka #08, mai 2026</h3><p>IA générative, désinformation et Fakemètre. <a href="https://pelapelaka.com/index.php/actualites/actualites/antonin-atger-specialiste-de-la-desinformation-et-des-theories-du-complot-mon-vrai-probleme-avec-lia-ce-n-est-pas-quon-peut-creer-des-fausses-videos-cest-que-des-gens-vont-commencer-a-douter-des-vraies" rel="noopener" target="_blank">L'entretien écrit</a>.</p></div>
-<div class="media">{youtube: qohPvXsYdjI | Dave Sheik}<h3>Dave Sheik, « Les gens ne croient pas aux dinosaures »</h3><p>Intervention dans la vidéo pour expliquer les ressorts psychologiques et sociaux du complotisme.</p></div>
 </div>
 
 <h2 id="podcasts">Podcasts et radio</h2>
 <div class="medias">
 <div class="media">{youtube: 2RdFvWQHHRc | Debatology}<h3>Debatology : comment parler aux complotistes ?</h3><p>Novembre 2025. Restaurer la confiance et dialoguer avec considération. <a href="https://debatology.substack.com/p/comment-parleraux-complotistes-avec" rel="noopener" target="_blank">Lire sur Substack</a>.</p></div>
-<div class="media">{youtube: ZEMtp9dR5Qk | Projet Utopia, partie 1}<h3>Projet Utopia : esprit critique et fiction, partie 1</h3><p><a href="https://smartlink.ausha.co/projet-utopia-2/esprit-critique-et-fiction-part-1-antonin-atger" rel="noopener" target="_blank">Écouter l'épisode</a>.</p></div>
-<div class="media">{youtube: 9rwuhV0703k | Projet Utopia, partie 2}<h3>Projet Utopia : esprit critique et fiction, partie 2</h3><p>Littérature et complotisme.</p></div>
 <div class="media">{youtube: 8YpMCKZIVnY | Les Voix de la Tech}<h3>Les Voix de la Tech : l'affaire Luc Julia</h3><p>Avec Benjamin Vincent, émission iWeek. <a href="https://www.journaldugeek.com/2025/08/22/affaire-luc-julia-laudition-dun-ingenieur-au-senat-secoue-le-monde-de-lintelligence-artificielle/" rel="noopener" target="_blank">L'article du Journal du Geek</a> qui me cite.</p></div>
-<div class="media">{youtube: g1LgqCQErjA | RageBait}<h3>RageBait : complots et cinéma</h3><p>27 novembre 2025, avec Charlie Danger, Regelegorila et Mr Paf.</p></div>
-<div class="media">{youtube: PSnRm-UxbiE | Impôts et complots}<h3>Paix, Amour et Droit Fiscal (Khiox) : impôts et complots</h3><p>Théories du complot et fiscalité, avec Yannis.</p></div>
-<div class="media">{youtube: Xaq04RI_On4 | La Tronche en Live}<h3>La Tronche en Live : la fiction impacte-t-elle le réel ?</h3><p>11 août 2026, avec Isabelle Bauthian, Jeannie C. Moria et Vled Tapas.</p></div>
 <div class="media">{youtube: yVz9NSYMa_8 | Fun Radio}<h3>Fun Radio</h3><p>Deux passages à l'antenne ; <a href="https://www.youtube.com/watch?v=HBzKJf-RPh4" rel="noopener" target="_blank">le second est ici</a>.</p></div>
 </div>
 <div class="prose"><p>Aussi : <a href="https://mickaelremond.com/podcast/antonin-atger/" rel="noopener" target="_blank">Double Vie (Mickaël Rémond)</a>, « il n'y a pas de magie derrière l'écriture, il y a des techniques qu'on peut apprendre » · <a href="https://radioeducation.saooti.org/main/pub/podcast/6953?productor=5553493f-e1e5-4bfc-9c4e-a46d39a9aeed" rel="noopener" target="_blank">RadioEducation.org</a>, radio scolaire nationale (avril 2023) · <a href="https://www.radioroyans.fr/magazines-d-actualites/a-portee-de-voix/1876-a-port%C3%A9e-de-voix-votre-magazine-de-reportages-%C3%A9dition-du-jeudi-07-avril-2022.html" rel="noopener" target="_blank">Radio Royans</a>, À portée de voix (avril 2022) · <a href="https://www.franceinfo.fr/replay-radio/franceinfo-junior-livres/franceinfo-junior-livres-interfeel-le-monde-ultra-connecte-d-antonin-atger_4201039.html" rel="noopener" target="_blank">France Info Junior</a>, Interfeel : le monde ultra-connecté d'Antonin Atger.</p></div>
@@ -53,6 +58,7 @@ large: true
 <div class="media">{youtube: XnZCw0Tsgnc | Département du Val-d'Oise}<h3>Département du Val-d'Oise</h3><p>Fake news, pour les bibliothèques du département.</p></div>
 <div class="media">{youtube: qHw-_LPoWE4 | ISCPA Lyon}<h3>ISCPA Lyon, colloque « Ficelles invisibles »</h3><p>Désinformation : au-delà de la fake news.</p></div>
 <div class="media">{youtube: Sy6iHxZvT3U | HEP Lyon 2023}<h3>HEP Lyon, conférence fake news (mars 2023)</h3><p>Devant les étudiants de l'école.</p></div>
+<div class="media">{youtube: adZvJtXzHxQ | HEP Lyon, fake news}<h3>HEP Lyon : fake news</h3><p>Une autre conférence devant les étudiants de l'école ; mon intervention commence à 11 min 29.</p></div>
 <div class="media">{youtube: Zo4jnL5C-ZE | Département de la Drôme}<h3>Département de la Drôme : harcèlement</h3><p>Une synthèse des éléments connus de la recherche, pour les professionnels et le grand public.</p></div>
 <div class="media" id="rec">{youtube: EIxKPIHPSHI | Rencontres de l'Esprit Critique}<h3>Rencontres de l'Esprit Critique : fiction et complotisme</h3><p>Les liens entre récit fictionnel et pensée conspirationniste.</p></div>
 <div class="media">{youtube: CWY1vbGvsY0 | REC, l'art et l'esprit critique}<h3>REC : l'art permet-il de développer son esprit critique ?</h3><p>Avec Maelys Girasol et Samah Karaki.</p></div>

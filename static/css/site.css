@@ -92,12 +92,13 @@ th, td { text-align: left; padding: .5em .6em; border-bottom: 1px solid var(--bo
 .brand:hover { text-decoration: none; }
 .brand__nom { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; line-height: 1; }
 .brand__accroche { font-size: .7rem; color: var(--ink-soft); letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
-.nav { display: flex; align-items: center; gap: 26px; font-size: .98rem; font-weight: 500; }
+.nav { display: flex; align-items: center; gap: 20px; font-size: .95rem; font-weight: 500; }
+.nav > a, .menu-jeux__bouton { white-space: nowrap; }
 .nav a { color: var(--ink); }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--accent); text-decoration: none; }
 .nav .btn { min-height: 44px; padding: .45em 1.1em; }
 .nav-toggle { display: none; background: none; border: 1px solid var(--border); border-radius: 4px; width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .nav-toggle { display: inline-flex; }
   .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--paper); border-bottom: 1px solid var(--border); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 16px; box-shadow: 0 12px 30px rgba(20,34,44,.08); }
   .nav.is-open { display: flex; }
@@ -325,7 +326,7 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 .pj small { display: block; color: var(--ink-soft); font-size: .8rem; font-weight: 400; }
 .panneau-jeux__bas { border-top: 1px solid var(--border); margin-top: 8px; padding: 12px 8px 2px; display: grid; gap: 8px; font-size: .9rem; }
 .nav .panneau-jeux__bas a { color: var(--accent); border: 0; padding: 0; }
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .nav { max-height: calc(100vh - 76px); overflow-y: auto; }
   .menu-jeux { border-top: 1px solid var(--border); }
   .menu-jeux__bouton { width: 100%; justify-content: space-between; padding: 12px 4px; }
@@ -544,3 +545,22 @@ blockquote, .avis blockquote { font-style: normal; letter-spacing: -.01em; }
 .reagir { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
 .reagir h3 { margin: 0 0 12px; font-size: 1.3rem; }
 @media (max-width: 600px) { .commentaire--reponse { margin-left: 14px; } }
+
+/* galeries de photos (page Livres : presse, librairies) */
+.galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin: 14px 0 30px; }
+.galerie figure { margin: 0; }
+.galerie a { display: block; border-radius: 6px; overflow: hidden; }
+.galerie img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; margin: 0; transition: transform .35s var(--ease, ease); }
+.galerie a:hover img { transform: scale(1.04); }
+.galerie--presse img { aspect-ratio: 3 / 4; object-position: top; }
+.galerie figcaption { font-size: .82rem; color: var(--ink-soft); margin-top: 6px; line-height: 1.35; }
+
+/* carte des lieux d'intervention (À propos), produite par carte/carte_interventions.py */
+.carte-interv__cadre { max-width: 660px; margin: 18px auto 12px; }
+.carte-interv__svg { width: 100%; height: auto; display: block; overflow: visible; }
+.carte-interv__france { fill: color-mix(in srgb, var(--accent) 7%, #fff); stroke: color-mix(in srgb, var(--accent) 40%, transparent); stroke-width: 1.2; stroke-linejoin: round; }
+.carte-interv__points circle { fill: color-mix(in srgb, var(--accent) 62%, transparent); stroke: #fff; stroke-width: 1; transition: fill .2s; }
+.carte-interv__points circle:hover { fill: var(--accent); }
+.carte-interv__noms text { font-family: var(--sans); font-size: 14px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.carte-interv .small { text-align: center; }
+@media (max-width: 600px) { .carte-interv__noms text { font-size: 24px; stroke-width: 6px; } .carte-interv__noms text.secondaire { display: none; } }

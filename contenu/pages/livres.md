@@ -115,7 +115,39 @@ recherche:
 
 Interfeel se lit du collège au lycée et sert de point de départ à des [ateliers d'écriture](/interventions/ateliers-d-ecriture/) et à des rencontres d'auteur : le cycle du livre, la construction d'un récit d'anticipation, ce que raconte un réseau social qui partage les émotions sur notre propre usage des réseaux. Les rencontres sont réservables sur ADAGE dans le cadre du pass Culture, et j'ai participé au dispositif national [Jeunes en librairie](https://www.leprogres.fr/education/2026/05/17/dispositif-national-jeunes-en-librairie-des-lyceens-a-la-rencontre-d-un-romancier) en Auvergne-Rhône-Alpes.
 
-{youtube: qVeSeqFAM48 | Présentation d'Interfeel}
+### En vidéo
+
+<div class="medias">
+<div class="media">{youtube: qVeSeqFAM48 | Présentation d'Interfeel}<h3>Interfeel aux CLA Books Awards</h3></div>
+<div class="media">{youtube: x-iHInxINHw | Remise du prix Chimère 2019}<h3>La remise du prix Chimère 2019</h3></div>
+<div class="media">{youtube: bferMJd1NIY | Parole de libraires}<h3>Parole de libraires : Alice, de la librairie Martelle</h3></div>
+<div class="media">{youtube: 10kaOJrw4aE | Point Lecture, Pikiti bouquine}<h3>Point Lecture #145, Pikiti bouquine</h3></div>
+</div>
+
+### Dans la presse
+
+<div class="galerie galerie--presse">
+<figure><a href="/images/uploads/2018/12/article-le-parisien4541452473039796823.jpg"><img src="/images/uploads/2018/12/article-le-parisien4541452473039796823.jpg" alt="Le Parisien" loading="lazy"></a><figcaption>Le Parisien</figcaption></figure>
+<figure><a href="/images/uploads/2018/12/var-matin2552853952468518399.jpg"><img src="/images/uploads/2018/12/var-matin2552853952468518399.jpg" alt="Var-Matin" loading="lazy"></a><figcaption>Var-Matin</figcaption></figure>
+<figure><a href="/images/uploads/2018/12/cestenville_dc3a9cembre_20182053665877715287419.jpg"><img src="/images/uploads/2018/12/cestenville_dc3a9cembre_20182053665877715287419.jpg" alt="Le Progrès" loading="lazy"></a><figcaption>Le Progrès</figcaption></figure>
+<figure><a href="/images/uploads/2018/12/biblioteca_magazine_sharp6991886659975644923.png"><img src="/images/uploads/2018/12/biblioteca_magazine_sharp6991886659975644923.png" alt="Biblioteca Magazine" loading="lazy"></a><figcaption>Biblioteca Magazine</figcaption></figure>
+<figure><a href="/images/uploads/2018/12/mon-quotidien_sharp-15215279362143752904.jpg"><img src="/images/uploads/2018/12/mon-quotidien_sharp-15215279362143752904.jpg" alt="Mon Quotidien" loading="lazy"></a><figcaption>Mon Quotidien</figcaption></figure>
+</div>
+
+### En librairie
+
+<div class="galerie">
+<figure><a href="/images/uploads/2018/12/img_20181218_154839_9981864927620918086534.jpg"><img src="/images/uploads/2018/12/img_20181218_154839_9981864927620918086534.jpg" alt="Decitre Bellecour, Lyon" loading="lazy"></a><figcaption>Decitre Bellecour, Lyon</figcaption></figure>
+<figure><a href="/images/uploads/2019/01/img_20190126_1546376807665775385215946.jpg"><img src="/images/uploads/2019/01/img_20190126_1546376807665775385215946.jpg" alt="Librairie Arthaud, Grenoble" loading="lazy"></a><figcaption>Librairie Arthaud, Grenoble</figcaption></figure>
+<figure><a href="/images/uploads/2018/12/img_20181216_133720991375392856528900.jpg"><img src="/images/uploads/2018/12/img_20181216_133720991375392856528900.jpg" alt="Librairie Martelle / Passeurs de rêve, Amiens" loading="lazy"></a><figcaption>Librairie Martelle / Passeurs de rêve, Amiens</figcaption></figure>
+<figure><a href="/images/uploads/2018/11/librairie-dialogue.jpg"><img src="/images/uploads/2018/11/librairie-dialogue.jpg" alt="Librairie Dialogues, Brest" loading="lazy"></a><figcaption>Librairie Dialogues, Brest</figcaption></figure>
+<figure><a href="/images/uploads/2018/11/img_20181005_135008.jpg"><img src="/images/uploads/2018/11/img_20181005_135008.jpg" alt="Le Tramway, Lyon" loading="lazy"></a><figcaption>Le Tramway, Lyon</figcaption></figure>
+<figure><a href="/images/uploads/2019/02/img_20190213_145339_9277943688063859936724.jpg"><img src="/images/uploads/2019/02/img_20190213_145339_9277943688063859936724.jpg" alt="La Page Suivante, Lyon" loading="lazy"></a><figcaption>La Page Suivante, Lyon</figcaption></figure>
+<figure><a href="/images/uploads/2018/12/img_20181211_194238_5248275567805265749039.jpg"><img src="/images/uploads/2018/12/img_20181211_194238_5248275567805265749039.jpg" alt="Raconte-moi la Terre, Lyon" loading="lazy"></a><figcaption>Raconte-moi la Terre, Lyon</figcaption></figure>
+<figure><a href="/images/uploads/2018/11/cultura-defense.jpg"><img src="/images/uploads/2018/11/cultura-defense.jpg" alt="Cultura 4 Temps, Paris" loading="lazy"></a><figcaption>Cultura 4 Temps, Paris</figcaption></figure>
+<figure><a href="/images/uploads/2018/11/img_20181103_121857-2.jpg"><img src="/images/uploads/2018/11/img_20181103_121857-2.jpg" alt="Cultura Belle Épine" loading="lazy"></a><figcaption>Cultura Belle Épine</figcaption></figure>
+<figure><a href="/images/uploads/2018/12/img_20181216_1355297856479150307718689.jpg"><img src="/images/uploads/2018/12/img_20181216_1355297856479150307718689.jpg" alt="Et surtout : les lecteurs qui en parlent" loading="lazy"></a><figcaption>Et surtout : les lecteurs qui en parlent</figcaption></figure>
+</div>
 
 ## Avant Interfeel
 

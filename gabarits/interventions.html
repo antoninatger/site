@@ -28,7 +28,7 @@
   {% for groupe, titre in [('scolaire', 'Établissements scolaires, médiathèques, centres sociaux'), ('adultes', 'Enseignants, entreprises, collectivités'), ('autres', 'Autres formats')] %}
   {% set lot = fiches | selectattr('groupe', 'equalto', groupe) | list %}
   {% if lot %}
-  <section class="section section--tight groupe-fiches">
+  <section class="section section--tight groupe-fiches" id="{{ groupe }}">
     <h2>{{ titre }}</h2>
     <div class="grid grid--3" style="margin-top:18px">
       {% for f in lot %}

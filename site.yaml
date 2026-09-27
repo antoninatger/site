@@ -16,6 +16,7 @@ menu:
   - { titre: Jeux, url: /jeux/ }
   - { titre: Livres, url: /livres/ }
   - { titre: Blog, url: /blog/ }
+  - { titre: Médias, url: /presse-et-medias/ }
   - { titre: À propos, url: /a-propos/ }
 bouton: { titre: Organiser une intervention, url: /contact/ }
 

@@ -14,7 +14,7 @@ Hello ! Je viens de créer un nouveau petit jeu, Radar’naque, pour tester nos 
 
 Vous pouvez le trouvez en allant dans l’onglet « Jeux pédagodiques » de mon site, ou en cliquant directement sur l’image ou le lien dessous !
 
-[![](/images/uploads/2026/07/image.png)](https://antoninatger.com/jeux-pedagogiques/#radarnaque)
+[![](/images/uploads/2026/07/image.png)](https://antoninatger.github.io/jeux/radarnaque/)
 
 > [Jeux pédagogiques!](https://antoninatger.com/jeux-pedagogiques/)
 
