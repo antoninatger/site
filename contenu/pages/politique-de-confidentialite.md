@@ -24,7 +24,7 @@ Antonin Atger, éditeur du site antoninatger.com. Pour toute question ou demande
 
 **Les vidéos.** Les vidéos YouTube ne se chargent que lorsque vous cliquez dessus ; avant ce clic, seule une image d'aperçu est chargée depuis les serveurs de YouTube. Après le clic, la vidéo est lue via youtube-nocookie.com, et la [politique de Google](https://policies.google.com/privacy) s'applique.
 
-**Les jeux pédagogiques.** Sur jeux.antoninatger.com, un code d'accès donné à votre établissement dépose un cookie technique qui mémorise que vous êtes autorisé, jusqu'à la fin de l'année scolaire. Il ne contient ni votre nom ni votre adresse ; les jeux ne demandent aucune information personnelle et n'enregistrent pas les scores sur un serveur.
+**Les jeux pédagogiques.** Les jeux en accès libre ne demandent ni inscription ni code, et ne déposent pas de cookie de suivi.
 
 **Ce qui n'est pas collecté.** Il n'y a pas de publicité, pas de cookie de mesure d'audience, pas de bouton de partage qui vous piste.
 

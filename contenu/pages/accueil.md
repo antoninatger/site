@@ -44,7 +44,7 @@ temps:
     photo: /images/uploads/2024/12/tedx2024_by_fred_giraud-21281291258691058558378665.jpg
   - etiquette: Troisième temps
     titre: On repart avec des réflexes.
-    texte: "Parce qu'une séance ne suffit pas, les élèves gardent l'accès aux jeux pédagogiques jusqu'à la fin de l'année, en classe ou à la maison."
+    texte: "Parce qu'une séance ne suffit pas, les élèves peuvent rejouer aux jeux en accès libre, en classe ou à la maison."
     photo: /images/uploads/2026/05/photo-bourg-en-bresse-lycee-Carriat-1.jpg
 
 # Les trois interventions en vitrine (noms des fichiers de contenu/interventions/)

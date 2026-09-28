@@ -25,7 +25,7 @@ Photo réelle ou générée par IA ? Crédible n'est pas vrai. Le biais de cadra
 
 ## Après la séance
 
-Les participants repartent avec un bilan de synthèse, l'accès aux jeux pédagogiques pour s'entraîner, et la version vidéo de la conférence pour la revoir ou la partager en interne.
+Les participants repartent avec un bilan de synthèse, les jeux en accès libre pour s'entraîner, et la version vidéo de la conférence pour la revoir ou la partager en interne.
 
 ## Variantes
 

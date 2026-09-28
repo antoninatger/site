@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # chaque heure : les billets programmés depuis le Séquenceur apparaissent à leur date
+  schedule:
+    - cron: "17 * * * *"
 permissions:
   contents: read
   pages: write

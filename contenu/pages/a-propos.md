@@ -18,7 +18,7 @@ photo_legende: Conférence à Zagreb pour l'Ambassade de France en Croatie et l'
 
 Une intervention, c'est une heure ou deux pendant lesquelles les élèves se font piéger, puis comprennent pourquoi. Illusions d'optique, énigmes, fausses informations vraisemblables, vraies informations incroyables : je m'appuie sur ce que la psychologie sait de notre cerveau pour montrer que nous sommes tous influençables, et que ce n'est ni une honte ni une fatalité. On repart avec des réflexes, pas avec une leçon de morale.
 
-J'ai donné ces séances plus de deux cents fois, du CM1 à la terminale, en BTS, à l'université, en médiathèque, en centre social, en entreprise, en France et à l'étranger. À ce jour, [123 structures](#confiance) m'ont accueilli. Et parce qu'une séance ne suffit pas, les élèves gardent ensuite l'accès à [mes jeux pédagogiques](/jeux/) jusqu'à la fin de l'année.
+J'ai donné ces séances plus de deux cents fois, du CM1 à la terminale, en BTS, à l'université, en médiathèque, en centre social, en entreprise, en France et à l'étranger. À ce jour, [123 structures](#confiance) m'ont accueilli. Et parce qu'une séance ne suffit pas, les élèves peuvent ensuite rejouer à [mes jeux pédagogiques](/jeux/) en accès libre.
 
 ## D'où je parle
 

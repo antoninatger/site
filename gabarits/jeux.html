@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% import "_icones.html" as ic %}
+{% import "_anims_jeux.html" as aj %}
 {% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
 {% block contenu %}
 <div class="wrap">
@@ -12,16 +13,16 @@
     <h2>En accès libre</h2>
     <div class="grid grid--4" style="margin-top:18px">
       {% for j in refs.jeux_libres %}
-      <a class="card jeu-card jeu-card--image" data-rv="zoom" style="--d:{{ '%.2f' % (loop.index0 * 0.08) }}s" href="{{ j.url }}" target="_blank" rel="noopener">{% if j.vignette and existe(j.vignette) %}<span class="jeu-card__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu-card__badge jeu-card__badge--libre">Gratuit</span></span>{% else %}{{ ic.icone(j.icone) }}{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p><span class="jeu-card__pied"><span class="tag">{{ j.niveau }}</span><span class="jeu-card__jouer">Jouer →</span></span></a>
+      <a class="card jeu-card jeu-card--image" data-rv="zoom" style="--d:{{ '%.2f' % (loop.index0 * 0.08) }}s" href="{{ j.url }}" target="_blank" rel="noopener">{% if j.vignette and existe(j.vignette) %}<span class="jeu-card__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu-card__badge jeu-card__badge--libre">Gratuit</span><span class="jeu-card__anim" aria-hidden="true">{{ aj.anim(j.icone) }}</span></span>{% else %}{{ ic.icone(j.icone) }}{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p><span class="jeu-card__pied"><span class="tag">{{ j.niveau }}</span><span class="jeu-card__jouer">Jouer →</span></span></a>
       {% endfor %}
     </div>
   </section>
-  <section class="section section--tight">
-    <div class="section-head"><h2>Réservés aux établissements partenaires</h2><a class="more" href="{{ site.jeux_url }}/" target="_blank" rel="noopener">Ouvrir le portail des jeux →</a></div>
+  <section class="section section--tight" id="apres-intervention">
+    <div class="section-head"><h2>Disponibles après une intervention</h2><a class="more" href="/interventions/">Organiser une intervention →</a></div>
     <div class="prose">{{ page.html | safe }}</div>
     <div class="grid grid--3" style="margin-top:22px">
       {% for j in refs.jeux_reserves %}
-      <div class="card jeu-card jeu-card--reserve jeu-card--image" data-rv style="--d:{{ '%.2f' % ((loop.index0 % 3) * 0.08) }}s">{% if j.vignette and existe(j.vignette) %}<span class="jeu-card__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu-card__badge">🔑 Avec code</span></span>{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p></div>
+      <div class="card jeu-card jeu-card--reserve jeu-card--image" aria-disabled="true" data-rv style="--d:{{ '%.2f' % ((loop.index0 % 3) * 0.08) }}s">{% if j.vignette and existe(j.vignette) %}<span class="jeu-card__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu-card__badge">Après intervention</span></span>{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p></div>
       {% endfor %}
     </div>
   </section>

@@ -218,6 +218,15 @@ def charger_categories():
     return yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else {"correspondance": {}, "surcharges": {}, "categories": {}}
 
 
+def _maintenant_paris():
+    """Heure de Paris, sans fuseau (les dates des billets sont écrites ainsi)."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.datetime.now(ZoneInfo("Europe/Paris")).replace(tzinfo=None)
+    except Exception:
+        return datetime.datetime.now()
+
+
 def charger_billets(cats):
     corr = cats.get("correspondance", {})
     surch = cats.get("surcharges", {}) or {}
@@ -232,6 +241,8 @@ def charger_billets(cats):
             dt = d if isinstance(d, datetime.datetime) else datetime.datetime(d.year, d.month, d.day)
         else:
             dt = datetime.datetime.fromisoformat(str(d)[:19])
+        if dt > _maintenant_paris():    # billet programmé (Séquenceur) : il attend sa date
+            continue
         meta["dt"] = dt
         meta["date_fr"] = date_fr(dt)
         if not meta.get("slug"):   # absent ou vide (article créé dans le back-office) : on le tire du nom du fichier

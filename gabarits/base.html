@@ -49,7 +49,7 @@
           <div class="panneau-jeux__titre">En accès libre, gratuitement</div>
           {% for j in refs.jeux_libres %}<a class="pj" href="{{ j.url }}" target="_blank" rel="noopener"><span class="pj__ico">{{ ic.icone(j.icone) }}</span><span><b>{{ j.titre }}</b><small>{{ j.niveau }}</small></span></a>{% endfor %}
           <div class="panneau-jeux__bas">
-            {% if site.jeux_url %}<a href="{{ site.jeux_url }}/" target="_blank" rel="noopener">🔑 Jeux réservés aux établissements : le portail</a>{% endif %}
+            <a href="/jeux/#apres-intervention">Et une quinzaine d'autres, pendant les interventions</a>
             <a href="/jeux/">Tous les jeux →</a>
           </div>
         </div>

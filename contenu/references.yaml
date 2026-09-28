@@ -48,8 +48,6 @@ jeux_reserves:
   - { titre: Graphiques trompeurs, texte: "Démasquer les graphiques qui déforment la réalité sans changer un chiffre.", vignette: /images/site/jeux/graphiques-trompeurs.jpg }
   - { titre: Dés de la mal-information, texte: "Un jeu de dés autour de la mal-information.", vignette: /images/site/jeux/mes-des-mal.jpg }
   - { titre: Arcade quizz, texte: "Casse-briques, snake, whac-a-quiz : les quiz des conférences en version arcade.", vignette: /images/site/jeux/arcade.jpg }
-  - { titre: Le biais de confirmation, texte: "Comprendre le biais de confirmation, dès le CM1.", vignette: /images/site/jeux/biais-confirmation.jpg }
-  - { titre: "La Terre ronde ou plate ?", texte: "Démonter le mythe platiste, preuve par preuve.", vignette: /images/site/jeux/terre-ronde-plate.jpg }
   - { titre: "Avis « style Maps »", texte: "Une moyenne peut cacher une tendance.", vignette: /images/site/jeux/notes-google.jpg }
   - { titre: Le Grand Oral, texte: "Convaincre un auditoire différent à chaque mission, sans un mot de trop.", vignette: /images/site/jeux/grand-oral.jpg }
   - { titre: Illusions d'optique, texte: "Dix illusions classiques à explorer.", vignette: /images/site/jeux/illusions.jpg }

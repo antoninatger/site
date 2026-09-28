@@ -21,7 +21,7 @@ Je suis basé à Lyon et je me déplace partout en France, mais tout le monde ne
 - La classe est réunie dans une salle avec un vidéoprojecteur et le son ; je suis en visio, en grand sur l'écran. Pas besoin d'un ordinateur par élève.
 - La séance est raccourcie à 1 h ou 1 h 30 et découpée en temps courts : quiz, énigmes, jeux en direct, questions. À distance, l'interactivité n'est pas une option, c'est ce qui fait tenir l'attention.
 - Un enseignant reste dans la salle et relaie les réponses ; je vois la classe grâce à une webcam ou au micro de la salle.
-- Les élèves gardent ensuite l'accès aux jeux pédagogiques jusqu'à la fin de l'année, comme pour une intervention sur place.
+- Les élèves peuvent ensuite rejouer aux jeux en accès libre, comme après une intervention sur place.
 
 Une enseignante de BTS qui a reçu la séance en visio en parle ainsi : « une visio intéressante, interactive sur un sujet hautement d'actualité dont l'objectif est d'interpeller nos étudiants, soumis à des fake news en continu ».
 
