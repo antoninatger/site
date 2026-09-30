@@ -1,16 +1,16 @@
 ---
 titre: "Retrouver Clara : le jeu"
 eyebrow: "Contre le harcèlement"
-lead: "Le jeu interactif de sensibilisation au harcèlement, en français et en anglais. Pour l'utiliser en classe avec moi : la fiche « Retrouver Clara »."
-description: "Retrouver Clara, un jeu interactif contre le harcèlement, en français et en anglais."
+lead: "Le jeu interactif de sensibilisation au harcèlement, en français et en anglais."
+description: "Retrouver Clara, un jeu interactif contre le harcèlement créé avec l'Ambassade de France en Croatie, en français et en anglais."
 ---
-Voici la version française du jeu « Retrouver Clara ». Pour le mener en classe avec moi, avec le guide pédagogique : [la fiche de l'intervention](/interventions/retrouver-clara/).
+Voici la version française du jeu « Retrouver Clara », créé avec l'Ambassade de France en Croatie.
 
 [Vidéo / contenu intégré](https://antoninatger.github.io/Harcelement/index.html)
 
 ⛶ Plein écran
 
-And here is the english version « Finding Clara »
+And here is the English version, « Finding Clara », created with the Embassy of France in Croatia.
 
 [Vidéo / contenu intégré](https://antoninatger.github.io/Harcelement/index_en.html)
 

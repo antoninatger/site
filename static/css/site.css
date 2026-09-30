@@ -622,3 +622,20 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .aj--planete .aj-etoile { fill: #fff; animation: aj-scintille 2.2s ease-in-out infinite; }
 .aj--planete .aj-e2 { animation-delay: .7s; } .aj--planete .aj-e3 { animation-delay: 1.4s; }
 @keyframes aj-scintille { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
+
+/* page Jeux : les jeux en accès libre en grand, deux par ligne, qui entrent l'un après l'autre */
+.jeux-libres { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+.jeux-libres .jeu-card h3 { font-size: 1.7rem; }
+.jeux-libres .jeu-card p { font-size: 1.02rem; }
+.jeux-libres .jeu-card__badge { font-size: .85rem; top: 14px; left: 14px; }
+.jeux-libres .jeu-card__anim { width: 104px; height: 104px; right: 16px; bottom: 16px; }
+.jeux-libres .jeu-card__anim .aj { width: 86px; height: 86px; }
+.jeux-libres .jeu-card__jouer { font-size: 1.05rem; }
+.jeux-libres .jeu-card__jouer::after { content: ""; display: inline-block; }
+.anim .jeux-libres .jeu-card[data-rv] { transform: translateY(40px) scale(.94); }
+.anim .jeux-libres .jeu-card[data-rv].vu { transform: none; }
+.anim .jeux-libres .jeu-card[data-rv].vu:hover, .jeux-libres .jeu-card:hover { transform: translateY(-6px); }
+.jeux-libres .jeu-card__visuel img { animation: jeu-respire 7s ease-in-out infinite alternate; }
+.jeux-libres .jeu-card:hover .jeu-card__visuel img { animation-play-state: paused; }
+@keyframes jeu-respire { from { transform: scale(1); } to { transform: scale(1.05); } }
+@media (max-width: 700px) { .jeux-libres { grid-template-columns: 1fr; gap: 22px; } .jeux-libres .jeu-card__anim { width: 84px; height: 84px; } .jeux-libres .jeu-card__anim .aj { width: 70px; height: 70px; } }

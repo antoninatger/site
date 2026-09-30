@@ -3,11 +3,11 @@ titre: Parcours et projets sur mesure
 eyebrow: Quand une intervention ne suffit pas
 lead: >-
   Six séances pour des CM1-CM2, une histoire de science-fiction écrite avec des classes et primée à Zagreb,
-  une enquête interactive sur le harcèlement, des ateliers d'écriture en résidence : voici ce qui se construit
+  des ateliers d'écriture en résidence : voici ce qui se construit
   quand on a plus d'une heure.
 description: >-
   Les parcours pédagogiques d'Antonin Atger : Self Data (prix européen Voices 2025), parcours esprit critique en six séances
-  pour le primaire, Retrouver Clara, atelier dystopie, résidence d'écriture.
+  pour le primaire, atelier dystopie, résidence d'écriture.
 image: /images/uploads/2023/12/college-balzac-self-data.png
 ---
 Une conférence donne l'envie et les premiers réflexes. Un parcours les installe. Chaque projet ci-dessous a été construit avec une équipe, pour un public précis ; ils sont tous reproductibles, et adaptables à votre contexte. Le financement passe par ADAGE pour les établissements scolaires, par les dispositifs des collectivités (Classes culturelles numériques, contrats de ville, appels à projets EMI) ou par un devis simple.
@@ -37,12 +37,6 @@ Comment développer l'esprit critique d'élèves de CM1-CM2 face à l'informatio
 > <br><span class="small muted">Agnès P., ALAE Georges Dagneaux</span>
 
 Ce parcours est le point de départ de mon offre pour le premier degré : il se transpose en classe, sur le temps scolaire, en quatre à six séances.
-
-<h2 id="harcelement">Retrouver Clara : une enquête sur le harcèlement</h2>
-
-<p class="eyebrow">Créé avec l'Institut français de Croatie · CM2 → 2de · français et anglais</p>
-
-Les élèves entrent dans le téléphone d'Inès, le compte de Clara et un groupe WhatsApp de classe pour comprendre comment le harcèlement s'installe et ce que chacun peut faire. En une séance, ou en fil rouge d'une semaine contre le harcèlement, avec un guide pour l'équipe. [La fiche de l'intervention](/interventions/retrouver-clara/), et [le jeu en ligne](/contre-le-harcelement/).
 
 <h2 id="dystopie">Atelier d'écriture de dystopie, en trois séances</h2>
 

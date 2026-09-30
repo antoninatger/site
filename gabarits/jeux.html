@@ -11,7 +11,7 @@
   </header>
   <section class="section section--tight">
     <h2>En accès libre</h2>
-    <div class="grid grid--4" style="margin-top:18px">
+    <div class="grid jeux-libres" style="margin-top:22px">
       {% for j in refs.jeux_libres %}
       <a class="card jeu-card jeu-card--image" data-rv="zoom" style="--d:{{ '%.2f' % (loop.index0 * 0.08) }}s" href="{{ j.url }}" target="_blank" rel="noopener">{% if j.vignette and existe(j.vignette) %}<span class="jeu-card__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu-card__badge jeu-card__badge--libre">Gratuit</span><span class="jeu-card__anim" aria-hidden="true">{{ aj.anim(j.icone) }}</span></span>{% else %}{{ ic.icone(j.icone) }}{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p><span class="jeu-card__pied"><span class="tag">{{ j.niveau }}</span><span class="jeu-card__jouer">Jouer →</span></span></a>
       {% endfor %}

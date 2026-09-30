@@ -19,6 +19,5 @@ Everything I do in French exists in English. I have delivered these sessions in 
 - **Critical Thinking & Media Literacy for Education Staff**: a teacher training: misleading news, cognitive biases, fallacies, the iron man and the principle of charity.
 - **The Impact of Misinformation and Conspiracy Theories on Democracy**: an academic lecture (Cres Summer School): defining conspiracy, the three links between conspiracy beliefs and politics, anomie, conspiracy as a rhetorical weapon.
 - **AI, between threat and hope**: deepfakes, micro-targeting and the liar's dividend on one side; detection, NLP and augmented fact-checking on the other.
-- **Finding Clara**: an interactive investigation about bullying, created with the French Institute of Croatia, available in English.
 
 Each session ends with the same thing as in French: participants keep access to the whole collection of games until the end of the school year. Most games exist in English.
