@@ -3,6 +3,14 @@
 # pour corriger un texte, colonne « Texte pour le site ».
 retours:
 - type: jeu
+  texte: ce jeu est très éducatif Merci
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  note: null
+  date: '2026-10-02'
+- type: jeu
   texte: C’était intéressant et ça permet de nous habituer à bien regarder si nos sources sont fiables
   qui: Partie de Fakemètre, niveau junior
   etablissement: ''
