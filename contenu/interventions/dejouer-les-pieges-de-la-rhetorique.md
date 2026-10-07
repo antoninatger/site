@@ -9,6 +9,8 @@ adage: true
 distance: true
 programmes: [EMC, EMI, Français, Grand oral]
 description: "Si les mots sont une arme, la rhétorique est l'art de s'en servir. Un atelier très interactif pour comprendre la persuasion, repérer les sophismes et débattre honnêtement."
+visuel: /images/interventions/dejouer-les-pieges-de-la-rhetorique.jpg
+visuel_alt: "Antonin Atger de profil, en pleine parole sur la scène du TEDx, devant une foule et un pupitre ; titre : Déjouer les pièges de la rhétorique"
 ---
 
 Si les mots sont une arme, la rhétorique est l'art de s'en servir. Indispensable pour convaincre, elle peut aussi servir à manipuler, souvent sans que l'on s'en rende compte. Cette séance très interactive permet de comprendre et de pratiquer les techniques de persuasion, d'identifier les raisonnements fallacieux et d'apprendre à débattre sans se braquer.

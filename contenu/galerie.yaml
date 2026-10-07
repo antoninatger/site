@@ -14,6 +14,24 @@
 # Les photos s'affichent dans l'ordre de cette liste.
 
 photos:
+  - fichier: villeurbanne-rentree-des-auteurs-1
+    legende: "Table ronde à la Rentrée des auteurs, Villeurbanne"
+    credit: "Guillaume Atger"
+  - fichier: villeurbanne-rentree-des-auteurs-2
+    legende: "Rentrée des auteurs, Villeurbanne"
+    credit: "Guillaume Atger"
+  - fichier: villeurbanne-rentree-des-auteurs-3
+    legende: "Rentrée des auteurs, Villeurbanne"
+    credit: "Guillaume Atger"
+  - fichier: peyruis-mediatheque-fake-news
+    legende: "« Fake news et esprit critique » à la médiathèque de Peyruis"
+    credit: ""
+  - fichier: trevoux-college-jean-moulin-2
+    legende: "Rencontre avec des élèves de Trévoux pour parler de mon métier d'auteur"
+    credit: "Guillaume Atger"
+  - fichier: trevoux-college-jean-moulin-3
+    legende: "Rencontre avec des élèves de Trévoux pour parler de mon métier d'auteur"
+    credit: "Guillaume Atger"
   - fichier: bron-fake-news-esprit-critique-3
     legende: "« Fake news et esprit critique » au collège Joliot-Curie, Bron"
     credit: "Guillaume Atger"

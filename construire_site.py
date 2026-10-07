@@ -504,7 +504,7 @@ def construire(verifier=False):
     rendre("interventions.html", "/interventions/", titre="Interventions", description="Conférences et ateliers d'esprit critique, du CM1 au lycée, en médiathèque, en centre social et en entreprise.", fiches=fiches, galerie=charger_galerie())
     for i, f in enumerate(fiches):
         autres = [x for x in fiches if x is not f and not x.get("hors_catalogue")][:3]
-        rendre("intervention.html", f["url"], page=f, titre=f["titre"], description=f["description"], image=f.get("image"), autres=autres)
+        rendre("intervention.html", f["url"], page=f, titre=f["titre"], description=f["description"], image=f.get("image") or f.get("visuel"), autres=autres)
     # blog : liste paginée, catégories, billets
     par_page = int(CONF["blog"].get("par_page", 12))
     def paginer(liste, base, gabarit, **ctx):

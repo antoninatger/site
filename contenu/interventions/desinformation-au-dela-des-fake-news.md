@@ -10,6 +10,8 @@ distance: true
 video: HLEhkhCJCyw
 programmes: [EMI, EMC, SNT, HGGSP]
 description: "Et si l'on pouvait vous tromper sans jamais vous mentir ? Astroturfing, fabrique du doute, mute news : la suite de « Fake news et esprit critique », pour le lycée et le supérieur."
+visuel: /images/interventions/desinformation-au-dela-des-fake-news.jpg
+visuel_alt: "Antonin Atger sur la scène du TEDx, devant un globe numérique et une rangée de personnes rivées à leur téléphone ; titre : Désinformation, au-delà des fake news"
 ---
 
 Et si l'on pouvait vous tromper sans jamais vous mentir ? Les fake news ne sont que la partie visible de la désinformation. On peut manipuler l'information sans énoncer une seule contre-vérité : en cadrant, en hiérarchisant, en sortant des faits parfaitement exacts de leur contexte. Suite naturelle de « Fake news et esprit critique », cette conférence décortique les techniques les plus utilisées et les biais qui les rendent redoutablement efficaces. Elle existe aussi en version « + IA ».

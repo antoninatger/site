@@ -13,6 +13,8 @@ photo_alt: Antonin Atger devant l'écran titré « Fake news et esprit critique 
 photo_legende: "Collège Joliot-Curie, Bron. Photo : Guillaume Atger."
 programmes: [EMI, EMC, Parcours citoyen, SNT]
 description: "Pourquoi les fake news nous séduisent-elles autant ? Une conférence interactive, du CM1 au lycée, pour comprendre son cerveau et apprendre à vérifier une information."
+visuel: /images/interventions/fake-news-et-esprit-critique.jpg
+visuel_alt: "Antonin Atger sur la scène du TEDx, devant un smartphone et un livre ancien ; titre : Fake News et esprit critique"
 ---
 
 Pourquoi les fake news nous séduisent-elles autant ? En m'appuyant sur mes recherches en sciences cognitives, j'explique comment notre cerveau, pourtant remarquable, est aussi faillible. À travers des illusions d'optique, des énigmes et des exemples concrets, je montre pourquoi les fausses informations circulent plus vite et plus loin que les vraies, et comment développer des réflexes pour les identifier.

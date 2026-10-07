@@ -34,6 +34,7 @@
     <div class="grid grid--3" style="margin-top:18px">
       {% for f in lot %}
       <a class="card fiche-card" href="{{ f.url }}" data-age="{{ f.facettes.ages|join(' ') }}" data-cadre="{{ f.facettes.cadre|join(' ') }}" data-duree="{{ f.facettes.formats|join(' ') }}" data-mode="{{ f.facettes.modes|join(' ') }}">
+        {% if f.visuel %}<img class="fiche-card__visuel" src="{{ f.visuel | replace('.jpg', '-vignette.jpg') }}" alt="" width="720" height="480" loading="lazy">{% endif %}
         <div class="tags">{% for p in f.publics %}<span class="tag">{{ p }}</span>{% endfor %}{% if f.distance %}<span class="tag tag--accent">À distance possible</span>{% endif %}</div>
         <h3>{{ f.titre }}</h3>
         <p>{{ f.sous_titre }}</p>

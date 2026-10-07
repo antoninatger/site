@@ -11,6 +11,7 @@
   </header>
   <div class="fiche">
     <div class="fiche__corps prose">
+      {% if page.visuel %}<figure class="photo visuel"><img src="{{ page.visuel }}" alt="{{ page.visuel_alt or page.titre }}" width="1600" height="1067"></figure>{% endif %}
       {% if page.photo %}<figure class="photo"><img src="{{ page.photo }}" alt="{{ page.photo_alt or '' }}" width="1600" height="1067">{% if page.photo_legende %}<figcaption>{{ page.photo_legende }}</figcaption>{% endif %}</figure>{% endif %}
       {% if page.video %}{{ youtube(page.video, page.titre) | safe }}{% endif %}
       {{ page.html | safe }}

@@ -10,6 +10,8 @@ ou: Sur place en Île-de-France et en Auvergne-Rhône-Alpes, en tournée ailleur
 pdf: /images/uploads/2026/10/programme-fake-news-et-ecologie.pdf
 programmes: [Plan climat, Agents territoriaux, Formation des élus, Fête de la science, Semaine du développement durable, Éducation aux médias, Lycée agricole]
 description: "Un Français sur trois doute du réchauffement climatique ou de son origine humaine, et les preuves ne le font pas changer d'avis. Une conférence interactive, issue de la recherche en psychologie, pour comprendre ce doute et savoir en parler sans braquer."
+visuel: /images/interventions/fake-news-environnement.jpg
+visuel_alt: "Antonin Atger devant une rue sous la neige et un incendie de forêt ; titre : Fake News et écologie"
 ---
 
 Un Français sur trois doute aujourd'hui du réchauffement climatique ou de son origine humaine (Ipsos et EDF, 2024), et ce chiffre ne baisse plus. Pourtant, ni les preuves ni même les catastrophes ne font changer d'avis : après les gigantesques incendies australiens de 2019-2020, les sceptiques n'avaient pas bougé d'un pouce. Pourquoi ? Et que faire à la place ?
