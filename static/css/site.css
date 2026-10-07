@@ -278,6 +278,8 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 .liste-refs p { margin: 0 0 8px; line-height: 1.6; }
 .photo { margin: 0 0 28px; }
 .photo img { width: 100%; border-radius: 6px; }
+.bandeau-photo img { aspect-ratio: 21 / 9; height: auto; object-fit: cover; object-position: 50% 30%; }
+.portrait-credit { font-size: .8rem; color: var(--ink-mute); margin: 6px 0 18px; }
 .medias { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; margin: 18px 0 8px; }
 .media { display: flex; flex-direction: column; gap: 10px; }
 .media .video { margin: 0; }
@@ -554,6 +556,29 @@ blockquote, .avis blockquote { font-style: normal; letter-spacing: -.01em; }
 .galerie a:hover img { transform: scale(1.04); }
 .galerie--presse img { aspect-ratio: 3 / 4; object-position: top; }
 .galerie figcaption { font-size: .82rem; color: var(--ink-soft); margin-top: 6px; line-height: 1.35; }
+/* galerie « En intervention » (page Interventions) et sa visionneuse */
+.galerie--grande { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px 18px; }
+.galerie--grande figcaption { font-size: .88rem; margin-top: 8px; }
+.galerie__credit { color: var(--ink-mute); }
+.visionneuse { border: 0; padding: 0; margin: 0; width: 100%; max-width: 100%; height: 100%; max-height: 100%; background: rgba(10,18,24,.94); color: #fff; }
+.visionneuse[open] { display: flex; align-items: center; justify-content: center; }
+.visionneuse::backdrop { background: rgba(10,18,24,.6); }
+.visionneuse figure { margin: 0; max-width: min(1200px, calc(100vw - 140px)); text-align: center; }
+.visionneuse img { max-width: 100%; max-height: 80vh; width: auto; height: auto; border-radius: 4px; display: block; margin: 0 auto; }
+.visionneuse figcaption { color: #d5dee4; font-size: .95rem; margin-top: 12px; line-height: 1.4; }
+.visionneuse button { position: absolute; display: grid; place-items: center; background: rgba(255,255,255,.14); color: #fff; border: 0; width: 48px; height: 48px; border-radius: 50%; font-size: 30px; line-height: 1; cursor: pointer; }
+.visionneuse button:hover { background: rgba(255,255,255,.28); }
+.visionneuse button:focus-visible { outline: 3px solid #7fc4e6; outline-offset: 2px; }
+.visionneuse__fermer { top: 16px; right: 16px; }
+.visionneuse__prec, .visionneuse__suiv { top: 50%; transform: translateY(-50%); }
+.visionneuse__prec { left: 16px; }
+.visionneuse__suiv { right: 16px; }
+@media (max-width: 640px) {
+  .galerie--grande { grid-template-columns: 1fr 1fr; gap: 16px 12px; }
+  .galerie--grande figcaption { font-size: .8rem; }
+  .visionneuse figure { max-width: calc(100vw - 24px); }
+  .visionneuse__prec, .visionneuse__suiv { top: auto; bottom: 18px; transform: none; }
+}
 
 /* carte des lieux d'intervention (À propos), produite par carte/carte_interventions.py */
 .carte-interv__cadre { max-width: 660px; margin: 18px auto 12px; }

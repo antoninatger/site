@@ -7,6 +7,7 @@
     <h1>Interventions</h1>
     <p class="lead">Des conférences et des ateliers vivants, fondés sur la recherche en psychologie, pour apprendre à ne pas se faire avoir : fake news, rhétorique, influenceurs, arnaques en ligne, écriture. Chaque format dure de 1 h à 2 h et ne demande qu'un vidéoprojecteur et le son. Les établissements scolaires réservent sur ADAGE avec la part collective du pass Culture.</p>
   </header>
+  <figure class="photo bandeau-photo"><img src="/images/uploads/2026/10/bron-classe.jpg" alt="Antonin Atger devant une classe de collège, vue depuis le fond de la salle" width="1800" height="1200"><figcaption>Collège Joliot-Curie, Bron. Photo : Guillaume Atger.</figcaption></figure>
   {# Filtres (27/09/2026) : dans un même groupe, « ou » ; entre groupes, « et ». #}
   {% set groupes_filtres = [
     ('age', 'Âge', [('primaire', 'Primaire'), ('college', 'Collège'), ('lycee', 'Lycée'), ('superieur', 'Supérieur'), ('adultes', 'Adultes')]),
@@ -49,6 +50,17 @@
       <p>Six séances pour des CM1-CM2, un projet pluriannuel avec la Métropole de Lyon récompensé à Zagreb, une enquête interactive sur le harcèlement : quand une intervention ne suffit pas, on construit un parcours. <a href="/parcours/">Voir les parcours →</a></p>
     </div>
   </section>
+  {% if galerie %}
+  <section class="section section--tight" id="en-intervention">
+    <div class="section-head"><h2>En intervention</h2><span class="muted small">Classes, médiathèques, conférences</span></div>
+    <div class="galerie galerie--grande" data-galerie>
+      {% for p in galerie %}
+      <figure><a href="/images/galerie/{{ p.fichier }}.jpg"><img src="/images/galerie/{{ p.fichier }}-vignette.jpg" alt="{{ p.legende }}" width="720" height="540" loading="lazy"></a><figcaption>{{ p.legende }}{% if p.credit %}<span class="galerie__credit"> · Photo : {{ p.credit }}</span>{% endif %}</figcaption></figure>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 </div>
 <script src="/static/js/interventions.js" defer></script>
+{% if galerie %}<script src="/static/js/galerie.js" defer></script>{% endif %}
 {% endblock %}

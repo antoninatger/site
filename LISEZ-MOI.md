@@ -84,3 +84,14 @@ l'impose dans l'en-tête de la fiche :
     cadre: [scolaire]                 # scolaire, hors-scolaire
     formats: [1h]                     # 1h, 2h
     presentiel: false                 # seulement à distance (cas de « Intervention à distance »)
+
+## Ajouter des photos à la galerie « En intervention »
+
+La galerie est en bas de la page Interventions.
+
+1. Déposez les photos (même lourdes) dans le dossier `galerie-a-ajouter`.
+2. Lancez « 2 - Construire le site » : elles sont réduites et ajoutées en tête de `contenu/galerie.yaml`.
+3. Écrivez leur légende dans ce fichier (et le photographe dans `credit`), puis reconstruisez.
+   Une photo sans légende n'est pas affichée : vérifiez qu'aucun visage d'élève n'est reconnaissable.
+
+Pour retirer ou réordonner une photo, supprimez ou déplacez ses trois lignes dans `contenu/galerie.yaml`.

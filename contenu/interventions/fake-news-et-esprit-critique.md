@@ -8,6 +8,9 @@ ordre: 1
 adage: true
 distance: true
 video: vUlKdtYcJPs
+photo: /images/uploads/2026/10/bron-fake-news-esprit-critique.jpg
+photo_alt: Antonin Atger devant l'écran titré « Fake news et esprit critique », face à une classe de collège
+photo_legende: "Collège Joliot-Curie, Bron. Photo : Guillaume Atger."
 programmes: [EMI, EMC, Parcours citoyen, SNT]
 description: "Pourquoi les fake news nous séduisent-elles autant ? Une conférence interactive, du CM1 au lycée, pour comprendre son cerveau et apprendre à vérifier une information."
 ---
@@ -27,6 +30,8 @@ C'est l'intervention que j'ai le plus donnée : plus d'une centaine de fois, du 
 - Les biais qui nous piègent : popularité, émotion, confirmation
 - Corrélation n'est pas causalité : Nicolas Cage et les noyades
 - Des outils concrets pour vérifier une information en ligne, et l'astuce « compter jusqu'à deux avant de partager »
+
+<figure class="photo"><img src="/images/uploads/2026/10/bron-criteres.jpg" alt="Antonin Atger devant la question « Quels sont les critères pour valider l'information ? »" width="1600" height="1067" loading="lazy"><figcaption>« Quels sont les critères pour valider l'information ? » Collège Joliot-Curie, Bron. Photo : Guillaume Atger.</figcaption></figure>
 
 ## Le dispositif signature
 

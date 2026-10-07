@@ -12,6 +12,10 @@ description: >-
 photo: /images/uploads/2023/08/1-college-jean-moulin-trevoux-3.jpg
 photo_alt: Antonin Atger en intervention devant une classe
 photo_legende: Intervention « Fake News et esprit critique » au collège Jean Moulin, Trévoux.
+# Variante Bron (pour revenir dessus, remplacer les trois lignes ci-dessus par celles-ci, sans les #) :
+# photo: /images/uploads/2026/10/bron-ouverture.jpg
+# photo_alt: Antonin Atger en intervention devant une classe de collège
+# photo_legende: "Intervention « Fake news et esprit critique » au collège Joliot-Curie, Bron. Photo : Guillaume Atger."
 portes:
   - { titre: "Je suis enseignant·e, CPE ou professeur·e-documentaliste", url: "/interventions/#scolaire" }
   - { titre: "Je programme pour une médiathèque, un centre social, une association", url: "/interventions/#scolaire" }
@@ -37,7 +41,9 @@ temps:
   - etiquette: Premier temps
     titre: La salle se fait piéger.
     texte: "Illusions d'optique, énigmes, fausses informations vraisemblables, vraies informations incroyables : on commence par se tromper, tous ensemble."
-    photo: /images/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg
+    photo: /images/uploads/2026/10/bron-vrai-ou-faux.jpg
+    cadrage: "72% 50%"
+    credit: "Collège Joliot-Curie, Bron. Photo : Guillaume Atger."
   - etiquette: Deuxième temps
     titre: On comprend pourquoi.
     texte: "Je m'appuie sur ce que la psychologie sait de notre cerveau pour montrer d'où viennent ces erreurs : nos raccourcis mentaux, nos émotions, nos biais."

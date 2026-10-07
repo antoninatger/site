@@ -16,7 +16,7 @@ Un Français sur trois doute aujourd'hui du réchauffement climatique ou de son 
 
 En m'appuyant sur la recherche en psychologie sociale, j'explique comment on sait que le réchauffement est réel et d'origine humaine, comment la désinformation climatique circule sur les réseaux sociaux, pourquoi on devient climatosceptique, et surtout ce qui permet d'en parler, avec ses proches comme avec des administrés, sans braquer.
 
-Je l'ai donnée cette année à la **médiathèque Visages du Monde de Cergy** et à la **médiathèque d'Orly**. Le public comme les organisateurs l'ont beaucoup appréciée. Elle se veut claire, accessible et ne stigmatise pas les climatosceptiques. Une première version avait été donnée au personnel de la Métropole de Lyon.
+Je l'ai donnée cette année à la **médiathèque Visages du Monde de Cergy** et à la **médiathèque d'Osny**. Le public comme les organisateurs l'ont beaucoup appréciée. Elle se veut claire, accessible et ne stigmatise pas les climatosceptiques. Une première version avait été donnée au personnel de la Métropole de Lyon.
 
 ## Au programme
 

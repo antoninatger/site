@@ -141,7 +141,11 @@ def extraire():
                 continue
             objet = _sans_accents(l.get("Objet"))
             # Seuls les messages envoyés depuis le jeu (pas les échanges de mails autour du jeu)
-            if choix != "oui" and not re.search(r"fakemetre\s*[—–-]\s*(message de fin de partie|retour utilisateur)", objet):
+            # (ou une partie arrivée sous l'objet générique du formulaire : elle a
+            # son niveau et son score, 7 octobre 2026)
+            fin_de_partie = re.search(r"fakemetre\s*[—–-]\s*(message de fin de partie|retour utilisateur)", objet) \
+                or (str(l.get("Score") or "").strip() and str(l.get("Niveau") or "").strip())
+            if choix != "oui" and not fin_de_partie:
                 continue
             texte = _propre(l.get("Texte pour le site") or l.get("Message au créateur"))
             sa = _sans_accents(texte)

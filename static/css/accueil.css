@@ -85,6 +85,7 @@ html:not(.anim) .accueil .bande { overflow-x: auto; }
 .accueil .etape h3 { font-size: clamp(2rem, 3.6vw, 3rem); }
 .accueil .etape p { font-size: 1.15rem; color: #c9d6df; max-width: 30em; }
 .accueil .etape__img { display: none; }
+.accueil .etape p.etape__credit { font-size: .8rem; color: #8fa3b1; margin-top: 12px; }
 html:not(.anim) .accueil .etape { opacity: 1; min-height: 0; padding: 40px 0; }
 @media (max-width: 900px) {
   .accueil .recit__grille { grid-template-columns: 1fr; gap: 0; margin-top: 10px; }

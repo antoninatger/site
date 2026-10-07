@@ -10,7 +10,8 @@ description: >-
   Antonin Atger, auteur de la trilogie Interfeel et doctorant en psychologie : dix ans d'interventions sur l'esprit critique,
   TEDx, audition à l'Assemblée nationale, prix européen Voices 2025, 123 structures en France.
 image: /images/uploads/2024/12/tedx2024_by_fred_giraud-21281291258691058558378665.jpg
-portrait: /images/uploads/2021/05/photo-profil-antonin-atger-reduite-1.jpg
+portrait: /images/uploads/2026/10/portrait-antonin-atger-2026.jpg
+portrait_credit: "Photo : Guillaume Atger"
 photo: /images/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg
 photo_legende: Conférence à Zagreb pour l'Ambassade de France en Croatie et l'UNICEF, novembre 2025.
 ---

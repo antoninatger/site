@@ -334,6 +334,72 @@ def copier_dossier(src, dst):
             shutil.copy2(a, b)
 
 
+GALERIE_DEPOT = ICI / "galerie-a-ajouter"
+GALERIE_IMG = ICI / "images" / "galerie"
+GALERIE_YAML = ICI / "contenu" / "galerie.yaml"
+
+
+def preparer_galerie():
+    """Photos déposées dans galerie-a-ajouter/ : réduites dans images/galerie/ (grande + vignette)
+    et inscrites en tête de contenu/galerie.yaml avec une légende vide (donc pas encore affichées)."""
+    if not GALERIE_DEPOT.is_dir():
+        return
+    photos = sorted(p for p in GALERIE_DEPOT.iterdir() if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp"))
+    a_faire = [p for p in photos if not (GALERIE_IMG / f"{slugifier(p.stem) or 'photo'}.jpg").exists()]
+    if not a_faire:
+        return
+    try:
+        from PIL import Image, ImageOps
+    except ImportError:
+        print("Galerie : Pillow n'est pas installé, lancez « 0 - Installer » puis reconstruisez.")
+        return
+    GALERIE_IMG.mkdir(parents=True, exist_ok=True)
+    nouvelles = []
+    for p in a_faire:
+        nom = slugifier(p.stem) or "photo"
+        try:
+            im = ImageOps.exif_transpose(Image.open(p)).convert("RGB")
+        except Exception as e:
+            print(f"Galerie : {p.name} illisible ({e}).")
+            continue
+        for suffixe, larg in (("", 1600), ("-vignette", 720)):
+            c = im.copy()
+            c.thumbnail((larg, larg * 2), Image.LANCZOS)
+            c.save(GALERIE_IMG / f"{nom}{suffixe}.jpg", quality=80, optimize=True, progressive=True)
+        nouvelles.append(nom)
+    if not nouvelles:
+        return
+    texte = GALERIE_YAML.read_text(encoding="utf-8") if GALERIE_YAML.exists() else "photos:\n"
+    bloc = "".join(f'  - fichier: {n}\n    legende: ""\n    credit: ""\n' for n in nouvelles)
+    if re.search(r"^photos:[ \t]*(\[\])?[ \t]*$", texte, re.M):
+        texte = re.sub(r"^photos:[ \t]*(\[\])?[ \t]*\n?", "photos:\n" + bloc, texte, count=1, flags=re.M)
+    else:
+        texte += "\nphotos:\n" + bloc
+    GALERIE_YAML.write_text(texte, encoding="utf-8", newline="")
+    print(f"Galerie : {len(nouvelles)} photo(s) ajoutée(s). Écrivez leur légende dans contenu/galerie.yaml ; "
+          "elles restent cachées en attendant.")
+
+
+def charger_galerie():
+    if not GALERIE_YAML.exists():
+        return []
+    photos = (yaml.safe_load(GALERIE_YAML.read_text(encoding="utf-8")) or {}).get("photos") or []
+    ok, sans = [], 0
+    for p in photos:
+        if not p or not p.get("fichier"):
+            continue
+        if not str(p.get("legende") or "").strip():
+            sans += 1
+            continue
+        if not (GALERIE_IMG / f"{p['fichier']}.jpg").exists():
+            print(f"Galerie : image introuvable pour « {p['fichier']} ».")
+            continue
+        ok.append(p)
+    if sans:
+        print(f"Galerie : {sans} photo(s) sans légende, non affichée(s) (contenu/galerie.yaml).")
+    return ok
+
+
 def normaliser_image(src):
     if not src:
         return ""
@@ -357,6 +423,7 @@ def construire(verifier=False):
     env.globals["annee"] = datetime.date.today().year
     env.globals["youtube"] = lambda vid, titre="": youtube_html(vid, titre)
 
+    preparer_galerie()
     pages = charger_pages()
     fiches = charger_interventions()
     cats = charger_categories()
@@ -434,7 +501,7 @@ def construire(verifier=False):
     for nom, p in pages.items():
         rendre(p["gabarit"], p["url"], page=p, titre=p.get("titre", ""), description=p.get("description", ""), image=p.get("image"))
     # interventions
-    rendre("interventions.html", "/interventions/", titre="Interventions", description="Conférences et ateliers d'esprit critique, du CM1 au lycée, en médiathèque, en centre social et en entreprise.", fiches=fiches)
+    rendre("interventions.html", "/interventions/", titre="Interventions", description="Conférences et ateliers d'esprit critique, du CM1 au lycée, en médiathèque, en centre social et en entreprise.", fiches=fiches, galerie=charger_galerie())
     for i, f in enumerate(fiches):
         autres = [x for x in fiches if x is not f and not x.get("hors_catalogue")][:3]
         rendre("intervention.html", f["url"], page=f, titre=f["titre"], description=f["description"], image=f.get("image"), autres=autres)

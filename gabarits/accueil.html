@@ -61,16 +61,17 @@
     <h2 class="mots" data-mots>{{ page.temps_titre }}</h2>
     <div class="recit__grille">
       <div class="recit__visuel" aria-hidden="true">
-        {% for t in page.temps %}<img{% if loop.first %} class="actif"{% endif %} src="{{ t.photo }}" alt="" loading="lazy">{% endfor %}
+        {% for t in page.temps %}<img{% if loop.first %} class="actif"{% endif %} src="{{ t.photo }}"{% if t.cadrage %} style="object-position: {{ t.cadrage }}"{% endif %} alt="" loading="lazy">{% endfor %}
         <span class="recit__num" data-recit-num>1</span>
       </div>
       <div>
         {% for t in page.temps %}
         <div class="etape{% if loop.first %} actif{% endif %}" data-etape="{{ loop.index0 }}" data-rv-etape>
-          <img class="etape__img" src="{{ t.photo }}" alt="" loading="lazy">
+          <img class="etape__img" src="{{ t.photo }}"{% if t.cadrage %} style="object-position: {{ t.cadrage }}"{% endif %} alt="" loading="lazy">
           <div class="n">{{ t.etiquette }}</div>
           <h3>{{ t.titre }}</h3>
           <p>{{ t.texte }}</p>
+          {% if t.credit %}<p class="etape__credit">{{ t.credit }}</p>{% endif %}
         </div>
         {% endfor %}
       </div>

@@ -1,0 +1,52 @@
+# Galerie « En intervention », en bas de la page Interventions (/interventions/#en-intervention).
+#
+# AJOUTER DES PHOTOS
+#   1. Déposez les photos (jpg, png ou webp, même très lourdes) dans le dossier « galerie-a-ajouter »
+#      (dans le dossier site, à côté de celui-ci).
+#   2. Lancez « 2 - Construire le site » : chaque photo est réduite automatiquement
+#      et ajoutée EN TÊTE de la liste ci-dessous, avec une légende vide.
+#   3. Écrivez sa légende (et le nom du photographe dans « credit » si vous le connaissez),
+#      puis reconstruisez. Une photo sans légende n'est pas affichée : c'est le moment
+#      de vérifier qu'aucun visage d'élève n'est reconnaissable.
+#   Vous pouvez ensuite supprimer la photo d'origine du dossier « galerie-a-ajouter ».
+#
+# RETIRER OU DÉPLACER UNE PHOTO : supprimez ou déplacez ses trois lignes (fichier, legende, credit).
+# Les photos s'affichent dans l'ordre de cette liste.
+
+photos:
+  - fichier: bron-fake-news-esprit-critique-3
+    legende: "« Fake news et esprit critique » au collège Joliot-Curie, Bron"
+    credit: "Guillaume Atger"
+  - fichier: hong-kong-alliance-francaise
+    legende: "Rencontre à l'Alliance française de Hong Kong, juillet 2026"
+    credit: ""
+  - fichier: bastia-conference-emprise
+    legende: "Conférence à quatre mains sur l'emprise avec Benoît Judde, Rencontres de l'Esprit Critique de Bastia, octobre 2025"
+    credit: ""
+  - fichier: bron-alphabet-a-l-envers
+    legende: "« Récitez l'alphabet à l'envers », collège Joliot-Curie, Bron"
+    credit: "Guillaume Atger"
+  - fichier: bourg-en-bresse-lycee-carriat
+    legende: "Rencontre « Jeunes en librairie » au lycée Carriat, Bourg-en-Bresse, mai 2026"
+    credit: ""
+  - fichier: ferney-voltaire-mediatheque
+    legende: "Parrain du concours d'écriture de la médiathèque de Ferney-Voltaire, 2024"
+    credit: ""
+  - fichier: bron-au-tableau
+    legende: "Collège Joliot-Curie, Bron"
+    credit: "Guillaume Atger"
+  - fichier: bastia-table-ronde
+    legende: "Table ronde sur l'emprise, Rencontres de l'Esprit Critique de Bastia, octobre 2025"
+    credit: ""
+  - fichier: venissieux-college-balzac
+    legende: "Une semaine de rencontres au collège Balzac, Vénissieux, novembre 2024"
+    credit: ""
+  - fichier: tedx-saint-etienne-2024
+    legende: "TEDx Saint-Étienne, 2024"
+    credit: "Fred Giraud"
+  - fichier: trevoux-college-jean-moulin
+    legende: "« Fake News et esprit critique » au collège Jean-Moulin, Trévoux, 2023"
+    credit: ""
+  - fichier: ficelles-invisibles-iscpa
+    legende: "Colloque « Ficelles invisibles » de l'ISCPA, 2023"
+    credit: ""

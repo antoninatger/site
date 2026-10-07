@@ -12,7 +12,7 @@
       {{ page.html | safe }}
     </div>
     <aside class="fiche__aside">
-      {% if page.portrait %}<img class="portrait" src="{{ page.portrait }}" alt="Portrait d'Antonin Atger" width="320" height="316" loading="lazy">{% endif %}
+      {% if page.portrait %}<img class="portrait" src="{{ page.portrait }}" alt="Portrait d'Antonin Atger" width="320" height="320" loading="lazy">{% if page.portrait_credit %}<p class="portrait-credit">{{ page.portrait_credit }}</p>{% endif %}{% endif %}
       <div class="card organiser">
         <h3>En deux lignes</h3>
         <p class="small" style="margin:0 0 14px">Auteur de la trilogie <i>Interfeel</i> (Pocket Jeunesse), doctorant en psychologie, conférencier. Basé à Lyon, en tournée partout en France, en visio partout ailleurs.</p>
