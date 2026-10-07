@@ -456,6 +456,7 @@ def construire(verifier=False):
     env.globals["pages"] = pages
     env.globals["refs"] = refs
     env.globals["retours"] = retours
+    env.globals["galerie_accueil"] = charger_galerie()[:6]   # accueil : bande qui défile au scroll
     # vrai si le fichier existe dans le site (ex. image pas encore rapatriée → on ne l'affiche pas)
     env.tests["existe"] = lambda chemin: bool(chemin) and ((ICI / chemin.lstrip("/")).exists() or (ICI / "static" / chemin.lstrip("/")).exists())
     env.globals["existe"] = lambda chemin: bool(chemin) and ((ICI / chemin.lstrip("/")).exists() or (ICI / "static" / chemin.lstrip("/")).exists())

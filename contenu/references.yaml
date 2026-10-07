@@ -7,6 +7,8 @@ bande:
   - { titre: France 3, texte: "Décrypter les fake news à l'école", url: /presse-et-medias/#television }
   - { titre: 123 structures, texte: "87 établissements, 36 médiathèques, partout en France", url: /a-propos/#confiance }
 
+# temoignages : « categorie: mediatheque » pour un responsable de médiathèque, sinon enseignant·e.
+# Accueil : 2 de chaque (médiathèques, enseignants, élèves), tirés au hasard à chaque visite.
 temoignages:
   - texte: "Excellente intervention, parfaitement limpide, structurée, et essentielle pour les élèves qui, bien souvent, manquent cruellement d'esprit critique face aux sources d'informations auxquelles ils sont confrontés sur les réseaux sociaux. J'ai été particulièrement sensible à la distinction faite entre corrélation et causalité."
     auteur: Samuel B.
@@ -21,6 +23,11 @@ temoignages:
     fonction: enseignante en BTS, lycée Félix Mayer, Creutzwald
     mode: Distanciel
     intervention: a-distance
+  - texte: "Votre conférence fut très appréciée par la qualité de son contenu, mais aussi par la façon dont vous l’avez présentée en interactivité avec le public. Nous n’avons pas vu le temps passer, elle aurait pu durer encore plus longtemps tellement le propos était riche et passionnant. Encore merci et bravo pour la qualité de votre intervention !"
+    auteur: Stéphanie Dupuis
+    fonction: directrice de la MéMO, médiathèque municipale d’Osny
+    categorie: mediatheque
+    intervention: fake-news-environnement
 
 partenaires:
   - Unicef

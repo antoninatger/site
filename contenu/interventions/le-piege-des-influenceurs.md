@@ -8,6 +8,8 @@ ordre: 4
 adage: true
 programmes: [EMI, EMC, Parcours citoyen]
 description: "On suit un influenceur comme on écoute un ami, sauf qu'il ne nous connaît pas. Les mécanismes cognitifs, émotionnels et sociaux de l'influence, sans diaboliser personne."
+visuel: /images/interventions/le-piege-des-influenceurs.jpg
+visuel_alt: "Antonin Atger devant un mur peint d'un « j'aime » et des icônes de réseaux sociaux"
 ---
 
 On suit un influenceur comme on écoute un ami, sauf qu'il ne nous connaît pas. Omniprésents dans l'univers médiatique des jeunes, les créateurs de contenu exercent une influence bien réelle. Mais pourquoi leur parole est-elle si persuasive ? Cette intervention en décrypte les mécanismes cognitifs, émotionnels et sociaux, sans diaboliser personne, en donnant les clés pour regarder leurs contenus avec recul.

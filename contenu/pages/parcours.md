@@ -65,7 +65,7 @@ Un format résidence en cinq séances pour déculpabiliser l'écriture et la ren
 <h2 id="autres">Et aussi</h2>
 
 - **Une semaine dans un établissement** : toutes les classes d'un niveau, une conférence parents le soir, une formation de l'équipe le mercredi. C'est le format d'une semaine de rencontres, comme au collège Balzac en 2024 ou au Lycée français international de Hong Kong en 2023.
-- **Un cycle en médiathèque** : trois conférences dans l'année (fake news, arnaques, parler à un complotiste) avec les partenaires locaux, collèges et centres sociaux.
+- **Un cycle en médiathèque** : trois conférences dans l'année (fake news, arnaques, fake news et écologie) avec les partenaires locaux, collèges et centres sociaux.
 - **Un projet européen** : hackathon GenderED Coalition en Italie (prix Media Education Relevance, avril 2026), summer schools de Cres et Osijek en Croatie.
 
 Vous avez une idée qui n'entre dans aucune case ? [Écrivez-moi](/contact/?sujet=Un%20parcours%20sur%20mesure) : les meilleurs projets ci-dessus ont commencé comme ça.

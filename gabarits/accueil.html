@@ -139,23 +139,39 @@
   <div class="wrap">
     <div class="eyebrow" data-rv>Ils m'ont fait venir</div>
     <h2 class="mots" data-mots>Retours des enseignants et des élèves.</h2>
+    {# Sélection : 2 médiathèques, 2 enseignants, 2 élèves (champ « categorie » des témoignages :
+       mediatheque, sinon enseignant). Tirage au hasard à chaque visite parmi tout ce qu'on a ;
+       sans JavaScript, les 2 premiers de chaque groupe. #}
     {% set eleves = (retours or [])|selectattr('type', 'equalto', 'eleve')|list %}
-    <div class="pile">
-      {% for t in refs.temoignages %}
-      <figure class="temoin" style="--k:{{ loop.index0 }}">
-        <span class="tag temoin__qui">Enseignant·e</span>
+    {% set media = refs.temoignages|selectattr('categorie', 'equalto', 'mediatheque')|list %}
+    {% set profs = refs.temoignages|rejectattr('categorie', 'equalto', 'mediatheque')|list %}
+    <div class="pile" data-pile>
+      {% for groupe, liste in [('mediatheque', media), ('prof', profs)] %}{% for t in liste %}
+      <figure class="temoin" data-cat="{{ groupe }}"{% if loop.index0 >= 2 %} hidden{% endif %}>
+        <span class="tag temoin__qui">{{ t.tag or ('Médiathèque' if groupe == 'mediatheque' else 'Enseignant·e') }}</span>
         <blockquote>{{ t.texte }}</blockquote>
         <figcaption><b>{{ t.auteur }}</b>, {{ t.fonction }}{% if t.mode %} · {{ t.mode|lower }}{% endif %}</figcaption>
       </figure>
-      {% endfor %}
-      {% for r in eleves[:3] %}
-      <figure class="temoin temoin--eleve" style="--k:{{ refs.temoignages|length + loop.index0 }}">
+      {% endfor %}{% endfor %}
+      {% for r in eleves %}
+      <figure class="temoin temoin--eleve" data-cat="eleve"{% if loop.index0 >= 2 %} hidden{% endif %}>
         <span class="tag tag--accent temoin__qui">Élève</span>{% if r.note is not none %}<span class="temoin__note">{{ r.note }}<small>/20</small></span>{% endif %}
         <blockquote>{{ r.texte }}</blockquote>
         <figcaption><b>{{ r.qui }}</b>, {{ r.etablissement }}{% if r.mode %} · {{ r.mode|lower }}{% endif %}</figcaption>
       </figure>
       {% endfor %}
     </div>
+    <script>
+    (function () {
+      var pile = document.querySelector('[data-pile]'); if (!pile) return;
+      ['mediatheque', 'prof', 'eleve'].forEach(function (cat) {
+        var c = Array.prototype.slice.call(pile.querySelectorAll('[data-cat="' + cat + '"]'));
+        for (var i = c.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = c[i]; c[i] = c[j]; c[j] = x; }
+        c.forEach(function (f, i) { if (i < 2) { f.hidden = false; pile.appendChild(f); } else f.remove(); });
+      });
+      Array.prototype.forEach.call(pile.children, function (f, k) { f.style.setProperty('--k', k); });
+    })();
+    </script>
 
     {% if retours %}
     <div class="retours" data-rv>
@@ -178,6 +194,23 @@
     {% endif %}
   </div>
 </section>
+
+<!-- 7 bis. Galerie : en descendant, les photos défilent de droite à gauche -->
+{% if galerie_accueil %}
+<section class="galerie-accueil" data-defile>
+  <div class="galerie-accueil__colle">
+    <div class="wrap galerie-accueil__tete">
+      <div><div class="eyebrow" data-rv>En intervention</div><h2>Classes, médiathèques, conférences.</h2></div>
+      <a class="galerie-accueil__tout" href="/interventions/#en-intervention">Toute la galerie →</a>
+    </div>
+    <div class="galerie-accueil__piste" data-piste>
+      {% for p in galerie_accueil %}
+      <figure><img src="/images/galerie/{{ p.fichier }}-vignette.jpg" alt="{{ p.legende }}" width="720" height="540" loading="lazy"><figcaption>{{ p.legende }}{% if p.credit %}<span> · Photo : {{ p.credit }}</span>{% endif %}</figcaption></figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <!-- 8. Comment ça se passe -->
 <section class="deroule pilier-intervenant fond-teinte">

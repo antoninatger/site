@@ -10,7 +10,7 @@ materiel: De quoi écrire. Rien d'autre.
 programmes: [Français, PEAC, Résidence d'auteur]
 description: "Un Français sur trois rêve d'écrire un livre. Presque personne ne se lance. Une méthode simple et bienveillante pour que chacun crée son histoire, et y prenne plaisir."
 visuel: /images/interventions/ateliers-d-ecriture.jpg
-visuel_alt: "Antonin Atger penché sur la copie d'un élève, en atelier d'écriture, devant une machine à écrire et un livre illuminé ; titre : Atelier d'écriture heureux"
+visuel_alt: "Antonin Atger penché sur la copie d'un élève, en atelier d'écriture, devant une machine à écrire et un livre illuminé"
 ---
 
 Un Français sur trois rêve d'écrire un livre. Presque personne ne se lance. La raison ? On nous a appris que l'écriture est une souffrance réservée aux « talents ». C'est faux. Cet atelier propose une méthode simple et bienveillante pour que chacun, quel que soit son niveau, puisse créer son histoire, et surtout prendre plaisir à écrire. Mes ateliers en établissement scolaire ont donné lieu à quatre ouvrages publiés par des élèves.

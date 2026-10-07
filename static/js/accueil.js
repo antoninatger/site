@@ -79,6 +79,14 @@
   var photoOuv = $('[data-parallax]'), manif = $('[data-manifeste]');
   var frise = $('[data-frise]'), trait = $('.frise__trait'), cartes = $$('.temoin'), attente = false;
   var lignes = $$('[data-ligne]');
+  // Galerie : la section est aussi haute que le chemin à parcourir par la piste
+  var defile = $('[data-defile]'), piste = $('[data-piste]'), course = 0;
+  function mesure() {
+    if (!defile || !piste) return;
+    course = Math.max(0, piste.scrollWidth - window.innerWidth);
+    defile.style.height = (window.innerHeight + course * 0.6) + 'px';   // la piste va plus vite que la page
+  }
+  mesure(); window.addEventListener('load', mesure);
   function rendu() {
     attente = false;
     var y = window.scrollY, h = window.innerHeight;
@@ -101,6 +109,10 @@
       l.style.setProperty('--p', pl);
       $$('li', l).forEach(function (li) { li.classList.toggle('on', li.offsetTop + 10 <= pl * rl.height); });
     });
+    if (defile && piste) {
+      var rd = defile.getBoundingClientRect(), pd = borne(-rd.top / Math.max(1, rd.height - h));
+      piste.style.transform = 'translateX(' + (-pd * course) + 'px)';
+    }
     cartes.forEach(function (c, i) {
       var suivante = cartes[i + 1]; if (!suivante) return;
       var d = suivante.getBoundingClientRect().top - c.getBoundingClientRect().top;
@@ -111,6 +123,6 @@
   }
   function demande() { if (!attente) { attente = true; requestAnimationFrame(rendu); } }
   window.addEventListener('scroll', demande, { passive: true });
-  window.addEventListener('resize', demande);
+  window.addEventListener('resize', function () { mesure(); demande(); });
   rendu();
 })();
