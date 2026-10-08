@@ -15,6 +15,7 @@ Entrées (tout est du texte, versionné) :
   · contenu/retours.yaml          retours d'intervention choisis dans Retours.xlsx (extraire_retours.py)
   · gabarits/*.html               les gabarits Jinja2
   · static/, images/              copiés tels quels
+  · outils/                        copié à la racine du site (pages HTML autonomes)
 
 Sortie : `_site/` — à servir tel quel (GitHub Pages, ou `python -m http.server` en local).
 
@@ -552,6 +553,9 @@ def construire(verifier=False):
     (SORTIE / ".nojekyll").write_text("")
     # fichiers statiques
     copier_dossier(ICI / "static", SORTIE / "static")
+    # outils autonomes (pages HTML complètes) servis à leur chemin : outils/jeux/x/ → /jeux/x/
+    if (ICI / "outils").exists():
+        copier_dossier(ICI / "outils", SORTIE)
     if (ICI / "images").exists():
         copier_dossier(ICI / "images", SORTIE / "images")
 

@@ -3,7 +3,8 @@
 /mes-interventions/: /interventions/
 /jeux-pedagogiques/: /jeux/
 /ressources-profs/: /jeux/#outils
-/jeux/chronophone/: /jeux/combinaison/
+/jeux/chronophone/: /jeux/decrypteur/
+/jeux/combinaison/: /jeux/decrypteur/
 /526-2/: /livres/
 /interfeel/: /livres/
 /biographie/: /a-propos/

@@ -1,6 +1,6 @@
 ---
-titre: La Combinaison
-url: /jeux/combinaison/
+titre: Le Décrypteur
+url: /jeux/decrypteur/
 gabarit: outil.html
 eyebrow: Vos QCM en escape game
 lead: >-
@@ -8,18 +8,18 @@ lead: >-
   à abaisser, des interrupteurs à armer ou des pierres magiques à placer, et le message secret ne s'ouvre que
   si toutes les réponses sont justes. Vous écrivez les questions, l'atelier fabrique le jeu : un seul fichier
   à donner à vos élèves.
-description: "La Combinaison : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
-outil_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone-atelier.html"
+description: "Le Décrypteur : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
+outil_url: "/jeux/decrypteur/atelier/"
 outil_bouton: Créer mon jeu
-exemple_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone.html"
+exemple_url: "/jeux/decrypteur/exemple/"
 exemple_texte: Jouer à un exemple
-vignette: /images/site/jeux/combinaison.jpg
+vignette: /images/site/jeux/decrypteur.jpg
 vignette_alt: "Le même jeu dans quatre univers : steampunk, station spatiale, labo Frankenstein et grimoire magique"
 diaporama:
-  - ["/images/site/jeux/combinaison-vapeur.jpg", "Steampunk : leviers en laiton et manette rouge"]
-  - ["/images/site/jeux/combinaison-spatial.jpg", "Station spatiale : interrupteurs sous clapet et bouton de lancement"]
-  - ["/images/site/jeux/combinaison-labo.jpg", "Labo Frankenstein : interrupteurs à couteau et éclairs verts"]
-  - ["/images/site/jeux/combinaison-grimoire.jpg", "Grimoire magique : pierres de lune, runes et baguette"]
+  - ["/images/site/jeux/decrypteur-vapeur.jpg", "Steampunk : leviers en laiton et manette rouge"]
+  - ["/images/site/jeux/decrypteur-spatial.jpg", "Station spatiale : interrupteurs sous clapet et bouton de lancement"]
+  - ["/images/site/jeux/decrypteur-labo.jpg", "Labo Frankenstein : interrupteurs à couteau et éclairs verts"]
+  - ["/images/site/jeux/decrypteur-grimoire.jpg", "Grimoire magique : pierres de lune, runes et baguette"]
 icone: ''
 faits:
   - ["De 2 à 40 questions", "vrai/faux, oui/non, réel/IA… ou QCM A-D"]
@@ -30,7 +30,7 @@ fin: "Votre premier jeu : choisissez un exemple dans l'atelier, changez les ques
 ---
 ## À quoi ça sert ?
 
-La Combinaison transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un message secret qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et le jeu ne dit pas laquelle. Il faut donc reprendre chaque question, comparer, argumenter, chercher la preuve.
+Le Décrypteur transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un message secret qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et le jeu ne dit pas laquelle. Il faut donc reprendre chaque question, comparer, argumenter, chercher la preuve.
 
 C'est ce qui le rend efficace en classe :
 
@@ -74,4 +74,4 @@ L'atelier est fait pour qu'un enseignant qui ne l'a jamais utilisé s'en sorte s
 
 - Le jeu téléchargé est **un seul fichier** qui s'ouvre dans n'importe quel navigateur, sans compte ni installation.
 - Votre travail est gardé automatiquement dans votre navigateur. « Sauvegarder mon travail » crée un fichier pour le reprendre ailleurs ou le partager avec un collègue. **Ce fichier contient les réponses : ne le donnez pas aux élèves**, donnez-leur seulement le fichier « pour les élèves ».
-- La Combinaison est née du projet [Self Data](/parcours/#self-data), mené avec des collèges de la Métropole de Lyon : le Chronophone R-43 relie les élèves à une résistante de 1942. [Y jouer](https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone.html).
+- Le Décrypteur est né du projet [Self Data](/parcours/#self-data), mené avec des collèges de la Métropole de Lyon.
