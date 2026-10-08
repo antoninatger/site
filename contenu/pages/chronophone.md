@@ -52,10 +52,10 @@ L'atelier est fait pour qu'un enseignant qui ne l'a jamais utilisé s'en sorte s
 <li><b>Les deux réponses possibles</b> : vrai / faux, oui / non, réel / IA, fiable / pas fiable… ou des QCM à quatre choix.</li>
 <li><b>Les questions</b> : à écrire directement, à importer d'un document Word ou PDF (un modèle est fourni), ou des photos, une par levier.</li>
 <li><b>Le message de fin</b> : ce que lisent les élèves quand ils ont tout juste.</li>
-<li><b>L'ambiance</b> : radio d'époque, futuriste ou arcade. Puis « Essayer le jeu », et « Télécharger pour les élèves ».</li>
+<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), curseurs lumineux (futuriste), interrupteurs à couteau (labo Frankenstein) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier et se change à tout moment. Puis « Essayer le jeu », et « Télécharger pour les élèves ».</li>
 </ol>
 
-<div class="outil-galerie"><img src="/images/site/jeux/chronophone-futur.jpg" alt="Un Chronophone en ambiance futuriste, avec quatre questions dont deux QCM" loading="lazy"><img src="/images/site/jeux/chronophone-arcade.jpg" alt="Le même jeu en ambiance arcade" loading="lazy"></div>
+<div class="outil-galerie"><img src="/images/site/jeux/chronophone-labo.jpg" alt="Un Chronophone en labo Frankenstein : interrupteurs à couteau en cuivre et grand interrupteur rouge" loading="lazy"><img src="/images/site/jeux/chronophone-grimoire.jpg" alt="Le même jeu en grimoire magique : pierres de lune entre deux runes et baguette" loading="lazy"></div>
 
 ## Des idées pour s'en servir
 
