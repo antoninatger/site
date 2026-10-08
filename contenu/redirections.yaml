@@ -2,7 +2,7 @@
 # pour chaque entrée ; les billets gardent leur adresse /AAAA/MM/JJ/slug/ et n'ont pas besoin d'y figurer.
 /mes-interventions/: /interventions/
 /jeux-pedagogiques/: /jeux/
-/ressources-profs/: /jeux/#ressources
+/ressources-profs/: /jeux/#outils
 /526-2/: /livres/
 /interfeel/: /livres/
 /biographie/: /a-propos/

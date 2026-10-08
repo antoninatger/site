@@ -681,3 +681,50 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .ressource-card { padding: 24px; }
 .ressource-card h3 { margin-top: 10px; }
 .ressource-card .jeu-card__pied { gap: 10px; flex-wrap: wrap; }
+
+/* Animations des outils pédagogiques */
+.aj--leviers .aj-rail line { stroke: rgba(255,255,255,.35); stroke-width: 3; stroke-linecap: round; }
+.aj--leviers .aj-bouton { fill: #e9c46a; stroke: #7a5a12; stroke-width: 1.2; }
+.aj--leviers .aj-l1 { animation: aj-levier1 4s cubic-bezier(.5,0,.3,1) infinite; }
+.aj--leviers .aj-l2 { animation: aj-levier2 4s cubic-bezier(.5,0,.3,1) infinite; }
+.aj--leviers .aj-l3 { animation: aj-levier3 4s cubic-bezier(.5,0,.3,1) infinite; }
+.aj--leviers .aj-voyant { fill: #e74c3c; animation: aj-voyant 4s linear infinite; }
+@keyframes aj-levier1 { 0%,8% { transform: translateY(0); } 18%,100% { transform: translateY(-13px); } }
+@keyframes aj-levier2 { 0%,24% { transform: translateY(0); } 34%,100% { transform: translateY(13px); } }
+@keyframes aj-levier3 { 0%,40% { transform: translateY(0); } 50%,100% { transform: translateY(-13px); } }
+@keyframes aj-voyant { 0%,55% { fill: #e74c3c; } 60%,92% { fill: #2ecc71; } 100% { fill: #e74c3c; } }
+.aj--conv .aj-m rect { fill: #fff; }
+.aj--conv .aj-m2 rect { fill: #25d366; }
+.aj--conv .aj-pt { fill: #8a8f98; animation: aj-scintille 1s ease-in-out infinite; }
+.aj--conv .aj-pt2 { animation-delay: .2s; } .aj--conv .aj-pt3 { animation-delay: .4s; }
+.aj--conv .aj-m { transform-box: fill-box; opacity: 0; animation: aj-msg 4.2s cubic-bezier(.2,.7,.2,1) infinite; }
+.aj--conv .aj-m1 { transform-origin: 0 100%; }
+.aj--conv .aj-m2 { transform-origin: 100% 100%; animation-delay: .7s; }
+.aj--conv .aj-m3 { transform-origin: 0 100%; animation-delay: 1.4s; }
+@keyframes aj-msg { 0% { opacity: 0; transform: scale(.5); } 8% { opacity: 1; transform: scale(1.06); } 13%, 78% { opacity: 1; transform: scale(1); } 90%, 100% { opacity: 0; transform: none; } }
+
+/* Page d'un outil pédagogique */
+.outil-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 44px; align-items: center; padding: 34px 0 14px; }
+.outil-hero h1 { margin: 6px 0 12px; }
+.outil-hero .lead { margin: 0 0 22px; }
+.outil-hero__boutons { display: flex; gap: 12px; flex-wrap: wrap; }
+.outil-hero__visuel { display: block; position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 60px -34px rgba(20,34,44,.6); aspect-ratio: 16 / 9; background: #111; }
+.outil-hero__visuel img { width: 100%; height: 100%; object-fit: cover; display: block; animation: jeu-respire 7s ease-in-out infinite alternate; }
+.outil-hero__visuel .jeu-card__anim { width: 96px; height: 96px; right: 16px; bottom: 16px; }
+.outil-hero__visuel .jeu-card__anim .aj { width: 80px; height: 80px; }
+.outil-hero__visuel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%); transform: translateX(-120%); animation: outil-reflet 6s ease-in-out 1s infinite; pointer-events: none; }
+@keyframes outil-reflet { 0%, 70% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
+.outil-faits { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 26px 0 8px; }
+.outil-faits div { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.outil-faits b { display: block; font-size: 1.05rem; }
+.outil-faits span { color: var(--ink-mute); font-size: .92rem; }
+.outil-corps { margin-top: 26px; }
+.outil-corps .pas-a-pas { counter-reset: e; list-style: none; padding: 0; }
+.outil-corps .pas-a-pas li { counter-increment: e; position: relative; padding-left: 46px; margin: 0 0 14px; }
+.outil-corps .pas-a-pas li::before { content: counter(e); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: grid; place-items: center; }
+.outil-galerie { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.outil-galerie img { width: 100%; border-radius: 8px; display: block; }
+.outil-fin { margin: 40px 0 10px; padding: 24px; border-radius: 12px; background: var(--accent-light); display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.outil-fin p { margin: 0; font-size: 1.08rem; }
+@media (max-width: 860px) { .outil-hero { grid-template-columns: 1fr; gap: 24px; padding-top: 20px; } .outil-galerie { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .outil-hero__visuel img, .outil-hero__visuel::after { animation: none; } }

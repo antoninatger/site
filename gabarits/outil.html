@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "_anims_jeux.html" as aj %}
+{% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
+{% block contenu %}
+<div class="wrap">
+  <section class="outil-hero">
+    <div>
+      <div class="eyebrow"><a href="/jeux/#outils">Outils pédagogiques</a> · {{ page.eyebrow }}</div>
+      <h1>{{ page.titre }}</h1>
+      <p class="lead">{{ page.lead }}</p>
+      <div class="outil-hero__boutons">
+        <a class="btn btn--primary" href="{{ page.outil_url }}" target="_blank" rel="noopener">{{ page.outil_bouton or "Ouvrir l'outil" }} →</a>
+        {% if page.exemple_url %}<a class="btn btn--ghost" href="{{ page.exemple_url }}" target="_blank" rel="noopener">{{ page.exemple_texte }}</a>{% endif %}
+      </div>
+    </div>
+    <a class="outil-hero__visuel" href="{{ page.outil_url }}" target="_blank" rel="noopener" aria-label="{{ page.outil_bouton or "Ouvrir l'outil" }}">
+      <img src="{{ page.vignette }}" alt="{{ page.vignette_alt }}"><span class="jeu-card__anim" aria-hidden="true">{{ aj.anim(page.icone) }}</span>
+    </a>
+  </section>
+  {% if page.faits %}<div class="outil-faits">{% for f in page.faits %}<div><b>{{ f[0] }}</b><span>{{ f[1] }}</span></div>{% endfor %}</div>{% endif %}
+  <div class="prose outil-corps">
+    {{ page.html | safe }}
+  </div>
+  <div class="outil-fin">
+    <p>{{ page.fin or "Prêt à essayer ? C'est gratuit, sans inscription." }}</p>
+    <a class="btn btn--primary" href="{{ page.outil_url }}" target="_blank" rel="noopener">{{ page.outil_bouton or "Ouvrir l'outil" }} →</a>
+  </div>
+  <p class="small muted"><a href="/jeux/#outils">← Tous les jeux et outils pédagogiques</a> · Une idée, un retour après l'avoir utilisé en classe ? <a href="/contact/">Écrivez-moi</a>.</p>
+</div>
+{% endblock %}

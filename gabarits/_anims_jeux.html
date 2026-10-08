@@ -28,5 +28,17 @@
   <ellipse cx="32" cy="32" rx="19" ry="6" class="aj-anneau-p" transform="rotate(-20 32 32)"/>
   <g class="aj-orbite"><circle cx="32" cy="10" r="3" class="aj-lune"/></g>
 </svg>
+{% elif nom == 'leviers' %}
+<svg viewBox="0 0 64 64" class="aj aj--leviers">
+  <g class="aj-rail"><line x1="16" y1="14" x2="16" y2="50"/><line x1="32" y1="14" x2="32" y2="50"/><line x1="48" y1="14" x2="48" y2="50"/></g>
+  <circle cx="16" cy="32" r="5.5" class="aj-bouton aj-l1"/><circle cx="32" cy="32" r="5.5" class="aj-bouton aj-l2"/><circle cx="48" cy="32" r="5.5" class="aj-bouton aj-l3"/>
+  <circle cx="32" cy="7" r="2.6" class="aj-voyant"/>
+</svg>
+{% elif nom == 'bulle' %}
+<svg viewBox="0 0 64 64" class="aj aj--conv">
+  <g class="aj-m aj-m1"><rect x="6" y="10" width="34" height="11" rx="5.5"/></g>
+  <g class="aj-m aj-m2"><rect x="24" y="25" width="34" height="11" rx="5.5"/></g>
+  <g class="aj-m aj-m3"><rect x="6" y="40" width="22" height="12" rx="6"/><circle cx="12" cy="46" r="1.8" class="aj-pt aj-pt1"/><circle cx="17" cy="46" r="1.8" class="aj-pt aj-pt2"/><circle cx="22" cy="46" r="1.8" class="aj-pt aj-pt3"/></g>
+</svg>
 {% endif %}
 {% endmacro %}

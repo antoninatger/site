@@ -48,11 +48,11 @@
         <div class="panneau-jeux" id="panneau-jeux">
           <div class="panneau-jeux__titre">En accès libre, gratuitement</div>
           {% for j in refs.jeux_libres %}<a class="pj" href="{{ j.url }}" target="_blank" rel="noopener"><span class="pj__ico">{{ ic.icone(j.icone) }}</span><span><b>{{ j.titre }}</b><small>{{ j.niveau }}</small></span></a>{% endfor %}
-          {% if refs.ressources %}<div class="panneau-jeux__titre" style="margin-top:8px">Ressources pédagogiques</div>
-          {% for r in refs.ressources %}<a class="pj" href="{{ r.url }}" target="_blank" rel="noopener"><span class="pj__ico">{{ ic.icone(r.icone) }}</span><span><b>{{ r.titre }}</b><small>{{ r.action }}</small></span></a>{% endfor %}{% endif %}
+          {% if refs.outils %}<div class="panneau-jeux__titre" style="margin-top:8px">Outils pour les profs</div>
+          {% for r in refs.outils %}<a class="pj" href="{{ r.page }}"><span class="pj__ico">{{ ic.icone(r.icone) }}</span><span><b>{{ r.titre }}</b><small>{{ r.court }}</small></span></a>{% endfor %}{% endif %}
           <div class="panneau-jeux__bas">
             <a href="/jeux/#apres-intervention">Et une quinzaine d'autres, pendant les interventions</a>
-            <a href="/jeux/">Tous les jeux et ressources →</a>
+            <a href="/jeux/">Tous les jeux et outils →</a>
           </div>
         </div>
       </div>
