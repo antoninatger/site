@@ -1,7 +1,15 @@
 # Généré par extraire_retours.py à partir de Retours.xlsx — ne pas modifier ici :
-# pour retirer ou forcer un retour, colonne « Sur le site » (oui / non) dans l'Excel ;
-# pour corriger un texte, colonne « Texte pour le site ».
+# choisir, retirer ou corriger un retour : Hub › accueil › « 📖 Tous les retours »
+# (ou colonnes « Sur le site » / « Texte pour le site » de l'Excel).
 retours:
+- type: prof
+  texte: Votre conférence fut très appréciée par la qualité de son contenu, mais aussi par la façon dont vous l'avez présentée en interactivité avec le public. Nous n'avons pas vu le temps passer, elle aurait pu durer encore plus longtemps tellement le propos était riche et passionnant.
+  qui: Stéphanie Dupuis, directrice de la MéMO
+  etablissement: Médiathèque municipale d'Osny
+  mode: Présentiel
+  sujet: Fake News et écologie
+  note: null
+  date: '2026-10-07'
 - type: jeu
   texte: Super initiative ! J'ai trouvé le jeu vraiment bien fait, ludique et très beau !
   qui: Partie de Fakemètre, niveau pro
@@ -10,6 +18,38 @@ retours:
   sujet: Fakemètre
   note: null
   date: '2026-10-07'
+- type: prof
+  texte: Une conférence ludique qui a emporté le public sans prendre parti, avec des exemples pertinents et drôles. Une belle interaction avec le public et un propos clair, rigoureux et accessible.
+  qui: Eva Teirlynck, organisatrice
+  etablissement: Médiathèque de Mâcon
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  note: 18
+  date: '2026-10-06'
+- type: prof
+  texte: Antonin a su captiver l'auditoire dès le début par des jeux, puis tout au long de la conférence par ses explications surprenantes, claires et précises. J'ai également apprécié le temps d'échange à la fin, où Antonin répondait à nos questions.
+  qui: Sylvie Chagnaud, spectatrice
+  etablissement: Médiathèque de Mâcon
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  note: 19
+  date: '2026-10-06'
+- type: prof
+  texte: 'Conférence qui m''a agréablement surprise quant à la qualité et la pertinence du contenu : très intéressant de savoir comment notre cerveau fonctionne. Un grand merci !'
+  qui: Sylvie Lacoste, spectatrice
+  etablissement: Médiathèque de Mâcon
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  note: 19
+  date: '2026-10-06'
+- type: prof
+  texte: Passionnant, je n'ai pas vu le temps passer et je regrette de ne pas avoir averti mes amis de cette conférence.
+  qui: Richard Sylvie, spectateur
+  etablissement: Macon
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  note: 14
+  date: '2026-10-06'
 - type: jeu
   texte: ce jeu est très éducatif Merci
   qui: Partie de Fakemètre, niveau junior

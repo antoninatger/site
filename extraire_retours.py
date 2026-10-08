@@ -16,12 +16,12 @@ Ce qui est affiché pour chaque retour :
   · présentiel ou distanciel (colonne « Présentiel / distanciel ») ;
   · l'intervention et la note sur 20 quand il y en a une.
 
-Qui est retenu, dans l'Excel :
-  · colonne « Sur le site » = oui → toujours ; = non → jamais ;
-  · case vide → retenu si la note est d'au moins 16/20 (retours d'intervention) ou si le
-    message est clairement positif (jeux), et si le commentaire fait au moins 30 caractères ;
-  · colonne « Texte pour le site » remplie → c'est ce texte qui est publié (pour corriger
-    une faute ou raccourcir), sinon l'« Opinion générale » (ou le message du jeu).
+Qui est retenu (depuis le 8 octobre 2026) : SEULEMENT les retours marqués « oui » dans la
+colonne « Sur le site ». Le choix se fait dans le Hub (accueil › « 📖 Tous les retours »),
+qui écrit l'Excel et relance ce script ; rien n'est plus publié d'office.
+  · « Texte pour le site » remplie → c'est ce texte qui est publié (faute corrigée, raccourci),
+    sinon le « Message pour le site » écrit dans le formulaire, sinon l'« Opinion générale » ;
+  · « Signature (site) » / « Lieu (site) » remplacent le nom et l'établissement du formulaire.
 
     python extraire_retours.py            # met à jour contenu/retours.yaml et affiche la liste
 """
@@ -34,8 +34,8 @@ EXCEL = ICI.parent.parent / "Retours.xlsx"          # Web apps/Retours.xlsx
 SORTIE = ICI / "contenu" / "retours.yaml"
 NOTE_MINI = 16
 LONGUEUR_MINI = 30
-LONGUEUR_MAXI = 260
-MAX_RETOURS = 12
+LONGUEUR_MAXI = 300
+MAX_RETOURS = 40
 
 POSITIF = re.compile(r"\b(super|genial|interessant|merci|bravo|top|excellent|adore|aime|utile|"
                      r"passionnant|trop bien|tres bien|cool|parfait|clair|instructif|amusant|drole)", re.I)
@@ -93,14 +93,25 @@ def _choix(ligne):
     return ""
 
 
+def _message_site(l):
+    if l.get("Message pour le site"):
+        return l["Message pour le site"]
+    for k, v in l.items():          # anciennes colonnes « MESSAGE POUR LE SITE (Nom) »
+        if v and _sans_accents(k).startswith("message pour le site"):
+            return v
+    return ""
+
+
 def extraire():
+    """Seuls les retours marqués « oui » sont publiés (choix fait dans le Hub,
+    fenêtre « 📖 Tous les retours », ou à la main dans l'Excel)."""
     import openpyxl
     wb = openpyxl.load_workbook(EXCEL, read_only=True, data_only=True)
     retours, vus = [], set()
 
     def ajouter(r):
         cle = _sans_accents(r["texte"])[:80]
-        if cle in vus:          # le même retour transféré deux fois
+        if not r["texte"] or cle in vus:   # le même retour transféré deux fois
             return
         vus.add(cle)
         retours.append(r)
@@ -109,26 +120,24 @@ def extraire():
         if feuille not in wb.sheetnames:
             continue
         for l in _lignes(wb[feuille]):
-            choix = _choix(l)
-            if choix == "non":
+            if _choix(l) != "oui":
                 continue
-            texte = _propre(l.get("Texte pour le site") or l.get("Opinion générale"))
-            if len(texte) < LONGUEUR_MINI:
-                texte = _propre(l.get("Texte pour le site") or l.get("Points pertinents et clairs") or texte)
+            texte = _propre(l.get("Texte pour le site") or _message_site(l) or l.get("Opinion générale")
+                            or l.get("Points pertinents et clairs"))
             note = _note(l.get("Note (/20)"))
-            if choix != "oui" and (len(texte) < LONGUEUR_MINI or note is None or note < NOTE_MINI):
-                continue
             if sorte == "prof":
-                qui = " ".join(str(x).strip() for x in (l.get("Prénom"), l.get("Nom")) if x).strip() or "Enseignant·e"
+                pre, nom = str(l.get("Prénom") or "").strip(), str(l.get("Nom") or "").strip()
+                qui = nom if pre and pre in nom else " ".join(x for x in (pre, nom) if x)
+                qui = qui or "Enseignant·e"
             else:
                 cl = _classe(l.get("Classe"))
                 qui = f"Élève de {cl}" if cl else "Élève"
             ajouter({
                 "type": sorte,
                 "texte": texte,
-                "qui": qui,
-                "etablissement": str(l.get("Établissement") or "").strip(),
-                "mode": str(l.get("Présentiel / distanciel") or "").strip(),
+                "qui": str(l.get("Signature (site)") or "").strip() or qui,
+                "etablissement": str(l.get("Lieu (site)") or l.get("Établissement") or "").strip(),
+                "mode": str(l.get("Présentiel / distanciel") or l.get("Modalité") or "").strip(),
                 "sujet": str(l.get("Intervention") or "").strip(),
                 "note": (int(note) if note is not None and float(note).is_integer() else note),
                 "date": _date(l.get("Date de l'intervention")) or _date(l.get("Reçu le")),
@@ -136,27 +145,16 @@ def extraire():
 
     if "FakeMètre" in wb.sheetnames:
         for l in _lignes(wb["FakeMètre"]):
-            choix = _choix(l)
-            if choix == "non":
-                continue
-            objet = _sans_accents(l.get("Objet"))
-            # Seuls les messages envoyés depuis le jeu (pas les échanges de mails autour du jeu)
-            # (ou une partie arrivée sous l'objet générique du formulaire : elle a
-            # son niveau et son score, 7 octobre 2026)
-            fin_de_partie = re.search(r"fakemetre\s*[—–-]\s*(message de fin de partie|retour utilisateur)", objet) \
-                or (str(l.get("Score") or "").strip() and str(l.get("Niveau") or "").strip())
-            if choix != "oui" and not fin_de_partie:
+            if _choix(l) != "oui":
                 continue
             texte = _propre(l.get("Texte pour le site") or l.get("Message au créateur"))
-            sa = _sans_accents(texte)
-            if choix != "oui" and (len(texte) < LONGUEUR_MINI or not POSITIF.search(sa) or NEGATIF.search(sa)):
-                continue
             niveau = str(l.get("Niveau") or "").strip()
             ajouter({
                 "type": "jeu",
                 "texte": texte,
-                "qui": f"Partie de Fakemètre" + (f", niveau {niveau}" if niveau else ""),
-                "etablissement": "",
+                "qui": str(l.get("Signature (site)") or "").strip()
+                       or ("Partie de Fakemètre" + (f", niveau {niveau}" if niveau else "")),
+                "etablissement": str(l.get("Lieu (site)") or "").strip(),
                 "mode": "",
                 "sujet": "Fakemètre",
                 "note": None,
@@ -172,8 +170,8 @@ def extraire():
 def ecrire(retours):
     import yaml
     entete = ("# Généré par extraire_retours.py à partir de Retours.xlsx — ne pas modifier ici :\n"
-              "# pour retirer ou forcer un retour, colonne « Sur le site » (oui / non) dans l'Excel ;\n"
-              "# pour corriger un texte, colonne « Texte pour le site ».\n")
+              "# choisir, retirer ou corriger un retour : Hub › accueil › « 📖 Tous les retours »\n"
+              "# (ou colonnes « Sur le site » / « Texte pour le site » de l'Excel).\n")
     SORTIE.write_text(entete + yaml.safe_dump({"retours": retours}, allow_unicode=True, sort_keys=False, width=1000),
                       encoding="utf-8")
 
