@@ -14,7 +14,7 @@ vignette: /images/site/jeux/fausses-conversations.jpg
 vignette_alt: "Trois fausses conversations : une arnaque sur WhatsApp, un message d'emprise, une rumeur dans un groupe Instagram"
 icone: bulle
 faits:
-  - ["5 minutes", "pour écrire une conversation de dix messages"]
+  - ["5 minutes", "pour écrire dix messages, ou une photo d'un dialogue"]
   - ["3 applications", "WhatsApp, SMS d'iPhone, Instagram, en clair ou sombre"]
   - ["Lecture en classe", "plein écran, un message à chaque clic"]
   - ["Gratuit", "sans inscription, rien n'est envoyé sur Internet"]
@@ -35,7 +35,7 @@ L'outil s'utilise comme un téléphone : on écrit directement dans l'écran.
 <li><b>Touchez une bulle pour la modifier</b>, la déplacer, changer qui l'a écrite ou fixer son heure.</li>
 </ol>
 
-Vous avez déjà le dialogue dans un document ? « Coller un dialogue » crée toute la conversation d'un coup, à partir de lignes « Prénom : message ». Ajoutez des personnages dans les réglages pour une conversation de groupe.
+Vous avez déjà le dialogue sur papier ou dans un document ? **Scannez-le** : prenez-le en photo (ou choisissez un PDF, un fichier Word), l'outil lit le texte et crée toute la conversation d'un coup. Il suffit que chaque réplique commence par le nom : « Lucas : salut ». Les noms deviennent des personnages, « Moi » écrit à droite. Vous pouvez aussi coller le texte directement.
 
 ## En classe
 
