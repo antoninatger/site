@@ -665,3 +665,10 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .jeux-libres .jeu-card:hover .jeu-card__visuel img { animation-play-state: paused; }
 @keyframes jeu-respire { from { transform: scale(1); } to { transform: scale(1.05); } }
 @media (max-width: 700px) { .jeux-libres { grid-template-columns: 1fr; gap: 22px; } .jeux-libres .jeu-card__anim { width: 84px; height: 84px; } .jeux-libres .jeu-card__anim .aj { width: 70px; height: 70px; } }
+
+/* Page Ressources profs : cartes dans la colonne de lecture */
+.prose a.card { text-decoration: none; color: inherit; }
+.prose a.card h3 { margin-top: 0; }
+.prose .jeu-card__pied { gap: 10px; flex-wrap: wrap; }
+.prose .jeu-card__jouer { white-space: nowrap; }
+@media (min-width: 1081px) and (max-width: 1240px) { .nav { gap: 14px; font-size: .9rem; } }

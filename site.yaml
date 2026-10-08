@@ -14,6 +14,7 @@ menu:
   - { titre: Interventions, url: /interventions/ }
   - { titre: Formations, url: /formations/ }
   - { titre: Jeux, url: /jeux/ }
+  - { titre: Ressources, url: /ressources-profs/ }
   - { titre: Livres, url: /livres/ }
   - { titre: Blog, url: /blog/ }
   - { titre: Médias, url: /presse-et-medias/ }
@@ -31,6 +32,7 @@ pied:
     - titre: Découvrir
       liens:
         - { titre: Jeux pédagogiques, url: /jeux/ }
+        - { titre: Ressources profs, url: /ressources-profs/ }
         - { titre: Livres, url: /livres/ }
         - { titre: Blog, url: /blog/ }
         - { titre: Chroniques par thème, url: /chroniques/ }
