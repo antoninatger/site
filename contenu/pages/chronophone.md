@@ -2,12 +2,13 @@
 titre: Le Chronophone
 url: /jeux/chronophone/
 gabarit: outil.html
-eyebrow: Escape game à leviers
+eyebrow: Vos QCM en escape game
 lead: >-
-  Un poste de radio venu d'une autre époque. Chaque levier est une question, et le message secret ne s'ouvre
-  que lorsque tous les leviers sont sur la bonne réponse. Vous écrivez les questions, l'atelier fabrique le jeu :
-  un seul fichier à donner à vos élèves.
-description: "Le Chronophone : créez gratuitement un escape game à leviers pour vos élèves. Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
+  Un outil pour présenter vos QCM et vos vrai/faux de façon ludique. Vos questions deviennent un coffre-fort
+  à déverrouiller, des leviers à abaisser ou des pierres magiques à placer, et le message secret ne s'ouvre que
+  si toutes les réponses sont justes. Vous écrivez les questions, l'atelier fabrique le jeu : un seul fichier
+  à donner à vos élèves.
+description: "Le Chronophone : transformez gratuitement vos QCM en escape game pour vos élèves (coffre-fort, leviers, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
 outil_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone-atelier.html"
 outil_bouton: Créer mon Chronophone
 exemple_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone.html"
@@ -24,21 +25,21 @@ fin: "Votre premier Chronophone : choisissez un exemple dans l'atelier, changez 
 ---
 ## À quoi ça sert ?
 
-Le Chronophone transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un canal qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et la machine ne dit pas laquelle. Il faut donc reprendre chaque levier, comparer, argumenter, chercher la preuve.
+Le Chronophone transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un coffre qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et le jeu ne dit pas laquelle. Il faut donc reprendre chaque question, comparer, argumenter, chercher la preuve.
 
 C'est ce qui le rend efficace en classe :
 
 - **Tout le groupe travaille.** Personne ne peut valider seul ; chaque réponse se défend devant les autres.
 - **On ne gagne pas au hasard.** Avec 10 leviers, il y a 1 chance sur 1 024 de trouver par chance. Les élèves comprennent vite qu'il vaut mieux réfléchir que tester.
 - **L'erreur devient une piste.** Un essai raté ne sanctionne pas : il relance la discussion.
-- **La fin est une récompense.** Le message secret (un télégramme, une consigne, la suite de l'histoire) donne envie d'aller au bout.
+- **La fin est une récompense.** Le message secret (une consigne, un indice, la suite de l'histoire) donne envie d'aller au bout.
 
 ## Comment ça se passe en classe
 
 <ol class="pas-a-pas">
 <li><b>Les élèves se mettent en groupes</b> de trois ou quatre, devant un ordinateur, une tablette ou le tableau numérique.</li>
-<li><b>Ils placent chaque levier</b> sur la réponse qu'ils pensent juste. Un clic sur une question l'agrandit pour la lire ou regarder la photo.</li>
-<li><b>Ils abaissent la manette rouge</b> pour ouvrir le canal. S'il reste une erreur, la liaison échoue et le compteur d'essais augmente.</li>
+<li><b>Ils placent chaque commande</b> (levier, molette, interrupteur ou pierre, selon l'univers choisi) sur la réponse qu'ils pensent juste. Un clic sur une question l'agrandit pour la lire ou regarder la photo.</li>
+<li><b>Ils valident</b> : manette, volant du coffre, bouton de lancement ou coup de baguette. S'il reste une erreur, rien ne s'ouvre et le compteur d'essais augmente.</li>
 <li><b>Quand tout est juste</b>, le message de fin apparaît. Le bouton « Mes réponses » garde une trace de ce que le groupe a répondu, à rendre si vous le souhaitez.</li>
 </ol>
 
