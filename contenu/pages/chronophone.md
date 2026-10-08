@@ -4,11 +4,11 @@ url: /jeux/chronophone/
 gabarit: outil.html
 eyebrow: Vos QCM en escape game
 lead: >-
-  Un outil pour présenter vos QCM et vos vrai/faux de façon ludique. Vos questions deviennent un coffre-fort
-  à déverrouiller, des leviers à abaisser ou des pierres magiques à placer, et le message secret ne s'ouvre que
+  Un outil pour présenter vos QCM et vos vrai/faux de façon ludique. Vos questions deviennent des leviers
+  à abaisser, des interrupteurs à armer ou des pierres magiques à placer, et le message secret ne s'ouvre que
   si toutes les réponses sont justes. Vous écrivez les questions, l'atelier fabrique le jeu : un seul fichier
   à donner à vos élèves.
-description: "Le Chronophone : transformez gratuitement vos QCM en escape game pour vos élèves (coffre-fort, leviers, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
+description: "Le Chronophone : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
 outil_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone-atelier.html"
 outil_bouton: Créer mon Chronophone
 exemple_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone.html"
@@ -25,7 +25,7 @@ fin: "Votre premier Chronophone : choisissez un exemple dans l'atelier, changez 
 ---
 ## À quoi ça sert ?
 
-Le Chronophone transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un coffre qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et le jeu ne dit pas laquelle. Il faut donc reprendre chaque question, comparer, argumenter, chercher la preuve.
+Le Chronophone transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un message secret qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et le jeu ne dit pas laquelle. Il faut donc reprendre chaque question, comparer, argumenter, chercher la preuve.
 
 C'est ce qui le rend efficace en classe :
 
@@ -38,8 +38,8 @@ C'est ce qui le rend efficace en classe :
 
 <ol class="pas-a-pas">
 <li><b>Les élèves se mettent en groupes</b> de trois ou quatre, devant un ordinateur, une tablette ou le tableau numérique.</li>
-<li><b>Ils placent chaque commande</b> (levier, molette, interrupteur ou pierre, selon l'univers choisi) sur la réponse qu'ils pensent juste. Un clic sur une question l'agrandit pour la lire ou regarder la photo.</li>
-<li><b>Ils valident</b> : manette, volant du coffre, bouton de lancement ou coup de baguette. S'il reste une erreur, rien ne s'ouvre et le compteur d'essais augmente.</li>
+<li><b>Ils placent chaque commande</b> (levier, interrupteur ou pierre, selon l'univers choisi) sur la réponse qu'ils pensent juste. Un clic sur une question l'agrandit pour la lire ou regarder la photo.</li>
+<li><b>Ils valident</b> : manette, bouton de lancement ou coup de baguette. S'il reste une erreur, rien ne s'ouvre et le compteur d'essais augmente.</li>
 <li><b>Quand tout est juste</b>, le message de fin apparaît. Le bouton « Mes réponses » garde une trace de ce que le groupe a répondu, à rendre si vous le souhaitez.</li>
 </ol>
 
@@ -53,10 +53,10 @@ L'atelier est fait pour qu'un enseignant qui ne l'a jamais utilisé s'en sorte s
 <li><b>Les deux réponses possibles</b> : vrai / faux, oui / non, réel / IA, fiable / pas fiable… ou des QCM à quatre choix.</li>
 <li><b>Les questions</b> : à écrire directement, à importer d'un document Word ou PDF (un modèle est fourni), ou des photos, une par levier.</li>
 <li><b>Le message de fin</b> : ce que lisent les élèves quand ils ont tout juste.</li>
-<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), molettes et volant (casse du coffre-fort), interrupteurs à clapet et bouton de lancement (station spatiale), interrupteurs à couteau (labo Frankenstein) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier et se change à tout moment. Puis « Essayer le jeu », et « Télécharger pour les élèves ».</li>
+<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), interrupteurs à clapet et bouton de lancement (station spatiale), interrupteurs à couteau (labo Frankenstein) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier et se change à tout moment. Puis « Essayer le jeu », et « Télécharger pour les élèves ».</li>
 </ol>
 
-<div class="outil-galerie"><img src="/images/site/jeux/chronophone-coffre.jpg" alt="Un Chronophone en casse du coffre-fort : une molette à tourner par question et le volant du coffre" loading="lazy"><img src="/images/site/jeux/chronophone-spatial.jpg" alt="Le même jeu en station spatiale : interrupteurs sous clapet rouge et bouton de lancement" loading="lazy"><img src="/images/site/jeux/chronophone-labo.jpg" alt="En labo Frankenstein : interrupteurs à couteau en cuivre et grand interrupteur rouge" loading="lazy"><img src="/images/site/jeux/chronophone-grimoire.jpg" alt="En grimoire magique : pierres de lune entre deux runes et baguette" loading="lazy"></div>
+<div class="outil-galerie"><img src="/images/site/jeux/chronophone-spatial.jpg" alt="Un Chronophone en station spatiale : interrupteurs sous clapet rouge et bouton de lancement" loading="lazy"><img src="/images/site/jeux/chronophone-labo.jpg" alt="En labo Frankenstein : interrupteurs à couteau en cuivre et grand interrupteur rouge" loading="lazy"><img src="/images/site/jeux/chronophone-grimoire.jpg" alt="En grimoire magique : pierres de lune entre deux runes et baguette" loading="lazy"></div>
 
 ## Des idées pour s'en servir
 
