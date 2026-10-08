@@ -45,6 +45,10 @@ jeux_libres:
   - { titre: Arène de rhétorique, texte: "Reconnaître les procédés rhétoriques et les sophismes dans un discours.", url: "https://antoninatger.github.io/jeux/arene-rhetorique/", niveau: "Collège – lycée · 20 min", icone: swords, vignette: /images/site/jeux/arene-rhetorique.jpg }
   - { titre: Planète connaissance, texte: "Distinguer les faits des opinions, en mission sur une planète inconnue.", url: "https://antoninatger.github.io/jeux/Plan%C3%A8te%20connaissance.html", niveau: "Primaire · 15 min", icone: planet, vignette: /images/site/jeux/planete-connaissance.jpg }
 
+ressources:
+  - { titre: Atelier du Chronophone, texte: "Fabriquez votre propre escape game : une question par levier, les élèves cherchent la bonne combinaison pour ouvrir le canal. Questions à deux réponses ou QCM, en texte ou en photo, import d'un fichier Word ou PDF.", url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone-atelier.html", niveau: "Tout niveau · 30 min de préparation", action: "Créer un jeu", icone: leviers }
+  - { titre: Fausses conversations, texte: "Écrivez une conversation WhatsApp, SMS ou Instagram, puis téléchargez-la en image ou faites-la défiler en classe, message par message. Exemples prêts : une arnaque, une relation d'emprise, une rumeur.", url: "https://antoninatger.github.io/jeux/ressources/faux-messages.html", niveau: "Dès le CM2 · 5 min", action: "Créer une conversation", icone: bulle }
+
 jeux_reserves:
   - { titre: Radar désinfo, texte: "Distinguer une information fiable d'une désinformation.", vignette: /images/site/jeux/radar-desinfo.jpg }
   - { titre: Chasse aux biais, texte: "Débusquer les biais cognitifs du quotidien, énigme par énigme.", vignette: /images/site/jeux/chasse-aux-biais.jpg }

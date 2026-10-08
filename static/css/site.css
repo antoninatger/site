@@ -666,9 +666,18 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 @keyframes jeu-respire { from { transform: scale(1); } to { transform: scale(1.05); } }
 @media (max-width: 700px) { .jeux-libres { grid-template-columns: 1fr; gap: 22px; } .jeux-libres .jeu-card__anim { width: 84px; height: 84px; } .jeux-libres .jeu-card__anim .aj { width: 70px; height: 70px; } }
 
-/* Page Ressources profs : cartes dans la colonne de lecture */
-.prose a.card { text-decoration: none; color: inherit; }
-.prose a.card h3 { margin-top: 0; }
-.prose .jeu-card__pied { gap: 10px; flex-wrap: wrap; }
-.prose .jeu-card__jouer { white-space: nowrap; }
 @media (min-width: 1081px) and (max-width: 1240px) { .nav { gap: 14px; font-size: .9rem; } }
+
+/* Page Jeux et ressources : les deux côtés */
+.deux-cotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 6px 0 8px; }
+.deux-cotes a { display: flex; gap: 14px; align-items: center; padding: 18px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--ink); transition: border-color .2s, transform .2s; }
+.deux-cotes a:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+.deux-cotes b { display: block; font-size: 1.15rem; }
+.deux-cotes small { color: var(--ink-mute); font-size: .9rem; }
+.deux-cotes__ico svg, .ressource-card__ico svg { width: 30px; height: 30px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.deux-cotes__sur { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 4px; font-weight: 600; }
+.ressources { border-top: 1px solid var(--border); scroll-margin-top: 90px; }
+#jeux-libres { scroll-margin-top: 90px; }
+.ressource-card { padding: 24px; }
+.ressource-card h3 { margin-top: 10px; }
+.ressource-card .jeu-card__pied { gap: 10px; flex-wrap: wrap; }

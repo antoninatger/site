@@ -1,11 +1,11 @@
 ---
-titre: Jeux pédagogiques
+titre: Jeux et ressources pédagogiques
 gabarit: jeux.html
-eyebrow: Une vingtaine de jeux, créés pour les interventions
+eyebrow: Pour la classe, l'atelier ou la maison
 lead: >-
-  Des jeux courts, jouables dans le navigateur, sans inscription ni installation, pour s'entraîner à repérer
-  une fausse information, un biais, un sophisme ou une arnaque. Quatre sont en accès libre ; les autres
-  sont utilisés pendant les interventions.
-description: "Les jeux pédagogiques d'Antonin Atger : Fakemètre, Radar'naque, Arène de rhétorique et une vingtaine de jeux sur l'esprit critique."
+  D'un côté, des jeux courts pour s'entraîner à repérer une fausse information, un biais, un sophisme ou une arnaque.
+  De l'autre, des outils libres pour que les profs fabriquent leurs propres activités. Tout se joue dans le navigateur,
+  sans inscription ni installation.
+description: "Les jeux et ressources pédagogiques d'Antonin Atger : Fakemètre, Radar'naque, Arène de rhétorique, un générateur de fausses conversations et un atelier pour créer son escape game."
 ---
 Ces jeux sont ce qui distingue une intervention d'une conférence : on y joue pendant la séance, tous ensemble. Ils ne sont pas encore en accès libre : pour y jouer avec vos élèves, [organisez une intervention](/interventions/).

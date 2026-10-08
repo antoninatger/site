@@ -9,7 +9,12 @@
     <h1>{{ page.titre }}</h1>
     <p class="lead">{{ page.lead }}</p>
   </header>
-  <section class="section section--tight">
+  <nav class="deux-cotes" aria-label="Les deux parties de la page">
+    <a href="#jeux-libres"><span class="deux-cotes__ico">{{ ic.icone('swords') }}</span><span><b>Jeux pédagogiques</b><small>{{ refs.jeux_libres|length }} en accès libre, {{ refs.jeux_reserves|length }} pendant les interventions</small></span></a>
+    <a href="#ressources"><span class="deux-cotes__ico">{{ ic.icone('leviers') }}</span><span><b>Ressources pédagogiques</b><small>{{ refs.ressources|length }} outils libres pour créer vos activités</small></span></a>
+  </nav>
+  <section class="section section--tight" id="jeux-libres">
+    <p class="deux-cotes__sur">Jeux pédagogiques</p>
     <h2>En accès libre</h2>
     <div class="grid jeux-libres" style="margin-top:22px">
       {% for j in refs.jeux_libres %}
@@ -25,6 +30,17 @@
       <div class="card jeu-card jeu-card--reserve jeu-card--image" aria-disabled="true" data-rv style="--d:{{ '%.2f' % ((loop.index0 % 3) * 0.08) }}s">{% if j.vignette and existe(j.vignette) %}<span class="jeu-card__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu-card__badge">Après intervention</span></span>{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p></div>
       {% endfor %}
     </div>
+  </section>
+  <section class="section section--tight ressources" id="ressources">
+    <p class="deux-cotes__sur">Ressources pédagogiques</p>
+    <h2>Pour créer vos propres activités</h2>
+    <p class="muted" style="max-width:720px">Libres et gratuites : prenez-les, adaptez-les à vos élèves, utilisez-les comme vous voulez. Rien n'est envoyé sur Internet, tout reste sur votre ordinateur.</p>
+    <div class="grid grid--2" style="margin-top:22px">
+      {% for r in refs.ressources %}
+      <a class="card jeu-card ressource-card" data-rv style="--d:{{ '%.2f' % (loop.index0 * 0.08) }}s" href="{{ r.url }}" target="_blank" rel="noopener"><span class="ressource-card__ico">{{ ic.icone(r.icone) }}</span><h3>{{ r.titre }}</h3><p>{{ r.texte }}</p><span class="jeu-card__pied"><span class="tag">{{ r.niveau }}</span><span class="jeu-card__jouer">{{ r.action }} →</span></span></a>
+      {% endfor %}
+    </div>
+    <p class="small muted" style="margin-top:18px">Une idée d'outil, un retour après l'avoir utilisé en classe ? <a href="/contact/">Écrivez-moi</a>.</p>
   </section>
 </div>
 {% endblock %}

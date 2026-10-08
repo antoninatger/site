@@ -13,8 +13,7 @@ image_par_defaut: /images/site/partage.jpg      # image de partage (Open Graph) 
 menu:
   - { titre: Interventions, url: /interventions/ }
   - { titre: Formations, url: /formations/ }
-  - { titre: Jeux, url: /jeux/ }
-  - { titre: Ressources, url: /ressources-profs/ }
+  - { titre: Jeux et ressources, url: /jeux/ }
   - { titre: Livres, url: /livres/ }
   - { titre: Blog, url: /blog/ }
   - { titre: Médias, url: /presse-et-medias/ }
@@ -32,7 +31,7 @@ pied:
     - titre: Découvrir
       liens:
         - { titre: Jeux pédagogiques, url: /jeux/ }
-        - { titre: Ressources profs, url: /ressources-profs/ }
+        - { titre: Ressources pédagogiques, url: /jeux/#ressources }
         - { titre: Livres, url: /livres/ }
         - { titre: Blog, url: /blog/ }
         - { titre: Chroniques par thème, url: /chroniques/ }
