@@ -1,6 +1,6 @@
 ---
-titre: Le Chronophone
-url: /jeux/chronophone/
+titre: La Combinaison
+url: /jeux/combinaison/
 gabarit: outil.html
 eyebrow: Vos QCM en escape game
 lead: >-
@@ -8,29 +8,34 @@ lead: >-
   à abaisser, des interrupteurs à armer ou des pierres magiques à placer, et le message secret ne s'ouvre que
   si toutes les réponses sont justes. Vous écrivez les questions, l'atelier fabrique le jeu : un seul fichier
   à donner à vos élèves.
-description: "Le Chronophone : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
+description: "La Combinaison : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
 outil_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone-atelier.html"
-outil_bouton: Créer mon Chronophone
+outil_bouton: Créer mon jeu
 exemple_url: "https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone.html"
 exemple_texte: Jouer à un exemple
-vignette: /images/site/jeux/chronophone.jpg
-vignette_alt: "Le Chronophone R-43 : vingt-deux leviers sous des photos d'archives et une manette rouge pour ouvrir le canal"
-icone: leviers
+vignette: /images/site/jeux/combinaison.jpg
+vignette_alt: "Le même jeu dans quatre univers : steampunk, station spatiale, labo Frankenstein et grimoire magique"
+diaporama:
+  - ["/images/site/jeux/combinaison-vapeur.jpg", "Steampunk : leviers en laiton et manette rouge"]
+  - ["/images/site/jeux/combinaison-spatial.jpg", "Station spatiale : interrupteurs sous clapet et bouton de lancement"]
+  - ["/images/site/jeux/combinaison-labo.jpg", "Labo Frankenstein : interrupteurs à couteau et éclairs verts"]
+  - ["/images/site/jeux/combinaison-grimoire.jpg", "Grimoire magique : pierres de lune, runes et baguette"]
+icone: ''
 faits:
   - ["De 2 à 40 questions", "vrai/faux, oui/non, réel/IA… ou QCM A-D"]
   - ["30 minutes", "pour préparer un jeu, ou moins avec un fichier Word"]
   - ["Un seul fichier", "à mettre sur l'ENT, une clé USB ou par mail"]
   - ["Gratuit", "sans inscription, rien n'est envoyé sur Internet"]
-fin: "Votre premier Chronophone : choisissez un exemple dans l'atelier, changez les questions, essayez-le."
+fin: "Votre premier jeu : choisissez un exemple dans l'atelier, changez les questions, essayez-le."
 ---
 ## À quoi ça sert ?
 
-Le Chronophone transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un message secret qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et le jeu ne dit pas laquelle. Il faut donc reprendre chaque question, comparer, argumenter, chercher la preuve.
+La Combinaison transforme un quiz en **mission collective**. Les élèves ne voient pas « 7/10 » : ils voient un message secret qui refuse de s'ouvrir. Tant qu'une seule réponse est fausse, le message reste bloqué, et le jeu ne dit pas laquelle. Il faut donc reprendre chaque question, comparer, argumenter, chercher la preuve.
 
 C'est ce qui le rend efficace en classe :
 
 - **Tout le groupe travaille.** Personne ne peut valider seul ; chaque réponse se défend devant les autres.
-- **On ne gagne pas au hasard.** Avec 10 leviers, il y a 1 chance sur 1 024 de trouver par chance. Les élèves comprennent vite qu'il vaut mieux réfléchir que tester.
+- **On ne gagne pas au hasard.** Avec 10 questions, il y a 1 chance sur 1 024 de trouver par chance. Les élèves comprennent vite qu'il vaut mieux réfléchir que tester.
 - **L'erreur devient une piste.** Un essai raté ne sanctionne pas : il relance la discussion.
 - **La fin est une récompense.** Le message secret (une consigne, un indice, la suite de l'histoire) donne envie d'aller au bout.
 
@@ -51,23 +56,22 @@ L'atelier est fait pour qu'un enseignant qui ne l'a jamais utilisé s'en sorte s
 
 <ol class="pas-a-pas">
 <li><b>Les deux réponses possibles</b> : vrai / faux, oui / non, réel / IA, fiable / pas fiable… ou des QCM à quatre choix.</li>
-<li><b>Les questions</b> : à écrire directement, à importer d'un document Word ou PDF (un modèle est fourni), ou des photos, une par levier.</li>
+<li><b>Les questions</b> : à écrire directement, à importer d'un document Word ou PDF (un modèle est fourni), ou des photos, une par question.</li>
 <li><b>Le message de fin</b> : ce que lisent les élèves quand ils ont tout juste.</li>
-<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), interrupteurs à clapet et bouton de lancement (station spatiale), interrupteurs à couteau (labo Frankenstein) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier et se change à tout moment. Puis « Essayer le jeu », et « Télécharger pour les élèves ».</li>
+<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), interrupteurs à clapet et bouton de lancement (station spatiale), interrupteurs à couteau (labo Frankenstein) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier (un bouton « Voir un exemple » montre chacun) et se change à tout moment. Puis « Essayer le jeu », et « Télécharger pour les élèves ».</li>
 </ol>
 
-<div class="outil-galerie"><img src="/images/site/jeux/chronophone-spatial.jpg" alt="Un Chronophone en station spatiale : interrupteurs sous clapet rouge et bouton de lancement" loading="lazy"><img src="/images/site/jeux/chronophone-labo.jpg" alt="En labo Frankenstein : interrupteurs à couteau en cuivre et grand interrupteur rouge" loading="lazy"><img src="/images/site/jeux/chronophone-grimoire.jpg" alt="En grimoire magique : pierres de lune entre deux runes et baguette" loading="lazy"></div>
 
 ## Des idées pour s'en servir
 
 - **Réviser un chapitre** avant une évaluation : dix affirmations, vraies ou fausses, à trancher en groupe.
-- **Photo réelle ou générée par IA ?** Chaque levier montre une image ; les élèves doivent justifier leur choix.
+- **Photo réelle ou générée par IA ?** Chaque question montre une image ; les élèves doivent justifier leur choix.
 - **Fiable ou pas fiable ?** Des titres d'articles, des publications, des sources à classer.
 - **Lancer une séquence** : un diagnostic ludique pour voir ce que la classe sait déjà.
-- **Une enquête suivie** : le message de fin d'un Chronophone donne l'indice du suivant.
+- **Une enquête suivie** : le message de fin d'un jeu donne l'indice du suivant.
 
 ## Bon à savoir
 
 - Le jeu téléchargé est **un seul fichier** qui s'ouvre dans n'importe quel navigateur, sans compte ni installation.
 - Votre travail est gardé automatiquement dans votre navigateur. « Sauvegarder mon travail » crée un fichier pour le reprendre ailleurs ou le partager avec un collègue. **Ce fichier contient les réponses : ne le donnez pas aux élèves**, donnez-leur seulement le fichier « pour les élèves ».
-- Le Chronophone est né du projet [Self Data](/parcours/#self-data), mené avec des collèges de la Métropole de Lyon : le Chronophone R-43 relie les élèves à une résistante de 1942. [Y jouer](https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone.html).
+- La Combinaison est née du projet [Self Data](/parcours/#self-data), mené avec des collèges de la Métropole de Lyon : le Chronophone R-43 relie les élèves à une résistante de 1942. [Y jouer](https://antoninatger.github.io/jeux/Reco%20Alberte/chronophone.html).

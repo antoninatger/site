@@ -727,4 +727,10 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .outil-fin { margin: 40px 0 10px; padding: 24px; border-radius: 12px; background: var(--accent-light); display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 .outil-fin p { margin: 0; font-size: 1.08rem; }
 @media (max-width: 860px) { .outil-hero { grid-template-columns: 1fr; gap: 24px; padding-top: 20px; } .outil-galerie { grid-template-columns: 1fr; } }
-@media (prefers-reduced-motion: reduce) { .outil-hero__visuel img, .outil-hero__visuel::after { animation: none; } }
+/* Diaporama du visuel : un univers après l'autre, en fondu */
+.outil-diapo { position: absolute; inset: 0; }
+.outil-diapo__vue { position: absolute; inset: 0; opacity: 0; animation: outil-diapo calc(var(--n) * 4s) infinite; animation-delay: calc(var(--i) * 4s); }
+.outil-diapo__vue img { animation: none; }
+.outil-diapo__nom { position: absolute; left: 12px; bottom: 12px; background: rgba(10,14,20,.78); color: #fff; font-size: 13.5px; padding: 5px 10px; border-radius: 6px; }
+@keyframes outil-diapo { 0% { opacity: 0; } 4% { opacity: 1; } 25% { opacity: 1; } 29% { opacity: 0; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .outil-hero__visuel img, .outil-hero__visuel::after { animation: none; } .outil-diapo__vue { animation: none; } .outil-diapo__vue:first-child { opacity: 1; } }

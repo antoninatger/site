@@ -14,7 +14,8 @@
       </div>
     </div>
     <a class="outil-hero__visuel" href="{{ page.outil_url }}" target="_blank" rel="noopener" aria-label="{{ page.outil_bouton or "Ouvrir l'outil" }}">
-      <img src="{{ page.vignette }}" alt="{{ page.vignette_alt }}"><span class="jeu-card__anim" aria-hidden="true">{{ aj.anim(page.icone) }}</span>
+      {% if page.diaporama %}<span class="outil-diapo" style="--n: {{ page.diaporama|length }}">{% for d in page.diaporama %}<span class="outil-diapo__vue" style="--i: {{ loop.index0 }}"><img src="{{ d[0] }}" alt="{{ d[1] }}"{% if not loop.first %} loading="lazy"{% endif %}><span class="outil-diapo__nom">{{ d[1] }}</span></span>{% endfor %}</span>
+      {% else %}<img src="{{ page.vignette }}" alt="{{ page.vignette_alt }}">{% endif %}{% if page.icone %}<span class="jeu-card__anim" aria-hidden="true">{{ aj.anim(page.icone) }}</span>{% endif %}
     </a>
   </section>
   {% if page.faits %}<div class="outil-faits">{% for f in page.faits %}<div><b>{{ f[0] }}</b><span>{{ f[1] }}</span></div>{% endfor %}</div>{% endif %}
