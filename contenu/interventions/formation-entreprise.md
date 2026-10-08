@@ -8,6 +8,8 @@ ordre: 21
 distance: true
 programmes: [Séminaire, Journée d'équipe, Formation continue, CNFPT]
 description: "Une intervention interactive pour les équipes : études de cas, quiz vrai/faux, images générées par IA. Les participants apprennent à identifier et déjouer la manipulation de l'information."
+visuel: /images/interventions/formation-entreprise.jpg
+visuel_alt: "Antonin Atger au micro, devant une salle de formation en entreprise"
 ---
 
 Une intervention interactive sur les enjeux de l'information et l'impact de la désinformation, conçue pour les équipes en entreprise et en collectivité. À travers des études de cas, des quiz vrai/faux et des exemples concrets, dont des images générées par IA, les participants apprennent à identifier et déjouer les mécanismes de manipulation de l'information.

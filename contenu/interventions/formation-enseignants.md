@@ -10,6 +10,8 @@ video: DgjadOfdhmI
 materiel: Rien pour la version en ligne ; un vidéoprojecteur sur place.
 programmes: [Formation d'établissement, EAFC, Canopé, Journée pédagogique]
 description: "Les professeurs sont de plus en plus sollicités pour enseigner l'esprit critique, mais sont-ils formés à cet enseignement ? Une formation gratuite en ligne, et une version pour les équipes."
+visuel: /images/interventions/formation-enseignants.jpg
+visuel_alt: "Antonin Atger, le bras tendu, devant des salles de classe vides"
 ---
 
 Les professeurs sont de plus en plus sollicités pour enseigner l'esprit critique. Mais sont-ils eux-mêmes formés à cet enseignement ? Sur la base de mes recherches en psychologie et de mes propres interventions, j'ai conçu une formation gratuite, disponible en ligne, à destination des enseignants et du personnel encadrant. La vidéo ci-dessus, c'est la formation complète.

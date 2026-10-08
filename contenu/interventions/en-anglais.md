@@ -9,6 +9,8 @@ distance: true
 ou: On site or online, anywhere
 programmes: [International schools, Erasmus+, Summer schools, French institutes abroad]
 description: "The whole programme is available in English and has been delivered in Croatia, Hong Kong and Berlin: fake news, misinformation and democracy, AI, media literacy for teachers."
+visuel: /images/interventions/en-anglais.jpg
+visuel_alt: "Antonin Atger devant la grande roue de Londres et Big Ben"
 ---
 
 Everything I do in French exists in English. I have delivered these sessions in Croatia (Cres and Osijek summer schools, Zagreb with the French Embassy and UNICEF), at the French International School of Hong Kong and at the Lycée français de Berlin.

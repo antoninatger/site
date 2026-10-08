@@ -12,6 +12,8 @@ materiel: Un vidéoprojecteur, le son, et une connexion stable ; je fournis le l
 ou: Partout, y compris à l'étranger
 programmes: [ADAGE (format « à distance »), AEFE, Mission laïque française]
 description: "Fake news, désinformation, arnaques, rhétorique : quatre interventions existent en version à distance, aussi interactives que sur place, sans frais de déplacement."
+visuel: /images/interventions/a-distance.jpg
+visuel_alt: "Antonin Atger devant un public qui filme avec un téléphone et des enfants qui lèvent la main"
 ---
 
 Je suis basé à Lyon et je me déplace partout en France, mais tout le monde ne peut pas faire venir un intervenant. Quatre interventions existent donc en version à distance : [Fake news et esprit critique](/interventions/fake-news-et-esprit-critique/), [Désinformation : au-delà des fake news](/interventions/desinformation-au-dela-des-fake-news/), [Se protéger des arnaques en ligne](/interventions/arnaques-en-ligne/) et [Déjouer les pièges de la rhétorique](/interventions/dejouer-les-pieges-de-la-rhetorique/).

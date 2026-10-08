@@ -10,6 +10,8 @@ distance: true
 video: I-51GUOEPJc
 programmes: [EMI, SNT, Lycée professionnel]
 description: "Un SMS de votre banque, un colis bloqué, un héritage inattendu… Repérer les arnaques en ligne, garder son sang-froid et aider ses proches à ne pas se faire avoir."
+visuel: /images/interventions/arnaques-en-ligne.jpg
+visuel_alt: "Antonin Atger devant des mains gantées sur un clavier et des enveloppes de mails lumineuses"
 ---
 
 Un SMS de votre banque, un colis « bloqué », un héritage inattendu, un faux conseiller au téléphone… Les arnaques en ligne n'ont jamais été aussi nombreuses ni aussi crédibles. La bonne nouvelle : on peut muscler son cerveau pour repérer les pièges, garder son sang-froid, et aider ses proches à ne pas se faire avoir non plus.

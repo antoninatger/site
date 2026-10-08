@@ -8,6 +8,8 @@ ordre: 7
 adage: true
 programmes: [Français, PEAC]
 description: "Pourquoi reste-t-on happé à la fin d'un épisode ? Les créateurs sont des magiciens, et comme les illusionnistes, ils ont des astuces. Une séance interactive autour des œuvres préférées du public."
+visuel: /images/interventions/la-magie-des-histoires.jpg
+visuel_alt: "Antonin Atger devant un livre ouvert illuminé de guirlandes et une lampe en forme de lune"
 ---
 
 Pourquoi reste-t-on happé à la fin d'un épisode ? Pourquoi certaines histoires nous font-elles pleurer alors que rien n'est réel ? Les créateurs sont des magiciens, et comme les illusionnistes, ils possèdent des astuces. Cette intervention très interactive décortique avec le public ses œuvres préférées pour révéler les mécanismes narratifs à l'œuvre.

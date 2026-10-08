@@ -8,6 +8,8 @@ ordre: 9
 distance: true
 programmes: [Soirée parents d'élèves, APEL, FCPE, Centre social]
 description: "Comment repérer une fausse information, vérifier une image, y compris générée par IA, et accompagner son enfant dans un usage raisonné des écrans. Des outils simples, applicables à la maison."
+visuel: /images/interventions/conference-parents.jpg
+visuel_alt: "Antonin Atger devant une famille sur un canapé, chacun sur son écran, et une enfant penchée sur une tablette"
 ---
 
 Une conférence pensée pour les parents et les familles : comment repérer une fausse information, vérifier une image, y compris les contenus générés par intelligence artificielle, et accompagner son enfant dans un usage raisonné des écrans et des réseaux sociaux. À partir d'exemples concrets et des mécanismes du cerveau, j'offre des outils simples et immédiatement applicables à la maison.
