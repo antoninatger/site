@@ -2,7 +2,7 @@
 <html lang="fr">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Le Décrypteur · Atelier</title>
+<title>Sésame · Atelier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@400;700&family=Special+Elite&family=Bebas+Neue&family=Rajdhani:wght@700&family=Creepster&family=Cinzel+Decorative:wght@700&display=swap">
@@ -162,9 +162,9 @@ a.lien{color:var(--brass-hi)}
 </style>
 
 <div class="wrap">
-  <a class="retour" href="https://antoninatger.com/jeux/decrypteur/">← Retour sur antoninatger.com</a>
+  <a class="retour" href="https://antoninatger.com/jeux/sesame/">← Retour sur antoninatger.com</a>
   <header class="plate">
-    <h1>LE DÉCRYPTEUR · ATELIER</h1>
+    <h1>SÉSAME · ATELIER</h1>
     <p>Créez un jeu d'énigmes pour vos élèves : vos questions, vos photos ou vos textes, les bonnes réponses et un message de fin.</p>
   </header>
   <div class="intro">
@@ -238,7 +238,7 @@ a.lien{color:var(--brass-hi)}
     </div>
     <details id="aideScan">
       <summary>Comment écrire le document pour l'import automatique ? (modèle Word à télécharger)</summary>
-      <p class="hint" style="margin-top:8px"><a class="lien" href="https://antoninatger.com/jeux/decrypteur/modele-questions.docx" download>Télécharger le modèle Word</a> : remplacez les questions d'exemple par les vôtres, enregistrez, puis cliquez « Importer des questions ».</p>
+      <p class="hint" style="margin-top:8px"><a class="lien" href="https://antoninatger.com/jeux/sesame/modele-questions.docx" download>Télécharger le modèle Word</a> : remplacez les questions d'exemple par les vôtres, enregistrez, puis cliquez « Importer des questions ».</p>
       <div class="hint" style="margin-top:8px;white-space:pre-wrap;font-family:var(--f-type)">Une question par paragraphe, les choix sur les lignes suivantes, la bonne réponse indiquée si vous voulez :
 
 1. Quel réglage protège le mieux ton compte ?
@@ -356,7 +356,7 @@ const DEFAUT = () => ({
   v:1, id:'j'+Math.random().toString(36).slice(2,10),
   ambiance:'vapeur', mode:'', nbChoix:4, haut:'', bas:'', items:[],
   message:'Bravo, le canal est ouvert ! Vous avez trouvé la bonne combinaison.', lien:'', signature:'Le professeur',
-  titre:'LE DÉCRYPTEUR', modele:'Poste de la classe · Modèle personnalisé', tampon:'TOP SECRET',
+  titre:'SÉSAME', modele:'Poste de la classe · Modèle personnalisé', tampon:'TOP SECRET',
   avert:"Propriété du réseau. Ne pas laisser l'appareil sans surveillance.",
   attente:'Positionnez les {n} leviers puis abaissez la manette rouge.',
   succes:'Liaison établie. Bien joué !', echec:'Combinaison refusée, vérifiez vos leviers.',
@@ -651,7 +651,7 @@ $('importer').onclick=()=>{ $('fileCfg').value=''; $('fileCfg').click(); };
 $('fileCfg').onchange=async e=>{
   const f=e.target.files[0]; if(!f) return;
   try{ const c=JSON.parse(await f.text()); if(!Array.isArray(c.items)) throw 0; cfg=Object.assign(DEFAUT(),c); remplirChamps(); dessinerItems(); garder(); msg('Travail repris.','ok'); }
-  catch(x){ msg('Ce fichier n\'est pas une sauvegarde du Décrypteur (fichier .json).','ko'); }
+  catch(x){ msg('Ce fichier n\'est pas une sauvegarde de Sésame (fichier .json).','ko'); }
 };
 $('nouveau').onclick=()=>{ if(!confirm('Effacer cette machine et repartir de zéro ?')) return; cfg=DEFAUT(); remplirChamps(); dessinerItems(); garder(); };
 

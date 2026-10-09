@@ -3,8 +3,8 @@
 /mes-interventions/: /interventions/
 /jeux-pedagogiques/: /jeux/
 /ressources-profs/: /jeux/#outils
-/jeux/chronophone/: /jeux/decrypteur/
-/jeux/combinaison/: /jeux/decrypteur/
+/jeux/chronophone/: /jeux/sesame/
+/jeux/combinaison/: /jeux/sesame/
 /526-2/: /livres/
 /interfeel/: /livres/
 /biographie/: /a-propos/
@@ -39,3 +39,4 @@
 /feed/: /feed.xml
 /wp-login.php: /
 /interventions/parler-a-un-complotiste/: /interventions/
+/jeux/decrypteur/: /jeux/sesame/
