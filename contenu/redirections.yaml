@@ -40,3 +40,7 @@
 /wp-login.php: /
 /interventions/parler-a-un-complotiste/: /interventions/
 /jeux/decrypteur/: /jeux/sesame/
+# anciennes pages auteur et étiquettes WordPress encore connues de Google (10 octobre 2026)
+/author/antoninatger/: /a-propos/
+/tag/rencontre/: /blog/actualites/
+/tag/atelier-decriture/: /blog/actualites/

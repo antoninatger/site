@@ -8,4 +8,14 @@
   </header>
   <p><a class="btn btn--primary" href="/">Retour à l'accueil</a> &nbsp; <a class="btn btn--ghost" href="/blog/">Le blog</a> &nbsp; <a class="btn btn--ghost" href="/interventions/">Les interventions</a></p>
 </div>
+<script>
+  // Anciennes adresses WordPress sans page de redirection (étiquettes, pages auteur, pages d'archives) :
+  // on renvoie vers l'équivalent le plus proche plutôt que de laisser une erreur.
+  (function () {
+    var p = location.pathname, vers = null;
+    if (/^\/tag\//.test(p) || /^\/page\/\d+\/?$/.test(p) || /^\/\d{4}(\/\d{2})?\/?$/.test(p)) vers = "/blog/";
+    else if (/^\/author\//.test(p)) vers = "/a-propos/";
+    if (vers) location.replace(vers);
+  })();
+</script>
 {% endblock %}
