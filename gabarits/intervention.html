@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 {% import "_icones.html" as ic %}
+{% block donnees %}
+{% set zone = [{"@type": "City", "name": "Lyon"}, {"@type": "City", "name": "Paris"}] + ([{"@type": "Country", "name": "France"}] if page.distance else []) %}
+<script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": [
+  {"@type": "Service", "name": page.titre, "description": page.description, "url": canonique,
+   "serviceType": "Intervention d'éducation aux médias et à l'esprit critique",
+   "provider": {"@id": site.url ~ "/#antonin"}, "areaServed": zone,
+   "audience": {"@type": "Audience", "audienceType": (page.publics or [])|join(", ")},
+   "image": site.url ~ (page.visuel or page.photo or site.image_par_defaut)},
+  {"@type": "BreadcrumbList", "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Accueil", "item": site.url ~ "/"},
+    {"@type": "ListItem", "position": 2, "name": "Interventions", "item": site.url ~ "/interventions/"},
+    {"@type": "ListItem", "position": 3, "name": page.titre, "item": canonique}]}
+]} | tojson }}</script>
+{% endblock %}
 {% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
 {% block contenu %}
 <div class="wrap">

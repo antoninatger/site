@@ -1,5 +1,6 @@
 ---
 titre: "Désinformation : au-delà des fake news"
+titre_seo: "Intervention désinformation au lycée : au-delà des fake news"
 sous_titre: Manipuler sans mentir, les techniques invisibles de l'infox
 duree: 1 h à 2 h
 publics: [Lycée, Enseignement supérieur, Adultes]

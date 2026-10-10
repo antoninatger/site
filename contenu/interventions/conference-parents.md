@@ -1,5 +1,6 @@
 ---
 titre: "Conférence parents : déjouer les fake news à l'ère de l'IA"
+titre_seo: "Conférence parents sur les fake news et l'IA"
 sous_titre: Accompagner son enfant face à la désinformation et aux images générées par IA
 duree: 1 h à 2 h, en soirée
 publics: [Parents, Familles]

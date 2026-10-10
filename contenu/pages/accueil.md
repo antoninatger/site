@@ -1,5 +1,6 @@
 ---
 titre: L'esprit critique, ça s'entraîne.
+titre_seo: "Intervention fake news et esprit critique à Lyon, Paris et à distance"
 titre_accent: ça s'entraîne.        # partie du titre en italique rouge
 gabarit: accueil.html
 eyebrow: Du CM1 au lycée · médiathèques · centres sociaux · entreprises
@@ -8,7 +9,7 @@ lead: >-
   fondés sur la recherche en psychologie. Clé en main : un vidéoprojecteur et le son suffisent.
 description: >-
   Antonin Atger, auteur et doctorant en psychologie : conférences et ateliers d'esprit critique sur les fake news,
-  la rhétorique, les influenceurs et les arnaques en ligne, du CM1 au lycée, en médiathèque et en entreprise.
+  la rhétorique, les influenceurs et les arnaques en ligne, du CM1 au lycée, en médiathèque et en entreprise. À Lyon, à Paris, et à distance partout ailleurs.
 photo: /images/uploads/2023/08/1-college-jean-moulin-trevoux-3.jpg
 photo_alt: Antonin Atger en intervention devant une classe
 photo_legende: Intervention « Fake News et esprit critique » au collège Jean Moulin, Trévoux.

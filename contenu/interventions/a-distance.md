@@ -1,6 +1,7 @@
 ---
 titre: Intervention à distance
-sous_titre: La même conférence, en visio, pour les établissements loin de Lyon
+titre_seo: "Intervention fake news à distance, en visio, partout en France"
+sous_titre: La même conférence, en visio, pour les établissements loin de Lyon et de Paris
 duree: 1 h à 1 h 30
 publics: [Établissements scolaires, Médiathèques, Entreprises, Lycées français à l'étranger]
 groupe: autres

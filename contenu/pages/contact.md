@@ -16,7 +16,7 @@ Un devis simple, au tarif de la Charte des auteurs pour les médiathèques. Dite
 
 ### Où
 
-Sur place en Auvergne-Rhône-Alpes, et ailleurs en France en regroupant plusieurs dates sur une même période. À distance, sans limite : les interventions en visio sont vivantes et participatives, j'en donne régulièrement.
+Sur place à Lyon et en Auvergne-Rhône-Alpes, à Paris et en Île-de-France, et ailleurs en France en regroupant plusieurs dates sur une même période. À distance, sans limite : les interventions en visio sont vivantes et participatives, j'en donne régulièrement.
 
 ### Presse, podcasts, médias
 

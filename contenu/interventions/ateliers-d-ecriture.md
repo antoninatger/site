@@ -1,5 +1,6 @@
 ---
 titre: Ateliers d'écriture heureux
+titre_seo: "Ateliers d'écriture en classe et en médiathèque"
 sous_titre: Décomplexer, créer, raconter, écrire sans peur de la page blanche
 duree: 1 h à 2 h par séance, en une fois ou en parcours
 publics: [CM1 → lycée, Médiathèque, Adultes]

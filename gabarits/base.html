@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if titre and url != '/' %}{{ titre }} | {{ site.titre }}{% else %}{{ site.titre }} | {{ site.accroche }}{% endif %}</title>
+{% set titre_onglet = titre_seo or (page.titre_seo if page is defined and page else '') %}<title>{% if titre_onglet %}{{ titre_onglet }} | {{ site.titre }}{% elif titre and url != '/' %}{{ titre }} | {{ site.titre }}{% else %}{{ site.titre }} | {{ site.accroche }}{% endif %}</title>
 <meta name="description" content="{{ (description or site.description) | striptags | truncate(300) }}">
 <link rel="canonical" href="{{ canonique }}">
 <meta property="og:type" content="{% block og_type %}website{% endblock %}">
@@ -26,9 +26,18 @@
 <link rel="preload" href="/static/polices/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css">
 {% block tete %}{% endblock %}
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Antonin Atger","url":"{{ site.url }}","jobTitle":"Auteur, doctorant en psychologie, conférencier en éducation aux médias","knowsAbout":["fake news","esprit critique","désinformation","rhétorique","théories du complot"],"sameAs":["https://debatology.substack.com/","https://fr.linkedin.com/in/antonin-atger"]}
-</script>
+{# Données structurées (schema.org) : qui est Antonin, et le site. Les gabarits ajoutent les leurs dans « donnees ». #}
+{% set reseaux = [] %}{% for col in site.pied.colonnes %}{% for l in col.liens %}{% if l.url.startswith('https://') %}{% set _ = reseaux.append(l.url) %}{% endif %}{% endfor %}{% endfor %}
+<script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": [
+  {"@type": "Person", "@id": site.url ~ "/#antonin", "name": site.auteur, "url": site.url ~ "/",
+   "image": site.url ~ "/images/uploads/2026/10/portrait-antonin-atger-2026.jpg",
+   "jobTitle": "Conférencier et formateur en esprit critique et éducation aux médias",
+   "description": site.description,
+   "knowsAbout": ["fake news", "désinformation", "esprit critique", "éducation aux médias et à l'information", "complotisme", "théories du complot", "rhétorique", "influenceurs", "arnaques en ligne", "intelligence artificielle"],
+   "sameAs": reseaux},
+  {"@type": "WebSite", "@id": site.url ~ "/#site", "name": site.titre, "url": site.url ~ "/", "inLanguage": "fr-FR", "publisher": {"@id": site.url ~ "/#antonin"}}
+]} | tojson }}</script>
+{% block donnees %}{% endblock %}
 {% if site.mesure_audience %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.mesure_audience }}"}'></script>{% endif %}
 </head>
 <body>

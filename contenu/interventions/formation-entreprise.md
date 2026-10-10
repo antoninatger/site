@@ -1,5 +1,6 @@
 ---
 titre: "Formation en entreprise : information et désinformation"
+titre_seo: "Formation désinformation en entreprise et en collectivité"
 sous_titre: Enjeux de l'information et impact de la désinformation, pour les équipes et les encadrants
 duree: 45 min à 2 h, modulable
 publics: [Entreprises, Collectivités, Encadrants]

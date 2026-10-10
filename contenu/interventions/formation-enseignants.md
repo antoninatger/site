@@ -1,5 +1,6 @@
 ---
 titre: "Formation enseignants : l'esprit critique en classe"
+titre_seo: "Formation enseignants : esprit critique et fake news en classe"
 sous_titre: Une formation gratuite en ligne, et une version sur place pour les équipes
 duree: 1 h 15 en ligne ; une demi-journée sur place
 publics: [Enseignants, CPE, Professeurs-documentalistes, Formateurs]

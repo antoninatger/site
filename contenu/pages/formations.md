@@ -1,5 +1,6 @@
 ---
 titre: Formations
+titre_seo: "Formations esprit critique et désinformation : enseignants, entreprises"
 gabarit: formations.html
 eyebrow: Enseignants · entreprises · collectivités · en ligne
 lead: >-

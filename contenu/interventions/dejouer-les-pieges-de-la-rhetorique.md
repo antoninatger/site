@@ -1,5 +1,6 @@
 ---
 titre: Déjouer les pièges de la rhétorique
+titre_seo: "Atelier rhétorique et manipulation au collège et au lycée"
 sous_titre: Éthos, pathos, logos, convaincre sans tromper
 duree: 1 h à 2 h
 publics: [Collège, Lycée, Adultes]

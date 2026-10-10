@@ -1,5 +1,6 @@
 ---
 titre: La magie des histoires
+titre_seo: "Intervention narration et écriture au collège et au lycée"
 sous_titre: Comprendre ce qui rend une œuvre inoubliable
 duree: 1 h à 2 h
 publics: [Collège, Lycée, Médiathèque]

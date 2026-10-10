@@ -1,5 +1,6 @@
 ---
 titre: Fake news et esprit critique
+titre_seo: "Intervention fake news et esprit critique, du CM1 au lycée"
 sous_titre: Comprendre les mécanismes du cerveau pour mieux résister à la désinformation
 duree: 1 h à 2 h
 publics: [CM1 → lycée, Médiathèque, Adultes]

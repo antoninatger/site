@@ -4,6 +4,14 @@
 <meta property="article:published_time" content="{{ page.dt.isoformat() }}">
 {% for c in page.categories %}<meta property="article:section" content="{{ c }}">{% endfor %}
 {% endblock %}
+{% block donnees %}
+{% set art = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": page.titre, "url": canonique,
+   "mainEntityOfPage": canonique, "datePublished": page.dt.isoformat(), "inLanguage": "fr-FR",
+   "author": {"@id": site.url ~ "/#antonin"}, "publisher": {"@id": site.url ~ "/#antonin"},
+   "articleSection": page.categories or []} %}
+{% if page.image_une %}{% set _ = art.update({"image": site.url ~ page.image_une}) %}{% endif %}
+<script type="application/ld+json">{{ art | tojson }}</script>
+{% endblock %}
 {% block main_attr %}{% set p = page.pilier or ((cats or [])|map(attribute="pilier")|select|first) %}{% if p %} class="pilier-{{ p }} fond-teinte"{% endif %}{% endblock %}
 {% block contenu %}
 <div class="wrap">

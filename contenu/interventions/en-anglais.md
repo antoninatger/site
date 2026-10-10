@@ -1,5 +1,6 @@
 ---
 titre: "In English: Critical Thinking & Media Literacy"
+titre_seo: "Critical thinking and fake news workshops in English"
 sous_titre: Lectures, workshops and summer schools, in English
 duree: 1 h to 2 h
 publics: [Students, Teachers, Professionals, International schools]

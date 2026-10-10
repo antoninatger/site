@@ -1,5 +1,6 @@
 ---
 titre: Se protéger des arnaques en ligne
+titre_seo: "Intervention arnaques en ligne : collège, lycée, médiathèque, seniors"
 sous_titre: Muscler son cerveau pour ne pas tomber dans les pièges
 duree: 1 h à 2 h
 publics: [Collège, Lycée, Médiathèque, Seniors]

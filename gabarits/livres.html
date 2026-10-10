@@ -1,4 +1,15 @@
 {% extends "base.html" %}
+{% block donnees %}
+{% set livres = [] %}{% for r in page.romans or [] %}
+{% set b = {"@type": "Book", "name": r.titre, "author": {"@id": site.url ~ "/#antonin"}, "inLanguage": "fr"} %}
+{% if r.couverture %}{% set _ = b.update({"image": site.url ~ r.couverture}) %}{% endif %}
+{% if r.resume %}{% set _ = b.update({"description": r.resume}) %}{% endif %}
+{% if r.distinctions %}{% set _ = b.update({"award": r.distinctions}) %}{% endif %}
+{% if r.babelio %}{% set _ = b.update({"sameAs": r.babelio}) %}{% endif %}
+{% if r.date and "Pocket" in r.date %}{% set _ = b.update({"publisher": {"@type": "Organization", "name": "Pocket Jeunesse"}}) %}{% endif %}
+{% set _ = livres.append(b) %}{% endfor %}
+{% if livres %}<script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": livres} | tojson }}</script>{% endif %}
+{% endblock %}
 {% block main_attr %} class="pilier-romancier fond-teinte"{% endblock %}
 {% block contenu %}
 <div class="wrap livres">

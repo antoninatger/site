@@ -1,5 +1,6 @@
 ---
 titre: "Fake news et écologie : comment parler aux climatosceptiques"
+titre_seo: "Conférence fake news et écologie : parler aux climatosceptiques"
 sous_titre: Pourquoi les preuves ne suffisent pas, et ce qui marche vraiment pour en parler
 duree: 1 h 30 (conférence) · 2 à 3 h (atelier) · une demi-journée ou une journée (formation)
 publics: [Médiathèque, Grand public, Collectivités, Élus, Professionnels, Lycée, Supérieur]

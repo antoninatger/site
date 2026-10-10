@@ -1,5 +1,6 @@
 ---
 titre: Le piège des influenceurs
+titre_seo: "Intervention influenceurs et réseaux sociaux au collège et au lycée"
 sous_titre: Pourquoi on croit ses influenceurs préférés, et comment garder du recul
 duree: 1 h à 2 h
 publics: [Collège, Lycée]
