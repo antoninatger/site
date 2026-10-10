@@ -1,5 +1,6 @@
 ---
 titre: Jeux et outils pédagogiques
+titre_seo: "Jeux et outils pédagogiques sur les fake news et l'esprit critique"
 gabarit: jeux.html
 eyebrow: Pour la classe, l'atelier ou la maison
 lead: >-

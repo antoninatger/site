@@ -72,4 +72,5 @@ blog:
   wordpress_id: 31556844
   categories_fichier: contenu/categories.yaml
 
+espace_formations: https://formations.amanalat.workers.dev   # petit rond discret en bas de page (espace protégé par code)
 jeux_url: https://antoninatger.github.io/jeux      # à remettre sur https://jeux.antoninatger.com quand Cloudflare sera prêt

@@ -89,6 +89,7 @@
     {% endfor %}
     <div class="mentions">
       <span>© {{ annee }} {{ site.auteur }}</span>
+      {% if site.espace_formations %}<a class="pied-discret" href="{{ site.espace_formations }}" rel="nofollow noopener" title="Espace formations" aria-label="Espace formations">◦</a>{% endif %}
       {% for l in site.pied.mentions %}<a href="{{ l.url }}">{{ l.titre }}</a>{% endfor %}
     </div>
   </div>

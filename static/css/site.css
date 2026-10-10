@@ -251,6 +251,8 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 .site-footer li { margin: 4px 0; }
 .site-footer a { color: var(--ink); }
 .site-footer .brand__nom { font-size: 1.4rem; }
+.site-footer .pied-discret { opacity: .3; text-decoration: none; }
+.site-footer .pied-discret:hover, .site-footer .pied-discret:focus-visible { opacity: 1; }
 .site-footer .mentions { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 14px; display: flex; gap: 18px; flex-wrap: wrap; font-size: .85rem; }
 @media (max-width: 800px) { .site-footer .wrap { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .site-footer .wrap { grid-template-columns: 1fr; } }
