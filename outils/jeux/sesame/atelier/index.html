@@ -181,6 +181,10 @@ a.lien{color:var(--accent)}
 .essai iframe{flex:1;border:0;width:100%}
 @media (max-width:600px){ .labels{grid-template-columns:1fr} }
 @media (max-width:700px){ .bar{padding:8px 10px} .bar .in{display:block} .bar .msg{display:block;font-size:13px;margin-bottom:6px} .bar .btns{display:flex;gap:8px;overflow-x:auto} .bar .btn{flex:none;font-size:13.5px;padding:7px 10px} }
+
+/* changer d'ordinateur */
+.transfert{margin-top:14px;padding:12px 14px;border:1px solid var(--bord);border-left:4px solid var(--accent);border-radius:10px;background:var(--surface);font-size:15px;line-height:1.5}
+.transfert .tr-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 </style>
 
 <div class="wrap">
@@ -199,6 +203,7 @@ a.lien{color:var(--accent)}
     <div class="et2" style="margin-top:14px">Le style du jeu <small style="font-weight:400;opacity:.8">: à choisir maintenant ou plus tard, vos questions restent les mêmes</small></div>
     <div class="ambs" id="ambs"></div>
     <p>Première fois ? <button class="btn prim" id="exemple">Partir de l'exemple</button> : cinq questions déjà écrites, à modifier pour faire les vôtres. Votre travail est gardé tout seul sur cet ordinateur, dans ce navigateur.</p>
+    <div class="transfert" id="transfert"><b>Vous changez d'ordinateur ?</b> Sauvegardez votre travail dans un fichier : questions, réponses et photos comprises, puis, sur l'autre ordinateur, ouvrez cette page et reprenez-le là où vous en étiez.<span class="tr-btns"><button class="btn" type="button" id="trSauver">Sauvegarder mon travail</button><button class="btn" type="button" id="trReprendre">Reprendre un travail</button></span></div>
   </div>
 
   <section class="box">
@@ -733,7 +738,9 @@ $('telecharger').onclick=()=>{
   msg('Jeu téléchargé : « '+nom+' ».','ok');
   $('apNom').textContent=nom; $('apres').hidden=false; $('apFermer').focus();
 };
-$('exporter').onclick=()=>{ const nom=nomFichier()+'-sauvegarde.json'; telechargerFichier(nom, JSON.stringify(cfg), 'application/json'); msg('Travail sauvegardé dans Téléchargements : « '+nom+' ». Gardez-le pour modifier ce jeu plus tard (il contient les réponses : ne le donnez pas aux élèves).','ok'); };
+$('exporter').onclick=()=>{ const nom=nomFichier()+'-sauvegarde.json'; telechargerFichier(nom, JSON.stringify(cfg), 'application/json'); msg('Travail sauvegardé dans Téléchargements : « '+nom+' » (photos comprises). Sur un autre ordinateur, ouvrez l’atelier et cliquez « Reprendre un travail ». Ne le donnez pas aux élèves : il contient les réponses.','ok'); };
+$('trSauver').onclick=()=>$('exporter').click();
+$('trReprendre').onclick=()=>$('importer').click();
 $('importer').onclick=()=>{ $('fileCfg').value=''; $('fileCfg').click(); };
 $('fileCfg').onchange=async e=>{
   const f=e.target.files[0]; if(!f) return;
