@@ -272,7 +272,9 @@ Réponse : non
 
 • Une question avec des choix A, B, C, D devient un QCM.
 • Une question sans choix devient un levier à deux réponses (haut et bas).
-• Bonne réponse : une étoile * après le choix, ou une ligne « Réponse : B » (ou oui, non, vrai, faux).
+• Choix acceptés : A) a. 1) - ☐ ○, en liste automatique de Word ou non, sur des lignes séparées ou côte à côte.
+• Bonne réponse : une étoile * ou (x) après le choix, une case cochée ☒, le choix en gras, souligné, surligné ou en couleur, une ligne « Réponse : B » (ou 2, oui, non, vrai, faux, ou le texte du choix), ou un corrigé à la fin (« Corrigé : 1-B ; 2-C »).
+• Un tableau avec des colonnes Question, A, B, C, D et Réponse marche aussi.
 • Fichiers acceptés : Word (.docx), PDF avec du texte, texte (.txt). Un PDF scanné en image ne peut pas être lu.</div>
     </details>
   </section>
@@ -676,19 +678,146 @@ $('fileCfg').onchange=async e=>{
 $('nouveau').onclick=()=>{ if(!confirm('Effacer cette machine et repartir de zéro ?')) return; cfg=DEFAUT(); remplirChamps(); dessinerItems(); garder(); };
 
 
-/* ---------- Import de questions depuis un document (Word, PDF, texte) ---------- */
+/* ---------- Import de questions depuis un document (Word, PDF, texte) ----------
+   Les profs écrivent leurs QCM de cent façons : listes automatiques de Word,
+   choix A) a. 1) ☐ - ○, bonne réponse en gras, surlignée, cochée, marquée d'une
+   étoile, écrite dessous (« Réponse : B », « Bonne réponse : 2 », « Réponse
+   correcte : Canberra »), dans un tableau, ou dans un corrigé à la fin
+   (« Corrigé : 1-B ; 2-C », « 1. B » ligne à ligne). Tout est ramené à des
+   lignes de texte, puis lu par lireQuestions. Testé sur 12 documents types
+   (Word, PDF, texte) le 11 octobre 2026. */
 const LIBS = {
   mammoth:'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js',
   pdf:'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
   pdfWorker:'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'
 };
 const charger = src => new Promise((res,rej)=>{ const sc=document.createElement('script'); sc.src=src; sc.onload=res; sc.onerror=()=>rej(new Error('lib')); document.head.appendChild(sc); });
+// Repère invisible ajouté à une ligne écrite en gras, soulignée, surlignée ou en couleur dans Word
+const MARQUE_MISE_EN_FORME = '⁣✓';
+
+/* --- Word (.docx) lu directement : listes automatiques, mise en forme, tableaux --- */
+async function dezipper(buf, voulus){
+  const dv=new DataView(buf), u8=new Uint8Array(buf), out={};
+  let e=u8.length-22; while(e>=0 && dv.getUint32(e,true)!==0x06054b50) e--;
+  if(e<0) throw new Error('zip');
+  let p=dv.getUint32(e+16,true); const n=dv.getUint16(e+10,true), td=new TextDecoder();
+  for(let i=0;i<n;i++){
+    if(dv.getUint32(p,true)!==0x02014b50) break;
+    const meth=dv.getUint16(p+10,true), csz=dv.getUint32(p+20,true), nl=dv.getUint16(p+28,true), el=dv.getUint16(p+30,true), cl=dv.getUint16(p+32,true), lho=dv.getUint32(p+42,true);
+    const nom=td.decode(u8.subarray(p+46,p+46+nl));
+    if(voulus.includes(nom)){
+      const deb=lho+30+dv.getUint16(lho+26,true)+dv.getUint16(lho+28,true), brut=u8.subarray(deb,deb+csz);
+      out[nom] = meth===0 ? td.decode(brut)
+        : await new Response(new Blob([brut]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+    }
+    p+=46+nl+el+cl;
+  }
+  return out;
+}
+const SYMBOLES_WINGDINGS={F0A8:'☐',F06F:'☐',F071:'☐',F0A1:'○',F0FE:'☒',F0FD:'☒',F078:'☒',F0FB:'☒',F0FC:'✓',F0D6:'✓'};
+function texteDocx(xml, numXml, stylesXml){
+  const P=new DOMParser(), doc=P.parseFromString(xml,'application/xml');
+  const att=(el,nom)=>el&&(el.getAttribute('w:'+nom)??el.getAttribute(nom));
+  const enfant=(el,nom)=>{ if(!el) return null; for(const c of el.children) if(c.tagName==='w:'+nom) return c; return null; };
+  // listes automatiques : numId → abstractNum → format de chaque niveau
+  const formats={};
+  if(numXml){
+    const nd=P.parseFromString(numXml,'application/xml'), abs={};
+    for(const a of nd.getElementsByTagName('w:abstractNum')){
+      const lv={}; for(const l of a.getElementsByTagName('w:lvl')) lv[att(l,'ilvl')]={fmt:att(enfant(l,'numFmt'),'val')||'decimal', txt:att(enfant(l,'lvlText'),'val')||'%1.', start:+(att(enfant(l,'start'),'val')||1)};
+      abs[att(a,'abstractNumId')]=lv;
+    }
+    for(const n of nd.getElementsByTagName('w:num')) formats[att(n,'numId')]=abs[att(enfant(n,'abstractNumId'),'val')]||{};
+  }
+  // styles de paragraphe qui portent une liste (« Liste à puces », « Liste numérotée »…), héritage compris
+  const stylesListe={};
+  if(stylesXml){
+    const sd=P.parseFromString(stylesXml,'application/xml'), base={}, propre={};
+    for(const st of sd.getElementsByTagName('w:style')){
+      const id=att(st,'styleId'), np=enfant(enfant(st,'pPr'),'numPr');
+      base[id]=att(enfant(st,'basedOn'),'val');
+      if(np) propre[id]={numId:att(enfant(np,'numId'),'val'), ilvl:att(enfant(np,'ilvl'),'val')};
+    }
+    for(const id in base){ let k=id, garde=0; while(k && !propre[k] && garde++<10) k=base[k]; if(k && propre[k]) stylesListe[id]=propre[k]; }
+  }
+  const compteurs={};
+  const LETTRES='abcdefghijklmnopqrstuvwxyz';
+  function prefixeListe(pPr){
+    const np=enfant(pPr,'numPr'), st=stylesListe[att(enfant(pPr,'pStyle'),'val')];
+    if(!np && !st) return '';
+    const id=att(enfant(np,'numId'),'val')||(st&&st.numId), niv=+(att(enfant(np,'ilvl'),'val')||(st&&st.ilvl)||0);
+    if(!id || id==='0') return '';
+    const lv=(formats[id]||{})[niv]||{fmt:'decimal',txt:`%${niv+1}.`,start:1};
+    const c=compteurs[id]=compteurs[id]||[];
+    c[niv]=(c[niv]===undefined?lv.start-1:c[niv])+1; c.length=niv+1;
+    if(lv.fmt==='bullet' || lv.fmt==='none') return lv.fmt==='none' ? '' : '- ';
+    const k=c[niv], rendu = lv.fmt==='lowerLetter' ? LETTRES[(k-1)%26] : lv.fmt==='upperLetter' ? LETTRES[(k-1)%26].toUpperCase()
+      : lv.fmt==='lowerRoman' ? ['i','ii','iii','iv','v','vi','vii','viii','ix','x'][k-1]||k : lv.fmt==='upperRoman' ? (['i','ii','iii','iv','v','vi','vii','viii','ix','x'][k-1]||String(k)).toUpperCase() : String(k);
+    return lv.txt.replace(/%\d/g,m=>+m[1]===niv+1?rendu:'').trim()+' ';
+  }
+  const actif=el=>{ if(!el) return false; const v=(att(el,'val')||'').toLowerCase(); return !['0','false','none','auto','ffffff','000000','clear'].includes(v); };
+  function paragraphe(p){
+    let txt='', marque=0, total=0;
+    for(const r of p.getElementsByTagName('w:r')){
+      const rPr=enfant(r,'rPr');
+      const fort = rPr && (actif(enfant(rPr,'b')) && (att(enfant(rPr,'b'),'val')??'1')!=='0' || actif(enfant(rPr,'u')) || actif(enfant(rPr,'highlight'))
+        || (enfant(rPr,'shd') && !['auto','FFFFFF','ffffff',null].includes(att(enfant(rPr,'shd'),'fill'))) || actif(enfant(rPr,'color')));
+      let t='';
+      for(const c of r.children){
+        if(c.tagName==='w:t') t+=c.textContent;
+        else if(c.tagName==='w:tab') t+='\t';
+        else if(c.tagName==='w:br' || c.tagName==='w:cr') t+='\n';
+        else if(c.tagName==='w:sym') t+=SYMBOLES_WINGDINGS[(att(c,'char')||'').toUpperCase()]||'';
+      }
+      const plein=t.replace(/\s/g,'').length; total+=plein; if(fort) marque+=plein;
+      txt+=t;
+    }
+    // case à cocher de contrôle de contenu (w14:checkbox)
+    for(const cb of p.getElementsByTagName('w14:checked')) if((cb.getAttribute('w14:val')||'')==='1') txt=txt.replace('☐','☒');
+    const pre=prefixeListe(enfant(p,'pPr'));
+    return (pre+txt) + (total && marque/total>=.6 ? MARQUE_MISE_EN_FORME : '');
+  }
+  function tableau(tbl){
+    const lignes=[...tbl.getElementsByTagName('w:tr')].map(tr=>[...tr.getElementsByTagName('w:tc')].map(tc=>[...tc.getElementsByTagName('w:p')].map(paragraphe).join(' ').replace(MARQUE_MISE_EN_FORME,'').trim()));
+    if(!lignes.length) return [];
+    const tete=lignes[0].map(c=>c.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim());
+    const iq=tete.findIndex(c=>/^(question|enonce|intitule|affirmation)s?/.test(c));
+    const ic=['a','b','c','d'].map(l=>tete.findIndex(c=>c===l||c==='choix '+l||c==='reponse '+l));
+    const ir=tete.findIndex(c=>/^(bonne )?(reponse|corrige|solution)s?( correcte| juste| attendue)?$/.test(c));
+    const out=[];
+    if(iq>=0 && (ic.some(i=>i>=0) || ir>=0)){
+      lignes.slice(1).forEach((l,k)=>{
+        if(!l[iq]) return;
+        out.push(`${k+1}. ${l[iq]}`);
+        ic.forEach((i,j)=>{ if(i>=0 && l[i]) out.push(`${'ABCD'[j]}) ${l[i]}`); });
+        if(ir>=0 && l[ir]) out.push(`Réponse : ${l[ir]}`);
+        out.push('');
+      });
+      return out;
+    }
+    for(const l of lignes){ out.push(...l.filter(Boolean)); out.push(''); }
+    return out;
+  }
+  const corps=doc.getElementsByTagName('w:body')[0], lignes=[];
+  for(const el of corps.children){
+    if(el.tagName==='w:p') lignes.push(...paragraphe(el).split('\n'));
+    else if(el.tagName==='w:tbl') lignes.push(...tableau(el));
+  }
+  return lignes.join('\n');
+}
 async function texteDuDocument(file){
   const nom=file.name.toLowerCase();
   if(nom.endsWith('.docx')){
-    if(!window.mammoth) await charger(LIBS.mammoth);
-    const r=await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});
-    return r.value;
+    const buf=await file.arrayBuffer();
+    try{
+      if(!('DecompressionStream' in window)) throw new Error('vieux');
+      const f=await dezipper(buf,['word/document.xml','word/numbering.xml','word/styles.xml']);
+      if(!f['word/document.xml']) throw new Error('docx');
+      return texteDocx(f['word/document.xml'], f['word/numbering.xml'], f['word/styles.xml']);
+    }catch(x){   // navigateur ancien ou fichier particulier : lecture simple
+      if(!window.mammoth) await charger(LIBS.mammoth);
+      return (await mammoth.extractRawText({arrayBuffer:buf})).value;
+    }
   }
   if(nom.endsWith('.pdf')){
     if(!window.pdfjsLib) await charger(LIBS.pdf);
@@ -697,12 +826,14 @@ async function texteDuDocument(file){
     const lignes=[];
     for(let p=1;p<=pdf.numPages;p++){
       const tc=await (await pdf.getPage(p)).getTextContent();
-      let cur='', y=null;
+      let cur='', y=null, xFin=null;
       for(const it of tc.items){
-        const yy=Math.round(it.transform[5]);
-        if(y!==null && Math.abs(yy-y)>3){ lignes.push(cur); if(Math.abs(yy-y)>22) lignes.push(''); cur=''; }
-        cur+=it.str; y=yy;
-        if(it.hasEOL){ lignes.push(cur); cur=''; y=null; }
+        const yy=Math.round(it.transform[5]), x=it.transform[4], h=Math.abs(it.transform[3])||10;
+        if(y!==null && Math.abs(yy-y)>3){ lignes.push(cur); if(Math.abs(yy-y)>h*2.1) lignes.push(''); cur=''; xFin=null; }
+        // un grand blanc sur la ligne (choix côte à côte) devient une tabulation
+        if(xFin!==null && it.str){ const ecart=x-xFin; if(ecart>h*1.2) cur+='\t'; else if(ecart>h*.15 && !/\s$/.test(cur) && !/^\s/.test(it.str)) cur+=' '; }
+        cur+=it.str; y=yy; if(it.str) xFin=x+(it.width||0);
+        if(it.hasEOL){ lignes.push(cur); cur=''; y=null; xFin=null; }
       }
       if(cur) lignes.push(cur);
       lignes.push('');
@@ -712,47 +843,121 @@ async function texteDuDocument(file){
   if(nom.endsWith('.doc')) throw new Error('doc');
   return await file.text();
 }
-// Découpe le texte en questions : choix « A) … » à « D) … », bonne réponse « * » ou « Réponse : B »
+
+/* --- Lecture des questions --- */
 function lireQuestions(txt){
-  const L=txt.replace(/\r/g,'').split('\n').map(l=>l.replace(/ /g,' ').trimEnd());
-  const RX_CHOIX=/^\s*[\(\[]?([A-Da-d])\s*[\)\.\]:\-–]\s+(.+)$/;
-  const RX_REP=/^\s*(?:bonne\s+)?(?:r[ée]ponse|corrig[ée]|solution|answer)\s*[:\-–]?\s*\(?([A-Da-d]|oui|non|vrai|faux)\)?\s*\.?$/i;
-  const RX_NUM=/^\s*(?:Q(?:uestion)?\s*)?(\d{1,2})\s*[\.\)\-–:]\s+(.+)$/i;
-  const MARQUE=/(\s*(\*|\(x\)|\[x\]|✔|✓|✅|\(bonne r[ée]ponse\))\s*)/i;
-  const qs=[]; let q=null, blanc=false;
+  const sansAcc=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+  const nettoie=s=>s.replace(/[  ]/g,' ').replace(/[ \t]+$/,'');
+  const L=txt.replace(/\r/g,'').split('\n').map(nettoie);
+  const COCHE='☒☑■●◉⚫◼✓✔✅▣', CASE='☐□▢○◯⚪◻❏❑';
+  const RX_PUCE=new RegExp(`^\\s*(\\[[ xX✓✔]?\\]|\\([ xX✓✔]?\\)|[${COCHE}${CASE}]|[-–•·▪►➢])\\s*(.+)$`);
+  const RX_LETTRE=/^\s*[\(\[]?([A-Da-d])\s*[\)\.\]:\-–\/]\s*(.+)$/;
+  const RX_CHIFFRE=/^\s*[\(\[]?([1-6])\s*[\)\.\]:\-–\/]\s*(.+)$/;
+  const RX_NUM=/^\s*(?:(Q(?:uestion)?|Exercice|Ex\.?|N°)\s*)?(\d{1,2})\s*(?:°|ère|e|er)?\s*[\.\)\-–:\/]\s*(.*)$/i;
+  const RX_TITRE_Q=/^\s*(?:Q(?:uestion)?|Exercice)\s*(?:n°\s*)?(\d{1,2})\s*[\.\):\-–]?\s*$/i;
+  const RX_REP=/^\s*(?:la\s+)?(?:bonne\s+)?(?:r[ée]ponse|corrig[ée]|solution|correction|answer)(?:\s+(?:correcte|juste|attendue|exacte|valide))?\s*(?:[:\-–=]|est)\s*(.+?)\s*\.?$/i;
+  const RX_REP_LIGNE=/\s*[—–\-\(\[]*\s*(?:bonne\s+)?r[ée]ponse\s*(?:correcte\s*)?[:=]\s*([^\)\]]+?)\s*[\)\]]?\s*$/i;
+  const RX_CLE=/^\s*(?:corrig[ée]s?|correction|cl[ée]\s+de\s+correction|r[ée]ponses|solutions|answers)(?![a-zà-ÿ])(?:\s+(?:du|de\s+la|des)\s+\S+)*\s*[:\-–]?\s*(.*)$/i;
+  const RX_PAIRE=/(\d{1,2})\s*[\.\)\-–:=\/]?\s*([A-Da-d]|vrai|faux|oui|non|[VF])\b/gi;
+  const BRUIT=/^\s*(?:\d+\s*points?|nom\s*:.*|pr[ée]nom\s*:.*|classe\s*:.*|date\s*:.*|_{3,}.*|\*\s*obligatoire.*|\*?\s*indique une question obligatoire.*)\s*$/i;
+  const MARQUE=/(?:\s*(?:\(\s*(?:x|bonne\s+r[ée]ponse|juste|vrai)\s*\)|\[\s*x\s*\]|←\s*bonne\s+r[ée]ponse|✔|✓|✅|\*+))\s*$/i;
+  const VF=/\s*[\(\[]?\s*(?:vrai\s*(?:\/|ou|-|–)\s*faux|v\s*\/\s*f|oui\s*(?:\/|ou)\s*non)\s*\??\s*[\)\]]?\s*$/i;
+  const ENTETE_RX=/\s*\(\s*\d+(?:[,.]\d+)?\s*(?:pts?|points?)\s*\)\s*$|\s*\/\s*\d+\s*(?:pts?|points?)?\s*$|\s+\*\s*$/i;
+
+  const qs=[]; let q=null, blanc=false, cle=null;
+  const nouvelle=(texte,num,n)=>{ fin(); q={lignes:texte?[texte]:[],choix:[],marques:[],styleChoix:'',rep:null,num,n}; };
   const fin=()=>{ if(q && (q.lignes.join(' ').trim() || q.choix.length)) qs.push(q); q=null; };
-  for(const brut of L){
-    const l=brut.trim();
-    if(!l){ blanc=true; continue; }
+  const ajouterChoix=(t,style)=>{
+    const forme=t.endsWith(MARQUE_MISE_EN_FORME); t=t.replace(MARQUE_MISE_EN_FORME,'').trim();
+    let coche=false; if(MARQUE.test(t)){ t=t.replace(MARQUE,'').trim(); coche=true; }
+    q.choix.push(t); q.marques.push(coche?'net':forme?'forme':''); q.styleChoix=q.styleChoix||style; blanc=false;
+  };
+  const lireCle=s=>{ let m, vu=false; RX_PAIRE.lastIndex=0; while((m=RX_PAIRE.exec(s))){ cle[+m[1]]=m[2]; vu=true; } return vu; };
+
+  for(let i=0;i<L.length;i++){
+    let l=L[i].trim();
+    const forme=l.endsWith(MARQUE_MISE_EN_FORME), brut=l.replace(MARQUE_MISE_EN_FORME,'').trim();
+    if(!brut){ blanc=true; continue; }
     let m;
-    if((m=l.match(RX_REP)) && q){ q.rep=m[1]; blanc=false; continue; }
-    if((m=l.match(RX_CHOIX)) && q && q.lignes.length && (q.choix.length || !blanc || true)){
-      const lettre=m[1].toUpperCase(), attendu='ABCD'[q.choix.length];
-      if(lettre===attendu){
-        let t=m[2]; const bon=MARQUE.test(t); if(bon){ t=t.replace(MARQUE,' ').trim(); q.rep=lettre; }
-        q.choix.push(t); blanc=false; continue;
-      }
+    // corrigé groupé : tout ce qui suit sert de clé
+    if(cle){ lireCle(brut); continue; }
+    if((m=brut.match(RX_CLE)) && (!m[1] || /\d\s*[\.\)\-–:=\/]?\s*(?:[A-Da-d]|vrai|faux|oui|non|[VF])\b/i.test(m[1]))){
+      cle={}; fin(); lireCle(m[1]||''); continue;
     }
-    if((m=l.match(RX_NUM))){ fin(); q={lignes:[m[2]],choix:[],rep:null,num:true}; blanc=false; continue; }
-    if(!q || q.choix.length || blanc){ fin(); q={lignes:[l],choix:[],rep:null,num:false}; }
-    else q.lignes.push(l);
+    if(BRUIT.test(brut)) continue;
+    // « Réponse : B » sous la question
+    if((m=brut.match(RX_REP)) && q){ q.rep=m[1]; blanc=false; continue; }
+    // plusieurs cases sur une ligne : « ☐ Vrai   ☒ Faux », « ☐ Paris ☒ Lyon ☐ Marseille »
+    const cases=[...brut.matchAll(new RegExp(`(\\[[ xX✓✔]?\\]|\\([ xX✓✔]?\\)|[${COCHE}${CASE}])\\s*([^${COCHE}${CASE}\\[\\(]+)`,'g'))];
+    if(q && q.lignes.length && !q.choix.length && cases.length>=2 && cases.map(c=>c[0]).join('').trim().length>=brut.length-2){
+      const opts=cases.map(c=>({t:c[2].trim(), ok:/[xX✓✔]/.test(c[1]) || COCHE.includes(c[1])}));
+      const vf=opts.map(o=>sansAcc(o.t)).every(t=>['vrai','faux','oui','non','v','f'].includes(t));
+      if(vf){ const o=opts.find(o=>o.ok); if(o) q.rep=o.t; }
+      else opts.forEach(o=>ajouterChoix(o.t+(o.ok?' (x)':''),'puce'));
+      blanc=false; continue;
+    }
+    // choix côte à côte : « A) Paris   B) Lyon   C) Marseille »
+    const cotes=brut.split(/\t+|\s{3,}|\s+(?=[\(\[]?[B-D]\s*[\)\.\]]\s)/).map(s=>s.trim()).filter(Boolean);
+    if(q && cotes.length>=2 && cotes.every(s=>RX_LETTRE.test(s)) && cotes.map(s=>s.match(RX_LETTRE)[1].toUpperCase()).join('')==='ABCD'.slice(q.choix.length,q.choix.length+cotes.length)){
+      cotes.forEach(s=>ajouterChoix(s.match(RX_LETTRE)[2],'lettre')); continue;
+    }
+    // choix A) a. [A]
+    if(q && q.lignes.length && (m=brut.match(RX_LETTRE)) && m[1].toUpperCase()==='ABCD'[q.choix.length] && (q.styleChoix==='' || q.styleChoix==='lettre')
+       && !(m[1].toUpperCase()==='A' && /^[Aa]\s/.test(brut) && !/^[Aa]\s*[\)\.\]:\-–\/]/.test(brut))){
+      ajouterChoix(m[2]+(forme?MARQUE_MISE_EN_FORME:''),'lettre'); continue;
+    }
+    // choix 1) 2) 3) : seulement sous une question, et pas une nouvelle question qui se termine par « ? »
+    if(q && q.lignes.length && q.num && (m=brut.match(RX_CHIFFRE)) && !/\?\s*$/.test(m[2]) && (q.styleChoix==='' || q.styleChoix==='chiffre')
+       && +m[1]===q.choix.length+1 && (q.choix.length || +m[1]!==q.n+1 || /[?:]\s*$/.test(q.lignes.join(' ').replace(ENTETE_RX,'')))){
+      ajouterChoix(m[2]+(forme?MARQUE_MISE_EN_FORME:''),'chiffre'); continue;
+    }
+    // choix à puce, case ou rond : ☐ Paris  ☒ Lyon  - Marseille  ○ Lille
+    if(q && q.lignes.length && (m=brut.match(RX_PUCE)) && (q.styleChoix==='' || q.styleChoix==='puce') && (q.choix.length || /[?:…]\s*$/.test(q.lignes.join(' ').replace(ENTETE_RX,'')) || !/^[-–•]/.test(brut))){
+      const sym=m[1], coche=/[xX✓✔]/.test(sym) || COCHE.includes(sym);
+      ajouterChoix(m[2]+(coche?' (x)':'')+(forme?MARQUE_MISE_EN_FORME:''),'puce'); continue;
+    }
+    // « Question 3 » seul sur sa ligne : le texte suit
+    if((m=brut.match(RX_TITRE_Q))){ nouvelle('',true,+m[1]); blanc=false; continue; }
+    if((m=brut.match(RX_NUM)) && (m[1] || m[3])){
+      if(q && !q.lignes.length && q.num){ q.lignes.push(m[3]); continue; }
+      nouvelle(m[3],true,+m[2]); blanc=false; continue;
+    }
+    if(!q || q.choix.length || q.rep || (blanc && q.lignes.length)) nouvelle(brut,false,0);
+    else q.lignes.push(brut);
     blanc=false;
   }
   fin();
   // Si le document numérote ses questions, un paragraphe non numéroté sans choix ni réponse est un titre ou une consigne : on l'ignore
   const numerote = qs.some(x=>x.num);
-  return qs.filter(x=>x.lignes.join('').trim().length>2)
-           .filter(x=>!(numerote && !x.num && !x.choix.length && !x.rep))
-           .map(x=>{
-    const question=x.lignes.join(' ').replace(/\s+/g,' ').trim();
+  let garde = qs.filter(x=>x.lignes.join('').trim().length>2)
+                  .filter(x=>!(numerote && !x.num && !x.choix.length && !x.rep));
+  // Sans numéros : un titre ou une consigne en tête (ni choix ni réponse, alors que les questions en ont) n'est pas une question
+  if(!numerote && garde.filter(x=>x.choix.length||x.rep).length>=Math.max(2,garde.length/2)){
+    while(garde.length && !garde[0].choix.length && !garde[0].rep) garde=garde.slice(1);
+  }
+  return garde.map((x,k)=>{
+    let question=x.lignes.join(' ').replace(MARQUE_MISE_EN_FORME,'').replace(/\s+/g,' ').trim(), rep=x.rep;
+    if(!rep && (m=question.match(RX_REP_LIGNE))){ rep=m[1]; question=question.slice(0,m.index).trim(); }
+    question=question.replace(ENTETE_RX,'').replace(VF,'').replace(/\s*[—–\-]\s*$/,'').trim();
+    const n = x.n || (numerote ? 0 : k+1);
+    if(!rep && cle) rep = cle[n] ?? cle[k+1] ?? null;
+    var m;
     if(x.choix.length>=2){
-      const k=Math.min(4,x.choix.length);
-      const r=(x.rep||'').toUpperCase();
-      return {texte:question+'\n\n'+x.choix.slice(0,k).map((c,j)=>'ABCD'[j]+'. '+c).join('\n'), q:k, rep:'ABCD'.slice(0,k).includes(r)?r:''};
+      const k2=Math.min(4,x.choix.length), lettres='ABCD'.slice(0,k2);
+      let r='';
+      const nets=x.marques.map((v,j)=>v==='net'?j:-1).filter(j=>j>=0), formes=x.marques.map((v,j)=>v==='forme'?j:-1).filter(j=>j>=0);
+      if(nets.length===1) r=lettres[nets[0]]||'';
+      else if(rep){
+        const v=String(rep).trim().replace(/[\.\s]+$/,''), mm=v.match(/^[\(\[]?([A-Da-d1-4])(?:\s*[\)\.\]:\-–]|$)/);
+        if(mm) r=/\d/.test(mm[1]) ? lettres[+mm[1]-1]||'' : mm[1].toUpperCase();
+        if(!r || !lettres.includes(r)){ r=''; const j=x.choix.findIndex(c=>sansAcc(c).replace(/\W+/g,' ').trim()===sansAcc(v).replace(/^[\(\[]?[a-d1-4]\s*[\)\.\]:\-–]\s*/i,'').replace(/\W+/g,' ').trim()); if(j>=0&&j<k2) r=lettres[j]; }
+      }
+      if(!r && formes.length===1) r=lettres[formes[0]]||'';
+      return {texte:question+'\n\n'+x.choix.slice(0,k2).map((c,j)=>'ABCD'[j]+'. '+c).join('\n'), q:k2, rep:lettres.includes(r)?r:''};
     }
-    const r=(x.rep||'').toLowerCase();
-    return {texte:question, rep: r==='oui'||r==='vrai' ? 'h' : r==='non'||r==='faux' ? 'b' : ''};
-  });
+    const r=sansAcc(String(rep||'')).trim().replace(/[\.\s!]+$/,'');
+    return {texte:question, rep: ['oui','vrai','v','juste','correct'].includes(r) ? 'h' : ['non','faux','f','incorrect'].includes(r) ? 'b' : ''};
+  }).filter(it=>it.texte.replace(/\s/g,'').length>1);
 }
 $('scan').onclick=()=>{ $('fileDoc').value=''; $('fileDoc').click(); };
 $('fileDoc').onchange=async e=>{
