@@ -9,6 +9,7 @@ lead: >-
   si toutes les réponses sont justes. Vous écrivez les questions, l'atelier fabrique le jeu : vos élèves y jouent
   directement sur ce site, ou avec un fichier à télécharger.
 description: "Sésame : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, à jouer en ligne ou hors ligne."
+partage_texte: "Sésame, un outil gratuit pour transformer ses QCM en escape game pour les élèves"
 outil_url: "/jeux/sesame/atelier/"
 outil_bouton: Créer mon jeu
 exemple_url: "/jeux/sesame/exemple/"

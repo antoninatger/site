@@ -724,6 +724,16 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .outil-corps .pas-a-pas { counter-reset: e; list-style: none; padding: 0; }
 .outil-corps .pas-a-pas li { counter-increment: e; position: relative; padding-left: 46px; margin: 0 0 14px; }
 .outil-corps .pas-a-pas li::before { content: counter(e); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: grid; place-items: center; }
+/* Faire connaître un outil : partage */
+.partage { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 28px; align-items: center; margin: 34px 0 10px; padding: 22px 24px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 12px; }
+.partage h2 { margin: 0 0 4px; font-size: 1.25rem; }
+.partage p { margin: 0; color: var(--ink-mute); }
+.partage__boutons { display: flex; flex-wrap: wrap; gap: 8px; }
+.partage__btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border: 1px solid var(--border); border-radius: 99px; background: var(--surface); color: var(--ink); font: inherit; font-size: .95rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: border-color .15s, background .15s, color .15s; }
+.partage__btn svg { width: 18px; height: 18px; flex: none; }
+.partage__btn:hover, .partage__btn:focus-visible { border-color: var(--accent); color: var(--accent-dark); background: var(--accent-light); }
+.partage__btn--whatsapp:hover, .partage__btn--whatsapp:focus-visible { border-color: #128c4a; color: #0d6b38; background: #e6f6ec; }
+@media (max-width: 760px) { .partage { grid-template-columns: 1fr; } }
 .outil-galerie { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0; }
 .outil-galerie img { width: 100%; border-radius: 8px; display: block; }
 .outil-fin { margin: 40px 0 10px; padding: 24px; border-radius: 12px; background: var(--accent-light); display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
