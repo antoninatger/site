@@ -912,6 +912,64 @@ body.amb-vapeur .decors p,body.amb-vapeur .decors h3{color:var(--ink)}
 .dc.labo{background:repeating-linear-gradient(135deg,#f2c230 0 8px,#16140c 8px 16px) top/100% 6px no-repeat,linear-gradient(#202823,#0e130f);color:#8cff5a;text-shadow:0 0 8px rgba(140,255,90,.6)}
 .dc.grimoire{background:radial-gradient(ellipse at 50% 0%,rgba(195,155,255,.45),transparent 70%),#170e29;color:#ffe7a6;font-family:Georgia,serif}
 @media (max-width:520px){ .dc-liste{grid-template-columns:1fr} }
+
+/* ---------- Labo de l'horreur : yeux en bocal, cœur qui bat ---------- */
+body.amb-labo .slot::before,body.amb-labo .slot::after,body.amb-labo .blade{display:none !important}
+/* la fiole : verre, liquide vert, bulles qui montent */
+body.amb-labo .groove{width:64%;top:2%;bottom:2%;border-radius:40% 40% 18px 18px / 12% 12% 18px 18px;
+  background:
+    radial-gradient(circle,rgba(220,255,200,.55) 0 2px,transparent 3px) 30% 0/100% 34px,
+    radial-gradient(circle,rgba(220,255,200,.4) 0 1.5px,transparent 2.5px) 70% 12px/100% 46px,
+    linear-gradient(90deg,rgba(255,255,255,.22),transparent 22% 70%,rgba(255,255,255,.1)),
+    linear-gradient(rgba(10,30,12,.6) 0 8%,rgba(90,190,70,.55) 9%,rgba(40,120,40,.75) 60%,rgba(20,70,25,.9));
+  box-shadow:inset 0 0 0 2px rgba(200,255,190,.35),inset 0 0 18px rgba(140,255,90,.35),0 0 calc(6px + var(--prog,0) * 16px) rgba(140,255,90,.35);
+  animation:bulles 3.2s linear infinite}
+@keyframes bulles{to{background-position:30% -34px,70% -34px,0 0,0 0}}
+body.amb-labo .channel.qcm .groove{width:56%;top:4%;bottom:4%}
+/* l'œil */
+body.amb-labo .knob,body.amb-labo .channel[data-state="0"]:not(.qcm) .knob{width:92%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#fff 0 10%,#f4ece4 34%,#e6c9c0 62%,#b98278 82%,#6b2d2a);
+  box-shadow:0 3px 8px rgba(0,0,0,.75),inset -2px -3px 6px rgba(120,30,30,.35);
+  transition:top .38s cubic-bezier(.3,1.5,.5,1),clip-path .25s,filter .3s;clip-path:ellipse(50% 50% at 50% 50%)}
+body.amb-labo .knob::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 50%,#050505 0 15%,transparent 16%),
+    radial-gradient(circle at 50% 50%,#2ed36b 0 24%,#0d6b2c 31%,#06240f 34%,transparent 35%),
+    repeating-conic-gradient(from 8deg,transparent 0 22deg,rgba(170,30,30,.28) 22deg 23deg);
+  transform:translate(calc(var(--ox,0) * 1%),calc(var(--oy,0) * 1%));transition:transform .12s ease-out}
+body.amb-labo .knob::after{inset:-35%;border-radius:50%}
+/* fermé tant que la question n'a pas de réponse */
+body.amb-labo .channel[data-state="0"]:not(.qcm) .knob{clip-path:none;filter:brightness(.8);
+  background:radial-gradient(circle at 40% 30%,#e9c2b6,#b97c6e 55%,#6b3a33)}
+body.amb-labo .channel[data-state="0"]:not(.qcm) .knob::before{inset:38% 16% 34%;border-radius:0 0 50% 50%/0 0 100% 100%;transform:none;
+  background:none;border-bottom:2.5px solid #240707;box-shadow:0 4px 0 -2px rgba(36,7,7,.0)}
+body.amb-labo .channel[data-state="0"]:not(.qcm) .knob::after{background:repeating-linear-gradient(90deg,transparent 0 5px,#240707 5px 6.5px) 50% 66%/62% 5px no-repeat}
+body.amb-labo .channel:not([data-state="0"]) .knob{filter:drop-shadow(0 0 7px rgba(140,255,90,.75))}
+body.amb-labo .knob.cligne{clip-path:ellipse(50% 5% at 50% 52%)}
+body.amb-labo .channel.drag .knob{clip-path:ellipse(50% 50% at 50% 50%);filter:drop-shadow(0 0 10px rgba(140,255,90,.9))}
+
+/* le cœur : il remplace le grand interrupteur */
+body.amb-labo .pull .track{width:78%;top:4%;bottom:4%;border-radius:46% 46% 14px 14px / 18% 18% 14px 14px;
+  background:radial-gradient(ellipse at 50% 70%,rgba(160,30,40,.35),transparent 70%),linear-gradient(90deg,rgba(255,255,255,.2),transparent 25% 70%,rgba(255,255,255,.08)),linear-gradient(rgba(40,10,14,.5),rgba(70,12,18,.85));
+  box-shadow:inset 0 0 0 2px rgba(255,200,200,.25),inset 0 0 24px rgba(255,60,60,.25),0 3px 10px #000}
+body.amb-labo .pull .handle,body.amb-labo .pull.down .handle{top:54%;width:84%;max-width:150px;aspect-ratio:1;border-radius:0;z-index:2;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='38%25' cy='32%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23ff8f86'/%3E%3Cstop offset='.35' stop-color='%23c3151f'/%3E%3Cstop offset='1' stop-color='%234a0309'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath d='M38 14c-4-6 2-12 7-8l2 10c3-1 7-1 10 0l3-12c5-3 10 2 7 8l-5 9c10 6 20 19 18 35-2 18-18 34-32 37C30 96 12 80 11 61 9 44 18 30 31 23z' fill='url(%23g)' stroke='%23300' stroke-width='1.5'/%3E%3Cpath d='M30 38c6 6 8 16 5 26M60 30c-4 10 0 22 9 28M45 50c3 6 2 14-2 20' fill='none' stroke='%237a0a12' stroke-width='2.5' stroke-linecap='round' opacity='.8'/%3E%3Cpath d='M26 40c6-6 14-9 20-8' fill='none' stroke='%23ffd0cc' stroke-width='3' stroke-linecap='round' opacity='.45'/%3E%3C/svg%3E") center/contain no-repeat;
+  box-shadow:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.8)) drop-shadow(0 0 calc(4px + var(--prog,0) * 14px) rgba(255,40,50,.6));
+  animation:battement-coeur calc(1.5s - var(--prog,0) * .85s) ease-in-out infinite;transform-origin:50% 55%}
+@keyframes battement-coeur{0%,40%,100%{transform:translate(-50%,-50%) scale(1)}10%{transform:translate(-50%,-50%) scale(1.09)}22%{transform:translate(-50%,-50%) scale(.97)}30%{transform:translate(-50%,-50%) scale(1.05)}}
+body.amb-labo .pull.down .handle{animation:none;transform:translate(-50%,-50%) scale(.86);filter:drop-shadow(0 0 22px rgba(255,60,60,.95))}
+body.amb-labo .pull .blade{display:none}
+/* plus de bornes électriques : la créature n'est pas une machine */
+body.amb-labo .electrodes{visibility:hidden}
+/* le cadran devient un moniteur cardiaque */
+body.amb-labo .gauge svg{opacity:0}
+body.amb-labo .gauge::after{content:"";position:absolute;left:10%;right:10%;top:14%;height:52%;border-radius:6px;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Cpolyline points='0,22 30,22 36,22 40,16 44,22 52,22 56,4 60,36 64,22 74,22 80,18 86,22 120,22' fill='none' stroke='%238cff5a' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 0 50%/120px 100% repeat-x,
+    linear-gradient(rgba(140,255,90,.08) 1px,transparent 1px) 0 0/100% 8px,#050a06;
+  box-shadow:inset 0 0 0 2px #2a3a2a,inset 0 0 14px rgba(140,255,90,.2);
+  animation:ecg calc(2.4s - var(--prog,0) * 1.5s) linear infinite}
+@keyframes ecg{to{background-position:-120px 50%,0 0,0 0}}
+@media (prefers-reduced-motion:reduce){ body.amb-labo .groove,body.amb-labo .pull .handle,body.amb-labo .gauge::after{animation:none} }
 </style>
 
 <div class="machine" id="machine">
@@ -1076,7 +1134,7 @@ const C = Object.assign({
 /* Décor choisi dans la partie (bouton « Décor ») : il remplace celui du professeur sur
    cet appareil. Les questions, les réponses et la progression ne changent pas. */
 const DECORS=[['vapeur','Steampunk','leviers en laiton et vapeur'],['spatial','Station spatiale','interrupteurs et décollage'],
-              ['labo','Labo de l’horreur','éclairs verts et chauves-souris'],['grimoire','Grimoire magique','cristaux et runes']];
+              ['labo','Labo de l’horreur','yeux en bocal et cœur qui bat'],['grimoire','Grimoire magique','cristaux et runes']];
 const CLE_DECOR='sesame-decor:'+(C.id||'jeu');
 (function decorChoisi(){
   let k=''; const h=(location.hash.match(/decor=(\w+)/)||[])[1];
@@ -1097,11 +1155,11 @@ const AMBIANCES={
        enTete:'CONTRÔLE DE MISSION', message:'Bravo, la mission est un succès ! Vous avez trouvé la bonne combinaison.'}},
   labo:{arc:['120,255,60','110,255,60','215,255,195','150,255,110'], fonts:'Creepster&family=Special+Elite',
     hum:['sawtooth',60,'square',120.5], fumee:['200,230,190','150,190,140','90,120,90'],
-    v:{unite:'interrupteur', neutre:'ouvert', neutreP:'ouverts', jauge:'Tension', compteur:'Tentatives', maitre:'Courant',
-       call:'ENVOYER<br>LE COURANT', pullAria:'Abaisser le grand interrupteur', unitJauge:'volts',
-       impossible:'COURANT COUPÉ', echecPre:'COURT-CIRCUIT', okPre:'IL EST VIVANT !', titreFin:'IL EST VIVANT !', tampon:'VIVANT',
-       attente:'Fermez les {n} interrupteurs puis abaissez le grand interrupteur rouge.',
-       echec:'Mauvais branchement, vérifiez vos interrupteurs.', succes:'Le courant passe. Bien joué !',
+    v:{unite:'œil', neutre:'encore fermé', neutreP:'encore fermés', jauge:'Pouls', compteur:'Tentatives', maitre:'Le cœur',
+       call:'RÉVEILLER<br>LA CRÉATURE', pullAria:'Toucher le cœur pour réveiller la créature', unitJauge:'bpm',
+       impossible:'LA CRÉATURE DORT', echecPre:'LA CRÉATURE GROGNE', okPre:'IL EST VIVANT !', titreFin:'IL EST VIVANT !', tampon:'VIVANT',
+       attente:'Ouvrez les {n} yeux sur la bonne réponse, puis touchez le cœur pour réveiller la créature.',
+       echec:'Elle ne se réveille pas : vérifiez les yeux.', succes:'Le cœur bat. Bien joué !',
        enTete:'JOURNAL DU LABORATOIRE', message:'Bravo, il est vivant ! Vous avez trouvé le bon branchement.'}},
   grimoire:{arc:['195,155,255','195,155,255','255,248,225','226,184,88'], fonts:'Cinzel+Decorative:wght@700&family=IM+Fell+English',
     hum:['sine',110,'sine',164.8], fumee:['220,200,255','170,140,230','110,80,180'], magie:true,
@@ -1123,6 +1181,8 @@ const V = Object.assign({unite:'levier', neutre:'au point mort', jauge:'', compt
   const DEF={attente:['Positionnez les {n} leviers puis abaissez la manette rouge.','Réglez les {n} curseurs puis activez la liaison.'], echec:['Combinaison refusée, vérifiez vos leviers.','Combinaison refusée, vérifiez vos curseurs.'],
     succes:['Liaison établie. Bien joué !','Liaison établie.'], enTete:['TÉLÉGRAMME'],
     message:['Bravo, le canal est ouvert ! Vous avez trouvé la bonne combinaison.']};
+  DEF.attente.push('Fermez les {n} interrupteurs puis abaissez le grand interrupteur rouge.');
+  DEF.echec.push('Mauvais branchement, vérifiez vos interrupteurs.'); DEF.succes.push('Le courant passe. Bien joué !');
   Object.values(AMBIANCES).forEach(a=>{ if(a.v) Object.keys(DEF).forEach(k=>{ if(a.v[k]) DEF[k].push(a.v[k]); }); });
   const A=AMBIANCES[AMB].v||{};
   Object.keys(DEF).forEach(k=>{ if(DEF[k].includes(C[k])) C[k] = A[k] || DEF[k][0]; });
@@ -1624,7 +1684,8 @@ if(AMB==='grimoire'){
     for(let k=0;k<n;k++){ pos=Math.max(0,Math.min(GAMME.length-1,pos+[-2,-1,-1,1,1,2][(Math.random()*6)|0])); snd.cloche(GAMME[pos],2.4,0.035,t); if(Math.random()<.3) snd.cloche(GAMME[pos]/2,2.6,0.02,t); t+=.32+Math.random()*.25; }
     return t*1000+1800+Math.random()*2600; };
 }else if(AMB==='labo'){
-  snd.lever=()=>{ snd.burst(1500,0.9,0.6,0.06); snd.tone(70,0.14,0.3,'square'); snd.burst(5000,0.8,0.25,0.05,0.05); };
+  snd.lever=()=>{ snd.glisse(320,140,0.22,0.07); snd.burst(260,1.4,0.35,0.12); snd.tone(90,0.12,0.18,'sine',0.04); };
+  snd.coeur=(f=1)=>{ snd.tone(52,0.16,0.32*f,'sine'); snd.burst(90,0.8,0.25*f,0.1); snd.tone(46,0.2,0.26*f,'sine',0.22); snd.burst(80,0.8,0.2*f,0.12,0.22); };
   // musique d'ambiance : tonnerre lointain et orgue grave de laboratoire
   // musique d'ambiance Halloween : thérémine qui gémit, orgue grave et inquiétant, tonnerre au loin
   const NOTES=[293.7,311.1,349.2,415.3,440,466.2,587.3];
@@ -1634,7 +1695,7 @@ if(AMB==='grimoire'){
     snd.burst(70,0.4,0.35,2.4); snd.burst(140,0.5,0.15,1.4,0.1); return 7000+Math.random()*5000; };
   snd.success=()=>{ snd.burst(70,0.4,0.5,2.5); [146.8,174.6,220,293.7].forEach((f,k)=>snd.tone(f,2.4,0.05,'sawtooth',0.2+k*0.05)); snd.glisse(440,880,1.6,0.06,0.6); };
   snd.fail=()=>{ [146.8,155.6,207.7].forEach(f=>snd.tone(f,1.1,0.06,'sawtooth')); snd.glisse(330,165,1.2,0.05,0.2); };
-  snd.pull=()=>{ snd.burst(400,0.7,0.7,0.3); snd.tone(55,0.35,0.35,'sawtooth'); snd.burst(6000,0.7,0.3,0.25,0.3); };
+  snd.pull=()=>{ snd.coeur(1.4); };
 }else if(AMB==='spatial'){
   snd.zap=()=>{};
   // musique d'ambiance : bips lointains du poste de contrôle et écho de sonar
@@ -1807,8 +1868,8 @@ var ANNONCES={
     txt:"Placez chacun des {n} leviers sur la bonne réponse. Si tout est juste, la machine monte en pression, siffle de toutes ses soupapes… et le télégramme secret arrive. Une seule erreur, et le canal reste fermé."},
   spatial:{sur:'CONTRÔLE DE MISSION', titre:'Objectif : décollage', go:'Paré au lancement',
     txt:"Vous êtes aux commandes de la fusée. Armez chacun des {n} interrupteurs sur la bonne réponse : il faut trouver toutes les bonnes réponses pour amorcer le décollage. Alors les moteurs s'allument, tout tremble… et vous recevez le message secret en route vers les étoiles. Une seule erreur, et la fusée reste clouée au sol."},
-  labo:{sur:'JOURNAL DU LABORATOIRE', titre:'Réveiller la créature', go:'Au travail !',
-    txt:"Fermez chacun des {n} interrupteurs sur la bonne réponse. Si tous les branchements sont justes, la foudre traverse le laboratoire et la créature s'éveille pour livrer le message secret. Une seule erreur, et le courant ne passe pas."},
+  labo:{sur:'JOURNAL DU LABORATOIRE', titre:'Réveiller la créature', go:'J’ose…',
+    txt:"Dans chaque fiole flotte un œil. Ouvrez chacun des {n} yeux sur la bonne réponse. Si tout est juste, le cœur se remet à battre, la foudre traverse le laboratoire et la créature s'éveille pour livrer le message secret. Une seule erreur, et elle reste endormie."},
   grimoire:{sur:'LE GRIMOIRE S’OUVRE', titre:'Lancer le grand sort', go:'Que la magie opère',
     txt:"Posez chacune des {n} pierres de lune sur la bonne rune. Si toutes sont justes, le cercle magique s'embrase et le parchemin révèle le message secret. Une seule erreur, et le sort reste muet."}
 };
@@ -1953,6 +2014,30 @@ function finale(){
   // dans l'aperçu de l'atelier : l'atelier reprend le décor choisi pour le jeu à télécharger
   try{ if(window.parent!==window) window.parent.postMessage({sesameDecor:AMB},'*'); }catch(e){}
 })();
+
+/* ---------- Labo de l'horreur : les yeux suivent la souris et clignent ---------- */
+if(AMB==='labo' && !REDUCE_FX){
+  let px=innerWidth/2, py=innerHeight/2, vu=0;
+  const regarder=()=>{ vu=0; channels.forEach(ch=>{ const k=ch.querySelector('.knob'), r=k.getBoundingClientRect();
+    const dx=px-(r.left+r.width/2), dy=py-(r.top+r.height/2), d=Math.hypot(dx,dy)||1, f=Math.min(1,d/220)*16;
+    k.style.setProperty('--ox',(dx/d*f).toFixed(1)); k.style.setProperty('--oy',(dy/d*f).toFixed(1)); }); };
+  addEventListener('pointermove',e=>{ px=e.clientX; py=e.clientY; if(!vu) vu=requestAnimationFrame(regarder); },{passive:true});
+  regarder();
+  // personne ne bouge : les yeux regardent ailleurs, tout seuls
+  setInterval(()=>{ if(document.hidden || performance.now()-lastAction<5000) return; px=Math.random()*innerWidth; py=Math.random()*innerHeight; regarder(); },2600);
+  // un clignement de temps en temps, plus nerveux quand la créature approche du réveil
+  (function cligne(){
+    setTimeout(()=>{
+      if(!document.hidden){ const ouverts=channels.filter(c=>c.dataset.state!=='0'); const c=ouverts[(Math.random()*ouverts.length)|0];
+        if(c){ const k=c.querySelector('.knob'); k.classList.add('cligne'); setTimeout(()=>k.classList.remove('cligne'),140); } }
+      cligne();
+    }, (2600-PROG*1600)*(.5+Math.random()));
+  })();
+  // le cœur bat tout seul, au son, de plus en plus vite
+  (function bat(){
+    setTimeout(()=>{ if(!document.hidden && !enFinale && snd.ready() && PROG>0) snd.coeur(.35+PROG*.5); bat(); }, 1500-PROG*850);
+  })();
+}
 
 const ANIMAUX=['Renard','Hibou','Loutre','Lynx','Blaireau','Faucon','Belette','Chouette','Corbeau','Hermine','Martre','Chamois','Castor','Héron','Milan','Ours','Loup','Cerf','Lièvre','Moineau'];
 function nouvelAgent(){ return ANIMAUX[(Math.random()*ANIMAUX.length)|0]+'-'+String(10+((Math.random()*90)|0)); }
