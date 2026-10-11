@@ -891,6 +891,27 @@ body.amb-labo .telegram .paper{animation:allume .9s steps(1)}
   .channel .jewel,body.amb-spatial .lueur,body .telegram .paper{animation:none !important}
   .ciel,.cercle,.eclair{display:none !important}
 }
+
+/* ---------- Choix du décor ---------- */
+.decors{position:fixed;inset:0;z-index:13;display:grid;place-items:center;padding:16px;background:rgba(6,5,3,.8)}
+.decors[hidden]{display:none}
+.decors .card{width:min(620px,100%);padding:clamp(18px,2.6vw,34px);border-radius:12px;background:linear-gradient(var(--plate-hi),var(--plate));border:2px solid var(--brass);box-shadow:0 24px 70px #000;text-align:center;animation:anIn .4s cubic-bezier(.2,1.3,.4,1)}
+.decors h3{font-family:var(--f-display);font-size:clamp(24px,2.6vw,40px);margin:0 0 .3em;color:var(--brass-hi)}
+.decors p{margin:0 0 1em;color:var(--enamel);font-size:clamp(14px,1.2vw,19px)}
+body.amb-vapeur .decors .card{background:linear-gradient(#f6eed8,#e4d6b2)}
+body.amb-vapeur .decors p,body.amb-vapeur .decors h3{color:var(--ink)}
+.dc-liste{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.dc{font:inherit;cursor:pointer;border-radius:10px;border:2px solid transparent;padding:14px 10px;text-align:center;color:#fff;display:flex;flex-direction:column;gap:4px;min-height:84px;justify-content:center}
+.dc b{font-size:clamp(15px,1.4vw,22px);letter-spacing:.04em}
+.dc small{font-size:clamp(11px,.9vw,14px);opacity:.85;font-family:system-ui,sans-serif}
+.dc:hover,.dc:focus-visible{border-color:#fff;outline:none}
+.dc[aria-current="true"]{border-color:var(--brass-hi);box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.dc[aria-current="true"] b::after{content:" ✓"}
+.dc.vapeur{background:linear-gradient(#f1d488,#c9a24a 45%,#6e5119);color:#1c1510;font-family:"Stardos Stencil",serif}
+.dc.spatial{background:radial-gradient(1.4px 1.4px at 15% 25%,#fff,transparent),radial-gradient(1px 1px at 70% 15%,#fff,transparent),radial-gradient(ellipse 120% 60% at 50% 150%,rgba(79,209,255,.7),transparent 70%),#070a10;color:#ff8a2a;font-family:"Rajdhani","Arial Narrow",sans-serif}
+.dc.labo{background:repeating-linear-gradient(135deg,#f2c230 0 8px,#16140c 8px 16px) top/100% 6px no-repeat,linear-gradient(#202823,#0e130f);color:#8cff5a;text-shadow:0 0 8px rgba(140,255,90,.6)}
+.dc.grimoire{background:radial-gradient(ellipse at 50% 0%,rgba(195,155,255,.45),transparent 70%),#170e29;color:#ffe7a6;font-family:Georgia,serif}
+@media (max-width:520px){ .dc-liste{grid-template-columns:1fr} }
 </style>
 
 <div class="machine" id="machine">
@@ -945,6 +966,7 @@ body.amb-labo .telegram .paper{animation:allume .9s steps(1)}
 
   <footer class="foot">
     <div class="tape" id="tape" role="status"></div>
+    <button class="ctl" id="decor" aria-haspopup="dialog">Décor</button>
     <button class="ctl" id="objectif">Mission</button>
     <button class="ctl" id="maPartie">Mes réponses</button>
     <button class="ctl" id="reset">Remise à zéro</button>
@@ -1007,6 +1029,15 @@ body.amb-labo .telegram .paper{animation:allume .9s steps(1)}
     <circle cx="100" cy="100" r="18"/></g></svg>
 </div>
 
+<div class="decors" id="decors" hidden role="dialog" aria-modal="true" aria-labelledby="dcTitre">
+  <div class="card">
+    <h3 id="dcTitre">Changer de décor</h3>
+    <p>Les questions et vos réponses restent les mêmes : seul le décor change.</p>
+    <div class="dc-liste" id="dcListe"></div>
+    <button class="ctl" id="dcFermer">Fermer</button>
+  </div>
+</div>
+
 <div class="annonce" id="annonce" hidden role="dialog" aria-modal="true" aria-labelledby="anTitre">
   <div class="card">
     <div class="an-sur" id="anSur"></div>
@@ -1042,6 +1073,16 @@ const C = Object.assign({
   succes:'Liaison établie.', echec:'Combinaison refusée, vérifiez vos leviers.',
 
 }, CONFIG||{});
+/* Décor choisi dans la partie (bouton « Décor ») : il remplace celui du professeur sur
+   cet appareil. Les questions, les réponses et la progression ne changent pas. */
+const DECORS=[['vapeur','Steampunk','leviers en laiton et vapeur'],['spatial','Station spatiale','interrupteurs et décollage'],
+              ['labo','Labo de l’horreur','éclairs verts et chauves-souris'],['grimoire','Grimoire magique','cristaux et runes']];
+const CLE_DECOR='sesame-decor:'+(C.id||'jeu');
+(function decorChoisi(){
+  let k=''; const h=(location.hash.match(/decor=(\w+)/)||[])[1];
+  try{ k=h||localStorage.getItem(CLE_DECOR)||''; }catch(e){ k=h||''; }
+  if(DECORS.some(d=>d[0]===k)) C.ambiance=k;
+})();
 
 /* ---------- Ambiance du jeu : couleurs des effets, sons, vocabulaire ---------- */
 const AMBIANCES={
@@ -1796,7 +1837,8 @@ function flash(teinte,force){
   });
   el.addEventListener('keydown',e=>{ if(e.key==='Escape') go.click(); });
   document.getElementById('objectif').addEventListener('click',ouvrir);
-  setTimeout(()=>{ if(!solved) ouvrir(); },0);   // après la reprise éventuelle d'une partie
+  let sans=false; try{ sans=sessionStorage.getItem('sesame-sans-annonce')==='1'; sessionStorage.removeItem('sesame-sans-annonce'); }catch(e){}
+  setTimeout(()=>{ if(!solved && !sans) ouvrir(); },0);   // pas après un changement de décor
 })();
 
 // l'ambiance s'anime, de plus en plus à mesure que les commandes sont réglées
@@ -1885,6 +1927,32 @@ function finale(){
   apres(fin,()=>{ enFinale=false; b.classList.remove('fin-spatial','ascension'); });
   return fin;
 }
+
+/* ---------- Bouton « Décor » ---------- */
+(function decors(){
+  const fen=document.getElementById('decors'), liste=document.getElementById('dcListe'), btn=document.getElementById('decor');
+  const fermer=()=>{ fen.hidden=true; btn.focus(); };
+  DECORS.forEach(([k,nom,d])=>{
+    const b=document.createElement('button'); b.className='dc '+k; b.type='button';
+    b.innerHTML=`<b>${esc(nom)}</b><small>${esc(d)}</small>`;
+    if(k===AMB) b.setAttribute('aria-current','true');
+    b.addEventListener('click',()=>{
+      if(k===AMB){ fermer(); return; }
+      sauver();                                         // la progression est gardée
+      try{ localStorage.setItem(CLE_DECOR,k); }catch(e){}
+      try{ sessionStorage.setItem('sesame-sans-annonce','1'); }catch(e){}
+      if(location.protocol==='about:') location.reload();          // aperçu de l'atelier
+      else { history.replaceState(null,'',location.href.replace(/#.*$/,'')+'#decor='+k); location.reload(); }
+    });
+    liste.appendChild(b);
+  });
+  btn.addEventListener('click',()=>{ fen.hidden=false; (liste.querySelector('[aria-current]')||liste.firstChild).focus(); });
+  document.getElementById('dcFermer').addEventListener('click',fermer);
+  fen.addEventListener('click',e=>{ if(e.target===fen) fermer(); });
+  fen.addEventListener('keydown',e=>{ if(e.key==='Escape') fermer(); });
+  // dans l'aperçu de l'atelier : l'atelier reprend le décor choisi pour le jeu à télécharger
+  try{ if(window.parent!==window) window.parent.postMessage({sesameDecor:AMB},'*'); }catch(e){}
+})();
 
 const ANIMAUX=['Renard','Hibou','Loutre','Lynx','Blaireau','Faucon','Belette','Chouette','Corbeau','Hermine','Martre','Chamois','Castor','Héron','Milan','Ours','Loup','Cerf','Lièvre','Moineau'];
 function nouvelAgent(){ return ANIMAUX[(Math.random()*ANIMAUX.length)|0]+'-'+String(10+((Math.random()*90)|0)); }
