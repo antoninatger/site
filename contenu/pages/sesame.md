@@ -6,9 +6,9 @@ eyebrow: Vos QCM en escape game
 lead: >-
   Un outil pour présenter vos QCM et vos vrai/faux de façon ludique. Vos questions deviennent des leviers
   à abaisser, des interrupteurs à armer ou des pierres magiques à placer, et le message secret ne s'ouvre que
-  si toutes les réponses sont justes. Vous écrivez les questions, l'atelier fabrique le jeu : un seul fichier
-  à donner à vos élèves.
-description: "Sésame : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, un seul fichier à partager."
+  si toutes les réponses sont justes. Vous écrivez les questions, l'atelier fabrique le jeu : vos élèves y jouent
+  directement sur ce site, ou avec un fichier à télécharger.
+description: "Sésame : transformez gratuitement vos QCM en escape game pour vos élèves (leviers, station spatiale, pierres magiques…). Vos questions (vrai/faux, QCM, photos), un message secret à débloquer, à jouer en ligne ou hors ligne."
 outil_url: "/jeux/sesame/atelier/"
 outil_bouton: Créer mon jeu
 exemple_url: "/jeux/sesame/exemple/"
@@ -24,7 +24,7 @@ icone: ''
 faits:
   - ["De 2 à 40 questions", "vrai/faux, oui/non, réel/IA… ou QCM A-D"]
   - ["30 minutes", "pour préparer un jeu, ou moins avec un fichier Word"]
-  - ["Un seul fichier", "à mettre sur l'ENT, une clé USB ou par mail"]
+  - ["En ligne ou hors ligne", "un lien pour les élèves, le tableau de la classe, ou un fichier"]
   - ["Gratuit", "sans inscription, rien n'est envoyé sur Internet"]
 fin: "Votre premier jeu : choisissez un exemple dans l'atelier, changez les questions, essayez-le."
 ---
@@ -58,7 +58,7 @@ L'atelier est fait pour qu'un enseignant qui ne l'a jamais utilisé s'en sorte s
 <li><b>Les deux réponses possibles</b> : vrai / faux, oui / non, réel / IA, fiable / pas fiable… ou des QCM à quatre choix.</li>
 <li><b>Les questions</b> : à écrire directement, à importer d'un document Word ou PDF (un modèle est fourni), ou des photos, une par question.</li>
 <li><b>Le message de fin</b> : ce que lisent les élèves quand ils ont tout juste.</li>
-<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), interrupteurs à clapet et bouton de lancement (station spatiale), yeux qui flottent dans des fioles et cœur qui bat (labo de l’horreur) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier (un bouton « Voir un exemple » montre chacun) et se change à tout moment. Puis « Essayer le jeu », et « Télécharger pour les élèves ».</li>
+<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), interrupteurs à clapet et bouton de lancement (station spatiale), yeux qui flottent dans des fioles et cœur qui bat (labo de l’horreur) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier (un bouton « Voir un exemple » montre chacun) et se change à tout moment. Puis « Essayer le jeu », et faites jouer : « Lancer en classe », « Lien pour les élèves » ou « Télécharger le fichier ».</li>
 </ol>
 
 
@@ -72,6 +72,7 @@ L'atelier est fait pour qu'un enseignant qui ne l'a jamais utilisé s'en sorte s
 
 ## Bon à savoir
 
-- Le jeu téléchargé est **un seul fichier** qui s'ouvre dans n'importe quel navigateur, sans compte ni installation.
-- Votre travail est gardé automatiquement dans votre navigateur. « Sauvegarder mon travail » crée un fichier pour le reprendre ailleurs ou le partager avec un collègue. **Ce fichier contient les réponses : ne le donnez pas aux élèves**, donnez-leur seulement le fichier « pour les élèves ».
+- **Trois façons de faire jouer**, sans compte ni installation : « Lancer en classe » ouvre le jeu sur ce site, en plein écran, sur l'ordinateur du tableau ; « Lien pour les élèves » donne une adresse à partager, pour jouer sur ce site depuis n'importe quel appareil (jeux sans photos) ; « Télécharger le fichier » donne un jeu qui marche aussi sans internet.
+- Pendant la partie, le bouton « Décor » change d'univers sans toucher aux questions ni aux réponses déjà placées.
+- Votre travail est gardé automatiquement dans votre navigateur. « Sauvegarder mon travail » crée un fichier pour le reprendre ailleurs ou le partager avec un collègue. **Ce fichier contient les réponses : ne le donnez pas aux élèves**, donnez-leur seulement le lien ou le fichier du jeu.
 - Sésame est né du projet [Self Data](/parcours/#self-data), mené avec des collèges de la Métropole de Lyon.

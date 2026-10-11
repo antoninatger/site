@@ -2000,10 +2000,14 @@ function finale(){
     b.addEventListener('click',()=>{
       if(k===AMB){ fermer(); return; }
       sauver();                                         // la progression est gardée
-      try{ localStorage.setItem(CLE_DECOR,k); }catch(e){}
+      let garde=false; try{ localStorage.setItem(CLE_DECOR,k); garde=localStorage.getItem(CLE_DECOR)===k; }catch(e){}
       try{ sessionStorage.setItem('sesame-sans-annonce','1'); }catch(e){}
-      if(location.protocol==='about:') location.reload();          // aperçu de l'atelier
-      else { history.replaceState(null,'',location.href.replace(/#.*$/,'')+'#decor='+k); location.reload(); }
+      // sans stockage possible, le décor passe dans l'adresse, à côté de ce qui s'y trouve déjà (lien de jeu)
+      if(!garde && location.protocol!=='about:'){
+        const h=location.hash.replace(/^#/,'').split('&').filter(x=>x && !/^decor=/.test(x));
+        h.push('decor='+k); history.replaceState(null,'','#'+h.join('&'));
+      }
+      location.reload();
     });
     liste.appendChild(b);
   });
