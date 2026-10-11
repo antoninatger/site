@@ -948,16 +948,46 @@ body.amb-labo .channel:not([data-state="0"]) .knob{filter:drop-shadow(0 0 7px rg
 body.amb-labo .knob.cligne{clip-path:ellipse(50% 5% at 50% 52%)}
 body.amb-labo .channel.drag .knob{clip-path:ellipse(50% 50% at 50% 50%);filter:drop-shadow(0 0 10px rgba(140,255,90,.9))}
 
-/* le cœur : il remplace le grand interrupteur */
-body.amb-labo .pull .track{width:78%;top:4%;bottom:4%;border-radius:46% 46% 14px 14px / 18% 18% 14px 14px;
-  background:radial-gradient(ellipse at 50% 70%,rgba(160,30,40,.35),transparent 70%),linear-gradient(90deg,rgba(255,255,255,.2),transparent 25% 70%,rgba(255,255,255,.08)),linear-gradient(rgba(40,10,14,.5),rgba(70,12,18,.85));
-  box-shadow:inset 0 0 0 2px rgba(255,200,200,.25),inset 0 0 24px rgba(255,60,60,.25),0 3px 10px #000}
-body.amb-labo .pull .handle,body.amb-labo .pull.down .handle{top:54%;width:84%;max-width:150px;aspect-ratio:1;border-radius:0;z-index:2;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='38%25' cy='32%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23ff8f86'/%3E%3Cstop offset='.35' stop-color='%23c3151f'/%3E%3Cstop offset='1' stop-color='%234a0309'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath d='M38 14c-4-6 2-12 7-8l2 10c3-1 7-1 10 0l3-12c5-3 10 2 7 8l-5 9c10 6 20 19 18 35-2 18-18 34-32 37C30 96 12 80 11 61 9 44 18 30 31 23z' fill='url(%23g)' stroke='%23300' stroke-width='1.5'/%3E%3Cpath d='M30 38c6 6 8 16 5 26M60 30c-4 10 0 22 9 28M45 50c3 6 2 14-2 20' fill='none' stroke='%237a0a12' stroke-width='2.5' stroke-linecap='round' opacity='.8'/%3E%3Cpath d='M26 40c6-6 14-9 20-8' fill='none' stroke='%23ffd0cc' stroke-width='3' stroke-linecap='round' opacity='.45'/%3E%3C/svg%3E") center/contain no-repeat;
-  box-shadow:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.8)) drop-shadow(0 0 calc(4px + var(--prog,0) * 14px) rgba(255,40,50,.6));
-  animation:battement-coeur calc(1.5s - var(--prog,0) * .85s) ease-in-out infinite;transform-origin:50% 55%}
-@keyframes battement-coeur{0%,40%,100%{transform:translate(-50%,-50%) scale(1)}10%{transform:translate(-50%,-50%) scale(1.09)}22%{transform:translate(-50%,-50%) scale(.97)}30%{transform:translate(-50%,-50%) scale(1.05)}}
-body.amb-labo .pull.down .handle{animation:none;transform:translate(-50%,-50%) scale(.86);filter:drop-shadow(0 0 22px rgba(255,60,60,.95))}
+/* la créature : un visage dans l'ombre, deux grands yeux clos qui s'ouvrent si la combinaison est juste */
+body.amb-labo .pull .track{width:92%;top:3%;bottom:3%;border-radius:44% 44% 30% 30% / 26% 26% 22% 22%;
+  background:radial-gradient(ellipse 70% 55% at 50% 42%,#3b4a3a,#1d261d 60%,#0b100b),#0b100b;
+  box-shadow:inset 0 0 0 2px rgba(140,255,90,.12),inset 0 -20px 40px rgba(0,0,0,.6),0 3px 12px #000}
+/* cicatrice et points de suture */
+body.amb-labo .pull .track::before{content:"";position:absolute;left:18%;right:18%;top:16%;height:10px;
+  background:linear-gradient(#5c1f1f,#5c1f1f) 0 50%/100% 2px no-repeat,repeating-linear-gradient(90deg,transparent 0 7px,#c9b9a0 7px 9px) 0 0/100% 100%;opacity:.8;transform:rotate(-4deg)}
+body.amb-labo .pull .handle{display:none}
+/* bouche cousue */
+body.amb-labo .pull .track::after{content:"";position:absolute;left:28%;right:28%;top:72%;height:12px;border-radius:0 0 50% 50% / 0 0 100% 100%;
+  border-bottom:3px solid #0a0d0a;background:repeating-linear-gradient(90deg,transparent 0 9px,#c9b9a0 9px 11px) 0 100%/100% 12px no-repeat;opacity:.85}
+body.amb-labo.resolu .pull .track::after{border-radius:0 0 50% 50%/0 0 100% 100%;height:16px;top:70%}
+body.amb-labo .grands-yeux{position:absolute;left:50%;top:44%;width:84%;display:flex;justify-content:space-between;transform:translate(-50%,-50%);pointer-events:none;z-index:2}
+body.amb-labo .grand-oeil{position:relative;width:44%;aspect-ratio:1.25;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 38% 34%,#fff 0 12%,#efe6dc 40%,#d6b3a8 70%,#8c4a40);box-shadow:0 0 0 3px #0b100b,0 0 calc(var(--prog,0) * 14px) rgba(140,255,90,.5)}
+body.amb-labo .grand-oeil::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#050505 0 13%,transparent 14%),radial-gradient(circle at 50% 50%,#3dff7a 0 22%,#0f7a32 29%,#062a10 32%,transparent 33%),
+    repeating-conic-gradient(from 5deg,transparent 0 20deg,rgba(170,30,30,.3) 20deg 21deg);
+  transform:translate(calc(var(--ox,0) * 1%),calc(var(--oy,0) * 1%));transition:transform .15s ease-out}
+/* les paupières : fermées tant que la créature dort */
+body.amb-labo .grand-oeil::after{content:"";position:absolute;left:-4%;right:-4%;top:-4%;height:108%;
+  background:linear-gradient(#3e4d3c,#2a362a 46%,#1a1f19 50%,transparent 50.5%),linear-gradient(transparent 49.5%,#1a1f19 50%,#2a362a 54%,#3e4d3c);
+  background-size:100% 100%;transition:clip-path .9s cubic-bezier(.6,0,.3,1);
+  clip-path:inset(0 0 0 0)}
+/* cils sous la paupière fermée */
+body.amb-labo .grands-yeux::after{content:"";position:absolute;left:0;right:0;top:56%;height:10px;pointer-events:none;
+  background:repeating-linear-gradient(100deg,transparent 0 6px,#0a0d0a 6px 8px) 3% 0/40% 100% no-repeat,repeating-linear-gradient(80deg,transparent 0 6px,#0a0d0a 6px 8px) 97% 0/40% 100% no-repeat;transition:opacity .3s}
+/* presque réveillée : les paupières tressaillent */
+body.amb-labo.p2 .grand-oeil::after{animation:tressaille calc(3.4s - var(--prog,0) * 1.6s) ease-in-out infinite}
+body.amb-labo.p2 .grand-oeil:last-child::after{animation-delay:.25s}
+@keyframes tressaille{0%,88%,100%{clip-path:inset(0 0 0 0)}92%{clip-path:inset(0 0 0 0) ;transform:scaleY(.92)}95%{transform:none}}
+body.amb-labo .pull.down .grand-oeil::after{clip-path:polygon(0 0,100% 0,100% 44%,0 44%,0 56%,100% 56%,100% 100%,0 100%)}
+/* mauvaise combinaison : un œil s'entrouvre… et se referme */
+body.amb-labo .master.grogne .grand-oeil::after{animation:grogne 1.1s ease-in-out}
+@keyframes grogne{0%,100%{clip-path:polygon(0 0,100% 0,100% 50%,0 50%,0 50%,100% 50%,100% 100%,0 100%)}35%,60%{clip-path:polygon(0 0,100% 0,100% 36%,0 36%,0 64%,100% 64%,100% 100%,0 100%)}}
+body.amb-labo .master.grogne .grand-oeil::before{filter:hue-rotate(-110deg) saturate(2)}
+/* la bonne combinaison : les yeux s'ouvrent grand et brillent */
+body.amb-labo.resolu .grand-oeil::after{animation:none;clip-path:polygon(0 0,100% 0,100% 0,0 0,0 100%,100% 100%,100% 100%,0 100%)}
+body.amb-labo.resolu .grands-yeux::after{opacity:0}
+body.amb-labo.resolu .grand-oeil{box-shadow:0 0 0 3px #0b100b,0 0 26px 6px rgba(140,255,90,.85)}
 body.amb-labo .pull .blade{display:none}
 /* plus de bornes électriques : la créature n'est pas une machine */
 body.amb-labo .electrodes{visibility:hidden}
@@ -969,7 +999,7 @@ body.amb-labo .gauge::after{content:"";position:absolute;left:10%;right:10%;top:
   box-shadow:inset 0 0 0 2px #2a3a2a,inset 0 0 14px rgba(140,255,90,.2);
   animation:ecg calc(2.4s - var(--prog,0) * 1.5s) linear infinite}
 @keyframes ecg{to{background-position:-120px 50%,0 0,0 0}}
-@media (prefers-reduced-motion:reduce){ body.amb-labo .groove,body.amb-labo .pull .handle,body.amb-labo .gauge::after{animation:none} }
+@media (prefers-reduced-motion:reduce){ body.amb-labo .groove,body.amb-labo .gauge::after,body.amb-labo .grand-oeil::after{animation:none !important;transition:none} }
 </style>
 
 <div class="machine" id="machine">
@@ -1134,7 +1164,7 @@ const C = Object.assign({
 /* Décor choisi dans la partie (bouton « Décor ») : il remplace celui du professeur sur
    cet appareil. Les questions, les réponses et la progression ne changent pas. */
 const DECORS=[['vapeur','Steampunk','leviers en laiton et vapeur'],['spatial','Station spatiale','interrupteurs et décollage'],
-              ['labo','Labo de l’horreur','yeux en bocal et cœur qui bat'],['grimoire','Grimoire magique','cristaux et runes']];
+              ['labo','Labo de l’horreur','yeux en bocal et créature endormie'],['grimoire','Grimoire magique','cristaux et runes']];
 const CLE_DECOR='sesame-decor:'+(C.id||'jeu');
 (function decorChoisi(){
   let k=''; const h=(location.hash.match(/decor=(\w+)/)||[])[1];
@@ -1155,11 +1185,11 @@ const AMBIANCES={
        enTete:'CONTRÔLE DE MISSION', message:'Bravo, la mission est un succès ! Vous avez trouvé la bonne combinaison.'}},
   labo:{arc:['120,255,60','110,255,60','215,255,195','150,255,110'], fonts:'Creepster&family=Special+Elite',
     hum:['sawtooth',60,'square',120.5], fumee:['200,230,190','150,190,140','90,120,90'],
-    v:{unite:'œil', neutre:'encore fermé', neutreP:'encore fermés', jauge:'Pouls', compteur:'Tentatives', maitre:'Le cœur',
-       call:'RÉVEILLER<br>LA CRÉATURE', pullAria:'Toucher le cœur pour réveiller la créature', unitJauge:'bpm',
+    v:{unite:'œil', neutre:'encore fermé', neutreP:'encore fermés', jauge:'Pouls', compteur:'Tentatives', maitre:'La créature',
+       call:'RÉVEILLER<br>LA CRÉATURE', pullAria:'Réveiller la créature', unitJauge:'bpm',
        impossible:'LA CRÉATURE DORT', echecPre:'LA CRÉATURE GROGNE', okPre:'IL EST VIVANT !', titreFin:'IL EST VIVANT !', tampon:'VIVANT',
-       attente:'Ouvrez les {n} yeux sur la bonne réponse, puis touchez le cœur pour réveiller la créature.',
-       echec:'Elle ne se réveille pas : vérifiez les yeux.', succes:'Le cœur bat. Bien joué !',
+       attente:'Ouvrez les {n} yeux sur la bonne réponse, puis réveillez la créature.',
+       echec:'Elle ne se réveille pas : vérifiez les yeux.', succes:'Elle ouvre les yeux. Bien joué !',
        enTete:'JOURNAL DU LABORATOIRE', message:'Bravo, il est vivant ! Vous avez trouvé le bon branchement.'}},
   grimoire:{arc:['195,155,255','195,155,255','255,248,225','226,184,88'], fonts:'Cinzel+Decorative:wght@700&family=IM+Fell+English',
     hum:['sine',110,'sine',164.8], fumee:['220,200,255','170,140,230','110,80,180'], magie:true,
@@ -1183,6 +1213,7 @@ const V = Object.assign({unite:'levier', neutre:'au point mort', jauge:'', compt
     message:['Bravo, le canal est ouvert ! Vous avez trouvé la bonne combinaison.']};
   DEF.attente.push('Fermez les {n} interrupteurs puis abaissez le grand interrupteur rouge.');
   DEF.echec.push('Mauvais branchement, vérifiez vos interrupteurs.'); DEF.succes.push('Le courant passe. Bien joué !');
+  DEF.attente.push('Ouvrez les {n} yeux sur la bonne réponse, puis touchez le cœur pour réveiller la créature.'); DEF.succes.push('Le cœur bat. Bien joué !');
   Object.values(AMBIANCES).forEach(a=>{ if(a.v) Object.keys(DEF).forEach(k=>{ if(a.v[k]) DEF[k].push(a.v[k]); }); });
   const A=AMBIANCES[AMB].v||{};
   Object.keys(DEF).forEach(k=>{ if(DEF[k].includes(C[k])) C[k] = A[k] || DEF[k][0]; });
@@ -1751,6 +1782,7 @@ pull.addEventListener('click',()=>{
 });
 
 function lose(){
+  if(AMB==='labo'){ master.classList.remove('grogne'); void master.offsetWidth; master.classList.add('grogne'); setTimeout(()=>master.classList.remove('grogne'),1200); snd.glisse(110,70,1,0.08); }
   snd.fail(); gJitter=24;
   lamp.className='biglamp ko';
   machine.classList.remove('shake','flicker'); void machine.offsetWidth; machine.classList.add('shake','flicker');
@@ -1869,7 +1901,7 @@ var ANNONCES={
   spatial:{sur:'CONTRÔLE DE MISSION', titre:'Objectif : décollage', go:'Paré au lancement',
     txt:"Vous êtes aux commandes de la fusée. Armez chacun des {n} interrupteurs sur la bonne réponse : il faut trouver toutes les bonnes réponses pour amorcer le décollage. Alors les moteurs s'allument, tout tremble… et vous recevez le message secret en route vers les étoiles. Une seule erreur, et la fusée reste clouée au sol."},
   labo:{sur:'JOURNAL DU LABORATOIRE', titre:'Réveiller la créature', go:'J’ose…',
-    txt:"Dans chaque fiole flotte un œil. Ouvrez chacun des {n} yeux sur la bonne réponse. Si tout est juste, le cœur se remet à battre, la foudre traverse le laboratoire et la créature s'éveille pour livrer le message secret. Une seule erreur, et elle reste endormie."},
+    txt:"Dans chaque fiole flotte un œil. Ouvrez chacun des {n} yeux sur la bonne réponse. Si tout est juste, la créature ouvre enfin les yeux, la foudre traverse le laboratoire et la créature s'éveille pour livrer le message secret. Une seule erreur, et elle reste endormie."},
   grimoire:{sur:'LE GRIMOIRE S’OUVRE', titre:'Lancer le grand sort', go:'Que la magie opère',
     txt:"Posez chacune des {n} pierres de lune sur la bonne rune. Si toutes sont justes, le cercle magique s'embrase et le parchemin révèle le message secret. Une seule erreur, et le sort reste muet."}
 };
@@ -1878,6 +1910,7 @@ var hasard=(a,b)=>a+Math.random()*(b-a);
 function progression(){
   var f = N ? state.filter(v=>v!==0).length/N : 0, b=document.body;
   PROG=f; b.style.setProperty('--prog',f.toFixed(3));
+  b.classList.toggle('resolu', !!solved);
   b.classList.toggle('p1',f>=.34); b.classList.toggle('p2',f>=.67); b.classList.toggle('p3',f>=1 && !solved);
 }
 function flash(teinte,force){
@@ -2020,11 +2053,17 @@ function finale(){
 })();
 
 /* ---------- Labo de l'horreur : les yeux suivent la souris et clignent ---------- */
+if(AMB==='labo'){
+  const gy=document.createElement('span'); gy.className='grands-yeux'; gy.innerHTML='<span class="grand-oeil"></span><span class="grand-oeil"></span>';
+  pull.appendChild(gy);
+}
 if(AMB==='labo' && !REDUCE_FX){
   let px=innerWidth/2, py=innerHeight/2, vu=0;
   const regarder=()=>{ vu=0; channels.forEach(ch=>{ const k=ch.querySelector('.knob'), r=k.getBoundingClientRect();
     const dx=px-(r.left+r.width/2), dy=py-(r.top+r.height/2), d=Math.hypot(dx,dy)||1, f=Math.min(1,d/220)*16;
-    k.style.setProperty('--ox',(dx/d*f).toFixed(1)); k.style.setProperty('--oy',(dy/d*f).toFixed(1)); }); };
+    k.style.setProperty('--ox',(dx/d*f).toFixed(1)); k.style.setProperty('--oy',(dy/d*f).toFixed(1)); });
+    document.querySelectorAll('.grand-oeil').forEach(o=>{ const r=o.getBoundingClientRect(), dx=px-(r.left+r.width/2), dy=py-(r.top+r.height/2), d=Math.hypot(dx,dy)||1, f=Math.min(1,d/300)*18;
+      o.style.setProperty('--ox',(dx/d*f).toFixed(1)); o.style.setProperty('--oy',(dy/d*f).toFixed(1)); }); };
   addEventListener('pointermove',e=>{ px=e.clientX; py=e.clientY; if(!vu) vu=requestAnimationFrame(regarder); },{passive:true});
   regarder();
   // personne ne bouge : les yeux regardent ailleurs, tout seuls
@@ -2037,7 +2076,7 @@ if(AMB==='labo' && !REDUCE_FX){
       cligne();
     }, (2600-PROG*1600)*(.5+Math.random()));
   })();
-  // le cœur bat tout seul, au son, de plus en plus vite
+  // on entend son cœur battre, de plus en plus vite
   (function bat(){
     setTimeout(()=>{ if(!document.hidden && !enFinale && snd.ready() && PROG>0) snd.coeur(.35+PROG*.5); bat(); }, 1500-PROG*850);
   })();

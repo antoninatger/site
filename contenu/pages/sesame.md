@@ -18,7 +18,7 @@ vignette_alt: "Le même jeu dans quatre univers : steampunk, station spatiale, l
 diaporama:
   - ["/images/site/jeux/sesame-vapeur.jpg", "Steampunk : leviers en laiton et manette rouge"]
   - ["/images/site/jeux/sesame-spatial.jpg", "Station spatiale : interrupteurs sous clapet et bouton de lancement"]
-  - ["/images/site/jeux/sesame-labo.jpg", "Labo de l’horreur : yeux en bocal et cœur qui bat"]
+  - ["/images/site/jeux/sesame-labo.jpg", "Labo de l’horreur : yeux en bocal et créature endormie"]
   - ["/images/site/jeux/sesame-grimoire.jpg", "Grimoire magique : pierres de lune, runes et baguette"]
 icone: ''
 faits:
@@ -58,7 +58,7 @@ L'atelier est fait pour qu'un enseignant qui ne l'a jamais utilisé s'en sorte s
 <li><b>Les deux réponses possibles</b> : vrai / faux, oui / non, réel / IA, fiable / pas fiable… ou des QCM à quatre choix.</li>
 <li><b>Les questions</b> : à écrire directement, à importer d'un document Word ou PDF (un modèle est fourni), ou des photos, une par question.</li>
 <li><b>Le message de fin</b> : ce que lisent les élèves quand ils ont tout juste.</li>
-<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), interrupteurs à clapet et bouton de lancement (station spatiale), yeux qui flottent dans des fioles et cœur qui bat (labo de l’horreur) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier (un bouton « Voir un exemple » montre chacun) et se change à tout moment. Puis « Essayer le jeu », et faites jouer : « Lancer en classe », « Lien pour les élèves » ou « Télécharger le fichier ».</li>
+<li><b>L'univers</b>, et la commande qui va avec : leviers en laiton (steampunk), interrupteurs à clapet et bouton de lancement (station spatiale), yeux qui flottent dans des fioles et créature endormie qui ouvre les yeux (labo de l’horreur) ou pierres de lune et baguette (grimoire magique). Il se choisit tout en haut de l'atelier (un bouton « Voir un exemple » montre chacun) et se change à tout moment. Puis « Essayer le jeu », et faites jouer : « Lancer en classe », « Lien pour les élèves » ou « Télécharger le fichier ».</li>
 </ol>
 
 
