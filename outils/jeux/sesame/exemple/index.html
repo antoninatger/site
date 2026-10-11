@@ -774,6 +774,123 @@ body.amb-grimoire .knob::before{content:"";position:absolute;inset:0;border-radi
   background:rgba(255,255,255,.2);box-shadow:0 0 10px rgba(225,205,255,.6);opacity:0;will-change:opacity;animation:scintille2 3s ease-in-out infinite}
 @keyframes scintille2{0%,100%{opacity:0}50%{opacity:1}}
 @media (prefers-reduced-motion:reduce){ body.amb-grimoire .knob::before{animation:none} }
+
+/* ---------- QCM à 3-4 choix : de la place entre les lettres, et rien de choisi d'avance ---------- */
+body.qcm3 .thumb{flex:0 1 auto;min-height:clamp(56px,12vh,120px)}
+body.qcm3 .slot{min-height:clamp(110px,17vh,170px)}
+body.qcm3.rangs .slot{min-height:0}
+.channel.qcm .knob{transition:top .32s cubic-bezier(.3,1.5,.5,1),opacity .2s}
+.channel.qcm[data-state="0"] .knob{opacity:0 !important;pointer-events:none}
+.channel.qcm[data-state="0"] .ql,.channel.qcm[data-state="0"] .tag.up{animation:invite 2.4s ease-in-out infinite}
+@keyframes invite{0%,100%{opacity:.55}50%{opacity:1}}
+.ql{transition:transform .15s,color .15s}
+.ql:has(+ .qz:hover){color:var(--brass-hi);transform:translate(-100%,-50%) scale(1.3)}
+@media (prefers-reduced-motion:reduce){ .channel.qcm[data-state="0"] .ql,.channel.qcm[data-state="0"] .tag.up{animation:none} }
+
+/* ---------- Grimoire : de vrais cristaux qui flottent et filent seuls jusqu'à la rune ---------- */
+body.amb-grimoire .knob{width:60%;aspect-ratio:.62;border-radius:0;background:none;box-shadow:none;transform:translate(-50%,-50%);
+  filter:drop-shadow(0 0 5px rgba(195,155,255,.9)) drop-shadow(0 4px 3px rgba(0,0,0,.55));
+  animation:flotte 2.8s ease-in-out infinite;transition:top .8s cubic-bezier(.55,-.3,.3,1.3),opacity .3s,filter .3s}
+body.amb-grimoire .knob::before{inset:0;border-radius:0;opacity:1;box-shadow:none;animation:none;
+  clip-path:polygon(50% 0,94% 25%,94% 75%,50% 100%,6% 75%,6% 25%);
+  background:linear-gradient(118deg,transparent 0 30%,rgba(255,255,255,.85) 31% 37%,transparent 38%),
+    conic-gradient(from -30deg at 50% 46%,#f6efff 0 60deg,#c4a2ff 60deg 120deg,#7b4bd6 120deg 180deg,#3d1f7c 180deg 240deg,#9a70ec 240deg 300deg,#e2d2ff 300deg 360deg)}
+body.amb-grimoire .knob::after{inset:-45%;border-radius:20%;background:none}
+body.amb-grimoire .channel[data-state="-1"] .knob{background:none;box-shadow:none;filter:drop-shadow(0 0 6px rgba(226,184,88,.95)) drop-shadow(0 4px 3px rgba(0,0,0,.55))}
+body.amb-grimoire .channel[data-state="-1"] .knob::before{background:linear-gradient(118deg,transparent 0 30%,rgba(255,255,255,.85) 31% 37%,transparent 38%),
+    conic-gradient(from -30deg at 50% 46%,#fffaf0 0 60deg,#ffe6a3 60deg 120deg,#d9a53c 120deg 180deg,#7a5418 180deg 240deg,#e8bd5e 240deg 300deg,#fff1c9 300deg 360deg)}
+body.amb-grimoire .channel[data-state="0"]:not(.qcm) .knob{filter:drop-shadow(0 0 3px rgba(195,155,255,.5)) drop-shadow(0 4px 3px rgba(0,0,0,.55)) saturate(.6) brightness(.85)}
+body.amb-grimoire .channel.vol .knob{filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #c39bff) brightness(1.35)}
+body.amb-grimoire .channel.drag .knob{transition:top .28s cubic-bezier(.2,.8,.3,1),filter .3s;filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px #c39bff)}
+@keyframes flotte{0%,100%{translate:0 -2px;rotate:-2deg}50%{translate:0 3px;rotate:2deg}}
+@media (prefers-reduced-motion:reduce){ body.amb-grimoire .knob{animation:none;transition:opacity .2s} }
+
+/* ---------- Spectacle : annonce de la mission, montée en puissance, scène de fin ---------- */
+.annonce{position:fixed;inset:0;z-index:12;display:grid;place-items:center;padding:16px;background:rgba(6,5,3,.8)}
+.annonce[hidden]{display:none}
+.annonce .card{width:min(660px,100%);text-align:center;padding:clamp(20px,3.2vw,44px);border-radius:12px;
+  background:linear-gradient(var(--plate-hi),var(--plate));border:2px solid var(--brass);box-shadow:0 24px 70px #000;
+  animation:anIn .55s cubic-bezier(.2,1.3,.4,1)}
+@keyframes anIn{from{transform:translateY(24px) scale(.94);opacity:0}to{transform:none;opacity:1}}
+.an-sur{font-family:var(--f-type);letter-spacing:.3em;color:var(--brass);font-size:clamp(11px,1vw,16px)}
+.annonce h3{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,3.6vw,56px);line-height:1.05;margin:.35em 0 .4em;color:var(--brass-hi);letter-spacing:.04em}
+.annonce p{font-size:clamp(16px,1.45vw,23px);line-height:1.5;margin:0 0 1.3em;color:var(--enamel)}
+.annonce .ctl.prim{background:var(--brass);color:var(--ink);border-color:var(--brass);font-size:clamp(15px,1.4vw,22px);padding:.75em 1.8em;font-weight:700}
+.annonce .ctl.prim:hover{filter:brightness(1.12)}
+body.amb-vapeur .annonce .card{background:linear-gradient(#f6eed8,#e4d6b2)}
+body.amb-vapeur .annonce p,body.amb-vapeur .annonce h3{color:var(--ink)}
+body.amb-vapeur .an-sur{color:#7a5a1e}
+body.amb-spatial .annonce .card{border-color:var(--verdigris);box-shadow:0 24px 70px #000,0 0 40px rgba(79,209,255,.25)}
+body.amb-spatial .an-sur{color:var(--verdigris)}
+body.amb-labo .annonce .card{border-color:var(--green);box-shadow:0 24px 70px #000,0 0 40px rgba(140,255,90,.25)}
+body.amb-grimoire .annonce .card{box-shadow:0 24px 70px #000,0 0 50px rgba(195,155,255,.35)}
+
+/* témoins allumés à mesure que les commandes sont réglées */
+.channel:not([data-state="0"]) .jewel:not(.ok):not(.ko){background:var(--verdigris);box-shadow:0 0 8px var(--verdigris);animation:led 2.2s ease-in-out infinite}
+@keyframes led{50%{filter:brightness(1.5)}}
+/* la plaque-titre s'illumine peu à peu */
+body:not(.amb-spatial) .nameplate h1{filter:drop-shadow(0 0 calc(var(--prog,0) * 16px) var(--brass-hi));transition:filter 1s}
+/* tout est réglé : la machine frémit par moments et la commande principale appelle */
+body.p3:not(.amb-grimoire) .console{animation:frisson 3.2s linear infinite}
+@keyframes frisson{0%,86%,100%{transform:none}88%{transform:translate(-1px,1px)}90%{transform:translate(1px,-1px)}92%{transform:translate(-1px,0)}94%{transform:translate(1px,1px)}96%{transform:none}}
+body.p3 .master{animation:appel 1.6s ease-in-out infinite}
+@keyframes appel{50%{box-shadow:0 0 26px 2px var(--brass)}}
+body.amb-spatial.p3 .pull .track{animation:alerte 1s ease-in-out infinite}
+@keyframes alerte{50%{box-shadow:0 0 26px 8px rgba(255,59,59,.85),0 4px 10px #000,inset 0 0 0 5px #222}}
+body.amb-grimoire.p3 .nameplate{animation:rune 2.4s ease-in-out infinite}
+@keyframes rune{50%{box-shadow:0 0 30px 4px rgba(195,155,255,.7)}}
+
+/* station spatiale : les moteurs chauffent sous nos pieds */
+.lueur,.ciel{display:none}
+body.amb-spatial .lueur{display:block;position:fixed;left:0;right:0;bottom:0;height:42vh;pointer-events:none;z-index:4;mix-blend-mode:screen;
+  background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(255,170,80,.6),rgba(255,90,30,.2) 45%,transparent 72%);
+  opacity:calc(.06 + var(--prog,0) * .45);transition:opacity 1.2s,height 1.2s;animation:vacille .16s steps(2) infinite}
+body.amb-spatial.fin-spatial .lueur{opacity:1;height:80vh}
+body.amb-spatial.ascension .lueur{opacity:0;transition:opacity 2.5s}
+@keyframes vacille{50%{filter:brightness(1.3)}}
+/* le ciel bleu qui défile vers le bas : on traverse l'atmosphère */
+body.amb-spatial .ciel{display:block;position:fixed;left:0;right:0;top:0;height:220vh;pointer-events:none;z-index:4;mix-blend-mode:screen;opacity:0;
+  background:linear-gradient(transparent 0,rgba(60,120,200,.25) 35%,rgba(110,170,240,.55) 60%,rgba(180,215,255,.7) 80%,rgba(255,220,180,.6) 100%);
+  transform:translateY(-120vh)}
+body.amb-spatial.ascension .ciel{animation:atmosphere 3s cubic-bezier(.5,0,.75,1) forwards}
+@keyframes atmosphere{0%{opacity:1;transform:translateY(-120vh)}100%{opacity:1;transform:translateY(100vh)}}
+
+/* éclair plein écran */
+.eclair{position:fixed;inset:0;pointer-events:none;z-index:7;opacity:0;background:#fff}
+.eclair.vert{background:#dcffc8}
+.eclair.orange{background:radial-gradient(ellipse 90% 80% at 50% 100%,#fff6d0,#ffa040 55%,rgba(255,80,0,.4))}
+.eclair.violet{background:radial-gradient(circle,#fff,#d6bbff 45%,rgba(120,60,255,.35) 80%)}
+.eclair.on{animation:eclair .55s ease-out}
+@keyframes eclair{from{opacity:var(--a,1)}to{opacity:0}}
+
+/* secousses */
+.machine.vibre{animation:vibre .07s linear infinite}
+@keyframes vibre{0%,100%{transform:none}50%{transform:translate(1px,-1px)}}
+.machine.seisme{animation:seisme .09s linear infinite}
+@keyframes seisme{0%{transform:translate(0,0)}25%{transform:translate(-5px,3px)}50%{transform:translate(4px,-3px)}75%{transform:translate(-3px,-2px)}100%{transform:translate(3px,3px)}}
+
+/* grimoire : cercle magique */
+.cercle{display:none;position:fixed;left:50%;top:50%;width:min(72vh,72vw);aspect-ratio:1;z-index:6;pointer-events:none;
+  filter:drop-shadow(0 0 6px #c39bff) drop-shadow(0 0 18px #a982ff)}
+.cercle svg{width:100%;height:100%}
+.cercle.on{display:block;animation:cercle 2.5s cubic-bezier(.3,.8,.4,1) forwards}
+@keyframes cercle{0%{opacity:0;transform:translate(-50%,-50%) scale(.15) rotate(0)}25%{opacity:1}85%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(220deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.5) rotate(280deg)}}
+
+/* le message arrive chacun à sa façon */
+.telegram:not([hidden]) .stamp{animation:tampon .45s .55s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes tampon{from{opacity:0;scale:3}to{opacity:1;scale:1}}
+body.amb-spatial .telegram .paper{animation:arrivee .8s cubic-bezier(.2,1.2,.4,1)}
+@keyframes arrivee{from{transform:scale(.4);opacity:0;filter:blur(6px)}to{transform:none;opacity:1;filter:none}}
+body.amb-grimoire .telegram .paper{transform-origin:50% 0;animation:deroule 1s cubic-bezier(.3,1,.4,1)}
+@keyframes deroule{from{transform:scaleY(.03);opacity:.5}to{transform:none;opacity:1}}
+body.amb-labo .telegram .paper{animation:allume .9s steps(1)}
+@keyframes allume{0%{opacity:0}10%{opacity:1}18%{opacity:.15}30%{opacity:1}40%{opacity:.35}55%,100%{opacity:1}}
+
+@media (prefers-reduced-motion:reduce){
+  .annonce .card,.telegram:not([hidden]) .stamp,body.p3 .console,body.p3 .master,body.amb-spatial.p3 .pull .track,body.amb-grimoire.p3 .nameplate,
+  .channel .jewel,body.amb-spatial .lueur,body .telegram .paper{animation:none !important}
+  .ciel,.cercle,.eclair{display:none !important}
+}
 </style>
 
 <div class="machine" id="machine">
@@ -828,6 +945,7 @@ body.amb-grimoire .knob::before{content:"";position:absolute;inset:0;border-radi
 
   <footer class="foot">
     <div class="tape" id="tape" role="status"></div>
+    <button class="ctl" id="objectif">Mission</button>
     <button class="ctl" id="maPartie">Mes réponses</button>
     <button class="ctl" id="reset">Remise à zéro</button>
     <button class="ctl" id="sound" aria-pressed="true">Son : oui</button>
@@ -875,6 +993,27 @@ body.amb-grimoire .knob::before{content:"";position:absolute;inset:0;border-radi
   <div class="mtxt" id="zTxt" hidden></div>
   <button class="ctl znav znext" id="zNext" aria-label="Photo suivante">›</button>
   <div class="zcap" id="zCap"></div>
+</div>
+
+<div class="lueur" id="lueur" aria-hidden="true"></div>
+<div class="ciel" id="ciel" aria-hidden="true"></div>
+<div class="eclair" id="eclair" aria-hidden="true"></div>
+<div class="cercle" id="cercle" aria-hidden="true">
+  <svg viewBox="0 0 200 200"><g fill="none" stroke="#efe3ff" stroke-width="1.6">
+    <circle cx="100" cy="100" r="94"/><circle cx="100" cy="100" r="84" stroke-dasharray="2 6"/><circle cx="100" cy="100" r="58"/>
+    <polygon points="100,20 169.3,140 30.7,140"/><polygon points="100,180 30.7,60 169.3,60"/>
+    <circle cx="100" cy="20" r="5"/><circle cx="169.3" cy="140" r="5"/><circle cx="30.7" cy="140" r="5"/>
+    <circle cx="100" cy="180" r="5"/><circle cx="30.7" cy="60" r="5"/><circle cx="169.3" cy="60" r="5"/>
+    <circle cx="100" cy="100" r="18"/></g></svg>
+</div>
+
+<div class="annonce" id="annonce" hidden role="dialog" aria-modal="true" aria-labelledby="anTitre">
+  <div class="card">
+    <div class="an-sur" id="anSur"></div>
+    <h3 id="anTitre"></h3>
+    <p id="anTxt"></p>
+    <button class="ctl prim" id="anGo"></button>
+  </div>
 </div>
 
 <div class="telegram" id="telegram" hidden>
@@ -967,6 +1106,7 @@ const esc = t => String(t).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'
 const LETTRES='ABCD';
 const nbChoix = i => { const q=+(ITEMS[i]&&ITEMS[i].q)||0; return q>=2&&q<=4 ? q : 0; };   // 0 = levier à deux réponses
 const posQ = (i,v) => { const k=nbChoix(i); return 10+80*(v-1)/(k-1); };                    // position du bouton (en %)
+document.body.classList.toggle('qcm3', ITEMS.some((_,i)=>nbChoix(i)>=3));   // QCM à 3-4 choix : on donne plus de hauteur aux lettres
 const codeJeu = () => state.map((v,i)=> nbChoix(i) ? (LETTRES[v-1]||'-') : (v===1?'1':'0')).join('');
 const libChoix = (i,v) => nbChoix(i) ? (LETTRES[v-1]||'') : v===1?C.haut : v===-1?C.bas : '';
 const choixCode = (i,v) => nbChoix(i) ? (LETTRES[v-1]||null) : v===1?'haut' : v===-1?'bas' : null;
@@ -1005,7 +1145,28 @@ const fx = (()=>{
   rg.addColorStop(0,`rgba(${FU[0]},.6)`); rg.addColorStop(.45,`rgba(${FU[1]},.28)`); rg.addColorStop(1,`rgba(${FU[2]},0)`);
   g.fillStyle=rg; g.fillRect(0,0,64,64);
 
-  const smoke=[], sparks=[], arcs=[];
+  const smoke=[], sparks=[], arcs=[], glints=[];
+  // grosse fumée (décollage, vapeur) : aussi dans l'espace, contrairement à puff
+  function fumee(x,y,n=4,p=1,spread=1,vx0=0,vy0=null){
+    if(REDUCE_FX) return;
+    for(let k=0;k<n;k++){
+      smoke.push({x:x+rnd(-10,10)*spread,y:y+rnd(-4,4),vx:vx0+rnd(-.6,.6)*p*spread,vy:vy0===null?-rnd(.3,1.1)*p:vy0+rnd(-.3,.3),
+        r:rnd(8,16)*p,gr:rnd(.3,.7)*p,life:0,max:rnd(110,200),a:rnd(.35,.6)});
+    }
+    const MAXF=LEGER?220:420; if(smoke.length>MAXF) smoke.splice(0,smoke.length-MAXF);
+  }
+  // petite étoile qui scintille sur place
+  function glint(x,y,r=3,teinte='220,235,255'){
+    if(REDUCE_FX) return;
+    glints.push({x,y,r,c:teinte,life:0,max:rnd(40,90)});
+    if(glints.length>160) glints.splice(0,glints.length-160);
+  }
+  // étoile qui file (longue traînée), dans le sens donné
+  function trait(x,y,vx,vy){
+    if(REDUCE_FX) return;
+    sparks.push({x,y,vx,vy,life:0,max:120,m:true});
+    if(sparks.length>400) sparks.splice(0,sparks.length-400);
+  }
   function puff(x,y,n=4,p=1,spread=1){
     if(REDUCE_FX||ESPACE) return;
     for(let k=0;k<n;k++){
@@ -1057,7 +1218,7 @@ const fx = (()=>{
     c.stroke();
   }
   function frame(t){
-    if(!smoke.length && !sparks.length && !arcs.length){
+    if(!smoke.length && !sparks.length && !arcs.length && !glints.length){
       if(!propre){ c.clearRect(0,0,W,H); propre=true; }
       tPrec=0; requestAnimationFrame(frame); return;
     }
@@ -1083,7 +1244,7 @@ const fx = (()=>{
     c.lineCap='round';
     for(let i=sparks.length-1;i>=0;i--){
       const s=sparks[i]; s.life++;
-      if(s.life>s.max){sparks.splice(i,1);continue;}
+      if(s.life>s.max || (s.m && (s.y>H+40 || s.y<-40))){sparks.splice(i,1);continue;}
       s.vy+=s.m?0:MAGIE?-.02:.13; s.vx*=.985; s.x+=s.vx; s.y+=s.vy;
       const t=s.life/s.max;
       c.strokeStyle=`hsla(${48-t*30},100%,${80-t*35}%,${1-t})`;
@@ -1094,6 +1255,15 @@ const fx = (()=>{
         const r=3.2*(1-t)+.8; c.strokeStyle=(i%2?`hsla(275,100%,85%,${1-t})`:`hsla(45,100%,80%,${1-t})`);
         c.beginPath(); c.moveTo(s.x-r,s.y); c.lineTo(s.x+r,s.y); c.moveTo(s.x,s.y-r); c.lineTo(s.x,s.y+r); c.stroke();
       }else{ c.beginPath(); c.moveTo(s.x,s.y); c.lineTo(s.x-s.vx*2.2,s.y-s.vy*2.2); c.stroke(); }
+    }
+    // étoiles qui scintillent
+    for(let i=glints.length-1;i>=0;i--){
+      const g=glints[i]; g.life++;
+      if(g.life>g.max){glints.splice(i,1);continue;}
+      const a=Math.sin(Math.PI*g.life/g.max), r=g.r*(.6+a*.6);
+      c.strokeStyle=`rgba(${g.c},${a})`; c.lineWidth=1.3;
+      c.beginPath(); c.moveTo(g.x-r*1.8,g.y); c.lineTo(g.x+r*1.8,g.y); c.moveTo(g.x,g.y-r*1.8); c.lineTo(g.x,g.y+r*1.8); c.stroke();
+      c.fillStyle=`rgba(255,255,255,${a})`; c.beginPath(); c.arc(g.x,g.y,r*.45,0,7); c.fill();
     }
     // arcs électriques
     for(let i=arcs.length-1;i>=0;i--){
@@ -1130,7 +1300,7 @@ const fx = (()=>{
         r:rnd(45,95),gr:rnd(.15,.4),life:0,max:(W+240)/Math.abs(v),a:rnd(.24,.4)});
     }
   }
-  const api={puff,spark,arc,crackle,drift,onArc:null};
+  const api={puff,spark,arc,crackle,drift,fumee,glint,trait,onArc:null,taille:()=>({W,H})};
   return api;
 })();
 function center(el){ const r=el.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2}; }
@@ -1171,7 +1341,7 @@ for(let i=0;i<N;i++){
   ch.innerHTML = `
     <button class="thumb" id="thumb${i}" aria-label="Agrandir ${nomItem(i).toLowerCase()}">${ITEMS[i].f?`<img src="${ITEMS[i].t||ITEMS[i].f}" alt="">`:`<span class="ttxt"><span>${texteCarte(i)}</span></span>`}</button>
     <div class="num"><span class="jewel"></span>${n}</div>
-    <div class="tag up">${K?'—':esc(C.haut)}</div>
+    <div class="tag up">${K?'?':esc(C.haut)}</div>
     <div class="slot">
       <div class="groove"></div><div class="mid"></div><div class="blade"></div><div class="knob"></div>
       ${K?slotQ:`<button class="zone up" id="up${i}" aria-label="${nomItem(i)} : ${esc(C.haut)}"></button>
@@ -1209,7 +1379,7 @@ function ajusterRangs(){
   const r=document.documentElement.style, rows=Math.ceil(N/parseInt(getComputedStyle(document.documentElement).getPropertyValue('--c')));
   r.setProperty('--hslot','170px');
   const trop=document.documentElement.scrollHeight-innerHeight;
-  if(trop>0) r.setProperty('--hslot',Math.max(80,170-Math.ceil(trop/rows))+'px');
+  if(trop>0) r.setProperty('--hslot',Math.max(document.body.classList.contains('qcm3')?110:80,170-Math.ceil(trop/rows))+'px');
 }
 ajusterRangs(); addEventListener('resize',ajusterRangs); addEventListener('load',ajusterRangs);
 if(document.fonts) document.fonts.ready.then(ajusterRangs);
@@ -1255,14 +1425,28 @@ function afficherLevier(i){
   ch.dataset.state=String(v);
   if(K){
     ch.querySelector('.knob').style.top = v ? posQ(i,v)+'%' : '50%'; ch.style.setProperty('--lame', v ? (posQ(i,v)-50)/37 : 0);
-    ch.querySelector('.tag.up').textContent = v ? LETTRES[v-1] : '—';
+    ch.querySelector('.tag.up').textContent = v ? LETTRES[v-1] : '?';
     ch.querySelectorAll('.ql').forEach((l,j)=>l.classList.toggle('on', j+1===v));
   }
+}
+/* Grimoire : le cristal file tout seul jusqu'à sa rune en laissant une traînée d'étoiles */
+function volCristal(i,v){
+  if(AMB!=='grimoire' || REDUCE_FX) return;
+  const ch=channels[i], knob=ch.querySelector('.knob');
+  ch.classList.remove('vol'); void ch.offsetWidth; ch.classList.add('vol');
+  snd.glisse(990,1480,.7,.025);
+  const t0=performance.now();
+  (function trace(){
+    const t=performance.now()-t0, k=center(knob);
+    if(t<760){ fx.spark(k.x+(Math.random()-.5)*8,k.y+(Math.random()-.5)*8,2,.35); requestAnimationFrame(trace); return; }
+    fx.spark(k.x,k.y,v===0?4:14,.7); ch.classList.remove('vol');
+    if(v!==0) snd.cloche(2093,1.1,.04);
+  })();
 }
 function setLever(i,v){
   if(busy) return;
   state[i]=v; afficherLevier(i);
-  snd.lever();
+  snd.lever(); volCristal(i,v);
   setTimeout(()=>{
     const ch=channels[i], k=center(ch.querySelector('.knob'));
     fx.spark(k.x,k.y,v===0?4:9,.85);
@@ -1295,6 +1479,7 @@ let gTarget=6, gVal=0, gJitter=1.2;
 function updateSignal(){
   const set = state.filter(s=>s!==0).length;
   gTarget = solved ? 98 : 6 + set/N*62;
+  progression();
 }
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let impaire=false;
@@ -1496,7 +1681,7 @@ function win(silent){
   const tgMsg=document.getElementById('tgMsg');
   tgMsg.textContent=(C.message||'')+' ';
   if(C.lien && /^https?:\/\//i.test(C.lien)){ const a=document.createElement('a'); a.href=C.lien; a.target='_blank'; a.rel='noopener'; a.textContent=C.lien; tgMsg.appendChild(a); }
-  if(!silent) setTimeout(()=>{ document.getElementById('telegram').hidden=false; document.getElementById('tgClose').focus(); }, 1500);
+  if(!silent) setTimeout(()=>{ document.getElementById('telegram').hidden=false; document.getElementById('tgClose').focus(); }, finale());
 }
 
 document.getElementById('tgClose').addEventListener('click',()=>{ document.getElementById('telegram').hidden=true; });
@@ -1570,6 +1755,136 @@ if(!REDUCE_FX){
   setTimeout(()=>machine.classList.remove('boot'),1400);
 }
 
+
+/* =====================================================================
+   SPECTACLE : on annonce ce que produiront les bonnes réponses, l'ambiance
+   s'anime de plus en plus à mesure que les commandes sont réglées, et une
+   vraie scène de fin précède l'arrivée du message.
+   ===================================================================== */
+var ANNONCES={
+  vapeur:{sur:'ORDRE DE MISSION', titre:'Ouvrir le canal secret', go:'En avant !',
+    txt:"Placez chacun des {n} leviers sur la bonne réponse. Si tout est juste, la machine monte en pression, siffle de toutes ses soupapes… et le télégramme secret arrive. Une seule erreur, et le canal reste fermé."},
+  spatial:{sur:'CONTRÔLE DE MISSION', titre:'Objectif : décollage', go:'Paré au lancement',
+    txt:"Vous êtes aux commandes de la fusée. Armez chacun des {n} interrupteurs sur la bonne réponse : il faut trouver toutes les bonnes réponses pour amorcer le décollage. Alors les moteurs s'allument, tout tremble… et vous recevez le message secret en route vers les étoiles. Une seule erreur, et la fusée reste clouée au sol."},
+  labo:{sur:'JOURNAL DU LABORATOIRE', titre:'Réveiller la créature', go:'Au travail !',
+    txt:"Fermez chacun des {n} interrupteurs sur la bonne réponse. Si tous les branchements sont justes, la foudre traverse le laboratoire et la créature s'éveille pour livrer le message secret. Une seule erreur, et le courant ne passe pas."},
+  grimoire:{sur:'LE GRIMOIRE S’OUVRE', titre:'Lancer le grand sort', go:'Que la magie opère',
+    txt:"Posez chacune des {n} pierres de lune sur la bonne rune. Si toutes sont justes, le cercle magique s'embrase et le parchemin révèle le message secret. Une seule erreur, et le sort reste muet."}
+};
+var PROG=0, enFinale=false;
+var hasard=(a,b)=>a+Math.random()*(b-a);
+function progression(){
+  var f = N ? state.filter(v=>v!==0).length/N : 0, b=document.body;
+  PROG=f; b.style.setProperty('--prog',f.toFixed(3));
+  b.classList.toggle('p1',f>=.34); b.classList.toggle('p2',f>=.67); b.classList.toggle('p3',f>=1 && !solved);
+}
+function flash(teinte,force){
+  if(REDUCE_FX) return;
+  var e=document.getElementById('eclair'); e.className='eclair '+(teinte||''); e.style.setProperty('--a',force==null?1:force);
+  void e.offsetWidth; e.classList.add('on');
+}
+(function annonce(){
+  var A=ANNONCES[AMB]||ANNONCES.vapeur, el=document.getElementById('annonce'), go=document.getElementById('anGo');
+  document.getElementById('anSur').textContent=A.sur;
+  document.getElementById('anTitre').textContent=A.titre;
+  document.getElementById('anTxt').textContent=A.txt.replace('{n}',N);
+  go.textContent=A.go;
+  var ouvrir=()=>{ el.hidden=false; go.focus(); };
+  go.addEventListener('click',()=>{
+    el.hidden=true; snd.wake(); snd.button();
+    var r=go.getBoundingClientRect(); fx.spark(r.left+r.width/2,r.top+r.height/2,14,1);
+  });
+  el.addEventListener('keydown',e=>{ if(e.key==='Escape') go.click(); });
+  document.getElementById('objectif').addEventListener('click',ouvrir);
+  setTimeout(()=>{ if(!solved) ouvrir(); },0);   // après la reprise éventuelle d'une partie
+})();
+
+// l'ambiance s'anime, de plus en plus à mesure que les commandes sont réglées
+if(!REDUCE_FX) setInterval(function(){
+  if(document.hidden || enFinale) return;
+  var f=PROG, T=fx.taille(), W=T.W, H=T.H, k, r;
+  if(AMB==='spatial'){
+    for(k=0;k<1+f*2;k++) fx.glint(hasard(0,W),hasard(0,H*.95),hasard(1.4,3));
+    if(f>0 && Math.random()<.2+f*.6){ var x=Math.random()<.5?hasard(0,W*.3):hasard(W*.7,W); fx.fumee(x,H+12,2+Math.round(f*3),.9+f*.9,1.5,0,-hasard(.4,1.1)); }
+    if(f>=1){ r=pull.getBoundingClientRect(); fx.spark(r.left+r.width/2,r.top+r.height/2,3,.5); }
+  }else if(AMB==='labo'){
+    var np=document.querySelector('.nameplate').getBoundingClientRect();
+    if(Math.random()<.2+f*.7) fx.glint(hasard(np.left,np.right),np.bottom+hasard(0,12),hasard(1.5,3),'150,255,110');
+    if(f>=.67 && Math.random()<f*.25){ var i=(Math.random()*N)|0, c=channels[i].getBoundingClientRect(); fx.spark(c.left+c.width/2,c.top,4+f*6,.7); }
+    if(f>=1 && Math.random()<.07){ flash('vert',.35); snd.burst(70,.4,.25,1.6); }
+  }else if(AMB==='grimoire'){
+    var poses=state.map((v,i)=>v!==0?i:-1).filter(i=>i>=0);
+    if(poses.length && Math.random()<.25+f*.75){ var kn=center(channels[poses[(Math.random()*poses.length)|0]].querySelector('.knob')); fx.spark(kn.x,kn.y,1+Math.round(f*3),.4); }
+    for(k=0;k<.4+f*2;k++) fx.glint(hasard(0,W),hasard(0,H),hasard(1.4,2.8),Math.random()<.5?'225,205,255':'255,230,170');
+  }else{ // vapeur
+    if(Math.random()<.12+f*.7){ var j=(Math.random()*N)|0, d=channels[j].getBoundingClientRect(); fx.puff(d.left+d.width/2,d.top,2+Math.round(f*3),.7+f*.6); }
+    if(f>=.67 && Math.random()<f*.5) vent(Math.random()<.5?'ventG':'ventC',2,.9,1.1);
+    if(f>=1){ r=pull.getBoundingClientRect(); fx.spark(r.left+r.width/2,r.top,3,.7); }
+  }
+},350);
+
+// scène de fin : renvoie le délai avant l'arrivée du message
+function finale(){
+  if(REDUCE_FX) return 1500;
+  enFinale=true;
+  var T=fx.taille(), W=T.W, H=T.H, fin, b=document.body;
+  var apres=(ms,fn)=>setTimeout(fn,ms);
+  var repete=(de,a,pas,fn)=>{ for(var t=de;t<a;t+=pas) setTimeout(fn,t,t); };
+  if(AMB==='spatial'){
+    // on est DANS la fusée : compte à rebours, allumage, tout tremble, la fumée monte,
+    // puis le ciel et les nuages défilent vers le bas et les étoiles filent : on monte
+    b.classList.add('fin-spatial'); machine.classList.add('vibre');
+    repete(0,1260,70,t=>fx.fumee(hasard(0,W),H+20,3,1.2+t/700,2,0,-hasard(.6,1.6)));
+    snd.burst(60,.3,.9,4.2,1.3); snd.burst(240,.5,.35,3.6,1.3); snd.tone(38,3.6,.25,'sawtooth',1.3);
+    apres(1260,()=>{ flash('orange',.85); machine.classList.remove('vibre'); machine.classList.add('seisme'); });
+    // le nuage de lancement envahit tout le bas de l'écran
+    repete(1260,2400,35,()=>fx.fumee(hasard(-50,W+50),H+30,5,3.2,2.2,hasard(-3,3),-hasard(1.4,3.2)));
+    // décollage : le ciel descend, des lambeaux de nuages passent vers le bas, les étoiles filent
+    apres(2100,()=>b.classList.add('ascension'));
+    repete(2100,4200,45,t=>{
+      var v=4+(t-2100)/90;                                  // de plus en plus vite
+      if(t<3300) fx.fumee(hasard(0,W),-40,2,2.4,2.4,0,v*.8);
+      if(Math.random()<.5) fx.trait(hasard(0,W),hasard(-40,H*.3),0,v);
+    });
+    apres(3300,()=>{ machine.classList.remove('seisme'); machine.classList.add('vibre'); });
+    apres(4300,()=>machine.classList.remove('vibre'));
+    fin=4700;
+  }else if(AMB==='labo'){
+    machine.classList.add('seisme');
+    var cible=()=>{ var r=channels[(Math.random()*N)|0].getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top}; };
+    repete(0,2200,110,()=>{ var a=cible(); fx.arc(hasard(0,W),-10,a.x,a.y,8,2.4); fx.spark(a.x,a.y,8,1); });
+    [0,550,1200,1850].forEach(t=>apres(t,()=>{ flash('vert',.85); snd.burst(70,.4,.6,1.6); }));
+    apres(2200,()=>{ machine.classList.remove('seisme'); fx.crackle(document.querySelector('.nameplate'),lamp,700,3); flash('',1); });
+    fin=2900;
+  }else if(AMB==='grimoire'){
+    var cercle=document.getElementById('cercle'); cercle.classList.remove('on'); void cercle.offsetWidth; cercle.classList.add('on');
+    snd.glisse(440,1760,2.2,.04,.1);
+    var t0=performance.now();
+    (function tourne(){
+      var t=performance.now()-t0; if(t>2400) return;
+      var R=Math.min(W,H)*.34*(1-t/3400), cx=W/2, cy=H/2;
+      for(var k=0;k<3;k++){ var ang=t/240+k*2.094; fx.spark(cx+Math.cos(ang)*R,cy+Math.sin(ang)*R,2,.4); }
+      if(Math.random()<.4) fx.glint(hasard(0,W),hasard(0,H),hasard(2,4),'235,220,255');
+      requestAnimationFrame(tourne);
+    })();
+    apres(2400,()=>{ fx.spark(W/2,H/2,120,2.2); flash('violet',1); });
+    fin=3100;
+  }else{ // vapeur
+    snd.glisse(700,1400,1.4,.05,.1); snd.glisse(1050,2100,1.4,.03,.1);
+    machine.classList.add('seisme');
+    repete(0,1800,90,()=>{
+      vent('ventM',10,2.2,2); vent('ventG',6,1.8,1.6); vent('ventC',6,1.8,1.6);
+      var r=channels[(Math.random()*N)|0].getBoundingClientRect(); fx.puff(r.left+r.width/2,r.top,8,1.8,1.6);
+      fx.puff(hasard(0,W),H+10,6,2.2,2.2);
+      var p=pull.getBoundingClientRect(); fx.spark(p.left+p.width/2,p.top,6,1.2);
+    });
+    apres(200,()=>fx.drift()); apres(900,()=>fx.drift());
+    apres(1800,()=>{ machine.classList.remove('seisme'); flash('',.7); for(var x=0;x<=W;x+=W/14) fx.puff(x,H,6,2,2); snd.burst(300,.5,.5,1.2); });
+    fin=2900;
+  }
+  apres(fin,()=>{ enFinale=false; b.classList.remove('fin-spatial','ascension'); });
+  return fin;
+}
 
 const ANIMAUX=['Renard','Hibou','Loutre','Lynx','Blaireau','Faucon','Belette','Chouette','Corbeau','Hermine','Martre','Chamois','Castor','Héron','Milan','Ours','Loup','Cerf','Lièvre','Moineau'];
 function nouvelAgent(){ return ANIMAUX[(Math.random()*ANIMAUX.length)|0]+'-'+String(10+((Math.random()*90)|0)); }
