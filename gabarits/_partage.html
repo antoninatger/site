@@ -1,0 +1,63 @@
+{# Encadrés communs aux pages de jeux et d'outils : faire connaître, et donner son avis au créateur. #}
+{% macro partage(titre, intro, texte, url, nom) %}
+  <section class="partage" aria-labelledby="partage-titre">
+    <div class="partage__texte">
+      <h2 id="partage-titre">{{ titre }}</h2>
+      <p>{{ intro }}</p>
+    </div>
+    <div class="partage__boutons">
+      <a class="partage__btn partage__btn--whatsapp" href="https://wa.me/?text={{ (texte ~ ' ' ~ url) | urlencode }}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 3.5V16.5H5A1.5 1.5 0 0 1 3.5 15V7A1.5 1.5 0 0 1 5 5.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>WhatsApp</a>
+      <a class="partage__btn" href="mailto:?subject={{ texte | urlencode }}&amp;body={{ ('Bonjour,\n\nJe pense que cet outil pourrait t\'intéresser : ' ~ texte ~ '.\n' ~ url ~ '\n\nC\'est gratuit et sans inscription.') | urlencode }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 7l8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>E-mail</a>
+      <a class="partage__btn" href="https://www.facebook.com/sharer/sharer.php?u={{ url | urlencode }}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16.5" cy="9.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c.6-.2 1.3-.3 2-.3 2.2 0 3.7 1.4 4.2 3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Facebook</a>
+      <a class="partage__btn" href="https://x.com/intent/post?text={{ texte | urlencode }}&amp;url={{ url | urlencode }}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>X</a>
+      <button class="partage__btn" type="button" id="partage-copier" data-url="{{ url }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Copier le lien</span></button>
+      <button class="partage__btn partage__btn--natif" type="button" id="partage-natif" hidden data-titre="{{ nom }}" data-texte="{{ texte }}" data-url="{{ url }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M5 13v6h14v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Autres…</button>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var c=document.getElementById('partage-copier'), n=document.getElementById('partage-natif');
+    c.addEventListener('click',function(){
+      var u=c.getAttribute('data-url'), t=c.querySelector('span');
+      var ok=function(){ t.textContent='Lien copié ✓'; setTimeout(function(){ t.textContent='Copier le lien'; },2000); };
+      if(navigator.clipboard) navigator.clipboard.writeText(u).then(ok,function(){ prompt('Copiez ce lien :',u); });
+      else prompt('Copiez ce lien :',u);
+    });
+    if(navigator.share){ n.hidden=false; n.addEventListener('click',function(){
+      navigator.share({title:n.getAttribute('data-titre'), text:n.getAttribute('data-texte'), url:n.getAttribute('data-url')}).catch(function(){});
+    }); }
+  })();
+  </script>
+{% endmacro %}
+
+{% macro avis(nom, url, formulaires, intro=None) %}
+  <section class="avis-createur" id="avis" aria-labelledby="avis-titre">
+    <div class="avis-createur__texte">
+      <h2 id="avis-titre">💬 Un mot au créateur ?</h2>
+      <p>{{ intro or ("Vous avez essayé " ~ nom ~ " ? Une idée, un bug, une réussite en classe ou une question : votre message arrive directement chez moi, Antonin, et je lis tout.") }}</p>
+    </div>
+    <div>
+      <form class="form avis-createur__form" method="post" action="{{ formulaires.service }}" data-web3="[Avis {{ nom }}]" data-objet-champs="nom">
+        <input type="hidden" name="access_key" value="{{ formulaires.cle }}">
+        <input type="hidden" name="from_name" value="Avis {{ nom }}">
+        <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <input type="hidden" name="subject" value="[Avis {{ nom }}] Message depuis la page">
+        <input type="hidden" name="redirect" value="{{ url }}?envoye=1#avis">
+        <input type="hidden" name="page" value="{{ url }}">
+        <div><label for="av-message">Ce que vous en pensez</label><textarea id="av-message" name="message" required rows="3" placeholder="Testé en 4e, ça a très bien marché… / Il manquerait…"></textarea></div>
+        <div class="avis-createur__ligne">
+          <div><label for="av-nom">Prénom <small>(facultatif)</small></label><input type="text" id="av-nom" name="nom" autocomplete="given-name"></div>
+          <div><label for="av-email">E-mail <small>(facultatif, pour une réponse)</small></label><input type="email" id="av-email" name="email" autocomplete="email"></div>
+        </div>
+        <button class="btn btn--primary" type="submit">📨 Envoyer</button>
+      </form>
+      <p class="alerte" data-message-envoye hidden>Merci, votre message est bien parti !</p>
+    </div>
+  </section>
+{% endmacro %}

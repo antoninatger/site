@@ -734,6 +734,16 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .partage__btn:hover, .partage__btn:focus-visible { border-color: var(--accent); color: var(--accent-dark); background: var(--accent-light); }
 .partage__btn--whatsapp:hover, .partage__btn--whatsapp:focus-visible { border-color: #128c4a; color: #0d6b38; background: #e6f6ec; }
 @media (max-width: 760px) { .partage { grid-template-columns: 1fr; } }
+/* Un mot au créateur */
+.avis-createur { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 18px 32px; align-items: start; margin: 34px 0 10px; padding: 24px; background: var(--accent-light); border: 1px solid var(--border); border-radius: 12px; scroll-margin-top: 100px; }
+.avis-createur h2 { margin: 0 0 6px; font-size: 1.3rem; }
+.avis-createur p { margin: 0; color: var(--ink-soft); }
+.avis-createur__form { display: grid; gap: 12px; }
+.avis-createur__form textarea { min-height: 90px; }
+.avis-createur__form small { font-weight: 400; color: var(--ink-mute); }
+.avis-createur__ligne { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.avis-createur__form .btn { justify-self: start; }
+@media (max-width: 760px) { .avis-createur, .avis-createur__ligne { grid-template-columns: 1fr; } }
 .outil-galerie { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0; }
 .outil-galerie img { width: 100%; border-radius: 8px; display: block; }
 .outil-fin { margin: 40px 0 10px; padding: 24px; border-radius: 12px; background: var(--accent-light); display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }

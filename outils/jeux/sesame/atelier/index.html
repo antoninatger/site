@@ -51,7 +51,7 @@ section.box .hint,.hint{margin:0 0 14px;color:var(--ink-mute);font-size:14.5px;l
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 18px}
 label.f{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:var(--ink)}
 label.f small{font-weight:400;color:var(--ink-mute)}
-input[type=text],input[type=url],input[type=number],textarea,select{
+input[type=text],input[type=url],input[type=number],input[type=email],textarea,select{
   width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--bord-fort);background:var(--surface);color:var(--ink);font-size:16px}
 input::placeholder,textarea::placeholder{color:#8a98a3}
 textarea{resize:vertical;min-height:70px;line-height:1.45}
@@ -318,6 +318,22 @@ Réponse : non
   </section>
 </div>
 
+<div class="wrap" style="padding-top:0;padding-bottom:110px;margin-top:-90px">
+  <section class="box avis-atelier" id="avisAtelier">
+    <h2>💬 Un mot au créateur de Sésame ?</h2>
+    <p class="hint">Une idée, un bug, une réussite en classe ou une question : votre message arrive directement chez Antonin Atger, qui lit tout. Vos questions ne sont pas envoyées, seulement ce que vous écrivez ici.</p>
+    <form id="avForm">
+      <label class="f">Ce que vous en pensez <textarea id="avMsg" rows="3" required placeholder="Testé en 4e, les élèves ont adoré… / Il manquerait…"></textarea></label>
+      <div class="grid" style="margin-top:10px">
+        <label class="f">Prénom <small>facultatif</small><input type="text" id="avNom" autocomplete="given-name"></label>
+        <label class="f">E-mail <small>facultatif, pour une réponse</small><input type="email" id="avEmail" autocomplete="email"></label>
+      </div>
+      <input type="checkbox" id="avBot" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+      <p style="margin:12px 0 0"><button class="btn prim" type="submit" id="avEnvoyer">📨 Envoyer</button> <span id="avEtat" class="hint" role="status"></span></p>
+    </form>
+  </section>
+</div>
+
 <div class="bar">
   <div class="in">
     <span class="msg" id="msg">Travail gardé sur cet ordinateur.</span>
@@ -352,6 +368,7 @@ Réponse : non
       <li><b>Au tableau</b> : ouvrez-le sur l'ordinateur du vidéoprojecteur et cliquez « Plein écran ».</li>
     </ol>
     <p class="note">Sur tablette ou téléphone, un fichier .html s'ouvre mal : préférez les ordinateurs. Pour modifier ce jeu plus tard, cliquez aussi « Sauvegarder mon travail ».</p>
+    <p class="note">Un retour sur Sésame ? <a class="lien" href="#avisAtelier" onclick="document.getElementById('apres').hidden=true">Dites-le au créateur</a>, en bas de l’atelier.</p>
     <div class="row"><button class="btn" id="apSauver">Sauvegarder mon travail</button><button class="btn prim" id="apFermer">C'est noté</button></div>
   </div>
 </div>
@@ -730,6 +747,22 @@ $('lnCopier').onclick=async()=>{
 $('lnFermer').onclick=()=>{ $('fenLien').hidden=true; };
 $('fenLien').addEventListener('click',e=>{ if(e.target===$('fenLien')) $('fenLien').hidden=true; });
 addEventListener('keydown',e=>{ if(e.key==='Escape') $('fenLien').hidden=true; });
+
+/* ---------- Un mot au créateur ---------- */
+$('avForm').addEventListener('submit',async e=>{
+  e.preventDefault(); if($('avBot').checked) return;
+  const msgTxt=$('avMsg').value.trim(); if(!msgTxt){ $('avMsg').focus(); return; }
+  const b=$('avEnvoyer'); b.disabled=true; b.textContent='⏳ Envoi…'; $('avEtat').textContent='';
+  const nom=$('avNom').value.trim(), mail=$('avEmail').value.trim();
+  const corps={access_key:'ef1fe549-c616-4a27-a6c2-97f06caa913d', subject:'[Avis Sésame] Message depuis l’atelier'+(nom?' | '+nom:''),
+    from_name:'Avis Sésame', name:nom||'Enseignant anonyme', message:msgTxt+'\n\n— '+cfg.items.length+' question(s) dans l’atelier, décor : '+(cfg.ambiance||'vapeur')};
+  if(mail) corps.email=mail;
+  try{
+    const r=await (await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(corps)})).json();
+    if(!r.success) throw 0;
+    $('avForm').innerHTML='<p class="hint" style="color:var(--ok);font-weight:600;margin:0">✅ Merci, votre message est bien parti !</p>';
+  }catch(x){ b.disabled=false; b.textContent='📨 Envoyer'; $('avEtat').textContent='Le message n’est pas parti (connexion ?). Réessayez dans un instant.'; }
+});
 
 $('telecharger').onclick=()=>{
   const e=verifier(); if(e){ msg(e,'ko'); return; }

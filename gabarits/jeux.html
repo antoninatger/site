@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% import "_icones.html" as ic %}
 {% import "_anims_jeux.html" as aj %}
+{% import "_partage.html" as pg with context %}
 {% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
 {% block contenu %}
 <div class="wrap">
@@ -43,5 +44,6 @@
     </div>
     <p class="small muted" style="margin-top:18px">Une idée d'outil, un retour après l'avoir utilisé en classe ? <a href="/contact/">Écrivez-moi</a>.</p>
   </section>
+  {{ pg.partage("Faire connaître ces jeux", "Des jeux et des outils gratuits pour travailler l'esprit critique en classe : partagez la page avec vos collègues ou votre réseau.", "Jeux et outils gratuits pour travailler l'esprit critique et repérer les fake news en classe, par Antonin Atger", canonique, "Jeux et outils pédagogiques") }}
 </div>
 {% endblock %}
