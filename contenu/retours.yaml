@@ -3,6 +3,14 @@
 # (ou colonnes « Sur le site » / « Texte pour le site » de l'Excel).
 retours:
 - type: prof
+  texte: Echange très intéressant, qui parvient à être solide sur les notions tout en cherchant des exemples ou des anecdotes simples et parlantes
+  qui: Marie-Charlotte Damasco, enseignante
+  etablissement: Collège Joliot-Curie
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  note: 18
+  date: '2026-10-08'
+- type: prof
   texte: Votre conférence fut très appréciée par la qualité de son contenu, mais aussi par la façon dont vous l'avez présentée en interactivité avec le public. Nous n'avons pas vu le temps passer, elle aurait pu durer encore plus longtemps tellement le propos était riche et passionnant.
   qui: Stéphanie Dupuis, directrice de la MéMO
   etablissement: Médiathèque municipale d'Osny
