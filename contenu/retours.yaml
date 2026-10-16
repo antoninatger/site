@@ -10,6 +10,22 @@ retours:
   sujet: Fake News et esprit critique
   note: 20
   date: '2026-10-14'
+- type: eleve
+  texte: Bonne interactivité , fluide , intéressant
+  qui: Élève de BTS SP3S
+  etablissement: Notre Dame De Menimur a Vannes
+  mode: Distanciel
+  sujet: Fake News et esprit critique
+  note: 17
+  date: '2026-10-14'
+- type: jeu
+  texte: jeu d'utilité publique ! super travail
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  note: null
+  date: '2026-10-14'
 - type: jeu
   texte: Bravo et merci
   qui: Partie de Fakemètre, niveau junior
