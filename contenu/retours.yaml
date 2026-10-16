@@ -2,6 +2,22 @@
 # choisir, retirer ou corriger un retour : Hub › accueil › « 📖 Tous les retours »
 # (ou colonnes « Sur le site » / « Texte pour le site » de l'Excel).
 retours:
+- type: eleve
+  texte: Merci pour cette intervention autour des fake news et de l’esprit critique. Cette intervention pousse à se questionner et à porter un regard différent sur les informations qui nous entourent au quotidien.
+  qui: Élève de DECESF
+  etablissement: Lycée Notre Dame Le Ménimur
+  mode: Distanciel
+  sujet: Fake News et esprit critique
+  note: 20
+  date: '2026-10-14'
+- type: jeu
+  texte: Bravo et merci
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  note: null
+  date: '2026-10-12'
 - type: prof
   texte: Echange très intéressant, qui parvient à être solide sur les notions tout en cherchant des exemples ou des anecdotes simples et parlantes
   qui: Marie-Charlotte Damasco, enseignante
