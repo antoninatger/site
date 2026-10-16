@@ -1,5 +1,5 @@
 ---
-titre: "Ëtre complotiste permet-il de séduire ?"
+titre: "Être complotiste permet-il de séduire ?"
 date: "2026-10-17T12:00:00"
 slug: "etre-complotiste-permet-il-de-seduire"
 categories: ["Esprit critique"]
