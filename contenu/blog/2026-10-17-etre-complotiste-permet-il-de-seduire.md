@@ -17,3 +17,5 @@ Dans ce numéro, je présente une étude qui cherche à voir si être complotist
 A partir de cette question d'apparence triviale, nous allons comprendre de nombreuses choses sur les raisons qui poussent les gens à croire aux théories du complot.
 
 Bonne lecture !
+
+Le sommaire du numéro sur le site de l'AFIS : [Science et pseudo-sciences n° 358 (octobre 2026)](https://www.afis.org/358-Octobre-2026)
