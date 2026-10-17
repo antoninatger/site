@@ -76,6 +76,7 @@ facettes:
       - { an: "2023-2027", texte: "Doctorat : les liens entre théories du complot et stratégie politique.", url: "/livres/#recherche" }
       - { an: "Février 2026", texte: "Postface universitaire de <i>La mécanique de l'emprise</i> (First) : emprise, désinformation et complotisme.", vignette: /images/uploads/2026/04/614DJAQ-kGL._SY522_.jpg, vignette_format: couv, url: "/livres/#la-mecanique-de-l-emprise" }
       - { an: "Juillet 2026", texte: "Deux articles dans <i>Science et pseudo-sciences</i> n° 357, dont un sur le Fakemètre.", vignette: /images/uploads/2026/07/photo-principale-3.jpg, vignette_format: couv, url: "/2026/07/24/deux-articles-me-concernant-dans-science-et-pseudo-sciences/" }
+      - { an: "Octobre 2026", texte: "« Complotisme et applications de rencontre », dans <i>Science et pseudo-sciences</i> n° 358.", vignette: /images/uploads/2026/10/2026-10-17-etre-complotiste-permet-il-de-seduire-1.jpg, vignette_format: couv, url: "/2026/10/17/etre-complotiste-permet-il-de-seduire/" }
     lien: { titre: "Mon parcours →", url: /a-propos/ }
   - nom: Intervenant
     sous_titre: Classes, médiathèques, entreprises

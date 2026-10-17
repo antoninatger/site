@@ -38,6 +38,7 @@ La crise du Covid et le déferlement complotiste sur les réseaux m'ont décidé
 - **Novembre 2025** : Conférence à Zagreb pour l'Ambassade de France en Croatie et l'UNICEF ; congrès Prisme de l'ASTEC sur l'emprise sectaire.
 - **2023-2026** : Intervenant récurrent aux Rencontres de l'Esprit Critique de Toulouse, quatre éditions.
 - **Juillet 2026** : Deux articles dans *Science et pseudo-sciences* (AFIS) : « Esprit critique à l'école : un retour d'expérience » et « Le Fakemètre : un jeu en ligne pour s'exercer à l'esprit critique ».
+- **Octobre 2026** : Article « Complotisme et applications de rencontre » dans [*Science et pseudo-sciences* n° 358](https://www.afis.org/358-Octobre-2026) (AFIS), rubrique Esprit critique.
 - **Depuis 2023** : Cours « Géopolitique du monde contemporain » au MASNI (Aix-Marseille Université) ; cours de narrative design (Sup de Pub) et de rhétorique (HEIP de Lyon).
 
 ## Ce que j'ai écrit
