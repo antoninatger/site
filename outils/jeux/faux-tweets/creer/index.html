@@ -176,7 +176,9 @@ dialog .ligne{justify-content:flex-end}
 #scene.on{display:flex}
 #scene .tel{transform-origin:top center}
 #scene .bas{color:#9a9aa2;font-size:13px;display:flex;gap:14px;align-items:center}
-#scene .bas .btn{background:#222;border-color:#333;color:#eee}
+#scene .bas .btn,#scene .bas select{background:#222;border-color:#333;color:#eee;width:auto}
+#scene .bas{flex-wrap:wrap;justify-content:center;padding:0 10px}
+#scene .bas #sPlay{min-width:104px}
 #scene.on~#msgBox{bottom:auto;top:18px}
 
 .scene-edit .ecran{height:clamp(500px,calc(100vh - 160px),720px)}
@@ -255,7 +257,8 @@ dialog .ligne{justify-content:flex-end}
   <div id="tel"></div>
   <div class="actions">
     <button class="btn prim" id="png">Télécharger l'image</button>
-    <button class="btn prim" id="jouer">Lire en classe ▶</button>
+    <button class="btn prim" id="auto">▶ Lecture automatique</button>
+    <button class="btn" id="jouer">Lire en classe, clic par clic</button>
   </div>
   <p class="astuce"><kbd>Entrée</kbd> publie · <kbd>Tab</kbd> change qui écrit · <kbd>Maj</kbd>+<kbd>Entrée</kbd> va à la ligne · un clic sur un post pour le modifier, sur un nom ou une photo pour changer le compte. L'image porte la mention discrète « Échange fictif ».</p>
 </section>
@@ -296,7 +299,7 @@ dialog .ligne{justify-content:flex-end}
 
 <div id="scene" aria-hidden="true">
   <div id="sceneTel"></div>
-  <div class="bas"><button class="btn" id="sPrec">◀</button><span id="sInfo"></span><button class="btn" id="sSuiv">▶</button><button class="btn" id="sFin">Quitter (Échap)</button></div>
+  <div class="bas"><button class="btn" id="sPlay" title="Lecture automatique (P)">▶ Lecture</button><select id="sVit" aria-label="Vitesse"><option value="1.6">Lent</option><option value="1" selected>Normal</option><option value="0.55">Rapide</option></select><button class="btn" id="sPrec">◀</button><span id="sInfo"></span><button class="btn" id="sSuiv">▶</button><button class="btn" id="sFin">Quitter (Échap)</button></div>
 </div>
 <div id="msgBox" role="status"></div>
 <input type="file" id="fPhoto" accept="image/*">
@@ -395,6 +398,7 @@ function chiffres(i){
   else{ const like=Math.round(p[2]*r(1)**2.2);
     s={rep:Math.round(like*.08*r(2)),rt:Math.round(like*.15*r(3)),like,vues:Math.round(like*(20+30*r(4))+3+p[2]*r(6)*2),sig:0}; }
   if(m.stats) for(const k of ['rep','rt','like','vues']) if(m.stats[k]!=null) s[k]=m.stats[k];
+  if(enScene&&C.posts.length>1){ const f=.3+.7*Math.min(1,(pas-1-Math.max(0,i-1))/Math.max(1,C.posts.length-1-Math.max(0,i-1))); for(const k of ['rt','like','vues','sig']) s[k]=Math.round(s[k]*f); s.rep=i===0?Math.max(pas-1,Math.round(s.rep*f)):Math.round(s.rep*f); }
   return s;
 }
 
@@ -406,7 +410,7 @@ function actsHTML(s,grand){
 }
 function noteHTML(m){ return m.note ? `<div class="note"><div class="nt">${I.note}Les lecteurs ont ajouté du contexte</div><div class="nc">${lier(m.note)}</div><div class="nb">Cette note vous a-t-elle été utile ?</div></div>` : ''; }
 function filHTML(n,opt={}){
-  const T=temps(), cap=capture(T), ps=C.posts.slice(0,n), ed=opt.edit;
+  const T=temps(), cap=n<C.posts.length&&n>0?T[n-1]+1:capture(T), ps=C.posts.slice(0,n), ed=opt.edit;
   let s='';
   ps.forEach((m,i)=>{
     const p=personne(m.de), st=chiffres(i), cl=`${opt.nouv===i?' nouv':''}${sel===i&&ed?' choisi':''}`;
@@ -426,15 +430,15 @@ function filHTML(n,opt={}){
   if(ed&&!ps.length) s+=`<div class="vide-tel"><b>1.</b> En bas, choisissez <b>qui écrit</b>.<br><b>2.</b> Tapez le post de départ, puis <b>Entrée</b>.<br><b>3.</b> Changez de compte et ajoutez les réponses.<br><br>Touchez un nom ou une photo pour changer le compte (pseudo, photo, badge).<br>Touchez un post pour le modifier.<br><br>Pour voir un exemple : ⚙ Réglages.</div>`;
   return s;
 }
-function horloge(){ return enH(capture(temps())); }
-function barreHTML(){ const b=Math.max(1,Math.min(100,+C.batt||76));
-  return `<span>${horloge()}</span><span class="ic"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.1 0 4 .8 5.5 2.1l1.2-1.3A9.5 9.5 0 0 0 7.5.4 9.5 9.5 0 0 0 .8 3l1.2 1.3a7.7 7.7 0 0 1 5.5-2.1Zm0 3.3c1.2 0 2.3.4 3.2 1.2l1.2-1.3a6.4 6.4 0 0 0-8.8 0l1.2 1.3c.9-.8 2-1.2 3.2-1.2Zm0 3.2c-.4 0-.8.2-1.1.4l1.1 1.2 1.1-1.2c-.3-.2-.7-.4-1.1-.4Z"/></svg><span class="batt${b<=20?' bas':''}"><i style="width:${b}%"></i></span></span>`; }
+function horloge(n){ const T=temps(); return enH(n!=null&&n<T.length&&n>0?T[n-1]+1:capture(T)); }
+function barreHTML(n){ const b=Math.max(1,Math.min(100,+C.batt||76));
+  return `<span>${horloge(n)}</span><span class="ic"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.1 0 4 .8 5.5 2.1l1.2-1.3A9.5 9.5 0 0 0 7.5.4 9.5 9.5 0 0 0 .8 3l1.2 1.3a7.7 7.7 0 0 1 5.5-2.1Zm0 3.3c1.2 0 2.3.4 3.2 1.2l1.2-1.3a6.4 6.4 0 0 0-8.8 0l1.2 1.3c.9-.8 2-1.2 3.2-1.2Zm0 3.2c-.4 0-.8.2-1.1.4l1.1 1.2 1.1-1.2c-.3-.2-.7-.4-1.1-.4Z"/></svg><span class="batt${b<=20?' bas':''}"><i style="width:${b}%"></i></span></span>`; }
 const teteHTML=()=>`${I.ret}<b>Post</b>`;
 const classeEcran=()=>`ecran x-${C.theme||'clair'}`;
 function telHTML(opt={}){
   const n=opt.n??C.posts.length;
   return `<div class="tel${opt.export?' export':''}"><div class="${classeEcran()}">
-    <div class="barre">${barreHTML()}</div><div class="tete">${teteHTML()}</div>
+    <div class="barre">${barreHTML(n)}</div><div class="tete">${teteHTML()}</div>
     <div class="fil">${filHTML(n,opt)}</div><div class="marque">Échange fictif</div></div></div>`;
 }
 
@@ -698,23 +702,41 @@ $('png').onclick=async()=>{
 };
 
 /* ---------- Lecture en classe ---------- */
-let pas=1;
+let pas=1, enScene=false, tAuto=null;
+const calme=matchMedia('(prefers-reduced-motion: reduce)');
 function sceneDessiner(nouv){
   const box=$('sceneTel'); const s=sel; sel=-1;
+  const ancien=box.querySelector('.fil'), haut=ancien?ancien.scrollTop:0;
   box.innerHTML=telHTML({n:pas,nouv:nouv?pas-1:undefined}); sel=s;
-  const f=box.querySelector('.fil'); const d=f.querySelector('.nouv'); if(d) f.scrollTop=d.offsetTop+d.offsetHeight-f.clientHeight+20; else f.scrollTop=pas>1?f.scrollHeight:0;
+  const f=box.querySelector('.fil'); const d=f.querySelector('.nouv');
+  const but=d ? Math.max(0,d.offsetTop+d.offsetHeight-f.clientHeight+20) : (pas>1?f.scrollHeight:0);
+  if(d&&!calme.matches){ f.scrollTop=haut; f.scrollTo({top:but,behavior:'smooth'}); } else f.scrollTop=but;
   ajusterScene(); $('sInfo').textContent=pas<2?'Post de départ':`Réponse ${pas-1} / ${C.posts.length-1}`;
 }
+/* Lecture automatique : les réponses arrivent seules, au rythme de la lecture */
+function delaiAvant(i){ const lu=(C.posts[i-1]&&C.posts[i-1].texte||'').length, m=C.posts[i]||{};
+  const base=i===1 ? 2600+lu*45 : 1300+lu*32+((hasard(i,11)*1600)|0);
+  return Math.min(9000,base+(m.img?800:0))*(+$('sVit').value||1); }
+function majPlay(){ $('sPlay').textContent=tAuto?'⏸ Pause':(pas>=C.posts.length?'↺ Revoir':'▶ Lecture'); }
+function autoStop(){ clearTimeout(tAuto); tAuto=null; majPlay(); }
+function autoSuite(){ if(pas>=C.posts.length){ autoStop(); return; } tAuto=setTimeout(()=>{ pas++; sceneDessiner(true); autoSuite(); majPlay(); },delaiAvant(pas)); majPlay(); }
+function autoBascule(){ if(tAuto) return autoStop(); if(pas>=C.posts.length){ pas=1; sceneDessiner(false); } autoSuite(); }
 function ajusterScene(){ const t=$('sceneTel').querySelector('.tel'); if(!t) return; const k=Math.min((innerHeight-80)/t.offsetHeight,(innerWidth-20)/t.offsetWidth,1.6); t.style.transform=`scale(${k})`; $('sceneTel').style.height=(t.offsetHeight*k)+'px'; }
 addEventListener('resize',()=>{ if($('scene').classList.contains('on')) ajusterScene(); });
-function sceneSuiv(){ if(pas<C.posts.length){ pas++; sceneDessiner(true); } }
-function scenePrec(){ if(pas>1){ pas--; sceneDessiner(false); } }
-function sceneFin(){ $('scene').classList.remove('on'); $('scene').setAttribute('aria-hidden','true'); try{ document.fullscreenElement&&document.exitFullscreen(); }catch(e){} $('jouer').focus(); }
-$('jouer').onclick=()=>{ if(!C.posts.length) return msg('Écrivez d\'abord un post.'); pas=1; $('scene').classList.add('on'); $('scene').setAttribute('aria-hidden','false'); try{ document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){} sceneDessiner(false); };
+function sceneSuiv(){ autoStop(); if(pas<C.posts.length){ pas++; sceneDessiner(true); majPlay(); } }
+function scenePrec(){ autoStop(); if(pas>1){ pas--; sceneDessiner(false); majPlay(); } }
+function sceneFin(){ autoStop(); enScene=false; $('scene').classList.remove('on'); $('scene').setAttribute('aria-hidden','true'); try{ document.fullscreenElement&&document.exitFullscreen(); }catch(e){} $('jouer').focus(); }
+function sceneOuvrir(auto){ if(!C.posts.length) return msg('Écrivez d\'abord un post.'); pas=1; enScene=true; $('scene').classList.add('on'); $('scene').setAttribute('aria-hidden','false'); try{ document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){} sceneDessiner(false); if(auto) autoSuite(); else majPlay(); }
+$('jouer').onclick=()=>sceneOuvrir(false);
+$('auto').onclick=()=>sceneOuvrir(true);
+$('sPlay').onclick=e=>{ e.stopPropagation(); autoBascule(); };
+$('sVit').onclick=e=>e.stopPropagation();
+$('sVit').onchange=()=>{ if(tAuto){ clearTimeout(tAuto); autoSuite(); } };
 $('sSuiv').onclick=e=>{ e.stopPropagation(); sceneSuiv(); }; $('sPrec').onclick=e=>{ e.stopPropagation(); scenePrec(); }; $('sFin').onclick=e=>{ e.stopPropagation(); sceneFin(); };
-$('scene').addEventListener('click',e=>{ if(!e.target.closest('.bas')) sceneSuiv(); });
+$('scene').addEventListener('click',e=>{ if(e.target.closest('.bas')) return; if(tAuto) autoStop(); else sceneSuiv(); });
 addEventListener('keydown',e=>{ if(!$('scene').classList.contains('on')) return;
   if(e.key==='Escape') sceneFin();
+  else if(e.key==='p'||e.key==='P'){ e.preventDefault(); autoBascule(); }
   else if([' ','ArrowRight','ArrowDown','Enter','PageDown'].includes(e.key)){ e.preventDefault(); sceneSuiv(); }
   else if(['ArrowLeft','ArrowUp','Backspace','PageUp'].includes(e.key)){ e.preventDefault(); scenePrec(); } });
 document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&$('scene').classList.contains('on')) ajusterScene(); });

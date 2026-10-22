@@ -5,8 +5,8 @@ gabarit: outil.html
 eyebrow: Un post, ses réponses, ses badges
 lead: >-
   Écrivez un post et ses réponses comme sur X (l'ancien Twitter) : noms, @pseudos, photos de profil, badges
-  certifiés, images, et même une note de la communauté. Puis projetez-le réponse par réponse, ou téléchargez-le
-  en image. Pour parler de fausses infos, de comptes « certifiés », de moqueries qui dégénèrent.
+  certifiés, images, et même une note de la communauté. Puis projetez-le comme une vidéo, les réponses arrivant
+  une à une, ou téléchargez-le en image. Pour parler de fausses infos, de comptes « certifiés », de moqueries qui dégénèrent.
 description: "Créez gratuitement un faux échange X (Twitter) pour la classe : un post et ses réponses, avec photos, pseudos et badges, à projeter réponse par réponse ou à télécharger en image."
 partage_texte: "Faux échanges X, un outil gratuit pour créer un faux post Twitter et ses réponses à projeter en classe"
 outil_url: "/jeux/faux-tweets/creer/"
@@ -17,7 +17,7 @@ icone: bulle
 faits:
   - ["5 minutes", "pour écrire un post et dix réponses, ou une photo d'un dialogue"]
   - ["Tout se change", "noms, @pseudos, photos, badges, chiffres, heures"]
-  - ["Lecture en classe", "plein écran, une réponse à chaque clic"]
+  - ["Comme une vidéo", "les réponses arrivent seules, ou une à chaque clic"]
   - ["Gratuit", "sans inscription, rien n'est envoyé sur Internet"]
 fin: "Commencez par un exemple : la fausse étude sur le chocolat est prête à projeter."
 ---
@@ -40,7 +40,8 @@ Les heures (« 12 min », « 3 h ») et les chiffres se calculent tout seuls ; l
 
 ## En classe
 
-- **Lire en classe** affiche le téléphone en grand. Le post de départ apparaît, puis chaque clic (ou la barre d'espace) fait apparaître la réponse suivante. On peut revenir en arrière.
+- **Lecture automatique** affiche le téléphone en grand et joue l'échange comme une vidéo : les réponses arrivent seules, au rythme de la lecture, pendant que les heures avancent et que les « j'aime » et les vues grimpent. Trois vitesses ; un clic met en pause.
+- **Lire en classe, clic par clic** : chaque clic (ou la barre d'espace) fait apparaître la réponse suivante, pour s'arrêter et discuter à chaque étape. On peut revenir en arrière.
 - **Télécharger l'image** crée une capture de tout l'échange, à mettre dans un diaporama, une fiche ou un sujet.
 - **La note de la communauté** : montrez d'abord le post sans note et demandez aux élèves de l'écrire eux-mêmes, puis comparez.
 - **Faire écrire les élèves** : par groupes, ils inventent un post trompeur ; on échange les images, et chaque groupe rédige la note qui le corrige.
