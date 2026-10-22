@@ -1,0 +1,31 @@
+{# Retours d'intervention filtrables (22 octobre 2026).
+   liste : les retours à montrer ; groupes : les filtres proposés ('intervention', 'lieu').
+   Un filtre n'apparaît que s'il a au moins deux choix, et un choix que s'il a au moins un retour. #}
+{% macro bloc(liste, groupes=('intervention', 'lieu')) %}
+{% set choix = filtres_retours(liste) %}
+{% set libelles = {'intervention': 'Intervention', 'lieu': 'Lieu'} %}
+{% set actifs = groupes | select('in', choix) | list %}
+<div class="retours-bloc" data-retours-bloc>
+  {% set montres = [] %}{% for g in actifs %}{% if choix[g]|length > 1 %}{% set _ = montres.append(g) %}{% endif %}{% endfor %}
+  {% if montres %}
+  <form class="filtres filtres--retours" aria-label="Filtrer les retours" hidden>
+    {% for g in montres %}
+    <fieldset class="filtres__groupe">
+      <legend>{{ libelles[g] }}</legend>
+      {% for val, txt in choix[g] %}<button type="button" class="filtre" data-groupe="{{ g }}" data-valeur="{{ val }}" aria-pressed="false">{{ txt }}</button>{% endfor %}
+    </fieldset>
+    {% endfor %}
+    <p class="filtres__bilan" aria-live="polite"><span data-retours-compte>{{ liste|length }} retours</span>
+      <button type="button" class="filtres__raz" data-raz hidden>Tout afficher</button></p>
+  </form>
+  {% endif %}
+  <div class="retours-grille">
+    {% for r in liste %}
+    <figure class="avis" data-intervention="{{ r.intervention }}" data-lieu="{{ r.lieu }}">
+      <blockquote>{{ r.texte }}</blockquote>
+      <figcaption>{{ r.qui }}{% if r.etablissement %}, {{ r.etablissement }}{% endif %}{% if r.mode == 'Distanciel' %} · à distance{% endif %}{% if r.note %} · <b>{{ r.note }}/20</b>{% endif %}{% if 'intervention' in montres and r.intervention_titre %}<br><a href="/interventions/{{ r.intervention }}/">{{ r.intervention_titre }}</a>{% endif %}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %}

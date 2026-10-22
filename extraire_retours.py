@@ -14,7 +14,8 @@ Ce qui est affiché pour chaque retour :
   · élève : « Élève de 4e » (jamais de nom) et l'établissement ;
   · jeu : le nom du jeu (et le niveau joué), sans le prénom du joueur ;
   · présentiel ou distanciel (colonne « Présentiel / distanciel ») ;
-  · l'intervention et la note sur 20 quand il y en a une.
+  · l'intervention et la note sur 20 quand il y en a une ;
+  · le cadre (établissement scolaire, médiathèque, centre social…) pour le filtre « Lieu ».
 
 Qui est retenu (depuis le 8 octobre 2026) : SEULEMENT les retours marqués « oui » dans la
 colonne « Sur le site ». Le choix se fait dans le Hub (accueil › « 📖 Tous les retours »),
@@ -139,6 +140,7 @@ def extraire():
                 "etablissement": str(l.get("Lieu (site)") or l.get("Établissement") or "").strip(),
                 "mode": str(l.get("Présentiel / distanciel") or l.get("Modalité") or "").strip(),
                 "sujet": str(l.get("Intervention") or "").strip(),
+                "cadre": str(l.get("Cadre") or "").strip(),
                 "note": (int(note) if note is not None and float(note).is_integer() else note),
                 "date": _date(l.get("Date de l'intervention")) or _date(l.get("Reçu le")),
             })
@@ -157,6 +159,7 @@ def extraire():
                 "etablissement": str(l.get("Lieu (site)") or "").strip(),
                 "mode": "",
                 "sujet": "Fakemètre",
+                "cadre": "",
                 "note": None,
                 "date": _date(l.get("Reçu le")),
             })
