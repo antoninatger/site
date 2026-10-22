@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content">
+<title>Faux échanges X · Jeux et ressources pédagogiques</title>
+<meta name="description" content="Créer un faux échange sur X (Twitter) pour la classe : un post, ses réponses, des photos, des pseudos et des badges modifiables. Image à télécharger ou lecture animée, réponse par réponse.">
+<link rel="icon" href="/static/img/favicon.svg">
+<style>
+:root{--bg:#f4f1ea;--panel:#fff;--ink:#1d1b18;--doux:#6b665d;--bord:#e2ddd2;--acc:#1f6f5c;--acc2:#e9f3ef;--warn:#b3261e;--r:12px}
+@media (prefers-color-scheme:dark){:root{--bg:#16150f;--panel:#201e19;--ink:#f1ede4;--doux:#a8a196;--bord:#38352d;--acc:#5cc4a6;--acc2:#1f3530}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.haut{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--bord);background:var(--panel);position:sticky;top:0;z-index:20}
+.haut h1{font-size:17px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.haut a{color:var(--acc);font-size:13.5px;text-decoration:none;white-space:nowrap}
+.haut a.retour{border:1px solid var(--bord);border-radius:8px;padding:5px 9px}
+@media (max-width:480px){ .haut a.retour{font-size:12.5px;padding:4px 7px} .haut h1{display:none} .haut .lg{display:none} .haut .btn.mini:first-of-type{margin-left:auto} }
+.btn{border:1px solid var(--bord);background:var(--panel);border-radius:8px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--acc)}
+.btn.prim{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+.btn.warn{color:var(--warn)}
+.btn.mini{padding:4px 9px;font-size:13px}
+.btn:disabled{opacity:.4;cursor:default}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+input[type=text],input[type=time],input[type=date],input[type=number],select,textarea{background:var(--bg);border:1px solid var(--bord);border-radius:8px;padding:7px 9px;width:100%;min-width:0}
+input[type=file]{display:none}
+#reglBtn{display:none}
+
+.page{display:grid;grid-template-columns:330px minmax(0,1fr);gap:28px;max-width:1100px;margin:0 auto;padding:20px}
+.regl{align-self:start;position:sticky;top:66px;max-height:calc(100vh - 80px);overflow:auto;padding-right:4px}
+.bloc{background:var(--panel);border:1px solid var(--bord);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.bloc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--doux);margin:0 0 10px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg .btn{flex:1}
+.seg .btn[aria-pressed=true]{background:var(--acc2);border-color:var(--acc);font-weight:600}
+.ligne{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.champ2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.champ2 label,.lab{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--doux)}
+.perso{display:grid;grid-template-columns:34px 1fr auto auto;gap:6px;align-items:center;margin-top:6px}
+.perso .mini-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;overflow:hidden;cursor:pointer;border:0;padding:0}
+.perso .mini-av img{width:100%;height:100%;object-fit:cover}
+.perso .qi{min-width:0;line-height:1.2;cursor:pointer}
+.perso .qi b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.perso .qi span{font-size:12px;color:var(--doux)}
+.aide{font-size:12.5px;color:var(--doux);margin:8px 0 0}
+kbd{font:12px ui-monospace,monospace;border:1px solid var(--bord);border-bottom-width:2px;border-radius:4px;padding:0 4px;background:var(--bg)}
+
+.scene-edit{display:flex;flex-direction:column;align-items:center;gap:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.astuce{font-size:12.5px;color:var(--doux);text-align:center;max-width:440px;margin:0}
+
+/* ================= Téléphone ================= */
+.tel{width:min(380px,100%);margin:0 auto;border-radius:44px;background:#111;padding:10px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.ecran{border-radius:34px;overflow:hidden;display:flex;flex-direction:column;height:720px;position:relative;
+  font-family:"Chirp",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.3;color:var(--x-ink);background:var(--x-bg)}
+.tel.export .ecran{height:auto}
+.x-clair{--x-bg:#fff;--x-ink:#0f1419;--x-doux:#536471;--x-bord:#eff3f4;--x-bleu:#1d9bf0;--x-champ:#eff3f4;--x-note:#f7f9f9;--x-note-bord:#cfd9de}
+.x-tamise{--x-bg:#15202b;--x-ink:#f7f9f9;--x-doux:#8b98a5;--x-bord:#38444d;--x-bleu:#1d9bf0;--x-champ:#273340;--x-note:#1e2732;--x-note-bord:#425364}
+.x-noir{--x-bg:#000;--x-ink:#e7e9ea;--x-doux:#71767b;--x-bord:#2f3336;--x-bleu:#1d9bf0;--x-champ:#202327;--x-note:#16181c;--x-note-bord:#333639}
+.barre{display:flex;justify-content:space-between;align-items:center;padding:12px 26px 6px;font-weight:600;font-size:14px}
+.barre .ic{display:flex;gap:5px;align-items:center}
+.batt{width:24px;height:11px;border:1.5px solid currentColor;border-radius:3px;padding:1px;position:relative;opacity:.9}
+.batt::after{content:"";position:absolute;right:-4px;top:3px;width:2px;height:4px;background:currentColor;border-radius:0 1px 1px 0}
+.batt i{display:block;height:100%;background:currentColor;border-radius:1px}
+.batt.bas i{background:#ff3b30}
+.tete{display:flex;align-items:center;gap:26px;padding:6px 16px 10px;border-bottom:1px solid var(--x-bord)}
+.tete svg{width:20px;height:20px}
+.tete b{font-size:18px;font-weight:700;flex:1}
+.fil{flex:1;overflow:auto;display:flex;flex-direction:column;scrollbar-width:none}
+.fil::-webkit-scrollbar{display:none}
+.tel.export .fil{overflow:visible;padding-bottom:20px}
+.av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;background:#8a8f98;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover}
+.badge{width:17px;height:17px;flex:none;vertical-align:-3px;margin-left:2px}
+.nm{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ps{color:var(--x-doux);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.pt3{margin-left:auto;color:var(--x-doux);letter-spacing:1px;padding-left:6px;flex:none}
+.tx{white-space:pre-wrap;overflow-wrap:anywhere}
+.tx .ln{color:var(--x-bleu)}
+.ph{display:block;width:100%;max-height:420px;object-fit:cover;border-radius:16px;border:1px solid var(--x-bord);margin-top:10px}
+.note{border:1px solid var(--x-note-bord);border-radius:16px;margin-top:12px;overflow:hidden;font-size:14.5px}
+.note .nt{display:flex;align-items:center;gap:7px;font-weight:700;padding:10px 12px 0}
+.note .nt svg{width:18px;height:18px;flex:none}
+.note .nc{padding:6px 12px 12px;white-space:pre-wrap;overflow-wrap:anywhere}
+.note .nb{border-top:1px solid var(--x-note-bord);padding:9px 12px;color:var(--x-doux);font-size:13.5px}
+.acts{display:flex;justify-content:space-between;align-items:center;color:var(--x-doux);font-size:13px;margin-top:10px}
+.acts span{display:flex;align-items:center;gap:4px;min-width:0}
+.acts svg{width:18px;height:18px;flex:none}
+.acts .fin2{display:flex;gap:14px}
+.acts .aime{color:#f91880}
+/* Post principal */
+.tw{position:relative;cursor:pointer}
+.princ{padding:12px 16px 0}
+.princ .hd{display:flex;align-items:center;gap:10px}
+.princ .hd .id{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+.princ .hd .id>span{display:flex;align-items:center;min-width:0}
+.princ .tx{font-size:17px;line-height:1.35;margin-top:12px}
+.princ .meta{color:var(--x-doux);font-size:15px;margin:14px 0 0;padding-bottom:12px;border-bottom:1px solid var(--x-bord)}
+.princ .meta b{color:var(--x-ink)}
+.princ .acts{margin:0;padding:10px 4px;border-bottom:1px solid var(--x-bord);font-size:13.5px}
+.princ .acts svg{width:20px;height:20px}
+.repondre{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--x-bord);color:var(--x-doux)}
+.repondre .av{width:32px;height:32px;font-size:12px}
+.repondre span:nth-child(2){flex:1}
+.repondre i{font-style:normal;background:var(--x-bleu);color:#fff;font-weight:700;border-radius:999px;padding:6px 14px;opacity:.5;font-size:14px}
+/* Réponses */
+.rep{display:flex;gap:10px;padding:12px 16px 2px;border-bottom:1px solid var(--x-bord)}
+.rep .g{display:flex;flex-direction:column;align-items:center;position:relative}
+.rep .d{flex:1;min-width:0}
+.rep .l1{display:flex;align-items:center;gap:4px;min-width:0}
+.rep .tx{margin-top:2px}
+.rep .acts{margin:8px 0 8px;padding-right:2px}
+.rep.lieb{border-bottom:0;padding-bottom:0}
+.rep.lieb .g::after{content:"";width:2px;flex:1;background:var(--x-bord);margin-top:4px;margin-bottom:-4px}
+.rep.lieh{padding-top:4px}
+.marque{position:absolute;right:30px;bottom:6px;font:600 9px/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--x-doux);opacity:.7;display:none}
+.tel.export .marque{display:block}
+.tw.nouv{animation:pop .3s ease-out}
+@keyframes pop{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- Écriture dans le téléphone ---------- */
+.edit .tw:hover{background:rgba(127,127,127,.06)}
+.edit .tw.choisi{outline:2px solid #f59f00;outline-offset:-3px}
+.edit [data-prof]{cursor:pointer}
+.edit [data-prof]:hover .nm,.edit .av[data-prof]:hover{text-decoration:underline;filter:brightness(1.08)}
+.vide-tel{margin:auto;text-align:center;color:var(--x-doux);font-size:13.5px;padding:20px;line-height:1.5}
+.vide-tel b{color:var(--x-ink)}
+.ecrire{background:var(--x-bg);padding:6px 8px 12px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--x-bord)}
+.qui{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:1px;align-items:center}
+.qui::-webkit-scrollbar{display:none}
+.qui .lbl{font-size:11.5px;color:var(--x-doux);white-space:nowrap}
+.qui button{border:1px solid rgba(127,127,127,.35);background:var(--x-champ);color:var(--x-ink);border-radius:999px;padding:3px 10px 3px 4px;font-size:12.5px;display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.qui button .pt{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:9.5px;font-weight:700;overflow:hidden}
+.qui button .pt img{width:100%;height:100%;object-fit:cover}
+.qui button[aria-pressed=true]{background:var(--x-bleu);border-color:var(--x-bleu);color:#fff;font-weight:600}
+.qui button.ajout{padding:3px 10px;color:var(--x-doux)}
+.zone{display:flex;align-items:flex-end;gap:6px}
+.zone textarea{flex:1;resize:none;border-radius:20px;padding:9px 14px;background:var(--x-champ);color:var(--x-ink);border:0;font-size:15px;line-height:1.3;max-height:110px;min-height:40px;outline:none}
+.zone textarea::placeholder{color:var(--x-doux)}
+.rb{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;flex:none;color:#fff;font-weight:700;font-size:14px}
+.rb svg{width:19px;height:19px}
+.rb.plus{background:transparent;color:var(--x-bleu);font-size:24px;font-weight:400;width:30px}
+.rb.env{background:var(--x-bleu)}
+.cote{font-size:11.5px;color:var(--x-doux);text-align:center;margin-top:-2px}
+.cote b{color:var(--x-ink)}
+.outils-msg{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.outils-msg button{border:1px solid rgba(127,127,127,.35);background:var(--x-champ);color:var(--x-ink);border-radius:8px;padding:4px 8px;font-size:12.5px;cursor:pointer}
+.outils-msg button.ok{background:var(--x-bleu);color:#fff;border-color:transparent;font-weight:600}
+.outils-msg button.del{color:#f4212e}
+.menu-plus{position:absolute;left:8px;bottom:66px;background:var(--x-bg);color:var(--x-ink);border:1px solid var(--x-bord);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.25);padding:6px;display:flex;flex-direction:column;z-index:5;min-width:220px}
+.menu-plus button{border:0;background:none;text-align:left;padding:9px 10px;border-radius:8px;font-size:14px;cursor:pointer;color:inherit}
+.menu-plus button:hover{background:rgba(127,127,127,.15)}
+
+/* Fenêtres */
+dialog{border:1px solid var(--bord);border-radius:14px;background:var(--panel);color:var(--ink);padding:18px;width:min(560px,calc(100vw - 24px))}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h3{margin:0 0 8px;font-size:17px}
+#dlgColler textarea{min-height:220px;font:14px/1.45 ui-monospace,Menlo,monospace}
+#dlgNote textarea{min-height:110px}
+dialog .ligne{justify-content:flex-end}
+.prof{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:start}
+.prof .gros{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:26px;font-weight:700;overflow:hidden;border:0;cursor:pointer;padding:0}
+.prof .gros img{width:100%;height:100%;object-fit:cover}
+.prof .champs{display:flex;flex-direction:column;gap:8px}
+.scan{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:4px 0 10px}
+#scanEtat{background:var(--acc2);border-radius:8px;padding:8px 10px;color:var(--ink)}
+#msgBox{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60;max-width:calc(100vw - 30px);text-align:center}
+#msgBox.on{opacity:1}
+
+/* Lecture en classe */
+#scene{position:fixed;inset:0;background:#0d0d0f;z-index:40;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+#scene.on{display:flex}
+#scene .tel{transform-origin:top center}
+#scene .bas{color:#9a9aa2;font-size:13px;display:flex;gap:14px;align-items:center}
+#scene .bas .btn{background:#222;border-color:#333;color:#eee}
+#scene.on~#msgBox{bottom:auto;top:18px}
+
+.scene-edit .ecran{height:clamp(500px,calc(100vh - 160px),720px)}
+@media (max-width:820px){
+  #reglBtn{display:inline-block}
+  .page{display:block;padding:0}
+  .regl{display:none;position:fixed;inset:0;height:100vh;height:100dvh;z-index:30;max-height:none;background:var(--bg);padding:12px 12px 80px;overflow:auto}
+  body.regl-on .regl{display:block}
+  .regl .fermer{display:flex!important}
+  .scene-edit{gap:8px;padding-bottom:10px}
+  .scene-edit .tel{width:100%;border-radius:0;padding:0;box-shadow:none;background:none}
+  .scene-edit .ecran{border-radius:0;height:calc(100dvh - 120px);min-height:420px}
+  .scene-edit .barre{display:none}
+  .actions{padding:0 10px}
+  .astuce{display:none}
+  #msgBox{bottom:auto;top:62px}
+}
+.regl .fermer{display:none;justify-content:space-between;align-items:center;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header class="haut">
+  <a class="retour" href="https://antoninatger.com/jeux/faux-tweets/" title="Retour sur antoninatger.com">← antoninatger.com</a>
+  <h1>Faux échanges X (Twitter)</h1>
+  <button class="btn mini" id="annuler" title="Annuler (Ctrl+Z)" disabled>↶ Annuler</button>
+  <button class="btn mini" id="reglBtn">⚙ Réglages</button>
+  <button class="btn mini" type="button" onclick="window.PartageJeux&&PartageJeux.ouvrir('partage')" title="Faire connaître l’outil ou donner votre avis">📣<span class="lg"> Partager</span></button>
+</header>
+
+<main class="page">
+<aside class="regl" id="regl" aria-label="Réglages">
+  <div class="fermer"><b>Réglages</b><button class="btn prim" id="reglFin">Terminé</button></div>
+
+  <section class="bloc">
+    <h2>Affichage</h2>
+    <div class="seg" id="themes">
+      <button class="btn" data-th="clair">Clair</button>
+      <button class="btn" data-th="tamise">Tamisé</button>
+      <button class="btn" data-th="noir">Noir</button>
+    </div>
+  </section>
+
+  <section class="bloc">
+    <h2>Comptes</h2>
+    <div id="persos"></div>
+    <div class="ligne"><button class="btn mini" id="addPers">+ Un compte</button></div>
+    <p class="aide">Touchez un compte pour changer son nom, son @pseudo, sa photo ou son badge. Dans le téléphone, touchez directement un nom ou une photo.</p>
+  </section>
+
+  <section class="bloc">
+    <h2>Date et chiffres</h2>
+    <div class="champ2">
+      <label>Date du post<input type="date" id="date"></label>
+      <label>Heure du post<input type="time" id="debut"></label>
+      <label>Entre deux réponses<select id="ecart"><option value="alea">Au hasard (réaliste)</option><option value="1">1 minute</option><option value="5">5 minutes</option><option value="15">15 minutes</option><option value="60">1 heure</option></select></label>
+      <label>Succès du post<select id="pop"><option value="faible">Discret</option><option value="moyenne">Remarqué</option><option value="virale">Viral</option></select></label>
+    </div>
+    <p class="aide">Les heures (« 12 min », « 3 h ») et les chiffres (j'aime, reposts, vues) se calculent tout seuls. Touchez un post puis 🕒 ou 🔢 pour les fixer vous-même.</p>
+    <div class="champ2"><label>Batterie (%)<input type="number" id="batt" min="1" max="100"></label></div>
+  </section>
+
+  <section class="bloc">
+    <h2>Échanges</h2>
+    <select id="exemples"><option value="">Charger un exemple…</option></select>
+    <div class="ligne">
+      <button class="btn mini" id="coller">Importer un dialogue (texte, photo, PDF, Word)</button>
+      <button class="btn mini" id="sauver">Enregistrer</button>
+      <button class="btn mini" id="ouvrir">Ouvrir</button>
+      <button class="btn mini warn" id="effacer">Tout effacer</button>
+    </div>
+    <p class="aide">« Enregistrer » crée un petit fichier à garder ou à envoyer à un collègue. Rien n'est envoyé sur Internet.</p>
+  </section>
+</aside>
+
+<section class="scene-edit">
+  <div id="tel"></div>
+  <div class="actions">
+    <button class="btn prim" id="png">Télécharger l'image</button>
+    <button class="btn prim" id="jouer">Lire en classe ▶</button>
+  </div>
+  <p class="astuce"><kbd>Entrée</kbd> publie · <kbd>Tab</kbd> change qui écrit · <kbd>Maj</kbd>+<kbd>Entrée</kbd> va à la ligne · un clic sur un post pour le modifier, sur un nom ou une photo pour changer le compte. L'image porte la mention discrète « Échange fictif ».</p>
+</section>
+</main>
+
+<dialog id="dlgProfil">
+  <h3>Compte</h3>
+  <div class="prof">
+    <button class="gros" id="pfAv" title="Choisir une photo"></button>
+    <div class="champs">
+      <label class="lab">Nom affiché<input type="text" id="pfNom" maxlength="50" placeholder="Camille B."></label>
+      <label class="lab">Pseudo<input type="text" id="pfPseudo" maxlength="16" placeholder="@camille_b"></label>
+      <label class="lab">Badge<select id="pfBadge"><option value="">Aucun</option><option value="bleu">Bleu (abonné X Premium)</option><option value="or">Doré (organisation, média)</option><option value="gris">Gris (institution, État)</option></select></label>
+      <div class="ligne" style="margin:0;justify-content:flex-start"><button class="btn mini" id="pfPhoto">Photo de profil</button><button class="btn mini warn" id="pfPhotoDel">Retirer la photo</button><label style="font-size:13px;display:flex;gap:6px;align-items:center">Couleur <input type="color" id="pfCoul"></label></div>
+    </div>
+  </div>
+  <div class="ligne"><button class="btn warn" id="pfSuppr">Supprimer ce compte</button><span style="flex:1"></span><button class="btn prim" id="pfOk">Terminé</button></div>
+</dialog>
+
+<dialog id="dlgNote">
+  <h3>Note de la communauté</h3>
+  <p class="aide" style="margin:0 0 8px">Sur X, des lecteurs peuvent ajouter du contexte sous un post trompeur. Parfait pour montrer une correction, ou pour la faire écrire aux élèves.</p>
+  <textarea id="noteTxt" placeholder="Cette photo date de 2017 et n'a pas été prise en France. Source : …"></textarea>
+  <div class="ligne"><button class="btn warn" id="noteDel">Retirer la note</button><span style="flex:1"></span><button class="btn" id="noteNon">Annuler</button><button class="btn prim" id="noteOui">Ajouter la note</button></div>
+</dialog>
+
+<dialog id="dlgColler">
+  <h3>Importer un dialogue</h3>
+  <div class="scan">
+    <button class="btn prim" id="scanBtn">📷 Photo, scan, PDF ou Word</button>
+    <span class="aide" style="margin:0">ou collez le texte ci-dessous</span>
+  </div>
+  <p class="aide" id="scanEtat" hidden></p>
+  <p class="aide" style="margin:0 0 8px">Un post par ligne, sous la forme <b>Nom : texte</b>. La première ligne devient le post de départ, les suivantes ses réponses. Chaque nom devient un compte (vous pourrez changer son @pseudo et sa photo).</p>
+  <textarea id="collerTxt" placeholder="InfoChoc : 🚨 Le collège ferme lundi !&#10;Léa : Source ?&#10;Tom : Partagé 😱"></textarea>
+  <div class="ligne"><label><input type="checkbox" id="collerRemplacer" checked> Remplacer l'échange</label><span style="flex:1"></span><button class="btn" id="collerNon">Annuler</button><button class="btn prim" id="collerOui">Créer l'échange</button></div>
+</dialog>
+
+<div id="scene" aria-hidden="true">
+  <div id="sceneTel"></div>
+  <div class="bas"><button class="btn" id="sPrec">◀</button><span id="sInfo"></span><button class="btn" id="sSuiv">▶</button><button class="btn" id="sFin">Quitter (Échap)</button></div>
+</div>
+<div id="msgBox" role="status"></div>
+<input type="file" id="fPhoto" accept="image/*">
+<input type="file" id="fImg" accept="image/*">
+<input type="file" id="fJson" accept=".json,application/json">
+<input type="file" id="fScan" accept="image/*,.pdf,.docx,.txt,application/pdf">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const COUL=['#1d9bf0','#e0245e','#f45d22','#7856ff','#00ba7c','#ffad1f','#8a5a44','#536471'];
+
+/* ---------- Icônes ---------- */
+const I={
+  ret:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5M11 5l-7 7 7 7"/></svg>',
+  rep:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11a7 7 0 0 1 7-7h2a7 7 0 0 1 0 14h-1l-5 3v-3.6A7 7 0 0 1 4 11z"/></svg>',
+  rt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19V7h8M4 10l3-3 3 3M17 5v12H9M20 14l-3 3-3-3"/></svg>',
+  like:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg>',
+  vues:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20V12M10 20V5M15 20v-9M20 20v-5"/></svg>',
+  sig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg>',
+  part:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 14v6h14v-6"/></svg>',
+  note:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 19c.6-3 2.6-5 5-5s4.4 2 5 5M11 19c.6-3 2.6-5 5-5s4.4 2 5 5"/></svg>',
+  env:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg>',
+};
+const BADGE={bleu:'#1d9bf0',or:'#e2b719',gris:'#829aab'};
+function badge(b){ if(!BADGE[b]) return ''; return `<svg class="badge" viewBox="0 0 24 24" aria-label="Compte certifié"><path fill="${BADGE[b]}" d="M12 1.6l2.4 1.8 3-.2.9 2.9 2.5 1.7-.9 2.9.9 2.9-2.5 1.7-.9 2.9-3-.2L12 20.4l-2.4-1.8-3 .2-.9-2.9-2.5-1.7.9-2.9-.9-2.9 2.5-1.7.9-2.9 3 .2z"/><path d="M8 11.3l2.7 2.6L16.2 8.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`; }
+
+/* ---------- Exemples ---------- */
+const P=(de,texte,x)=>Object.assign({de,texte},x||{});
+const EXEMPLES={
+  chocolat:{nom:"Une « étude » sans source",c:{theme:'clair',date:'2026-03-12',debut:'08:14',ecart:'alea',pop:'virale',batt:64,
+    pers:[{id:'p1',nom:'Actu Choc 🚨',pseudo:'ActuChocFR',coul:'#f4212e',badge:'bleu'},{id:'p2',nom:'Léa',pseudo:'lea_dsn',coul:'#e0245e'},{id:'p3',nom:'Dr Karim Benali',pseudo:'kbenali_med',coul:'#00ba7c'},{id:'p4',nom:'Tom 🎮',pseudo:'tomtom_92',coul:'#7856ff'}],
+    posts:[P('p1',"🚨 INFO : une étude le prouve, manger du chocolat noir tous les jours fait perdre du poids plus vite qu'un régime classique 🍫\n\nLes médecins ne veulent pas que vous le sachiez. #santé #regime",{note:"Cette « étude » était un canular monté en 2015 par un journaliste scientifique pour montrer avec quelle facilité les médias relaient une étude bâclée : très peu de participants, aucun résultat solide. Il l'a lui-même révélé."}),
+      P('p2',"Trop bien je commence demain 😂😂"),P('p3',"Quelle étude ? Il n'y a ni lien, ni nom de revue, ni auteur. Avant de partager, demandez-vous d'où vient l'info."),P('p1',"Faites vos propres recherches 😉",{lie:true}),P('p4',"Partagé ! Ma mère doit voir ça"),P('p2',"Ah mince, la note dit que c'est un canular 😳")]}},
+  dessin:{nom:"Une moquerie qui dégénère",c:{theme:'noir',date:'2026-05-03',debut:'19:42',ecart:'alea',pop:'faible',batt:38,
+    pers:[{id:'p1',nom:'Inès ✏️',pseudo:'ines_dessine',coul:'#7856ff',badge:''},{id:'p2',nom:'Kylian',pseudo:'kyky_off',coul:'#f45d22'},{id:'p3',nom:'mxlx',pseudo:'mxlx_x',coul:'#536471'},{id:'p4',nom:'Sarah',pseudo:'sarah.lbr',coul:'#00ba7c'}],
+    posts:[P('p1',"Mon tout premier dessin sur tablette 🥹 soyez indulgents, j'ai mis 3 soirs"),P('p2',"Mon petit frère de 6 ans fait mieux 💀"),P('p3',"ptdr on dirait une pomme de terre"),P('p2',"Supprime frère c'est gênant 😭",{lie:true}),P('p4',"Arrêtez, c'est super pour un premier dessin et ça vous coûte rien d'être gentils. Continue Inès ❤️"),P('p3',"oh ça va c'est pour rire")]}},
+  citation:{nom:"Une fausse citation d'Einstein",c:{theme:'tamise',date:'2026-09-20',debut:'12:05',ecart:'alea',pop:'moyenne',batt:81,
+    pers:[{id:'p1',nom:'Pensées Positives ✨',pseudo:'pensees_pos',coul:'#ffad1f',badge:'bleu'},{id:'p2',nom:'Nathan',pseudo:'nathan_svt',coul:'#1d9bf0'},{id:'p3',nom:'Jade',pseudo:'jade.b',coul:'#e0245e'}],
+    posts:[P('p1',"« Si l'abeille disparaissait du globe, l'homme n'aurait plus que quatre années à vivre. »\n— Albert Einstein 🐝",{note:"Aucun écrit ni discours d'Einstein ne contient cette phrase. Elle lui est attribuée seulement à partir des années 1990, longtemps après sa mort. Le déclin des abeilles est bien réel, mais la citation est fausse."}),
+      P('p2',"Einstein était physicien, pas biologiste. Pourquoi il aurait dit ça ?"),P('p3',"Ça veut dire que c'est faux pour les abeilles alors ?"),P('p2',"Non ! Le problème des abeilles est réel. C'est juste la citation qui est inventée. On peut avoir raison avec une mauvaise source 😅",{lie:true})]}},
+};
+const VIDE=()=>({theme:'clair',date:new Date().toISOString().slice(0,10),debut:'18:24',ecart:'alea',pop:'moyenne',batt:76,
+  pers:[{id:'p1',nom:'Camille',pseudo:'camille_b',coul:COUL[0],badge:''},{id:'p2',nom:'Lucas',pseudo:'lucas.mrtn',coul:COUL[1],badge:''}],posts:[]});
+
+/* ---------- État ---------- */
+const CLE='faux-tweets:v1';
+let C=VIDE(), actif='p1', sel=-1, hist=[];
+function normaliser(c){
+  c=Object.assign(VIDE(),c);
+  if(!Array.isArray(c.pers)||!c.pers.length) c.pers=VIDE().pers;
+  c.posts=(c.posts||[]).filter(m=>m&&typeof m==='object');
+  return c;
+}
+try{ const s=localStorage.getItem(CLE); if(s) C=normaliser(JSON.parse(s)); }catch(e){}
+let tGarde; function garder(){ clearTimeout(tGarde); tGarde=setTimeout(()=>{ try{ localStorage.setItem(CLE,JSON.stringify(C)); }catch(e){ msg("Trop gros pour être gardé dans le navigateur : pensez à « Enregistrer »."); } },250); }
+function avant(){ hist.push(JSON.stringify(C)); if(hist.length>80) hist.shift(); $('annuler').disabled=false; }
+function annuler(){ if(!hist.length) return; C=JSON.parse(hist.pop()); neuf(); $('annuler').disabled=!hist.length; tout(); garder(); }
+function msg(t){ const b=$('msgBox'); b.textContent=t; b.classList.add('on'); clearTimeout(b._t); b._t=setTimeout(()=>b.classList.remove('on'),2800); }
+const personne=id=>C.pers.find(p=>p.id===id)||C.pers[0];
+const initiales=n=>(n||'?').replace(/[^\p{L}\p{N} ]/gu,'').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'#';
+const pseudoDe=n=>(n||'compte').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-zA-Z0-9_]+/g,'_').replace(/^_+|_+$/g,'').toLowerCase().slice(0,15)||'compte';
+const avatar=(p,cls='av',attr='')=>`<span class="${cls}" ${attr} style="background:${p.photo?'#ccc':(p.coul||'#8a8f98')}">${p.photo?`<img src="${p.photo}" alt="">`:esc(initiales(p.nom))}</span>`;
+function lier(t){ return esc(t).replace(/(https?:\/\/[^\s<]+)|(^|[\s(])([#@][\p{L}\p{N}_]+)/gu,(m,u,a,b)=>u?`<span class="ln">${u.replace(/^https?:\/\//,'')}</span>`:`${a}<span class="ln">${b}</span>`); }
+
+/* ---------- Heures et chiffres automatiques ---------- */
+const enMin=h=>{ const m=/^(\d{1,2})[:h](\d{2})/.exec(h||''); return m ? +m[1]*60+ +m[2] : null; };
+const enH=t=>{ t=((t%1440)+1440)%1440; return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); };
+const hasard=(i,k)=>(((i+1)*2654435761+(k+1)*40503)>>>0)%1000/1000;
+function temps(){   // minutes depuis minuit le jour du post de départ (peut dépasser 1440)
+  let t=enMin(C.debut)??(18*60+24); const out=[];
+  C.posts.forEach((m,i)=>{
+    if(i>0){ if(m.h&&enMin(m.h)!=null){ let f=enMin(m.h); while(f<t) f+=1440; t=f; }
+      else{ const e=C.ecart; t += e==='alea' ? Math.round(1+hasard(i,9)**2*25) : (+e||1); } }
+    else if(m.h&&enMin(m.h)!=null) t=enMin(m.h);
+    out.push(t);
+  });
+  return out;
+}
+const capture=T=>T.length?T[T.length-1]+2+Math.round(hasard(T.length,3)*4):(enMin(C.debut)??1104);
+const MOIS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+function jour(dec){ const d=new Date((C.date||'2026-01-01')+'T12:00:00'); if(isNaN(d)) return null; d.setDate(d.getDate()+dec); return d; }
+function age(t,cap){ const d=Math.max(1,cap-t); if(d<60) return d+' min'; if(d<1440) return Math.floor(d/60)+' h'; const j=jour(Math.floor(t/1440)); return j?j.getDate()+' '+MOIS[j.getMonth()]:''; }
+function dateLongue(t){ const j=jour(Math.floor(t/1440)); return enH(t)+(j?' · '+j.getDate()+' '+MOIS[j.getMonth()]+' '+j.getFullYear():''); }
+function nb(n){ n=Math.round(+n||0); if(n<=0) return ''; if(n<1e4) return n.toLocaleString('fr-FR').replace(/ | /g,' ');
+  if(n<1e6) return (n<1e5?(Math.floor(n/100)/10).toString().replace('.',','):Math.floor(n/1000))+' k'; return (Math.floor(n/1e5)/10).toString().replace('.',',')+' M'; }
+function lireNb(s){ const m=/^([\d\s.,]+)\s*([kKmM]?)$/.exec(String(s).trim()); if(!m) return null; let v=parseFloat(m[1].replace(/\s/g,'').replace(',','.')); if(isNaN(v)) return null; if(/k/i.test(m[2])) v*=1e3; if(/m/i.test(m[2])) v*=1e6; return Math.round(v); }
+const POP={faible:[2,45,4],moyenne:[400,5000,90],virale:[12000,160000,2500]};
+function chiffres(i){
+  const m=C.posts[i], p=POP[C.pop]||POP.moyenne, g=[...(m.texte||'')].reduce((a,c)=>(a*31+c.codePointAt(0))%9973,7), r=k=>hasard(i+g,k);
+  let s;
+  if(i===0){ const like=Math.round(p[0]+(p[1]-p[0])*r(1)**1.5);
+    s={rep:Math.max(C.posts.length-1,Math.round(like*(.03+.07*r(2)))),rt:Math.round(like*(.08+.2*r(3))),like,vues:Math.round(like*(28+70*r(4))),sig:Math.round(like*(.02+.06*r(5)))}; }
+  else{ const like=Math.round(p[2]*r(1)**2.2);
+    s={rep:Math.round(like*.08*r(2)),rt:Math.round(like*.15*r(3)),like,vues:Math.round(like*(20+30*r(4))+3+p[2]*r(6)*2),sig:0}; }
+  if(m.stats) for(const k of ['rep','rt','like','vues']) if(m.stats[k]!=null) s[k]=m.stats[k];
+  return s;
+}
+
+/* ---------- Rendu du téléphone ---------- */
+function actsHTML(s,grand){
+  return grand
+    ? `<div class="acts"><span>${I.rep}${nb(s.rep)}</span><span>${I.rt}${nb(s.rt)}</span><span>${I.like}${nb(s.like)}</span><span>${I.sig}${nb(s.sig)}</span><span>${I.part}</span></div>`
+    : `<div class="acts"><span>${I.rep}${nb(s.rep)}</span><span>${I.rt}${nb(s.rt)}</span><span>${I.like}${nb(s.like)}</span><span>${I.vues}${nb(s.vues)}</span><span class="fin2">${I.sig}${I.part}</span></div>`;
+}
+function noteHTML(m){ return m.note ? `<div class="note"><div class="nt">${I.note}Les lecteurs ont ajouté du contexte</div><div class="nc">${lier(m.note)}</div><div class="nb">Cette note vous a-t-elle été utile ?</div></div>` : ''; }
+function filHTML(n,opt={}){
+  const T=temps(), cap=capture(T), ps=C.posts.slice(0,n), ed=opt.edit;
+  let s='';
+  ps.forEach((m,i)=>{
+    const p=personne(m.de), st=chiffres(i), cl=`${opt.nouv===i?' nouv':''}${sel===i&&ed?' choisi':''}`;
+    const prof=`data-prof="${p.id}"`;
+    if(i===0){
+      s+=`<article class="tw princ${cl}" data-i="0"><div class="hd">${avatar(p,'av',prof)}<span class="id" ${prof}><span><b class="nm">${esc(p.nom||'Compte')}</b>${badge(p.badge)}</span><span class="ps">@${esc(p.pseudo||pseudoDe(p.nom))}</span></span><span class="pt3">···</span></div>`
+        +`${m.texte?`<div class="tx">${lier(m.texte)}</div>`:''}${m.img?`<img class="ph" src="${m.img}" alt="">`:''}${noteHTML(m)}`
+        +`<div class="meta">${dateLongue(T[0])} · <b>${nb(st.vues)||'1'}</b> vues</div>${actsHTML(st,true)}</article>`;
+      if(!opt.frappe) s+=`<div class="repondre">${avatar(C.pers[C.pers.length>1?1:0])}<span>Postez votre réponse</span><i>Répondre</i></div>`;
+      return;
+    }
+    const lh=m.lie&&i>1, lb=ps[i+1]&&ps[i+1].lie;
+    s+=`<article class="tw rep${lh?' lieh':''}${lb?' lieb':''}${cl}" data-i="${i}"><div class="g">${avatar(p,'av',prof)}</div><div class="d">`
+      +`<div class="l1"><b class="nm" ${prof}>${esc(p.nom||'Compte')}</b>${badge(p.badge)}<span class="ps">@${esc(p.pseudo||pseudoDe(p.nom))} · ${age(T[i],cap)}</span><span class="pt3">···</span></div>`
+      +`${m.texte?`<div class="tx">${lier(m.texte)}</div>`:''}${m.img?`<img class="ph" src="${m.img}" alt="">`:''}${noteHTML(m)}${actsHTML(st,false)}</div></article>`;
+  });
+  if(ed&&!ps.length) s+=`<div class="vide-tel"><b>1.</b> En bas, choisissez <b>qui écrit</b>.<br><b>2.</b> Tapez le post de départ, puis <b>Entrée</b>.<br><b>3.</b> Changez de compte et ajoutez les réponses.<br><br>Touchez un nom ou une photo pour changer le compte (pseudo, photo, badge).<br>Touchez un post pour le modifier.<br><br>Pour voir un exemple : ⚙ Réglages.</div>`;
+  return s;
+}
+function horloge(){ return enH(capture(temps())); }
+function barreHTML(){ const b=Math.max(1,Math.min(100,+C.batt||76));
+  return `<span>${horloge()}</span><span class="ic"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.1 0 4 .8 5.5 2.1l1.2-1.3A9.5 9.5 0 0 0 7.5.4 9.5 9.5 0 0 0 .8 3l1.2 1.3a7.7 7.7 0 0 1 5.5-2.1Zm0 3.3c1.2 0 2.3.4 3.2 1.2l1.2-1.3a6.4 6.4 0 0 0-8.8 0l1.2 1.3c.9-.8 2-1.2 3.2-1.2Zm0 3.2c-.4 0-.8.2-1.1.4l1.1 1.2 1.1-1.2c-.3-.2-.7-.4-1.1-.4Z"/></svg><span class="batt${b<=20?' bas':''}"><i style="width:${b}%"></i></span></span>`; }
+const teteHTML=()=>`${I.ret}<b>Post</b>`;
+const classeEcran=()=>`ecran x-${C.theme||'clair'}`;
+function telHTML(opt={}){
+  const n=opt.n??C.posts.length;
+  return `<div class="tel${opt.export?' export':''}"><div class="${classeEcran()}">
+    <div class="barre">${barreHTML()}</div><div class="tete">${teteHTML()}</div>
+    <div class="fil">${filHTML(n,opt)}</div><div class="marque">Échange fictif</div></div></div>`;
+}
+
+/* ---------- Téléphone modifiable ---------- */
+function construireTel(){
+  $('tel').innerHTML=`<div class="tel edit"><div class="${classeEcran()}" id="ecran">
+    <div class="barre" id="barre"></div><div class="tete" id="tete"></div>
+    <div class="fil" id="fil"></div>
+    <div class="ecrire">
+      <div class="outils-msg" id="outilsMsg" hidden></div>
+      <div class="qui" id="qui" role="group" aria-label="Qui écrit ?"></div>
+      <div class="zone">
+        <button class="rb plus" id="plus" title="Ajouter…" aria-label="Ajouter une photo, une note…">+</button>
+        <textarea id="texte" rows="1" placeholder="Quoi de neuf ?" aria-label="Texte du post"></textarea>
+        <button class="rb env" id="env" title="Publier (Entrée)" aria-label="Publier">${I.env}</button>
+      </div>
+      <div class="cote" id="cote"></div>
+    </div>
+    <div class="menu-plus" id="menuPlus" hidden>
+      <button data-p="img">🖼️ Photo dans le post</button>
+      <button data-p="scan">📷 Scanner un dialogue</button>
+      <button data-p="coller">📋 Coller un dialogue</button>
+    </div>
+  </div></div>`;
+  brancherTel();
+}
+function majTel(scroll){
+  const e=$('ecran'); if(!e) return construireTel(), majTel(true);
+  e.className=classeEcran();
+  $('barre').innerHTML=barreHTML(); $('tete').innerHTML=teteHTML();
+  const f=$('fil'); const enBas=f.scrollHeight-f.scrollTop-f.clientHeight<40;
+  f.innerHTML=filHTML(C.posts.length,{edit:true});
+  if(scroll||enBas) f.scrollTop=f.scrollHeight;
+  majEcrire();
+}
+function majEcrire(){
+  if(!C.pers.some(p=>p.id===actif)) actif=C.pers[0].id;
+  const m=C.posts[sel];
+  const qui = sel>=0&&m ? m.de : actif;
+  const c=personne(qui);
+  $('qui').innerHTML='<span class="lbl">Qui écrit ?</span>'+C.pers.map(p=>`<button data-q="${p.id}" aria-pressed="${qui===p.id}">${avatar(p,'pt')}${esc(p.nom||'?')}</button>`).join('')+'<button class="ajout" data-q="+" title="Ajouter un compte">+ Compte</button>';
+  const prem=!C.posts.length||(insererA===0);
+  $('cote').innerHTML = sel>=0 ? (sel===0?'Modifier le post de départ':'Modifier la réponse')+' · <b>'+esc(c.nom)+'</b>'
+    : (prem ? `<b>${esc(c.nom||'?')}</b> écrit le post de départ` : `<b>${esc(c.nom||'?')}</b> répond`)+' · <kbd>Tab</kbd> change';
+  $('texte').placeholder = sel>=0 ? 'Texte du post' : (prem?'Quoi de neuf ?':'Réponse de '+(c.nom||'?')+'…');
+  const o=$('outilsMsg'); o.hidden=sel<0;
+  if(sel>=0&&m){
+    const T=temps();
+    o.innerHTML=`<button class="ok" data-o="ok">✓ Valider</button><button data-o="heure">🕒 ${m.h?m.h+' (fixée)':enH(T[sel])}</button><button data-o="chiffres">🔢 Chiffres</button><button data-o="note">📝 Note</button>`
+      +`${m.img?'<button data-o="noimg">Retirer la photo</button>':''}${sel>1?`<button data-o="lie">${m.lie?'🔗 Délier':'🔗 Relier au précédent'}</button>`:''}`
+      +`<button data-o="up">↑</button><button data-o="down">↓</button><button data-o="ins">Insérer avant</button><button class="del" data-o="del">Supprimer</button><button data-o="fin">Fermer</button>`;
+  }
+}
+function grow(){ const t=$('texte'); t.style.height='auto'; t.style.height=Math.min(110,t.scrollHeight)+'px'; }
+let insererA=-1;
+function ajouterPost(m){ if(insererA>=0){ C.posts.splice(insererA,0,m); insererA++; } else C.posts.push(m); }
+function envoyer(){
+  const t=$('texte'); const v=t.value.replace(/\s+$/,'');
+  if(sel>=0){ const m=C.posts[sel]; avant(); m.texte=v; sel=-1; t.value=''; grow(); majTel(); garder(); return; }
+  if(!v.trim()){ majEcrire(); t.focus(); return; }
+  avant(); ajouterPost({de:actif,texte:v});
+  t.value=''; grow(); majTel(insererA<0); garder(); t.focus();
+}
+function choisir(i){
+  if(i===sel){ fermerEdition(); return; }
+  sel=i; insererA=-1; const m=C.posts[i]; const t=$('texte'); t.value=m.texte||''; grow(); majTel(); t.focus(); t.setSelectionRange(t.value.length,t.value.length);
+}
+function fermerEdition(){ sel=-1; $('texte').value=''; grow(); majTel(); }
+const nouvId=()=>'p'+(Math.max(0,...C.pers.map(p=>+p.id.slice(1)||0))+1);
+function nouveauCompte(nom){ const p={id:nouvId(),nom,pseudo:pseudoDe(nom),coul:COUL[C.pers.length%COUL.length],badge:''}; C.pers.push(p); return p; }
+function brancherTel(){
+  const t=$('texte');
+  t.addEventListener('input',grow);
+  t.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); envoyer(); }
+    else if(e.key==='Tab'&&!e.ctrlKey&&!e.altKey&&!e.metaKey){ e.preventDefault(); if(sel>=0) return; const ids=C.pers.map(p=>p.id); actif=ids[(ids.indexOf(actif)+(e.shiftKey?ids.length-1:1))%ids.length]; majEcrire(); }
+    else if(e.key==='Escape'&&sel>=0){ e.preventDefault(); fermerEdition(); }
+    else if(e.key==='ArrowUp'&&!t.value&&sel<0&&C.posts.length){ e.preventDefault(); choisir(C.posts.length-1); }
+  });
+  $('env').onclick=envoyer;
+  $('qui').onclick=e=>{ const b=e.target.closest('[data-q]'); if(!b) return; let q=b.dataset.q;
+    if(q==='+'){ if(C.pers.length>=12) return msg('12 comptes au plus.'); const v=prompt('Nom du nouveau compte', ''); if(!v||!v.trim()) return; avant(); q=nouveauCompte(v.trim()).id; tout(); garder(); }
+    if(sel>=0){ const m=C.posts[sel]; if(m&&m.de!==q){ avant(); m.de=q; majTel(); garder(); } }
+    else { actif=q; majEcrire(); }
+    t.focus(); };
+  $('fil').onclick=e=>{ const pr=e.target.closest('[data-prof]'); if(pr) return ouvrirProfil(pr.dataset.prof); const b=e.target.closest('[data-i]'); if(b) choisir(+b.dataset.i); };
+  $('plus').onclick=e=>{ e.stopPropagation(); $('menuPlus').hidden=!$('menuPlus').hidden; };
+  document.addEventListener('click',e=>{ if(!e.target.closest('#menuPlus')) $('menuPlus').hidden=true; });
+  $('menuPlus').onclick=e=>{ const b=e.target.closest('[data-p]'); if(!b) return; $('menuPlus').hidden=true; const k=b.dataset.p;
+    if(k==='img'){ $('fImg').value=''; $('fImg').click(); }
+    else if(k==='coller') ouvrirColler();
+    else if(k==='scan'){ ouvrirColler(); $('fScan').value=''; $('fScan').click(); } };
+  $('outilsMsg').onclick=e=>{ const b=e.target.closest('[data-o]'); if(!b) return; const k=b.dataset.o, m=C.posts[sel];
+    if(k==='ok') return envoyer();
+    if(k==='fin') return fermerEdition();
+    if(k==='note') return ouvrirNote();
+    avant();
+    if(k==='del'){ C.posts.splice(sel,1); if(C.posts[sel]&&sel<=1) delete C.posts[sel].lie; sel=-1; t.value=''; grow(); }
+    else if(k==='heure'){ const T=temps(); const v=prompt('Heure de ce post (laisser vide pour la calculer automatiquement)', m.h||enH(T[sel])); if(v===null){ hist.pop(); return; } if(v.trim()&&enMin(v)==null){ hist.pop(); return msg('Heure non comprise : écrivez par exemple 14:05.'); } if(v.trim()) m.h=enH(enMin(v)); else delete m.h; }
+    else if(k==='chiffres'){ const s=chiffres(sel); const v=prompt('Réponses, reposts, j\'aime, vues, séparés par des espaces.\nExemple : 12 40 1,2k 35k\nLaisser vide pour les calculer automatiquement.', m.stats?[s.rep,s.rt,s.like,s.vues].join(' '):'');
+      if(v===null){ hist.pop(); return; } if(!v.trim()) delete m.stats; else { const x=v.trim().split(/\s+/).map(lireNb); if(x.some(n=>n==null)){ hist.pop(); return msg('Chiffres non compris : par exemple 12 40 1,2k 35k'); } m.stats={}; ['rep','rt','like','vues'].forEach((c,j)=>{ if(x[j]!=null) m.stats[c]=x[j]; }); } }
+    else if(k==='noimg'){ delete m.img; }
+    else if(k==='lie'){ if(m.lie) delete m.lie; else m.lie=true; }
+    else if(k==='up'&&sel>0){ [C.posts[sel-1],C.posts[sel]]=[C.posts[sel],C.posts[sel-1]]; sel--; }
+    else if(k==='down'&&sel<C.posts.length-1){ [C.posts[sel+1],C.posts[sel]]=[C.posts[sel],C.posts[sel+1]]; sel++; }
+    else if(k==='ins'){ insererA=sel; sel=-1; t.value=''; grow(); msg('Les prochains posts s\'insèrent avant celui-ci. Échap pour revenir à la fin.'); }
+    C.posts.forEach((p,i)=>{ if(i<2) delete p.lie; });
+    majTel(); garder(); t.focus(); };
+}
+
+/* ---------- Profil d'un compte ---------- */
+let profil=null;
+function dessinerProfil(){ const p=profil; const a=$('pfAv'); a.style.background=p.photo?'#ccc':(p.coul||'#8a8f98'); a.innerHTML=p.photo?`<img src="${p.photo}" alt="">`:esc(initiales(p.nom)); $('pfPhotoDel').hidden=!p.photo; }
+function ouvrirProfil(id){
+  profil=C.pers.find(p=>p.id===id); if(!profil) return; avant();
+  $('pfNom').value=profil.nom||''; $('pfPseudo').value='@'+(profil.pseudo||pseudoDe(profil.nom)); $('pfBadge').value=profil.badge||''; $('pfCoul').value=profil.coul||COUL[0];
+  $('pfSuppr').disabled=C.pers.length<2; dessinerProfil(); $('dlgProfil').showModal();
+}
+const majProfil=()=>{ dessinerProfil(); tout(); garder(); };
+$('pfNom').oninput=e=>{ profil.nom=e.target.value; majProfil(); };
+$('pfPseudo').oninput=e=>{ profil.pseudo=e.target.value.replace(/^@+/,'').replace(/\s+/g,'_'); majProfil(); };
+$('pfBadge').onchange=e=>{ profil.badge=e.target.value; majProfil(); };
+$('pfCoul').oninput=e=>{ profil.coul=e.target.value; majProfil(); };
+$('pfAv').onclick=$('pfPhoto').onclick=()=>{ $('fPhoto').value=''; $('fPhoto').click(); };
+$('pfPhotoDel').onclick=()=>{ delete profil.photo; majProfil(); };
+$('pfOk').onclick=()=>$('dlgProfil').close();
+$('pfSuppr').onclick=()=>{ const p=profil, n=C.posts.filter(m=>m.de===p.id).length;
+  if(n&&!confirm(`Supprimer ${p.nom||'ce compte'} et ses ${n} post(s) ?`)) return;
+  C.posts=C.posts.filter(m=>m.de!==p.id); C.pers=C.pers.filter(x=>x!==p); C.posts.forEach((m,i)=>{ if(i<2) delete m.lie; });
+  $('dlgProfil').close(); neuf(); tout(); garder(); };
+
+/* ---------- Note de la communauté ---------- */
+function ouvrirNote(){ const m=C.posts[sel]; $('noteTxt').value=m.note||''; $('noteDel').hidden=!m.note; $('noteOui').textContent=m.note?'Enregistrer':'Ajouter la note'; $('dlgNote').showModal(); $('noteTxt').focus(); }
+$('noteNon').onclick=()=>$('dlgNote').close();
+$('noteOui').onclick=()=>{ const m=C.posts[sel], v=$('noteTxt').value.trim(); avant(); if(v) m.note=v; else delete m.note; $('dlgNote').close(); majTel(); garder(); };
+$('noteDel').onclick=()=>{ avant(); delete C.posts[sel].note; $('dlgNote').close(); majTel(); garder(); };
+
+/* ---------- Réglages ---------- */
+function dessinerReglages(){
+  document.querySelectorAll('#themes [data-th]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.th===(C.theme||'clair')));
+  $('date').value=C.date||''; $('debut').value=C.debut||''; $('ecart').value=C.ecart||'alea'; $('pop').value=C.pop||'moyenne'; $('batt').value=C.batt||'';
+  $('persos').innerHTML=C.pers.map(p=>`<div class="perso">${avatar(p,'mini-av',`data-pf="${p.id}" role="button" title="Modifier"`)}<span class="qi" data-pf="${p.id}"><b>${esc(p.nom||'Sans nom')}${badge(p.badge)}</b><span>@${esc(p.pseudo||pseudoDe(p.nom))}</span></span><button class="btn mini" data-pf="${p.id}">Modifier</button></div>`).join('');
+}
+$('persos').onclick=e=>{ const b=e.target.closest('[data-pf]'); if(b) ouvrirProfil(b.dataset.pf); };
+document.querySelectorAll('#themes [data-th]').forEach(b=>b.onclick=()=>{ avant(); C.theme=b.dataset.th; tout(); garder(); });
+const reg=(id,f,ev='input')=>{ $(id).addEventListener('focus',()=>avant()); $(id).addEventListener(ev,e=>{ f(e.target); majTel(); garder(); }); };
+reg('date',t=>C.date=t.value,'change'); reg('debut',t=>C.debut=t.value); reg('ecart',t=>C.ecart=t.value,'change'); reg('pop',t=>C.pop=t.value,'change'); reg('batt',t=>C.batt=t.value);
+$('addPers').onclick=()=>{ if(C.pers.length>=12) return msg('12 comptes au plus.'); avant(); const p=nouveauCompte('Nouveau compte'); tout(); garder(); ouvrirProfil(p.id); $('pfNom').select(); };
+
+/* ---------- Images ---------- */
+function reduire(file,max){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(file),im=new Image(); im.onload=()=>{ const k=Math.min(1,max/Math.max(im.naturalWidth,im.naturalHeight)); const c=document.createElement('canvas'); c.width=Math.round(im.naturalWidth*k); c.height=Math.round(im.naturalHeight*k); const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,c.width,c.height); g.drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res(c.toDataURL('image/jpeg',.82)); }; im.onerror=()=>{ URL.revokeObjectURL(u); rej(); }; im.src=u; }); }
+$('fPhoto').onchange=async e=>{ const f=e.target.files[0]; if(!f||!profil) return; try{ profil.photo=await reduire(f,200); majProfil(); }catch(x){ msg('Image illisible.'); } };
+$('fImg').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; try{ const img=await reduire(f,900); avant();
+  if(sel>=0){ C.posts[sel].img=img; majTel(); garder(); return; }
+  const t=$('texte'); ajouterPost({de:actif,texte:t.value.trim(),img}); t.value=''; grow(); majTel(true); garder(); }catch(x){ msg('Image illisible.'); } };
+
+/* ---------- Coller un dialogue ---------- */
+function ouvrirColler(){ etatScan(''); $('collerTxt').value=''; $('collerRemplacer').checked=true; $('dlgColler').showModal(); $('collerTxt').focus(); }
+$('coller').onclick=ouvrirColler;
+$('collerNon').onclick=()=>$('dlgColler').close();
+$('collerOui').onclick=()=>{
+  const lignes=$('collerTxt').value.split(/\r?\n/); const rempl=$('collerRemplacer').checked;
+  const pers=rempl?[]:C.pers.map(p=>({...p})), posts=rempl?[]:C.posts.slice();
+  const idDe=nom=>{ const nu=nom.replace(/^@/,''); let p=pers.find(x=>x.nom.toLowerCase()===nu.toLowerCase()||(x.pseudo||'').toLowerCase()===nu.toLowerCase()); if(!p){ p={id:'p'+(pers.length?Math.max(...pers.map(x=>+x.id.slice(1)||0))+1:1),nom:nu,pseudo:pseudoDe(nu),coul:COUL[pers.length%COUL.length],badge:''}; pers.push(p); } return p.id; };
+  let der=null, n=0, ignorees=0;
+  for(const brut of lignes){
+    const l=brut.trim(); if(!l){ der=null; continue; }
+    const r=/^(?:[-•*·]\s*|\d{1,3}[.)]\s+)?\[?(?:\d{1,2}[:h]\d{2}\]?\s*[-–]?\s*)?(@?[^:]{1,30}?)\s*:\s*(.+)$/.exec(l)
+      || /^(?:[-•*·]\s*)?((?:[A-ZÀ-Ý@][\p{L}'’.-]*)(?:\s[A-ZÀ-Ý][\p{L}'’.-]*){0,2})\s+[-–—>]\s*(.+)$/u.exec(l);
+    const nomOK=n=>/^@?[\p{L}\p{N}\p{Extended_Pictographic}_][\p{L}\p{M}\p{N}\p{Extended_Pictographic}_'’ .-]{0,29}$/u.test(n)&&n.split(/\s+/).length<=4;
+    if(r&&nomOK(r[1].trim())){ der={de:idDe(r[1].trim()),texte:r[2]}; posts.push(der); n++; }
+    else if(der){ der.texte+='\n'+l; }
+    else ignorees++;
+  }
+  if(!n) return msg('Aucun post trouvé : écrivez « Nom : texte », un par ligne.');
+  avant();
+  if(!pers.length) pers.push(VIDE().pers[0]);
+  C.pers=pers; C.posts=posts; neuf(); actif=pers[pers.length>1?1:0].id;
+  $('dlgColler').close(); tout(); garder(); msg(`${n} post(s) créé(s)${ignorees?`, ${ignorees} ligne(s) sans nom ignorée(s)`:''}. Touchez un nom pour changer le @pseudo ou la photo.`);
+};
+
+/* ---------- Scanner un dialogue : photo (lecture du texte), PDF, Word, texte ---------- */
+const charger=src=>new Promise((ok,ko)=>{ if(document.querySelector(`script[src="${src}"]`)) return ok(); const e=document.createElement('script'); e.src=src; e.onload=ok; e.onerror=()=>ko(new Error('reseau')); document.head.appendChild(e); });
+const TESS='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/';
+function etatScan(t){ const e=$('scanEtat'); e.hidden=!t; e.textContent=t||''; }
+async function lireImages(sources){
+  await charger(TESS+'tesseract.min.js');
+  const w=await Tesseract.createWorker('fra',1,{workerPath:TESS+'worker.min.js',corePath:'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1',langPath:'https://cdn.jsdelivr.net/npm/@tesseract.js-data/fra@1.0.0/4.0.0_best_int',
+    logger:m=>{ if(m.status==='recognizing text') etatScan(`Lecture du texte… ${Math.round(m.progress*100)} %`); else if(/load|initializ/.test(m.status)) etatScan('Préparation de la lecture (la première fois, quelques secondes)…'); }});
+  let txt=''; try{ for(const s of sources){ const r=await w.recognize(s); txt+=r.data.text+'\n'; } } finally{ await w.terminate(); }
+  return txt;
+}
+async function lirePdf(file){
+  await charger('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const pdf=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise; let txt='';
+  for(let i=1;i<=pdf.numPages;i++){ const c=await (await pdf.getPage(i)).getTextContent(); let y=null;
+    for(const it of c.items){ if(y!==null&&Math.abs(it.transform[5]-y)>2) txt+='\n'; txt+=it.str; y=it.transform[5]; } txt+='\n'; }
+  if(txt.replace(/\s/g,'').length>20) return txt;
+  const imgs=[]; for(let i=1;i<=Math.min(pdf.numPages,10);i++){ const pg=await pdf.getPage(i); const v=pg.getViewport({scale:2}); const cv=document.createElement('canvas'); cv.width=v.width; cv.height=v.height; await pg.render({canvasContext:cv.getContext('2d'),viewport:v}).promise; imgs.push(cv); }
+  return lireImages(imgs);
+}
+async function lireWord(file){ await charger('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js'); return (await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()})).value; }
+function nettoyer(t){ return t.replace(/\r/g,'').replace(/[ \t]+/g,' ').replace(/ /g,' ').replace(/\n{3,}/g,'\n\n').trim(); }
+$('scanBtn').onclick=()=>{ $('fScan').value=''; $('fScan').click(); };
+$('fScan').onchange=async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  if(!$('dlgColler').open) ouvrirColler();
+  const nom=f.name.toLowerCase(); $('scanBtn').disabled=true; etatScan('Lecture du fichier…');
+  try{
+    let t;
+    if(nom.endsWith('.pdf')||f.type==='application/pdf') t=await lirePdf(f);
+    else if(nom.endsWith('.docx')) t=await lireWord(f);
+    else if(nom.endsWith('.txt')||f.type.startsWith('text/')) t=await f.text();
+    else if(f.type.startsWith('image/')) t=await lireImages([f]);
+    else throw new Error('format');
+    t=nettoyer(t);
+    if(!t) throw new Error('vide');
+    const ta=$('collerTxt'); ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+t;
+    const n=t.split('\n').filter(l=>/^[^:\n]{1,30}:\s*\S/.test(l)).length;
+    etatScan(n ? 'Texte lu. Vérifiez-le et corrigez si besoin (une photo peut contenir des erreurs), puis « Créer l\'échange ».'
+               : 'Texte lu, mais sans « Nom : texte ». Ajoutez les noms en début de ligne, puis « Créer l\'échange ».');
+    ta.focus();
+  }catch(x){
+    etatScan(x.message==='format' ? 'Format non pris en charge : photo, PDF, Word (.docx) ou texte.'
+      : x.message==='vide' ? 'Aucun texte trouvé dans ce fichier.'
+      : x.message==='reseau' ? 'Il faut une connexion Internet pour lire une photo ou un PDF.'
+      : 'Le fichier n\'a pas pu être lu. Essayez une photo plus nette, bien droite et éclairée.');
+  }finally{ $('scanBtn').disabled=false; }
+};
+
+/* ---------- Enregistrer / ouvrir / exemples ---------- */
+function telecharger(nom,blob){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=nom; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1000); }
+const nomFichier=()=>{ const p=C.posts[0]?personne(C.posts[0].de):C.pers[0]; return 'x-'+((p.pseudo||pseudoDe(p.nom)).replace(/[^a-zA-Z0-9_-]+/g,'-').toLowerCase()||'echange'); };
+$('sauver').onclick=()=>{ telecharger(nomFichier()+'.echange.json',new Blob([JSON.stringify({type:'faux-echange-x',v:1,c:C})],{type:'application/json'})); msg('Fichier enregistré dans vos téléchargements.'); };
+$('ouvrir').onclick=()=>{ $('fJson').value=''; $('fJson').click(); };
+$('fJson').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; try{ const j=JSON.parse(await f.text()); if(j.type!=='faux-echange-x'||!j.c||!Array.isArray(j.c.posts)) throw 0; avant(); C=normaliser(j.c); actif=C.pers[0].id; neuf(); tout(); garder(); msg('Échange ouvert.'); }catch(x){ msg('Ce fichier n\'est pas un échange enregistré ici.'); } };
+for(const [k,v] of Object.entries(EXEMPLES)){ const o=document.createElement('option'); o.value=k; o.textContent=v.nom; $('exemples').appendChild(o); }
+$('exemples').onchange=e=>{ const k=e.target.value; e.target.value=''; if(!k) return; avant(); C=normaliser(JSON.parse(JSON.stringify(EXEMPLES[k].c))); actif=C.pers[1]?C.pers[1].id:C.pers[0].id; neuf(); tout(); garder(); fermerRegl(); $('fil').scrollTop=0; msg('Exemple chargé. « Annuler » revient à votre échange.'); };
+$('effacer').onclick=()=>{ if(!C.posts.length||confirm('Effacer tout l\'échange ?')){ avant(); const p=C.pers, th=C.theme; C=VIDE(); C.theme=th; C.pers=p; actif=p[0].id; neuf(); tout(); garder(); } };
+$('annuler').onclick=annuler;
+addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&!e.shiftKey&&e.key.toLowerCase()==='z'){ const a=document.activeElement; if(a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT')&&a.value) return; e.preventDefault(); annuler(); } });
+
+/* ---------- Réglages sur téléphone ---------- */
+function fermerRegl(){ document.body.classList.remove('regl-on'); }
+$('reglBtn').onclick=()=>document.body.classList.add('regl-on');
+$('reglFin').onclick=fermerRegl;
+
+/* ---------- Image PNG ---------- */
+$('png').onclick=async()=>{
+  if(!C.posts.length) return msg('Écrivez d\'abord un post.');
+  if(!window.html2canvas) return msg('Il faut une connexion Internet pour créer l\'image.');
+  const hote=document.createElement('div'); hote.style.cssText='position:fixed;left:-10000px;top:0;width:400px';
+  const s=sel; sel=-1; hote.innerHTML=telHTML({export:true}); sel=s; document.body.appendChild(hote);
+  try{
+    await (document.fonts?document.fonts.ready:Promise.resolve());
+    const cv=await html2canvas(hote.querySelector('.ecran'),{scale:2,backgroundColor:null,useCORS:true,logging:false});
+    cv.toBlob(b=>{ telecharger(nomFichier()+'.png',b); msg('Image enregistrée dans vos téléchargements.'); },'image/png');
+  }catch(x){ msg('L\'image n\'a pas pu être créée. Essayez une capture d\'écran.'); }
+  finally{ hote.remove(); }
+};
+
+/* ---------- Lecture en classe ---------- */
+let pas=1;
+function sceneDessiner(nouv){
+  const box=$('sceneTel'); const s=sel; sel=-1;
+  box.innerHTML=telHTML({n:pas,nouv:nouv?pas-1:undefined}); sel=s;
+  const f=box.querySelector('.fil'); const d=f.querySelector('.nouv'); if(d) f.scrollTop=d.offsetTop+d.offsetHeight-f.clientHeight+20; else f.scrollTop=pas>1?f.scrollHeight:0;
+  ajusterScene(); $('sInfo').textContent=pas<2?'Post de départ':`Réponse ${pas-1} / ${C.posts.length-1}`;
+}
+function ajusterScene(){ const t=$('sceneTel').querySelector('.tel'); if(!t) return; const k=Math.min((innerHeight-80)/t.offsetHeight,(innerWidth-20)/t.offsetWidth,1.6); t.style.transform=`scale(${k})`; $('sceneTel').style.height=(t.offsetHeight*k)+'px'; }
+addEventListener('resize',()=>{ if($('scene').classList.contains('on')) ajusterScene(); });
+function sceneSuiv(){ if(pas<C.posts.length){ pas++; sceneDessiner(true); } }
+function scenePrec(){ if(pas>1){ pas--; sceneDessiner(false); } }
+function sceneFin(){ $('scene').classList.remove('on'); $('scene').setAttribute('aria-hidden','true'); try{ document.fullscreenElement&&document.exitFullscreen(); }catch(e){} $('jouer').focus(); }
+$('jouer').onclick=()=>{ if(!C.posts.length) return msg('Écrivez d\'abord un post.'); pas=1; $('scene').classList.add('on'); $('scene').setAttribute('aria-hidden','false'); try{ document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){} sceneDessiner(false); };
+$('sSuiv').onclick=e=>{ e.stopPropagation(); sceneSuiv(); }; $('sPrec').onclick=e=>{ e.stopPropagation(); scenePrec(); }; $('sFin').onclick=e=>{ e.stopPropagation(); sceneFin(); };
+$('scene').addEventListener('click',e=>{ if(!e.target.closest('.bas')) sceneSuiv(); });
+addEventListener('keydown',e=>{ if(!$('scene').classList.contains('on')) return;
+  if(e.key==='Escape') sceneFin();
+  else if([' ','ArrowRight','ArrowDown','Enter','PageDown'].includes(e.key)){ e.preventDefault(); sceneSuiv(); }
+  else if(['ArrowLeft','ArrowUp','Backspace','PageUp'].includes(e.key)){ e.preventDefault(); scenePrec(); } });
+document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&$('scene').classList.contains('on')) ajusterScene(); });
+
+function tout(){ dessinerReglages(); majTel(); }
+function neuf(){ sel=-1; insererA=-1; $('texte').value=''; grow(); }
+construireTel(); tout();
+if(matchMedia('(min-width:821px)').matches) $('texte').focus();
+</script>
+<script src="https://antoninatger.github.io/jeux/partage.js" defer data-jeu="Faux échanges X" data-flottant="non" data-url="https://antoninatger.com/jeux/faux-tweets/" data-texte="Faux échanges X (Twitter), un outil gratuit pour créer un faux post et ses réponses à projeter en classe"></script>
+</body>
+</html>
