@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% import "_icones.html" as ic %}
+{% import "_retours.html" as rt %}
 {% block donnees %}
 {% set zone = [{"@type": "City", "name": "Lyon"}, {"@type": "City", "name": "Paris"}] + ([{"@type": "Country", "name": "France"}] if page.distance else []) %}
 <script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": [
@@ -41,6 +42,12 @@
         <figcaption><b>{{ t.auteur }}</b>, {{ t.fonction }}{% if t.mode %} · {{ t.mode|lower }}{% endif %}</figcaption>
       </figure>
       {% endfor %}
+      {% set retours_fiche = (retours or []) | selectattr('intervention', 'equalto', page.slug) | list %}
+      {% if retours_fiche %}
+      <h2 id="retours">Ce qu'en disent les participants</h2>
+      {{ rt.bloc(retours_fiche, groupes=('lieu',)) }}
+      <p class="small"><a href="/interventions/#retours">Tous les retours, toutes interventions →</a></p>
+      {% endif %}
     </div>
     <aside class="fiche__aside">
       <div class="card organiser">
@@ -75,4 +82,5 @@
   </section>
   {% endif %}
 </div>
+<script src="/static/js/retours.js" defer></script>
 {% endblock %}
