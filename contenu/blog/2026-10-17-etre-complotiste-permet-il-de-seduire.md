@@ -1,5 +1,5 @@
 ---
-titre: "Ëtre complotiste permet-il de séduire ?"
+titre: "Être complotiste permet-il de séduire ?"
 date: "2026-10-17T12:00:00"
 slug: "etre-complotiste-permet-il-de-seduire"
 categories: ["Esprit critique"]
@@ -17,3 +17,5 @@ Dans ce numéro, je présente une étude qui cherche à voir si être complotist
 A partir de cette question d'apparence triviale, nous allons comprendre de nombreuses choses sur les raisons qui poussent les gens à croire aux théories du complot.
 
 Bonne lecture !
+
+Le sommaire du numéro sur le site de l'AFIS : [Science et pseudo-sciences n° 358 (octobre 2026)](https://www.afis.org/358-Octobre-2026)
