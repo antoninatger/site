@@ -53,7 +53,7 @@
       {% for m in site.menu %}
       {% if m.url == '/jeux/' and refs and refs.jeux_libres %}
       <div class="menu-jeux">
-        <button class="menu-jeux__bouton" type="button" aria-expanded="false" aria-controls="panneau-jeux"{% if url.startswith('/jeux/') %} aria-current="page"{% endif %}>{{ m.titre }} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <a class="menu-jeux__lien" href="{{ m.url }}"{% if url.startswith('/jeux/') %} aria-current="page"{% endif %}>{{ m.titre }}</a><button class="menu-jeux__bouton" type="button" aria-expanded="false" aria-controls="panneau-jeux" aria-label="Afficher la liste des jeux et outils"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="panneau-jeux" id="panneau-jeux">
           <div class="panneau-jeux__titre">En accès libre, gratuitement</div>
           {% for j in refs.jeux_libres %}<a class="pj" href="{{ j.url }}" target="_blank" rel="noopener"><span class="pj__ico">{{ ic.icone(j.icone) }}</span><span><b>{{ j.titre }}</b><small>{{ j.niveau }}</small></span></a>{% endfor %}
