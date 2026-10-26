@@ -53,3 +53,4 @@ Vous avez déjà le dialogue sur papier ou dans un document ? **Scannez-le** : p
 
 - Tout reste sur votre ordinateur. « Enregistrer » crée un petit fichier pour reprendre la conversation plus tard ou la partager avec un collègue.
 - Les images téléchargées portent la mention discrète « Conversation fictive », pour qu'elles ne puissent pas passer pour une vraie capture.
+- Pour une page Instagram (profil, grille de photos, publication commentée), utilisez les [Fausses pages Instagram](/jeux/fausse-page-instagram/) ; pour un échange public, les [Faux échanges X](/jeux/faux-tweets/) ou les [Faux posts Facebook](/jeux/faux-facebook/).

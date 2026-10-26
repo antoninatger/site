@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content">
+<title>Fausses pages Instagram · Jeux et ressources pédagogiques</title>
+<meta name="description" content="Créer une fausse page Instagram pour la classe : un profil (bio, abonnés, grille de photos) et une publication avec ses commentaires. Image à télécharger ou lecture animée.">
+<link rel="icon" href="/static/img/favicon.svg">
+<style>
+:root{--bg:#f4f1ea;--panel:#fff;--ink:#1d1b18;--doux:#6b665d;--bord:#e2ddd2;--acc:#1f6f5c;--acc2:#e9f3ef;--warn:#b3261e;--r:12px}
+@media (prefers-color-scheme:dark){:root{--bg:#16150f;--panel:#201e19;--ink:#f1ede4;--doux:#a8a196;--bord:#38352d;--acc:#5cc4a6;--acc2:#1f3530}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.haut{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--bord);background:var(--panel);position:sticky;top:0;z-index:20}
+.haut h1{font-size:17px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.haut a{color:var(--acc);font-size:13.5px;text-decoration:none;white-space:nowrap}
+.haut a.retour{border:1px solid var(--bord);border-radius:8px;padding:5px 9px}
+@media (max-width:480px){ .haut a.retour{font-size:12.5px;padding:4px 7px} .haut h1{display:none} .haut .lg{display:none} .haut .btn.mini:first-of-type{margin-left:auto} }
+.btn{border:1px solid var(--bord);background:var(--panel);border-radius:8px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--acc)}
+.btn.prim{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+.btn.warn{color:var(--warn)}
+.btn.mini{padding:4px 9px;font-size:13px}
+.btn:disabled{opacity:.4;cursor:default}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+input[type=text],input[type=time],input[type=date],input[type=number],select,textarea{background:var(--bg);border:1px solid var(--bord);border-radius:8px;padding:7px 9px;width:100%;min-width:0}
+input[type=file]{display:none}
+#reglBtn{display:none}
+
+.page{display:grid;grid-template-columns:330px minmax(0,1fr);gap:28px;max-width:1100px;margin:0 auto;padding:20px}
+.regl{align-self:start;position:sticky;top:66px;max-height:calc(100vh - 80px);overflow:auto;padding-right:4px}
+.bloc{background:var(--panel);border:1px solid var(--bord);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.bloc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--doux);margin:0 0 10px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg .btn{flex:1}
+.seg .btn[aria-pressed=true]{background:var(--acc2);border-color:var(--acc);font-weight:600}
+.ligne{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.champ2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.champ2 label,.lab{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--doux)}
+.perso{display:grid;grid-template-columns:34px 1fr auto auto;gap:6px;align-items:center;margin-top:6px}
+.perso .mini-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;overflow:hidden;cursor:pointer;border:0;padding:0}
+.perso .mini-av img{width:100%;height:100%;object-fit:cover}
+.perso .qi{min-width:0;line-height:1.2;cursor:pointer}
+.perso .qi b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.perso .qi span{font-size:12px;color:var(--doux)}
+.aide{font-size:12.5px;color:var(--doux);margin:8px 0 0}
+kbd{font:12px ui-monospace,monospace;border:1px solid var(--bord);border-bottom-width:2px;border-radius:4px;padding:0 4px;background:var(--bg)}
+
+.scene-edit{display:flex;flex-direction:column;align-items:center;gap:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.astuce{font-size:12.5px;color:var(--doux);text-align:center;max-width:440px;margin:0}
+
+/* ================= Téléphone ================= */
+.tel{width:min(380px,100%);margin:0 auto;border-radius:44px;background:#111;padding:10px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.ecran{border-radius:34px;overflow:hidden;display:flex;flex-direction:column;height:720px;position:relative;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.33;color:var(--x-ink);background:var(--x-bg)}
+.tel.export .ecran{height:auto}
+.x-clair{--x-bg:#fff;--x-ink:#000;--x-doux:#737373;--x-bord:#dbdbdb;--x-bleu:#0095f6;--x-lien:#00376b;--x-champ:#efefef;--x-bulle:#efefef;--x-btn:#efefef}
+.x-sombre{--x-bg:#000;--x-ink:#f5f5f5;--x-doux:#a8a8a8;--x-bord:#262626;--x-bleu:#0095f6;--x-lien:#e0f1ff;--x-champ:#262626;--x-bulle:#262626;--x-btn:#363636}
+.barre{display:flex;justify-content:space-between;align-items:center;padding:12px 26px 6px;font-weight:600;font-size:14px}
+.barre .ic{display:flex;gap:5px;align-items:center}
+.batt{width:24px;height:11px;border:1.5px solid currentColor;border-radius:3px;padding:1px;position:relative;opacity:.9}
+.batt::after{content:"";position:absolute;right:-4px;top:3px;width:2px;height:4px;background:currentColor;border-radius:0 1px 1px 0}
+.batt i{display:block;height:100%;background:currentColor;border-radius:1px}
+.batt.bas i{background:#ff3b30}
+.tete{display:flex;align-items:center;gap:14px;padding:6px 14px 10px}
+.tete svg{width:24px;height:24px;flex:none}
+.tete .tt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.15}
+.tete .tt small{color:var(--x-doux);font-size:12px;font-weight:600;text-transform:lowercase}
+.tete b{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center}
+.tete .rt{cursor:pointer}
+.fil{flex:1;overflow:auto;display:flex;flex-direction:column;scrollbar-width:none}
+.fil::-webkit-scrollbar{display:none}
+.tel.export .fil{overflow:visible;padding-bottom:6px}
+.tel.export .ecrirefb,.tel.export .barnav{padding-bottom:22px}
+.av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;background:#8a8f98;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover}
+.badge{width:14px;height:14px;flex:none;vertical-align:-2px;margin-left:4px}
+.nm{font-weight:600}
+.tx{white-space:pre-wrap;overflow-wrap:anywhere}
+.tx .ln{color:var(--x-lien)}
+.pt3{margin-left:auto;color:var(--x-ink);letter-spacing:1px;padding-left:6px;flex:none;font-weight:700}
+.tw{position:relative;cursor:pointer}
+/* Profil */
+.pf{padding:6px 0 0}
+.pf-haut{display:flex;align-items:center;gap:14px;padding:0 16px}
+.anneau{width:92px;height:92px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);flex:none}
+.anneau .av{width:100%;height:100%;border:3px solid var(--x-bg);font-size:28px}
+.pf-st{flex:1;display:flex;justify-content:space-around;gap:6px;min-width:0;text-align:center;line-height:1.2}
+.pf-st b{display:block;font-size:17px}
+.pf-st span{font-size:12.5px;letter-spacing:-.1px}
+.pf-txt{padding:10px 16px 0;font-size:14px;line-height:1.35}
+.pf-txt .nm{display:flex;align-items:center}
+.pf-cat{color:var(--x-doux)}
+.pf-lien{color:var(--x-lien);font-weight:600;display:flex;align-items:center;gap:4px}
+.pf-lien svg{width:14px;height:14px}
+.pf-btn{display:flex;gap:6px;padding:12px 16px}
+.pf-btn span{flex:1;text-align:center;background:var(--x-btn);border-radius:8px;padding:7px 0;font-weight:600;font-size:14px}
+.pf-btn span.suivre{background:var(--x-bleu);color:#fff}
+.pf-btn span.mini{flex:none;width:34px}
+.pf-onglets{display:flex;border-top:1px solid var(--x-bord)}
+.pf-onglets span{flex:1;display:grid;place-items:center;padding:9px 0;color:var(--x-doux)}
+.pf-onglets span:first-child{color:var(--x-ink);box-shadow:inset 0 -1px 0 var(--x-ink)}
+.pf-onglets svg{width:22px;height:22px}
+.grille{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tuile{aspect-ratio:1;position:relative;overflow:hidden;display:grid;place-items:center;text-align:center;color:#fff;font-weight:800;padding:8%;line-height:1.15;cursor:pointer;font-size:13px;overflow-wrap:anywhere;white-space:pre-wrap}
+.tuile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tuile>span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;overflow:hidden}
+.tuile.long{font-size:11px}
+.tuile.emo{font-size:40px}
+.tuile .multi{position:absolute;top:6px;right:6px;width:16px;height:16px;opacity:.95}
+.edit .tuile:hover{filter:brightness(.92)}
+.tuile.ajout{background:var(--x-champ);color:var(--x-doux);font-size:30px;font-weight:300}
+/* Publication */
+.princ{padding:4px 0 0}
+.princ .hd{display:flex;align-items:center;gap:9px;padding:0 12px 8px}
+.princ .hd .av{width:32px;height:32px;font-size:12px}
+.princ .hd .id{display:flex;flex-direction:column;min-width:0;line-height:1.2;font-size:14px}
+.princ .hd .id>span:first-child{display:flex;align-items:center}
+.princ .hd .lieu{font-size:12px}
+.media{position:relative;aspect-ratio:1;display:grid;place-items:center;text-align:center;color:#fff;font-weight:800;padding:9%;line-height:1.2;overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph{display:block;width:100%;max-height:520px;object-fit:cover}
+.rep .ph{border-radius:10px;max-width:180px;margin-top:6px}
+.ia{display:flex;align-items:center;gap:14px;padding:9px 12px 4px;font-weight:600;font-size:14px}
+.ia span{display:flex;align-items:center;gap:5px}
+.ia svg{width:24px;height:24px}
+.ia .sg{margin-left:auto}
+.leg{padding:4px 12px 0;font-size:14px;line-height:1.35}
+.leg .tx{display:inline}
+.dt{padding:6px 12px 10px;color:var(--x-doux);font-size:12px}
+.fc{margin:8px 12px 0;border-radius:10px;background:var(--x-bulle);padding:12px 12px 10px;font-size:14px}
+.fc .ft{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
+.fc .ft svg{width:20px;height:20px;flex:none}
+.fc .fs{color:var(--x-doux);font-size:13px;margin:2px 0 6px 28px}
+.fc .fn{white-space:pre-wrap;overflow-wrap:anywhere}
+.fc .fv{margin-top:10px;border-top:1px solid var(--x-bord);padding-top:9px;text-align:center;font-weight:600}
+.tri{border-top:1px solid var(--x-bord);padding:12px 12px 4px;font-weight:700;font-size:15px;text-align:center}
+/* Commentaires */
+.rep{display:flex;gap:10px;padding:8px 12px 6px;font-size:14px}
+.rep .av{width:32px;height:32px;font-size:12px}
+.rep .d{min-width:0;flex:1}
+.rep .l1{display:flex;align-items:center;gap:6px;font-size:13px}
+.rep .l1 .h{color:var(--x-doux);font-weight:400}
+.rep .tx{line-height:1.3}
+.sous{color:var(--x-doux);font-size:12px;font-weight:600;margin-top:4px;display:flex;gap:14px}
+.coeur{display:flex;flex-direction:column;align-items:center;color:var(--x-doux);font-size:11px;padding-top:6px;min-width:22px}
+.coeur svg{width:15px;height:15px}
+.rep.sr{padding-left:54px}
+.rep.sr .av{width:24px;height:24px;font-size:9px}
+.ecrirefb{display:flex;align-items:center;gap:9px;padding:9px 12px 16px;border-top:1px solid var(--x-bord)}
+.ecrirefb .av{width:32px;height:32px;font-size:12px}
+.ecrirefb span:last-child{flex:1;border:1px solid var(--x-bord);color:var(--x-doux);border-radius:999px;padding:8px 14px;font-size:14px}
+.barnav{display:flex;justify-content:space-around;align-items:center;padding:10px 6px 18px;border-top:1px solid var(--x-bord)}
+.barnav svg{width:25px;height:25px}
+.barnav .av{width:26px;height:26px;font-size:9px;box-shadow:0 0 0 2px var(--x-bg),0 0 0 3px var(--x-ink)}
+.marque{position:absolute;right:30px;bottom:6px;font:600 9px/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--x-doux);opacity:.7;display:none}
+.tel.export .marque{display:block}
+.tw.nouv{animation:pop .3s ease-out}
+@keyframes pop{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- Écriture dans le téléphone ---------- */
+.edit .tw:hover{background:rgba(127,127,127,.06)}
+.edit .tuile.choisi,.edit .tw.choisi{outline:2px solid #f59f00;outline-offset:-3px}
+.edit [data-prof]{cursor:pointer}
+.edit [data-prof]:hover .nm,.edit .av[data-prof]:hover{text-decoration:underline;filter:brightness(1.08)}
+.vide-tel{margin:auto;text-align:center;color:var(--x-doux);font-size:13.5px;padding:20px;line-height:1.5}
+.vide-tel b{color:var(--x-ink)}
+.ecrire{background:var(--x-bg);padding:6px 8px 12px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--x-bord)}
+.qui{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:1px;align-items:center}
+.qui::-webkit-scrollbar{display:none}
+.qui .lbl{font-size:11.5px;color:var(--x-doux);white-space:nowrap}
+.qui button{border:1px solid rgba(127,127,127,.35);background:var(--x-champ);color:var(--x-ink);border-radius:999px;padding:3px 10px 3px 4px;font-size:12.5px;display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.qui button .pt{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:9.5px;font-weight:700;overflow:hidden}
+.qui button .pt img{width:100%;height:100%;object-fit:cover}
+.qui button[aria-pressed=true]{background:var(--x-bleu);border-color:var(--x-bleu);color:#fff;font-weight:600}
+.qui button.ajout{padding:3px 10px;color:var(--x-doux)}
+.zone{display:flex;align-items:flex-end;gap:6px}
+.zone textarea{flex:1;resize:none;border-radius:20px;padding:9px 14px;background:var(--x-champ);color:var(--x-ink);border:0;font-size:15px;line-height:1.3;max-height:110px;min-height:40px;outline:none}
+.zone textarea::placeholder{color:var(--x-doux)}
+.rb{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;flex:none;color:#fff;font-weight:700;font-size:14px}
+.rb svg{width:19px;height:19px}
+.rb.plus{background:transparent;color:var(--x-bleu);font-size:24px;font-weight:400;width:30px}
+.rb.env{background:var(--x-bleu)}
+.cote{font-size:11.5px;color:var(--x-doux);text-align:center;margin-top:-2px}
+.cote b{color:var(--x-ink)}
+.outils-msg{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.outils-msg button{border:1px solid rgba(127,127,127,.35);background:var(--x-champ);color:var(--x-ink);border-radius:8px;padding:4px 8px;font-size:12.5px;cursor:pointer}
+.outils-msg button.ok{background:var(--x-bleu);color:#fff;border-color:transparent;font-weight:600}
+.outils-msg button.del{color:#f4212e}
+.outils-prof{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.outils-prof button{border:1px solid rgba(127,127,127,.35);background:var(--x-champ);color:var(--x-ink);border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer}
+.outils-prof button.ok{background:var(--x-bleu);color:#fff;border-color:transparent;font-weight:600}
+.menu-plus{position:absolute;left:8px;bottom:66px;background:var(--x-bg);color:var(--x-ink);border:1px solid var(--x-bord);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.25);padding:6px;display:flex;flex-direction:column;z-index:5;min-width:220px}
+.menu-plus button{border:0;background:none;text-align:left;padding:9px 10px;border-radius:8px;font-size:14px;cursor:pointer;color:inherit}
+.menu-plus button:hover{background:rgba(127,127,127,.15)}
+
+/* Fenêtres */
+dialog{border:1px solid var(--bord);border-radius:14px;background:var(--panel);color:var(--ink);padding:18px;width:min(560px,calc(100vw - 24px))}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h3{margin:0 0 8px;font-size:17px}
+#dlgColler textarea{min-height:220px;font:14px/1.45 ui-monospace,Menlo,monospace}
+#dlgNote textarea{min-height:110px}
+dialog .ligne{justify-content:flex-end}
+.prof{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:start}
+.prof .gros{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:26px;font-weight:700;overflow:hidden;border:0;cursor:pointer;padding:0}
+.prof .gros img{width:100%;height:100%;object-fit:cover}
+.prof .champs{display:flex;flex-direction:column;gap:8px}
+#dlgProfil{max-height:calc(100vh - 24px)}
+#pfBio{min-height:0;font:inherit}
+.scan{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:4px 0 10px}
+#scanEtat{background:var(--acc2);border-radius:8px;padding:8px 10px;color:var(--ink)}
+#msgBox{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60;max-width:calc(100vw - 30px);text-align:center}
+#msgBox.on{opacity:1}
+
+/* Lecture en classe */
+#scene{position:fixed;inset:0;background:#0d0d0f;z-index:40;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+#scene.on{display:flex}
+#scene .tel{transform-origin:top center}
+#scene .bas{color:#9a9aa2;font-size:13px;display:flex;gap:14px;align-items:center}
+#scene .bas .btn,#scene .bas select{background:#222;border-color:#333;color:#eee;width:auto}
+#scene .bas{flex-wrap:wrap;justify-content:center;padding:0 10px}
+#scene .bas #sPlay{min-width:104px}
+#scene.on~#msgBox{bottom:auto;top:18px}
+
+.scene-edit .ecran{height:clamp(500px,calc(100vh - 160px),720px)}
+@media (max-width:820px){
+  #reglBtn{display:inline-block}
+  .page{display:block;padding:0}
+  .regl{display:none;position:fixed;inset:0;height:100vh;height:100dvh;z-index:30;max-height:none;background:var(--bg);padding:12px 12px 80px;overflow:auto}
+  body.regl-on .regl{display:block}
+  .regl .fermer{display:flex!important}
+  .scene-edit{gap:8px;padding-bottom:10px}
+  .scene-edit .tel{width:100%;border-radius:0;padding:0;box-shadow:none;background:none}
+  .scene-edit .ecran{border-radius:0;height:calc(100dvh - 120px);min-height:420px}
+  .scene-edit .barre{display:none}
+  .actions{padding:0 10px}
+  .astuce{display:none}
+  #msgBox{bottom:auto;top:62px}
+}
+.regl .fermer{display:none;justify-content:space-between;align-items:center;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header class="haut">
+  <a class="retour" href="https://antoninatger.com/jeux/fausse-page-instagram/" title="Retour sur antoninatger.com">← antoninatger.com</a>
+  <h1>Fausses pages Instagram</h1>
+  <button class="btn mini" id="annuler" title="Annuler (Ctrl+Z)" disabled>↶ Annuler</button>
+  <button class="btn mini" id="reglBtn">⚙ Réglages</button>
+  <button class="btn mini" type="button" onclick="window.PartageJeux&&PartageJeux.ouvrir('partage')" title="Faire connaître l’outil ou donner votre avis">📣<span class="lg"> Partager</span></button>
+</header>
+
+<main class="page">
+<aside class="regl" id="regl" aria-label="Réglages">
+  <div class="fermer"><b>Réglages</b><button class="btn prim" id="reglFin">Terminé</button></div>
+
+  <section class="bloc">
+    <h2>Affichage</h2>
+    <div class="seg" id="vues">
+      <button class="btn" data-vue="profil">Profil</button>
+      <button class="btn" data-vue="pub">Publication</button>
+    </div>
+    <div class="seg" id="themes" style="margin-top:8px">
+      <button class="btn" data-th="clair">Clair</button>
+      <button class="btn" data-th="sombre">Sombre</button>
+    </div>
+  </section>
+
+  <section class="bloc">
+    <h2>Comptes</h2>
+    <div id="persos"></div>
+    <div class="ligne"><button class="btn mini" id="addPers">+ Un compte</button></div>
+    <p class="aide">Le premier qui publie est le propriétaire de la page. Touchez un compte pour changer son pseudo, sa photo, sa bio ou ses abonnés. Dans le téléphone, touchez directement un nom ou une photo.</p>
+  </section>
+
+  <section class="bloc">
+    <h2>Date et chiffres</h2>
+    <div class="champ2">
+      <label>Date de la publication<input type="date" id="date"></label>
+      <label>Heure de la publication<input type="time" id="debut"></label>
+      <label>Entre deux commentaires<select id="ecart"><option value="alea">Au hasard (réaliste)</option><option value="1">1 minute</option><option value="5">5 minutes</option><option value="15">15 minutes</option><option value="60">1 heure</option></select></label>
+      <label>Succès de la publication<select id="pop"><option value="faible">Discret</option><option value="moyenne">Remarqué</option><option value="virale">Viral</option></select></label>
+    </div>
+    <p class="aide">Les heures (« 12 min », « 3 h ») et les chiffres (j'aime, commentaires, partages) se calculent tout seuls. Touchez la publication ou un commentaire puis 🕒 ou 🔢 pour les fixer vous-même.</p>
+    <div class="champ2"><label>Batterie (%)<input type="number" id="batt" min="1" max="100"></label></div>
+  </section>
+
+  <section class="bloc">
+    <h2>Pages</h2>
+    <select id="exemples"><option value="">Charger un exemple…</option></select>
+    <div class="ligne">
+      <button class="btn mini" id="coller">Importer un dialogue (texte, photo, PDF, Word)</button>
+      <button class="btn mini" id="sauver">Enregistrer</button>
+      <button class="btn mini" id="ouvrir">Ouvrir</button>
+      <button class="btn mini warn" id="effacer">Tout effacer</button>
+    </div>
+    <p class="aide">« Enregistrer » crée un petit fichier à garder ou à envoyer à un collègue. Rien n'est envoyé sur Internet.</p>
+  </section>
+</aside>
+
+<section class="scene-edit">
+  <div id="tel"></div>
+  <div class="actions">
+    <button class="btn prim" id="png">Télécharger l'image</button>
+    <button class="btn prim" id="auto">▶ Lecture automatique</button>
+    <button class="btn" id="jouer">Lire en classe, clic par clic</button>
+  </div>
+  <p class="astuce"><kbd>Entrée</kbd> publie · <kbd>Tab</kbd> change qui écrit · <kbd>Maj</kbd>+<kbd>Entrée</kbd> va à la ligne · dans le profil, touchez le nom, la bio ou une case de la grille pour les changer. L'image porte la mention discrète « Page fictive ».</p>
+</section>
+</main>
+
+<dialog id="dlgProfil">
+  <h3>Compte</h3>
+  <div class="prof">
+    <button class="gros" id="pfAv" title="Choisir une photo"></button>
+    <div class="champs">
+      <label class="lab">Pseudo<input type="text" id="pfPseudo" maxlength="30" placeholder="camille.martin"></label>
+      <label class="lab">Nom affiché sur le profil<input type="text" id="pfNom" maxlength="50" placeholder="Camille Martin"></label>
+      <label class="lab">Badge<select id="pfBadge"><option value="">Aucun</option><option value="bleu">Badge bleu (compte vérifié)</option></select></label>
+      <label class="lab">Catégorie (facultatif)<input type="text" id="pfCat" maxlength="40" placeholder="Créateur de contenu"></label>
+      <label class="lab">Bio<textarea id="pfBio" rows="3" maxlength="300" placeholder="📍 Lyon · 🎨 Dessin · ✨"></textarea></label>
+      <label class="lab">Lien (facultatif)<input type="text" id="pfLien" maxlength="60" placeholder="monsite.fr"></label>
+      <div class="champ2" style="grid-template-columns:1fr 1fr 1fr;margin:0"><label>Publications<input type="text" id="pfPubs" placeholder="auto"></label><label>Followers<input type="text" id="pfAbos" placeholder="auto"></label><label>Suivi(e)s<input type="text" id="pfSuivis" placeholder="auto"></label></div>
+      <div class="ligne" style="margin:0;justify-content:flex-start"><button class="btn mini" id="pfPhoto">Photo de profil</button><button class="btn mini warn" id="pfPhotoDel">Retirer la photo</button><label style="font-size:13px;display:flex;gap:6px;align-items:center">Couleur <input type="color" id="pfCoul"></label></div>
+    </div>
+  </div>
+  <div class="ligne"><button class="btn warn" id="pfSuppr">Supprimer ce compte</button><span style="flex:1"></span><button class="btn prim" id="pfOk">Terminé</button></div>
+</dialog>
+
+<dialog id="dlgNote">
+  <h3>Information fausse</h3>
+  <p class="aide" style="margin:0 0 8px">Sur Instagram, une publication jugée fausse par des vérificateurs (fact-checkers) peut recevoir un avertissement. Écrivez ce qu'ils ont trouvé, ou faites-le écrire aux élèves.</p>
+  <textarea id="noteTxt" placeholder="Cette photo date de 2017 et n'a pas été prise en France."></textarea>
+  <div class="ligne"><button class="btn warn" id="noteDel">Retirer l'avertissement</button><span style="flex:1"></span><button class="btn" id="noteNon">Annuler</button><button class="btn prim" id="noteOui">Ajouter l'avertissement</button></div>
+</dialog>
+
+<dialog id="dlgTuile">
+  <h3>Case de la grille</h3>
+  <p class="aide" style="margin:0 0 8px">Une photo, ou un texte court sur un fond de couleur (un émoji seul s'affiche en grand).</p>
+  <label class="lab">Texte<textarea id="tuTxt" rows="2" maxlength="80" placeholder="Mon voyage ✈️"></textarea></label>
+  <div class="ligne"><label class="lab" style="flex:1">Fond<select id="tuFond"></select></label></div>
+  <div class="ligne"><button class="btn mini" id="tuPhoto">Choisir une photo</button><button class="btn mini warn" id="tuPhotoDel">Retirer la photo</button><span style="flex:1"></span><button class="btn mini" id="tuAv" title="Déplacer vers le début">←</button><button class="btn mini" id="tuAp" title="Déplacer vers la fin">→</button></div>
+  <div class="ligne"><button class="btn warn" id="tuSuppr">Supprimer la case</button><span style="flex:1"></span><button class="btn prim" id="tuOk">Terminé</button></div>
+</dialog>
+
+<dialog id="dlgColler">
+  <h3>Importer un dialogue</h3>
+  <div class="scan">
+    <button class="btn prim" id="scanBtn">📷 Photo, scan, PDF ou Word</button>
+    <span class="aide" style="margin:0">ou collez le texte ci-dessous</span>
+  </div>
+  <p class="aide" id="scanEtat" hidden></p>
+  <p class="aide" style="margin:0 0 8px">Une ligne par message, sous la forme <b>Nom : texte</b>. La première ligne devient la publication, les suivantes ses commentaires. Chaque nom devient un compte (vous pourrez changer son pseudo et sa photo).</p>
+  <textarea id="collerTxt" placeholder="info.college : 🚨 Le collège ferme lundi !&#10;lea.drd : Source ?&#10;tom_ptt : Je partage 😱"></textarea>
+  <div class="ligne"><label><input type="checkbox" id="collerRemplacer" checked> Remplacer la publication</label><span style="flex:1"></span><button class="btn" id="collerNon">Annuler</button><button class="btn prim" id="collerOui">Créer la publication</button></div>
+</dialog>
+
+<div id="scene" aria-hidden="true">
+  <div id="sceneTel"></div>
+  <div class="bas"><button class="btn" id="sPlay" title="Lecture automatique (P)">▶ Lecture</button><select id="sVit" aria-label="Vitesse"><option value="1.6">Lent</option><option value="1" selected>Normal</option><option value="0.55">Rapide</option></select><button class="btn" id="sPrec">◀</button><span id="sInfo"></span><button class="btn" id="sSuiv">▶</button><button class="btn" id="sFin">Quitter (Échap)</button></div>
+</div>
+<div id="msgBox" role="status"></div>
+<input type="file" id="fPhoto" accept="image/*">
+<input type="file" id="fImg" accept="image/*">
+<input type="file" id="fJson" accept=".json,application/json">
+<input type="file" id="fScan" accept="image/*,.pdf,.docx,.txt,application/pdf">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const COUL=['#d62976','#4f5bd5','#fa7e1e','#962fbf','#31a24c','#e7a33e','#8a5a44','#737373'];
+const FONDS=[['Coucher de soleil','linear-gradient(45deg,#f09433,#dc2743 55%,#bc1888)'],['Lagon','linear-gradient(135deg,#43cea2,#185a9d)'],['Nuit','linear-gradient(160deg,#141e30,#243b55)'],['Rose','linear-gradient(135deg,#ff9a9e,#fad0c4)'],['Citron','linear-gradient(135deg,#f7b733,#fc4a1a)'],['Forêt','linear-gradient(135deg,#134e5e,#71b280)'],['Noir','#111'],['Violet','linear-gradient(135deg,#8e2de2,#4a00e0)'],['Ciel','linear-gradient(180deg,#89f7fe,#66a6ff)']];
+const fond=k=>(FONDS[k%FONDS.length]||FONDS[0])[1];
+
+/* ---------- Icônes ---------- */
+const I={
+  ret:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  cloche:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/></svg>',
+  coeur:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg>',
+  bulle:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-3.3-6.7A8.4 8.4 0 0 1 20.5 12zM20.5 20.5l-2.2-2.9"/></svg>',
+  avion:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M21 3 3 10.5l7 2.5 2.5 7zM10 13l5-5"/></svg>',
+  signet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M6 3.5h12v17l-6-5-6 5z"/></svg>',
+  lien:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+  grille:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M9.2 3.5v17M14.8 3.5v17M3.5 9.2h17M3.5 14.8h17"/></svg>',
+  reels:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M3.5 8.5h17M8.5 3.5l3 5M14 3.5l3 5M10.5 12v5l4.5-2.5z"/></svg>',
+  tag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M6.5 20c1-3 3-4.5 5.5-4.5s4.5 1.5 5.5 4.5"/></svg>',
+  maison:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V20h-5.5v-5.5h-5V20H4z"/></svg>',
+  loupe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M12 8v8M8 12h8"/></svg>',
+  ajout:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 19.5c.7-3.3 3.3-5.3 6.5-5.3M18 13v6M15 16h6"/></svg>',
+  multi:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M7 3h12a2 2 0 0 1 2 2v12h-2V5H7z"/><rect x="3" y="7" width="14" height="14" rx="2"/></svg>',
+  alerte:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#e41e3f"/><path d="M12 6.5v7" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="17" r="1.4" fill="#fff"/></svg>',
+  env:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg>',
+};
+function badge(b){ if(!b) return ''; return `<svg class="badge" viewBox="0 0 24 24" aria-label="Compte vérifié"><path fill="#0095f6" d="M12 1.6l2.4 1.8 3-.2.9 2.9 2.5 1.7-.9 2.9.9 2.9-2.5 1.7-.9 2.9-3-.2L12 20.4l-2.4-1.8-3 .2-.9-2.9-2.5-1.7.9-2.9-.9-2.9 2.5-1.7.9-2.9 3 .2z"/><path d="M8 11.3l2.7 2.6L16.2 8.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`; }
+
+/* ---------- Exemples ---------- */
+const P=(de,texte,x)=>Object.assign({de,texte},x||{});
+const T_=(texte,f)=>({texte,fond:f});
+const EXEMPLES={
+  argent:{nom:"Un faux coach en argent facile",c:{vue:'profil',theme:'clair',date:'2026-10-20',debut:'18:02',ecart:'alea',pop:'virale',batt:72,
+    pers:[{id:'p1',pseudo:'lucas.richesse.pro',nom:'Lucas | Liberté financière 💸',coul:'#e7a33e',badge:'bleu',cat:'Entrepreneur',bio:"J'ai quitté l'école à 17 ans 🎓❌\nAujourd'hui je gagne 10 000 €/mois depuis mon téléphone 📱\n👇 Ma méthode GRATUITE",lien:'methode-richesse.fr',abos:248000,suivis:12,pubs:412},
+      {id:'p2',pseudo:'nono_93',nom:'Noah',coul:'#4f5bd5'},{id:'p3',pseudo:'lina.mrc',nom:'Lina',coul:'#d62976'},{id:'p4',pseudo:'yanis_off',nom:'Yanis',coul:'#31a24c'},{id:'p5',pseudo:'ines.k',nom:'Inès',coul:'#962fbf'}],
+    grille:[T_('MA LAMBO\nÀ 21 ANS 🏎️',2),T_('Les profs ne veulent pas que tu saches ça 🤫',6),T_('💰',4),T_('Dubaï 🌴\n☀️',1),T_('ÉCOLE = PRISON ?',7),T_('Mes résultats de la semaine 📈',5),T_('🏝️',8),T_('3 erreurs qui te gardent PAUVRE',0)],
+    posts:[P('p1',"Comment j'ai gagné 10 000 € en 30 jours 💸\nsans diplôme",{caption:"Tu veux la même vie ? 🔥 Écris « GO » en commentaire et je t'envoie la méthode en message privé 📩\n\nPlaces limitées ⏳ #argent #liberté #motivation",fond:0}),
+      P('p2',"GO"),P('p3',"GO 🔥🔥"),P('p4',"C'est vrai ou c'est une arnaque ?"),P('p1',"100 % vrai frère, regarde mes résultats 📈 Écris GO",{lie:true}),P('p5',"Mon cousin a payé 297 € sa « formation ». Il n'a jamais rien gagné, et le compte l'a bloqué quand il a demandé à être remboursé."),P('p2',"Ah ouais ? 😬")]}},
+  ficha:{nom:"Un compte qui se moque d'un élève",c:{vue:'pub',theme:'sombre',date:'2026-11-14',debut:'21:47',ecart:'alea',pop:'faible',batt:23,
+    pers:[{id:'p1',pseudo:'college.jj.confessions',nom:'Confessions collège 🤫',coul:'#737373',bio:"Envoie tes potins en DM 📩\n100 % anonyme 😈",abos:612,suivis:1,pubs:38},
+      {id:'p2',pseudo:'kenzo.4b',nom:'Kenzo',coul:'#fa7e1e'},{id:'p3',pseudo:'lou_lou',nom:'Lou',coul:'#d62976'},{id:'p4',pseudo:'adam.jsp',nom:'Adam',coul:'#4f5bd5'},{id:'p5',pseudo:'mila.rose',nom:'Mila',coul:'#31a24c'}],
+    grille:[T_('Qui sort avec qui en 3e ? 👀',3),T_('😂',4),T_('Le prof de maths a encore…',2),T_('VOTEZ 🔥',0),T_('🤫',7),T_('Dis-nous tout en DM',6)],
+    posts:[P('p1',"📢 Vous avez vu la nouvelle coupe de Mathis en 4e B ? 😂\n\n1 = ratée\n2 = TRÈS ratée",{caption:"Votez en commentaire 👇 #college #potins",fond:2}),
+      P('p2',"2 sans hésiter 💀"),P('p3',"2 😭😭"),P('p4',"Il va voir ça mdr"),P('p5',"Supprimez ça. C'est du harcèlement, et Mathis n'a rien demandé. On peut signaler le compte, et en parler à un adulte ou appeler le 3018."),P('p2',"oh ça va c'est une blague",{lie:true})]}},
+  citron:{nom:"Une fausse astuce beauté",c:{vue:'pub',theme:'clair',date:'2026-07-08',debut:'09:31',ecart:'alea',pop:'moyenne',batt:88,
+    pers:[{id:'p1',pseudo:'glow.naturel',nom:'Glow Naturel 🍋',coul:'#31a24c',cat:'Santé/beauté',bio:"Des astuces 100 % naturelles ✨\nPas de chimie, que du vrai 🌿",lien:'glow-naturel.shop',abos:86400,suivis:301,pubs:540},
+      {id:'p2',pseudo:'sarah.bt',nom:'Sarah',coul:'#d62976'},{id:'p3',pseudo:'emma_lpz',nom:'Emma',coul:'#962fbf'},{id:'p4',pseudo:'dr.camille.derm',nom:'Dr Camille Lopez',coul:'#4f5bd5',badge:'bleu'}],
+    grille:[T_('🍋',4),T_('Ta routine du matin ☀️',3),T_('Le bicarbonate remplace TOUT',1),T_('🌿',5),T_('Avant / Après 😱',0)],
+    posts:[P('p1',"Du jus de citron pur sur le visage, puis 1 heure au soleil ☀️🍋\n\nAdieu les boutons en 3 jours !",{caption:"La nature fait mieux que les crèmes chimiques 🌿 Enregistre pour plus tard 📌 #astuce #beaute #naturel",fond:4,note:"Le jus de citron sur la peau, puis le soleil, peut provoquer des brûlures et des taches brunes durables (une phytophotodermatose). Il ne soigne pas l'acné."}),
+      P('p2',"Je teste demain matin 😍"),P('p3',"Trop bien merci ❤️ partagé à ma sœur"),P('p4',"Dermatologue ici : surtout pas ! Citron + soleil = risque de brûlure. Pour l'acné, parlez-en à un médecin ou un pharmacien."),P('p2',"Ah… merci, j'allais le faire 😳",{lie:true})]}},
+};
+const VIDE=()=>({vue:'profil',theme:'clair',date:new Date().toISOString().slice(0,10),debut:'18:24',ecart:'alea',pop:'moyenne',batt:76,
+  pers:[{id:'p1',pseudo:'camille.martin',nom:'Camille Martin',coul:COUL[0],badge:'',bio:''},{id:'p2',pseudo:'lucas.brnd',nom:'Lucas Bernard',coul:COUL[1],badge:''}],
+  grille:[T_('🌅',0),T_('🍕',4),T_('🐶',8),T_('📚',3),T_('⚽',5)],posts:[]});
+
+/* ---------- État ---------- */
+const CLE='fausse-page-instagram:v1';
+let C=VIDE(), actif='p1', sel=-1, hist=[];
+function normaliser(c){
+  c=Object.assign(VIDE(),c);
+  if(!Array.isArray(c.pers)||!c.pers.length) c.pers=VIDE().pers;
+  c.posts=(c.posts||[]).filter(m=>m&&typeof m==='object');
+  if(!Array.isArray(c.grille)) c.grille=[];
+  return c;
+}
+try{ const s=localStorage.getItem(CLE); if(s) C=normaliser(JSON.parse(s)); }catch(e){}
+let tGarde; function garder(){ clearTimeout(tGarde); tGarde=setTimeout(()=>{ try{ localStorage.setItem(CLE,JSON.stringify(C)); }catch(e){ msg("Trop gros pour être gardé dans le navigateur : pensez à « Enregistrer »."); } },250); }
+function avant(){ hist.push(JSON.stringify(C)); if(hist.length>80) hist.shift(); $('annuler').disabled=false; }
+function annuler(){ if(!hist.length) return; C=JSON.parse(hist.pop()); neuf(); $('annuler').disabled=!hist.length; tout(); garder(); }
+function msg(t){ const b=$('msgBox'); b.textContent=t; b.classList.add('on'); clearTimeout(b._t); b._t=setTimeout(()=>b.classList.remove('on'),2800); }
+const personne=id=>C.pers.find(p=>p.id===id)||C.pers[0];
+const initiales=n=>(n||'?').replace(/[^\p{L}\p{N} ]/gu,'').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'#';
+const pseudoDe=n=>(n||'compte').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-zA-Z0-9_.]+/g,'.').replace(/^[._]+|[._]+$/g,'').toLowerCase().slice(0,24)||'compte';
+const pseudo=p=>p.pseudo||pseudoDe(p.nom);
+const proprio=()=>personne(C.posts[0]?C.posts[0].de:C.pers[0].id);
+const avatar=(p,cls='av',attr='')=>`<span class="${cls}" ${attr} style="background:${p.photo?'#ccc':(p.coul||'#8a8f98')}">${p.photo?`<img src="${p.photo}" alt="">`:esc(initiales(p.nom))}</span>`;
+function lier(t){ return esc(t).replace(/(https?:\/\/[^\s<]+)|(^|[\s(])([#@][\p{L}\p{N}_.]+)/gu,(m,u,a,b)=>u?`<span class="ln">${u.replace(/^https?:\/\//,'')}</span>`:`${a}<span class="ln">${b}</span>`); }
+
+/* ---------- Heures et chiffres automatiques ---------- */
+const enMin=h=>{ const m=/^(\d{1,2})[:h](\d{2})/.exec(h||''); return m ? +m[1]*60+ +m[2] : null; };
+const enH=t=>{ t=((t%1440)+1440)%1440; return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); };
+const hasard=(i,k)=>(((i+1)*2654435761+(k+1)*40503)>>>0)%1000/1000;
+function temps(){   // minutes depuis minuit le jour du post de départ (peut dépasser 1440)
+  let t=enMin(C.debut)??(18*60+24); const out=[];
+  C.posts.forEach((m,i)=>{
+    if(i>0){ if(m.h&&enMin(m.h)!=null){ let f=enMin(m.h); while(f<t) f+=1440; t=f; }
+      else{ const e=C.ecart; t += e==='alea' ? Math.round(1+hasard(i,9)**2*25) : (+e||1); } }
+    else if(m.h&&enMin(m.h)!=null) t=enMin(m.h);
+    out.push(t);
+  });
+  return out;
+}
+const capture=T=>T.length?T[T.length-1]+2+Math.round(hasard(T.length,3)*4):(enMin(C.debut)??1104);
+const MOIS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+function jour(dec){ const d=new Date((C.date||'2026-01-01')+'T12:00:00'); if(isNaN(d)) return null; d.setDate(d.getDate()+dec); return d; }
+function age(t,cap){ const d=Math.max(1,cap-t); if(d<60) return d+' min'; if(d<1440) return Math.floor(d/60)+' h'; if(d<10080) return Math.floor(d/1440)+' j'; return Math.floor(d/10080)+' sem.'; }
+function agePost(t,cap){ const d=Math.max(1,cap-t); if(d<60) return 'Il y a '+d+' minute'+(d>1?'s':''); if(d<1440){ const h=Math.floor(d/60); return 'Il y a '+h+' heure'+(h>1?'s':''); } const j=jour(Math.floor(t/1440)); return j?j.getDate()+' '+['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'][j.getMonth()]:''; }
+function nb(n){ n=Math.round(+n||0); if(n<=0) return ''; if(n<1e3) return n.toLocaleString('fr-FR').replace(/ | /g,' ');
+  if(n<1e6) return (n<1e5?(Math.floor(n/100)/10).toString().replace('.',',').replace(/,0$/,''):Math.floor(n/1000))+' k'; return (Math.floor(n/1e5)/10).toString().replace('.',',').replace(/,0$/,'')+' M'; }
+function lireNb(s){ const m=/^([\d\s.,]+)\s*([kKmM]?)$/.exec(String(s).trim()); if(!m) return null; let v=parseFloat(m[1].replace(/\s/g,'').replace(',','.')); if(isNaN(v)) return null; if(/k/i.test(m[2])) v*=1e3; if(/m/i.test(m[2])) v*=1e6; return Math.round(v); }
+const POP={faible:[4,60,3,380],moyenne:[300,6000,45,9200],virale:[9000,240000,1200,410000]};
+function chiffres(i){
+  const m=C.posts[i], p=POP[C.pop]||POP.moyenne, g=[...(m.texte||'')].reduce((a,c)=>(a*31+c.codePointAt(0))%9973,7), r=k=>hasard(i+g,k);
+  let s;
+  if(i===0){ const like=Math.round(p[0]+(p[1]-p[0])*r(1)**1.5);
+    s={like,com:Math.max(C.posts.length-1,Math.round(like*(.02+.06*r(2)))),part:Math.round(like*(.03+.25*r(3)))}; }
+  else s={like:Math.round(p[2]*r(1)**2.4),com:0,part:0};
+  if(m.stats) for(const k of ['like','com','part']) if(m.stats[k]!=null) s[k]=m.stats[k];
+  if(enScene&&C.posts.length>1&&pas>0){ const f=.3+.7*Math.min(1,(pas-1-Math.max(0,i-1))/Math.max(1,C.posts.length-1-Math.max(0,i-1))); s.like=Math.round(s.like*f); s.part=Math.round(s.part*f); if(i===0) s.com=Math.max(pas-1,Math.round(s.com*f)); }
+  return s;
+}
+function profilChiffres(p){ const b=POP[C.pop]||POP.moyenne, r=k=>hasard(p.id.length+(p.pseudo||'').length,k);
+  return {pubs:p.pubs!=null?p.pubs:Math.max(C.grille.length+(C.posts.length?1:0),Math.round(20+r(1)*180)),abos:p.abos!=null?p.abos:Math.round(b[3]*(.6+.8*r(2))),suivis:p.suivis!=null?p.suivis:Math.round(120+r(3)*600)}; }
+
+/* ---------- Rendu du téléphone ---------- */
+function noteHTML(m){ return m.note ? `<div class="fc"><div class="ft">${I.alerte}Fausse information</div><div class="fs">Vérifiée par des fact-checkers indépendants</div><div class="fn">${lier(m.note)}</div><div class="fv">Voir pourquoi</div></div>` : ''; }
+function tailleTexte(t,base){ const n=(t||'').length; return n<=2&&/\p{Extended_Pictographic}/u.test(t)?base*3.2:n<30?base*1.35:n<70?base:n<130?base*.8:base*.65; }
+function tuileHTML(t,attr){ const emo=t.texte&&t.texte.length<=4&&/^\p{Extended_Pictographic}/u.test(t.texte);
+  return `<div class="tuile${emo?' emo':(t.texte||'').length>60?' long':''}" ${attr} style="background:${fond(t.fond||0)}">${t.img?`<img src="${t.img}" alt="">`:`<span>${esc(t.texte||'')}</span>`}</div>`; }
+function profilHTML(opt={}){
+  const p=proprio(), ch=profilChiffres(p), ed=opt.edit, prof=`data-prof="${p.id}"`, m=C.posts[0];
+  let g='';
+  if(m) g+=tuileHTML({img:m.img,texte:m.texte,fond:m.fond||0},`data-voirpub="1"${ed?' title="Voir la publication"':''}`);
+  C.grille.forEach((t,k)=>{ g+=tuileHTML(t,`data-tuile="${k}"`); });
+  if(ed) g+=`<div class="tuile ajout" data-tuile="+" title="Ajouter une case">+</div>`;
+  return `<div class="pf"><div class="pf-haut"><span class="anneau" ${prof}>${avatar(p)}</span><div class="pf-st" ${prof}><div><b>${nb(ch.pubs)||0}</b><span>publications</span></div><div><b>${nb(ch.abos)||0}</b><span>followers</span></div><div><b>${nb(ch.suivis)||0}</b><span>suivi(e)s</span></div></div></div>`
+    +`<div class="pf-txt" ${prof}><b class="nm">${esc(p.nom||pseudo(p))}</b>${p.cat?`<div class="pf-cat">${esc(p.cat)}</div>`:''}${p.bio?`<div class="tx">${lier(p.bio)}</div>`:''}${p.lien?`<div class="pf-lien">${I.lien}${esc(p.lien)}</div>`:''}</div>`
+    +`<div class="pf-btn"><span class="suivre">Suivre</span><span>Écrire</span><span class="mini">${I.ajout.replace('<svg','<svg style="width:16px;height:16px;vertical-align:-3px"')}</span></div>`
+    +`<div class="pf-onglets"><span>${I.grille}</span><span>${I.reels}</span><span>${I.tag}</span></div><div class="grille">${g}</div></div>`;
+}
+function filHTML(n,opt={}){
+  const T=temps(), cap=n<C.posts.length&&n>0?T[n-1]+1:capture(T), ps=C.posts.slice(0,n), ed=opt.edit;
+  let s='';
+  ps.forEach((m,i)=>{
+    const p=personne(m.de), st=chiffres(i), cl=`${opt.nouv===i?' nouv':''}${sel===i&&ed?' choisi':''}`;
+    const prof=`data-prof="${p.id}"`;
+    if(i===0){
+      const media=m.img?`<img class="ph" src="${m.img}" alt="">`:`<div class="media" style="background:${fond(m.fond||0)};font-size:${tailleTexte(m.texte,22)}px">${esc(m.texte||'')}</div>`;
+      s+=`<article class="tw princ${cl}" data-i="0"><div class="hd">${avatar(p,'av',prof)}<span class="id" ${prof}><span><b class="nm">${esc(pseudo(p))}</b>${badge(p.badge)}</span>${m.lieu?`<span class="lieu">${esc(m.lieu)}</span>`:''}</span><span class="pt3">···</span></div>`
+        +media
+        +`<div class="ia"><span>${I.coeur}${nb(st.like)}</span><span>${I.bulle}${nb(st.com)}</span><span>${I.avion}${nb(st.part)}</span><span class="sg">${I.signet}</span></div>`
+        +`${m.caption||(m.img&&m.texte)?`<div class="leg"><b class="nm" ${prof}>${esc(pseudo(p))}</b> <span class="tx">${lier(m.caption||m.texte)}</span></div>`:''}${noteHTML(m)}`
+        +`<div class="dt">${agePost(T[0],cap)}</div></article>`;
+      if(ps.length>1) s+=`<div class="tri">Commentaires</div>`;
+      return;
+    }
+    const sr=m.lie&&i>1;
+    s+=`<article class="tw rep${sr?' sr':''}${cl}" data-i="${i}">${avatar(p,'av',prof)}<div class="d">`
+      +`<div class="l1"><b class="nm" ${prof}>${esc(pseudo(p))}</b>${badge(p.badge)}<span class="h">${age(T[i],cap)}</span></div>${m.texte?`<div class="tx">${lier(m.texte)}</div>`:''}`
+      +`${m.img?`<img class="ph" src="${m.img}" alt="">`:''}<div class="sous"><span>Répondre</span></div></div><div class="coeur">${I.coeur}${st.like?nb(st.like):''}</div></article>`;
+  });
+  if(ed&&!ps.length) s+=`<div class="vide-tel"><b>1.</b> En bas, choisissez <b>qui publie</b> : ce sera la page.<br><b>2.</b> Tapez le texte de la publication, puis <b>Entrée</b>. Le <b>+</b> ajoute une photo.<br><b>3.</b> Changez de compte et ajoutez les commentaires.<br><br>Touchez un pseudo ou une photo pour changer le compte.<br>Touchez un message pour le modifier.<br><br>Pour voir un exemple : ⚙ Réglages.</div>`;
+  return s;
+}
+function horloge(n){ const T=temps(); return enH(n!=null&&n<T.length&&n>0?T[n-1]+1:capture(T)); }
+function barreHTML(n){ const b=Math.max(1,Math.min(100,+C.batt||76));
+  return `<span>${horloge(n)}</span><span class="ic"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.1 0 4 .8 5.5 2.1l1.2-1.3A9.5 9.5 0 0 0 7.5.4 9.5 9.5 0 0 0 .8 3l1.2 1.3a7.7 7.7 0 0 1 5.5-2.1Zm0 3.3c1.2 0 2.3.4 3.2 1.2l1.2-1.3a6.4 6.4 0 0 0-8.8 0l1.2 1.3c.9-.8 2-1.2 3.2-1.2Zm0 3.2c-.4 0-.8.2-1.1.4l1.1 1.2 1.1-1.2c-.3-.2-.7-.4-1.1-.4Z"/></svg><span class="batt${b<=20?' bas':''}"><i style="width:${b}%"></i></span></span>`; }
+const teteHTML=vue=>{ const p=proprio(); return vue==='profil' ? `${I.ret}<span class="tt"><b>${esc(pseudo(p))}${badge(p.badge)}</b></span>${I.cloche}<span class="pt3" style="font-size:18px">···</span>` : `<span class="rt" data-retour="1">${I.ret}</span><span class="tt"><small>${esc(pseudo(p))}</small><b>Publications</b></span>`; };
+const classeEcran=()=>`ecran x-${C.theme==='sombre'?'sombre':'clair'}`;
+const barNavHTML=()=>`<div class="barnav">${I.maison}${I.loupe}${I.plus}${I.reels}${avatar(C.pers[C.pers.length>1?1:0])}</div>`;
+function telHTML(opt={}){
+  const n=opt.n??C.posts.length, vue=opt.vue||C.vue;
+  return `<div class="tel${opt.export?' export':''}"><div class="${classeEcran()}">
+    <div class="barre">${barreHTML(n)}</div><div class="tete">${teteHTML(vue)}</div>
+    <div class="fil">${vue==='profil'?profilHTML(opt):filHTML(n,opt)}</div>${vue==='profil'?barNavHTML():`<div class="ecrirefb">${avatar(C.pers[C.pers.length>1?1:0])}<span>Ajouter un commentaire…</span></div>`}<div class="marque">Page fictive</div></div></div>`;
+}
+
+/* ---------- Téléphone modifiable ---------- */
+function construireTel(){
+  $('tel').innerHTML=`<div class="tel edit"><div class="${classeEcran()}" id="ecran">
+    <div class="barre" id="barre"></div><div class="tete" id="tete"></div>
+    <div class="fil" id="fil"></div>
+    <div class="ecrire" id="ecrireProf">
+      <div class="outils-prof"><button data-pp="photo">🖼️ Photo dans la grille</button><button data-pp="texte">🔤 Case texte</button><button class="ok" data-pp="pub">Voir la publication →</button></div>
+      <div class="cote">Touchez le nom, la bio ou les chiffres pour les changer, une case pour la modifier.</div>
+    </div>
+    <div class="ecrire" id="ecrirePub">
+      <div class="outils-msg" id="outilsMsg" hidden></div>
+      <div class="qui" id="qui" role="group" aria-label="Qui écrit ?"></div>
+      <div class="zone">
+        <button class="rb plus" id="plus" title="Ajouter…" aria-label="Ajouter une photo, un dialogue…">+</button>
+        <textarea id="texte" rows="1" placeholder="Exprimez-vous…" aria-label="Texte du message"></textarea>
+        <button class="rb env" id="env" title="Publier (Entrée)" aria-label="Publier">${I.env}</button>
+      </div>
+      <div class="cote" id="cote"></div>
+    </div>
+    <div class="menu-plus" id="menuPlus" hidden>
+      <button data-p="img">🖼️ Photo</button>
+      <button data-p="profil">👤 Voir le profil</button>
+      <button data-p="scan">📷 Scanner un dialogue</button>
+      <button data-p="coller">📋 Coller un dialogue</button>
+    </div>
+  </div></div>`;
+  brancherTel();
+}
+function majTel(scroll){
+  const e=$('ecran'); if(!e) return construireTel(), majTel(true);
+  e.className=classeEcran();
+  $('barre').innerHTML=barreHTML(); $('tete').innerHTML=teteHTML(C.vue);
+  const pr=C.vue==='profil'; $('ecrireProf').hidden=!pr; $('ecrirePub').hidden=pr;
+  const f=$('fil'); const enBas=!pr&&f.scrollHeight-f.scrollTop-f.clientHeight<40;
+  if(pr&&f.dataset.vue!=='profil') f.scrollTop=0; f.dataset.vue=C.vue;
+  f.innerHTML=pr?profilHTML({edit:true}):filHTML(C.posts.length,{edit:true});
+  if(!pr&&(scroll||enBas)) f.scrollTop=f.scrollHeight;
+  majEcrire();
+}
+function majEcrire(){
+  if(!C.pers.some(p=>p.id===actif)) actif=C.pers[0].id;
+  const m=C.posts[sel];
+  const qui = sel>=0&&m ? m.de : actif;
+  const c=personne(qui);
+  $('qui').innerHTML='<span class="lbl">Qui écrit ?</span>'+C.pers.map(p=>`<button data-q="${p.id}" aria-pressed="${qui===p.id}">${avatar(p,'pt')}${esc(pseudo(p))}</button>`).join('')+'<button class="ajout" data-q="+" title="Ajouter un compte">+ Compte</button>';
+  const prem=!C.posts.length||(insererA===0);
+  $('cote').innerHTML = sel>=0 ? (sel===0?'Modifier le texte de l\'image':'Modifier le commentaire')+' · <b>'+esc(pseudo(c))+'</b>'
+    : (prem ? `<b>${esc(pseudo(c))}</b> publie` : `<b>${esc(pseudo(c))}</b> commente`)+' · <kbd>Tab</kbd> change';
+  $('texte').placeholder = sel>=0 ? (sel===0?'Texte sur l\'image':'Texte du commentaire') : (prem?'Texte de la publication…':'Commentaire de '+pseudo(c)+'…');
+  const o=$('outilsMsg'); o.hidden=sel<0;
+  if(sel>=0&&m){
+    const T=temps();
+    o.innerHTML=`<button class="ok" data-o="ok">✓ Valider</button><button data-o="heure">🕒 ${m.h?m.h+' (fixée)':enH(T[sel])}</button><button data-o="chiffres">🔢 ${sel===0?'Chiffres':'J\'aime'}</button>${sel===0?`<button data-o="legende">✏️ Légende</button><button data-o="fond">🎨 Fond</button><button data-o="note">⚠️ ${m.note?'Avertissement':'Info fausse'}</button>`:''}`
+      +`${m.img?'<button data-o="noimg">Retirer la photo</button>':''}${sel>1?`<button data-o="lie">${m.lie?'↩ Commentaire normal':'↪ Réponse au précédent'}</button>`:''}`
+      +`<button data-o="up">↑</button><button data-o="down">↓</button><button data-o="ins">Insérer avant</button><button class="del" data-o="del">Supprimer</button><button data-o="fin">Fermer</button>`;
+  }
+}
+function grow(){ const t=$('texte'); t.style.height='auto'; t.style.height=Math.min(110,t.scrollHeight)+'px'; }
+let insererA=-1;
+function ajouterPost(m){ if(insererA>=0){ C.posts.splice(insererA,0,m); insererA++; } else C.posts.push(m); }
+function envoyer(){
+  const t=$('texte'); const v=t.value.replace(/\s+$/,'');
+  if(sel>=0){ const m=C.posts[sel]; avant(); m.texte=v; sel=-1; t.value=''; grow(); majTel(); garder(); return; }
+  if(!v.trim()){ majEcrire(); t.focus(); return; }
+  avant(); ajouterPost({de:actif,texte:v});
+  t.value=''; grow(); majTel(insererA<0); garder(); t.focus();
+}
+function choisir(i){
+  if(i===sel){ fermerEdition(); return; }
+  sel=i; insererA=-1; const m=C.posts[i]; const t=$('texte'); t.value=m.texte||''; grow(); majTel(); t.focus(); t.setSelectionRange(t.value.length,t.value.length);
+}
+function fermerEdition(){ sel=-1; $('texte').value=''; grow(); majTel(); }
+const nouvId=()=>'p'+(Math.max(0,...C.pers.map(p=>+p.id.slice(1)||0))+1);
+function nouveauCompte(nom){ const p={id:nouvId(),nom,pseudo:pseudoDe(nom),coul:COUL[C.pers.length%COUL.length],badge:''}; C.pers.push(p); return p; }
+function brancherTel(){
+  const t=$('texte');
+  t.addEventListener('input',grow);
+  t.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); envoyer(); }
+    else if(e.key==='Tab'&&!e.ctrlKey&&!e.altKey&&!e.metaKey){ e.preventDefault(); if(sel>=0) return; const ids=C.pers.map(p=>p.id); actif=ids[(ids.indexOf(actif)+(e.shiftKey?ids.length-1:1))%ids.length]; majEcrire(); }
+    else if(e.key==='Escape'&&sel>=0){ e.preventDefault(); fermerEdition(); }
+    else if(e.key==='ArrowUp'&&!t.value&&sel<0&&C.posts.length){ e.preventDefault(); choisir(C.posts.length-1); }
+  });
+  $('env').onclick=envoyer;
+  $('qui').onclick=e=>{ const b=e.target.closest('[data-q]'); if(!b) return; let q=b.dataset.q;
+    if(q==='+'){ if(C.pers.length>=12) return msg('12 comptes au plus.'); const v=prompt('Nom du nouveau compte', ''); if(!v||!v.trim()) return; avant(); q=nouveauCompte(v.trim()).id; tout(); garder(); }
+    if(sel>=0){ const m=C.posts[sel]; if(m&&m.de!==q){ avant(); m.de=q; majTel(); garder(); } }
+    else { actif=q; majEcrire(); }
+    t.focus(); };
+  $('fil').onclick=e=>{ const vp=e.target.closest('[data-voirpub]'); if(vp) return changerVue('pub'); const tu=e.target.closest('[data-tuile]'); if(tu) return tu.dataset.tuile==='+'?ajouterTuile():ouvrirTuile(+tu.dataset.tuile);
+    const pr=e.target.closest('[data-prof]'); if(pr) return ouvrirProfil(pr.dataset.prof); const b=e.target.closest('[data-i]'); if(b) choisir(+b.dataset.i); };
+  $('tete').onclick=e=>{ if(e.target.closest('[data-retour]')) changerVue('profil'); else if(C.vue==='profil') ouvrirProfil(proprio().id); };
+  $('ecrireProf').onclick=e=>{ const b=e.target.closest('[data-pp]'); if(!b) return; const k=b.dataset.pp;
+    if(k==='pub') changerVue('pub'); else if(k==='texte') ajouterTuile(); else { imgPour='grille'; $('fImg').value=''; $('fImg').click(); } };
+  $('plus').onclick=e=>{ e.stopPropagation(); $('menuPlus').hidden=!$('menuPlus').hidden; };
+  document.addEventListener('click',e=>{ if(!e.target.closest('#menuPlus')) $('menuPlus').hidden=true; });
+  $('menuPlus').onclick=e=>{ const b=e.target.closest('[data-p]'); if(!b) return; $('menuPlus').hidden=true; const k=b.dataset.p;
+    if(k==='img'){ imgPour='post'; $('fImg').value=''; $('fImg').click(); }
+    else if(k==='profil') changerVue('profil');
+    else if(k==='coller') ouvrirColler();
+    else if(k==='scan'){ ouvrirColler(); $('fScan').value=''; $('fScan').click(); } };
+  $('outilsMsg').onclick=e=>{ const b=e.target.closest('[data-o]'); if(!b) return; const k=b.dataset.o, m=C.posts[sel];
+    if(k==='ok') return envoyer();
+    if(k==='fin') return fermerEdition();
+    if(k==='note') return ouvrirNote();
+    avant();
+    if(k==='legende'){ const v=prompt('Légende sous l\'image (avec les #hashtags)', m.caption||''); if(v===null){ hist.pop(); return; } if(v.trim()) m.caption=v.trim(); else delete m.caption; majTel(); garder(); return; }
+    if(k==='fond'){ m.fond=((m.fond||0)+1)%FONDS.length; majTel(); garder(); return; }
+    if(k==='del'){ C.posts.splice(sel,1); if(C.posts[sel]&&sel<=1) delete C.posts[sel].lie; sel=-1; t.value=''; grow(); }
+    else if(k==='heure'){ const T=temps(); const v=prompt('Heure de ce message (laisser vide pour la calculer automatiquement)', m.h||enH(T[sel])); if(v===null){ hist.pop(); return; } if(v.trim()&&enMin(v)==null){ hist.pop(); return msg('Heure non comprise : écrivez par exemple 14:05.'); } if(v.trim()) m.h=enH(enMin(v)); else delete m.h; }
+    else if(k==='chiffres'){ const s=chiffres(sel), pr=sel===0; const v=prompt(pr?'J\'aime, commentaires, partages, séparés par des espaces.\nExemple : 1,2k 85 40\nLaisser vide pour les calculer automatiquement.':'Nombre de « J\'aime » sur ce commentaire (0 pour aucun).\nLaisser vide pour le calculer automatiquement.', m.stats?(pr?[s.like,s.com,s.part].join(' '):String(s.like)):'');
+      if(v===null){ hist.pop(); return; } if(!v.trim()) delete m.stats; else { const x=v.trim().split(/\s+/).map(lireNb); if(x.some(n=>n==null)){ hist.pop(); return msg(pr?'Chiffres non compris : par exemple 1,2k 85 40':'Nombre non compris : par exemple 12'); } m.stats={}; ['like','com','part'].forEach((c,j)=>{ if(x[j]!=null) m.stats[c]=x[j]; }); } }
+    else if(k==='noimg'){ delete m.img; }
+    else if(k==='lie'){ if(m.lie) delete m.lie; else m.lie=true; }
+    else if(k==='up'&&sel>0){ [C.posts[sel-1],C.posts[sel]]=[C.posts[sel],C.posts[sel-1]]; sel--; }
+    else if(k==='down'&&sel<C.posts.length-1){ [C.posts[sel+1],C.posts[sel]]=[C.posts[sel],C.posts[sel+1]]; sel++; }
+    else if(k==='ins'){ insererA=sel; sel=-1; t.value=''; grow(); msg('Les prochains messages s\'insèrent avant celui-ci. Échap pour revenir à la fin.'); }
+    C.posts.forEach((p,i)=>{ if(i<2) delete p.lie; });
+    majTel(); garder(); t.focus(); };
+}
+
+/* ---------- Profil d'un compte ---------- */
+let profil=null;
+function dessinerProfil(){ const p=profil; const a=$('pfAv'); a.style.background=p.photo?'#ccc':(p.coul||'#8a8f98'); a.innerHTML=p.photo?`<img src="${p.photo}" alt="">`:esc(initiales(p.nom)); $('pfPhotoDel').hidden=!p.photo; }
+function ouvrirProfil(id){
+  profil=C.pers.find(p=>p.id===id); if(!profil) return; avant();
+  $('pfNom').value=profil.nom||''; $('pfPseudo').value=pseudo(profil); $('pfCat').value=profil.cat||''; $('pfBio').value=profil.bio||''; $('pfLien').value=profil.lien||'';
+  $('pfPubs').value=profil.pubs!=null?nb(profil.pubs):''; $('pfAbos').value=profil.abos!=null?nb(profil.abos):''; $('pfSuivis').value=profil.suivis!=null?nb(profil.suivis):'';
+  const ch=profilChiffres(profil); $('pfPubs').placeholder=nb(ch.pubs)||'0'; $('pfAbos').placeholder=nb(ch.abos)||'0'; $('pfSuivis').placeholder=nb(ch.suivis)||'0';
+  $('pfBadge').value=profil.badge||''; $('pfCoul').value=profil.coul||COUL[0];
+  $('pfSuppr').disabled=C.pers.length<2; dessinerProfil(); $('dlgProfil').showModal();
+}
+const majProfil=()=>{ dessinerProfil(); tout(); garder(); };
+$('pfNom').oninput=e=>{ profil.nom=e.target.value; majProfil(); };
+$('pfPseudo').oninput=e=>{ profil.pseudo=e.target.value.replace(/^@+/,'').replace(/\s+/g,'.'); majProfil(); };
+for(const [id,k] of [['pfCat','cat'],['pfBio','bio'],['pfLien','lien']]) $(id).oninput=e=>{ const v=e.target.value; if(v) profil[k]=v; else delete profil[k]; majProfil(); };
+for(const [id,k] of [['pfPubs','pubs'],['pfAbos','abos'],['pfSuivis','suivis']]) $(id).oninput=e=>{ const v=e.target.value.trim(), n=lireNb(v); if(!v) delete profil[k]; else if(n!=null) profil[k]=n; majProfil(); };
+$('pfBadge').onchange=e=>{ profil.badge=e.target.value; majProfil(); };
+$('pfCoul').oninput=e=>{ profil.coul=e.target.value; majProfil(); };
+$('pfAv').onclick=$('pfPhoto').onclick=()=>{ $('fPhoto').value=''; $('fPhoto').click(); };
+$('pfPhotoDel').onclick=()=>{ delete profil.photo; majProfil(); };
+$('pfOk').onclick=()=>$('dlgProfil').close();
+$('pfSuppr').onclick=()=>{ const p=profil, n=C.posts.filter(m=>m.de===p.id).length;
+  if(n&&!confirm(`Supprimer ${p.nom||'ce compte'} et ses ${n} message(s) ?`)) return;
+  C.posts=C.posts.filter(m=>m.de!==p.id); C.pers=C.pers.filter(x=>x!==p); C.posts.forEach((m,i)=>{ if(i<2) delete m.lie; });
+  $('dlgProfil').close(); neuf(); tout(); garder(); };
+
+/* ---------- Vue profil / publication, cases de la grille ---------- */
+function changerVue(v){ if(C.vue===v) return; C.vue=v; neuf(); tout(); garder(); if(v==='pub'&&matchMedia('(min-width:821px)').matches) $('texte').focus(); }
+let tuile=null;
+for(const [i,[n]] of FONDS.entries()){ const o=document.createElement('option'); o.value=i; o.textContent=n; $('tuFond').appendChild(o); }
+function dessinerTuile(){ $('tuTxt').value=tuile.texte||''; $('tuFond').value=tuile.fond||0; $('tuPhotoDel').hidden=!tuile.img; }
+function ouvrirTuile(k){ tuile=C.grille[k]; if(!tuile) return; avant(); dessinerTuile(); $('dlgTuile').showModal(); }
+function ajouterTuile(){ avant(); const t={texte:'',fond:C.grille.length%FONDS.length}; C.grille.unshift(t); tout(); garder(); tuile=t; dessinerTuile(); $('dlgTuile').showModal(); $('tuTxt').focus(); }
+$('tuTxt').oninput=e=>{ tuile.texte=e.target.value; tout(); garder(); };
+$('tuFond').onchange=e=>{ tuile.fond=+e.target.value; tout(); garder(); };
+$('tuPhoto').onclick=()=>{ imgPour='tuile'; $('fImg').value=''; $('fImg').click(); };
+$('tuPhotoDel').onclick=()=>{ delete tuile.img; dessinerTuile(); tout(); garder(); };
+const deplacer=d=>{ const i=C.grille.indexOf(tuile), j=i+d; if(i<0||j<0||j>=C.grille.length) return; [C.grille[i],C.grille[j]]=[C.grille[j],C.grille[i]]; tout(); garder(); };
+$('tuAv').onclick=()=>deplacer(-1); $('tuAp').onclick=()=>deplacer(1);
+$('tuSuppr').onclick=()=>{ C.grille=C.grille.filter(t=>t!==tuile); $('dlgTuile').close(); tout(); garder(); };
+$('tuOk').onclick=()=>$('dlgTuile').close();
+$('dlgTuile').addEventListener('close',()=>{ if(tuile&&!tuile.img&&!(tuile.texte||'').trim()){ C.grille=C.grille.filter(t=>t!==tuile); tout(); garder(); } tuile=null; imgPour='post'; });
+
+/* ---------- Note de la communauté ---------- */
+function ouvrirNote(){ const m=C.posts[sel]; $('noteTxt').value=m.note||''; $('noteDel').hidden=!m.note; $('noteOui').textContent=m.note?'Enregistrer':'Ajouter l\'avertissement'; $('dlgNote').showModal(); $('noteTxt').focus(); }
+$('noteNon').onclick=()=>$('dlgNote').close();
+$('noteOui').onclick=()=>{ const m=C.posts[sel], v=$('noteTxt').value.trim(); avant(); if(v) m.note=v; else delete m.note; $('dlgNote').close(); majTel(); garder(); };
+$('noteDel').onclick=()=>{ avant(); delete C.posts[sel].note; $('dlgNote').close(); majTel(); garder(); };
+
+/* ---------- Réglages ---------- */
+function dessinerReglages(){
+  document.querySelectorAll('#themes [data-th]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.th===(C.theme||'clair')));
+  document.querySelectorAll('#vues [data-vue]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.vue===C.vue));
+  $('date').value=C.date||''; $('debut').value=C.debut||''; $('ecart').value=C.ecart||'alea'; $('pop').value=C.pop||'moyenne'; $('batt').value=C.batt||'';
+  $('persos').innerHTML=C.pers.map(p=>`<div class="perso">${avatar(p,'mini-av',`data-pf="${p.id}" role="button" title="Modifier"`)}<span class="qi" data-pf="${p.id}"><b>${esc(pseudo(p))}${badge(p.badge)}</b><span>${p===proprio()?'Propriétaire de la page':C.posts.filter(m=>m.de===p.id).length+' message(s)'}</span></span><button class="btn mini" data-pf="${p.id}">Modifier</button></div>`).join('');
+}
+$('persos').onclick=e=>{ const b=e.target.closest('[data-pf]'); if(b) ouvrirProfil(b.dataset.pf); };
+document.querySelectorAll('#themes [data-th]').forEach(b=>b.onclick=()=>{ avant(); C.theme=b.dataset.th; tout(); garder(); });
+document.querySelectorAll('#vues [data-vue]').forEach(b=>b.onclick=()=>{ changerVue(b.dataset.vue); fermerRegl(); });
+const reg=(id,f,ev='input')=>{ $(id).addEventListener('focus',()=>avant()); $(id).addEventListener(ev,e=>{ f(e.target); majTel(); garder(); }); };
+reg('date',t=>C.date=t.value,'change'); reg('debut',t=>C.debut=t.value); reg('ecart',t=>C.ecart=t.value,'change'); reg('pop',t=>C.pop=t.value,'change'); reg('batt',t=>C.batt=t.value);
+$('addPers').onclick=()=>{ if(C.pers.length>=12) return msg('12 comptes au plus.'); avant(); const p=nouveauCompte('Nouveau compte'); tout(); garder(); ouvrirProfil(p.id); $('pfNom').select(); };
+
+/* ---------- Images ---------- */
+function reduire(file,max){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(file),im=new Image(); im.onload=()=>{ const k=Math.min(1,max/Math.max(im.naturalWidth,im.naturalHeight)); const c=document.createElement('canvas'); c.width=Math.round(im.naturalWidth*k); c.height=Math.round(im.naturalHeight*k); const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,c.width,c.height); g.drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res(c.toDataURL('image/jpeg',.82)); }; im.onerror=()=>{ URL.revokeObjectURL(u); rej(); }; im.src=u; }); }
+$('fPhoto').onchange=async e=>{ const f=e.target.files[0]; if(!f||!profil) return; try{ profil.photo=await reduire(f,200); majProfil(); }catch(x){ msg('Image illisible.'); } };
+let imgPour='post';
+$('fImg').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; try{ const img=await reduire(f,900); avant();
+  if(imgPour==='tuile'&&tuile){ tuile.img=img; dessinerTuile(); tout(); garder(); return; }
+  if(imgPour==='grille'){ C.grille.unshift({img}); tout(); garder(); return; }
+  if(sel>=0){ C.posts[sel].img=img; majTel(); garder(); return; }
+  const t=$('texte'); ajouterPost({de:actif,texte:t.value.trim(),img}); t.value=''; grow(); majTel(true); garder(); }catch(x){ msg('Image illisible.'); } };
+
+/* ---------- Coller un dialogue ---------- */
+function ouvrirColler(){ etatScan(''); $('collerTxt').value=''; $('collerRemplacer').checked=true; $('dlgColler').showModal(); $('collerTxt').focus(); }
+$('coller').onclick=ouvrirColler;
+$('collerNon').onclick=()=>$('dlgColler').close();
+$('collerOui').onclick=()=>{
+  const lignes=$('collerTxt').value.split(/\r?\n/); const rempl=$('collerRemplacer').checked;
+  const pers=rempl?[]:C.pers.map(p=>({...p})), posts=rempl?[]:C.posts.slice();
+  const idDe=nom=>{ const nu=nom.replace(/^@/,''); let p=pers.find(x=>x.nom.toLowerCase()===nu.toLowerCase()||(x.pseudo||'').toLowerCase()===nu.toLowerCase()); if(!p){ p={id:'p'+(pers.length?Math.max(...pers.map(x=>+x.id.slice(1)||0))+1:1),nom:nu,pseudo:pseudoDe(nu),coul:COUL[pers.length%COUL.length],badge:''}; pers.push(p); } return p.id; };
+  let der=null, n=0, ignorees=0;
+  for(const brut of lignes){
+    const l=brut.trim(); if(!l){ der=null; continue; }
+    const r=/^(?:[-•*·]\s*|\d{1,3}[.)]\s+)?\[?(?:\d{1,2}[:h]\d{2}\]?\s*[-–]?\s*)?(@?[^:]{1,30}?)\s*:\s*(.+)$/.exec(l)
+      || /^(?:[-•*·]\s*)?((?:[A-ZÀ-Ý@][\p{L}'’.-]*)(?:\s[A-ZÀ-Ý][\p{L}'’.-]*){0,2})\s+[-–—>]\s*(.+)$/u.exec(l);
+    const nomOK=n=>/^@?[\p{L}\p{N}\p{Extended_Pictographic}_][\p{L}\p{M}\p{N}\p{Extended_Pictographic}_'’ .-]{0,29}$/u.test(n)&&n.split(/\s+/).length<=4;
+    if(r&&nomOK(r[1].trim())){ der={de:idDe(r[1].trim()),texte:r[2]}; posts.push(der); n++; }
+    else if(der){ der.texte+='\n'+l; }
+    else ignorees++;
+  }
+  if(!n) return msg('Aucun message trouvé : écrivez « Nom : texte », un par ligne.');
+  avant();
+  if(!pers.length) pers.push(VIDE().pers[0]);
+  C.pers=pers; C.posts=posts; neuf(); actif=pers[pers.length>1?1:0].id;
+  $('dlgColler').close(); tout(); garder(); msg(`${n} message(s) créé(s)${ignorees?`, ${ignorees} ligne(s) sans nom ignorée(s)`:''}. Touchez un nom pour changer la photo.`);
+};
+
+/* ---------- Scanner un dialogue : photo (lecture du texte), PDF, Word, texte ---------- */
+const charger=src=>new Promise((ok,ko)=>{ if(document.querySelector(`script[src="${src}"]`)) return ok(); const e=document.createElement('script'); e.src=src; e.onload=ok; e.onerror=()=>ko(new Error('reseau')); document.head.appendChild(e); });
+const TESS='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/';
+function etatScan(t){ const e=$('scanEtat'); e.hidden=!t; e.textContent=t||''; }
+async function lireImages(sources){
+  await charger(TESS+'tesseract.min.js');
+  const w=await Tesseract.createWorker('fra',1,{workerPath:TESS+'worker.min.js',corePath:'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1',langPath:'https://cdn.jsdelivr.net/npm/@tesseract.js-data/fra@1.0.0/4.0.0_best_int',
+    logger:m=>{ if(m.status==='recognizing text') etatScan(`Lecture du texte… ${Math.round(m.progress*100)} %`); else if(/load|initializ/.test(m.status)) etatScan('Préparation de la lecture (la première fois, quelques secondes)…'); }});
+  let txt=''; try{ for(const s of sources){ const r=await w.recognize(s); txt+=r.data.text+'\n'; } } finally{ await w.terminate(); }
+  return txt;
+}
+async function lirePdf(file){
+  await charger('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const pdf=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise; let txt='';
+  for(let i=1;i<=pdf.numPages;i++){ const c=await (await pdf.getPage(i)).getTextContent(); let y=null;
+    for(const it of c.items){ if(y!==null&&Math.abs(it.transform[5]-y)>2) txt+='\n'; txt+=it.str; y=it.transform[5]; } txt+='\n'; }
+  if(txt.replace(/\s/g,'').length>20) return txt;
+  const imgs=[]; for(let i=1;i<=Math.min(pdf.numPages,10);i++){ const pg=await pdf.getPage(i); const v=pg.getViewport({scale:2}); const cv=document.createElement('canvas'); cv.width=v.width; cv.height=v.height; await pg.render({canvasContext:cv.getContext('2d'),viewport:v}).promise; imgs.push(cv); }
+  return lireImages(imgs);
+}
+async function lireWord(file){ await charger('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js'); return (await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()})).value; }
+function nettoyer(t){ return t.replace(/\r/g,'').replace(/[ \t]+/g,' ').replace(/ /g,' ').replace(/\n{3,}/g,'\n\n').trim(); }
+$('scanBtn').onclick=()=>{ $('fScan').value=''; $('fScan').click(); };
+$('fScan').onchange=async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  if(!$('dlgColler').open) ouvrirColler();
+  const nom=f.name.toLowerCase(); $('scanBtn').disabled=true; etatScan('Lecture du fichier…');
+  try{
+    let t;
+    if(nom.endsWith('.pdf')||f.type==='application/pdf') t=await lirePdf(f);
+    else if(nom.endsWith('.docx')) t=await lireWord(f);
+    else if(nom.endsWith('.txt')||f.type.startsWith('text/')) t=await f.text();
+    else if(f.type.startsWith('image/')) t=await lireImages([f]);
+    else throw new Error('format');
+    t=nettoyer(t);
+    if(!t) throw new Error('vide');
+    const ta=$('collerTxt'); ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+t;
+    const n=t.split('\n').filter(l=>/^[^:\n]{1,30}:\s*\S/.test(l)).length;
+    etatScan(n ? 'Texte lu. Vérifiez-le et corrigez si besoin (une photo peut contenir des erreurs), puis « Créer la publication ».'
+               : 'Texte lu, mais sans « Nom : texte ». Ajoutez les noms en début de ligne, puis « Créer la publication ».');
+    ta.focus();
+  }catch(x){
+    etatScan(x.message==='format' ? 'Format non pris en charge : photo, PDF, Word (.docx) ou texte.'
+      : x.message==='vide' ? 'Aucun texte trouvé dans ce fichier.'
+      : x.message==='reseau' ? 'Il faut une connexion Internet pour lire une photo ou un PDF.'
+      : 'Le fichier n\'a pas pu être lu. Essayez une photo plus nette, bien droite et éclairée.');
+  }finally{ $('scanBtn').disabled=false; }
+};
+
+/* ---------- Enregistrer / ouvrir / exemples ---------- */
+function telecharger(nom,blob){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=nom; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1000); }
+const nomFichier=()=>{ const p=C.posts[0]?personne(C.posts[0].de):C.pers[0]; return 'instagram-'+(pseudo(p).replace(/[^a-zA-Z0-9_-]+/g,'-').toLowerCase()||'echange'); };
+$('sauver').onclick=()=>{ telecharger(nomFichier()+'.publication.json',new Blob([JSON.stringify({type:'fausse-page-instagram',v:1,c:C})],{type:'application/json'})); msg('Fichier enregistré dans vos téléchargements.'); };
+$('ouvrir').onclick=()=>{ $('fJson').value=''; $('fJson').click(); };
+$('fJson').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; try{ const j=JSON.parse(await f.text()); if(j.type!=='fausse-page-instagram'||!j.c||!Array.isArray(j.c.posts)) throw 0; avant(); C=normaliser(j.c); actif=C.pers[0].id; neuf(); tout(); garder(); msg('Page ouverte.'); }catch(x){ msg('Ce fichier n\'est pas une page enregistrée ici.'); } };
+for(const [k,v] of Object.entries(EXEMPLES)){ const o=document.createElement('option'); o.value=k; o.textContent=v.nom; $('exemples').appendChild(o); }
+$('exemples').onchange=e=>{ const k=e.target.value; e.target.value=''; if(!k) return; avant(); C=normaliser(JSON.parse(JSON.stringify(EXEMPLES[k].c))); actif=C.pers[1]?C.pers[1].id:C.pers[0].id; neuf(); tout(); garder(); fermerRegl(); $('fil').scrollTop=0; msg('Exemple chargé. « Annuler » revient à votre page.'); };
+$('effacer').onclick=()=>{ if(!C.posts.length||confirm('Effacer toute la publication ?')){ avant(); const p=C.pers, th=C.theme; C=VIDE(); C.theme=th; C.pers=p; C.vue='pub'; actif=p[0].id; neuf(); tout(); garder(); } };
+$('annuler').onclick=annuler;
+addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&!e.shiftKey&&e.key.toLowerCase()==='z'){ const a=document.activeElement; if(a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT')&&a.value) return; e.preventDefault(); annuler(); } });
+
+/* ---------- Réglages sur téléphone ---------- */
+function fermerRegl(){ document.body.classList.remove('regl-on'); }
+$('reglBtn').onclick=()=>document.body.classList.add('regl-on');
+$('reglFin').onclick=fermerRegl;
+
+/* ---------- Image PNG ---------- */
+$('png').onclick=async()=>{
+  if(!C.posts.length&&C.vue!=='profil') return msg('Écrivez d\'abord une publication.');
+  if(!window.html2canvas) return msg('Il faut une connexion Internet pour créer l\'image.');
+  const hote=document.createElement('div'); hote.style.cssText='position:fixed;left:-10000px;top:0;width:400px';
+  const s=sel; sel=-1; hote.innerHTML=telHTML({export:true}); sel=s; document.body.appendChild(hote);
+  try{
+    await (document.fonts?document.fonts.ready:Promise.resolve());
+    const cv=await html2canvas(hote.querySelector('.ecran'),{scale:2,backgroundColor:null,useCORS:true,logging:false});
+    cv.toBlob(b=>{ telecharger(nomFichier()+'.png',b); msg('Image enregistrée dans vos téléchargements.'); },'image/png');
+  }catch(x){ msg('L\'image n\'a pas pu être créée. Essayez une capture d\'écran.'); }
+  finally{ hote.remove(); }
+};
+
+/* ---------- Lecture en classe ---------- */
+let pas=1, enScene=false, tAuto=null;
+const calme=matchMedia('(prefers-reduced-motion: reduce)');
+function sceneDessiner(nouv){
+  const box=$('sceneTel'); const s=sel; sel=-1;
+  const ancien=box.querySelector('.fil'), haut=ancien?ancien.scrollTop:0;
+  box.innerHTML=pas===0?telHTML({vue:'profil'}):telHTML({n:pas,nouv:nouv&&pas>1?pas-1:undefined,vue:'pub'}); sel=s;
+  const f=box.querySelector('.fil'); const d=f.querySelector('.nouv');
+  const but=d ? Math.max(0,d.offsetTop+d.offsetHeight-f.clientHeight+20) : (pas>1?f.scrollHeight:0);
+  if(pas<=1&&!d){ f.scrollTop=0; }
+  if(d&&!calme.matches){ f.scrollTop=haut; f.scrollTo({top:but,behavior:'smooth'}); } else f.scrollTop=but;
+  ajusterScene(); $('sInfo').textContent=pas===0?'Profil':pas<2?'Publication':`Commentaire ${pas-1} / ${C.posts.length-1}`;
+}
+/* Lecture automatique : les commentaires arrivent seuls, au rythme de la lecture */
+function delaiAvant(i){ if(i===0) return 3500*(+$('sVit').value||1); const lu=((C.posts[i-1]&&C.posts[i-1].texte||'')+(i===1&&C.posts[0].caption||'')).length, m=C.posts[i]||{};
+  const base=i===1 ? 2600+lu*45 : 1300+lu*32+((hasard(i,11)*1600)|0);
+  return Math.min(9000,base+(m.img?800:0))*(+$('sVit').value||1); }
+function majPlay(){ $('sPlay').textContent=tAuto?'⏸ Pause':(pas>=C.posts.length?'↺ Revoir':'▶ Lecture'); }
+function autoStop(){ clearTimeout(tAuto); tAuto=null; majPlay(); }
+function autoSuite(){ if(pas>=C.posts.length){ autoStop(); return; } tAuto=setTimeout(()=>{ pas++; sceneDessiner(true); autoSuite(); majPlay(); },delaiAvant(pas)); majPlay(); }
+function autoBascule(){ if(tAuto) return autoStop(); if(pas>=C.posts.length){ pas=0; sceneDessiner(false); } autoSuite(); }
+function ajusterScene(){ const t=$('sceneTel').querySelector('.tel'); if(!t) return; const k=Math.min((innerHeight-80)/t.offsetHeight,(innerWidth-20)/t.offsetWidth,1.6); t.style.transform=`scale(${k})`; $('sceneTel').style.height=(t.offsetHeight*k)+'px'; }
+addEventListener('resize',()=>{ if($('scene').classList.contains('on')) ajusterScene(); });
+function sceneSuiv(){ autoStop(); if(pas<C.posts.length){ pas++; sceneDessiner(true); majPlay(); } }
+function scenePrec(){ autoStop(); if(pas>0){ pas--; sceneDessiner(false); majPlay(); } }
+function sceneFin(){ autoStop(); enScene=false; $('scene').classList.remove('on'); $('scene').setAttribute('aria-hidden','true'); try{ document.fullscreenElement&&document.exitFullscreen(); }catch(e){} $('jouer').focus(); }
+function sceneOuvrir(auto){ if(!C.posts.length) return msg('Écrivez d\'abord une publication.'); pas=0; enScene=true; $('scene').classList.add('on'); $('scene').setAttribute('aria-hidden','false'); try{ document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){} sceneDessiner(false); if(auto) autoSuite(); else majPlay(); }
+$('jouer').onclick=()=>sceneOuvrir(false);
+$('auto').onclick=()=>sceneOuvrir(true);
+$('sPlay').onclick=e=>{ e.stopPropagation(); autoBascule(); };
+$('sVit').onclick=e=>e.stopPropagation();
+$('sVit').onchange=()=>{ if(tAuto){ clearTimeout(tAuto); autoSuite(); } };
+$('sSuiv').onclick=e=>{ e.stopPropagation(); sceneSuiv(); }; $('sPrec').onclick=e=>{ e.stopPropagation(); scenePrec(); }; $('sFin').onclick=e=>{ e.stopPropagation(); sceneFin(); };
+$('scene').addEventListener('click',e=>{ if(e.target.closest('.bas')) return; if(tAuto) autoStop(); else sceneSuiv(); });
+addEventListener('keydown',e=>{ if(!$('scene').classList.contains('on')) return;
+  if(e.key==='Escape') sceneFin();
+  else if(e.key==='p'||e.key==='P'){ e.preventDefault(); autoBascule(); }
+  else if([' ','ArrowRight','ArrowDown','Enter','PageDown'].includes(e.key)){ e.preventDefault(); sceneSuiv(); }
+  else if(['ArrowLeft','ArrowUp','Backspace','PageUp'].includes(e.key)){ e.preventDefault(); scenePrec(); } });
+document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&$('scene').classList.contains('on')) ajusterScene(); });
+
+function tout(){ dessinerReglages(); majTel(); }
+function neuf(){ sel=-1; insererA=-1; $('texte').value=''; grow(); }
+construireTel(); tout();
+if(matchMedia('(min-width:821px)').matches) $('texte').focus();
+</script>
+<script src="https://antoninatger.github.io/jeux/partage.js" defer data-jeu="Fausses pages Instagram" data-flottant="non" data-url="https://antoninatger.com/jeux/fausse-page-instagram/" data-texte="Fausses pages Instagram, un outil gratuit pour créer un faux profil et une fausse publication à projeter en classe"></script>
+</body>
+</html>
