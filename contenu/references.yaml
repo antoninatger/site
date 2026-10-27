@@ -42,7 +42,7 @@ partenaires:
 jeux_libres:
   - { titre: Fakemètre, texte: "Mesurer la fiabilité d'une information, source par source. Trois niveaux et un mode créateur.", url: "/jeux/fakemetre/", niveau: "Dès le CM2 · 15 min", icone: gauge, vignette: /images/site/jeux/fakemetre.jpg }
   - { titre: Radar'naque, texte: "Repérer les arnaques : SMS, e-mails, faux conseiller, deepfakes.", url: "/jeux/radarnaque/", niveau: "Tout âge · 15 min", icone: shield, vignette: /images/site/jeux/radarnaque.jpg }
-  - { titre: Agorateur, texte: "Reconnaître les procédés rhétoriques et les sophismes dans un discours.", url: "/jeux/agora/", niveau: "Collège – lycée · 20 min", icone: swords, vignette: /images/site/jeux/arene-rhetorique.jpg }
+  - { titre: Agorateur, texte: "Reconnaître les procédés rhétoriques et les sophismes dans un discours.", url: "/jeux/agorateur/", niveau: "Collège – lycée · 20 min", icone: swords, vignette: /images/site/jeux/arene-rhetorique.jpg }
   - { titre: Planète connaissance, texte: "Distinguer les faits des opinions, en mission sur une planète inconnue.", url: "/jeux/Plan%C3%A8te%20connaissance.html", niveau: "Primaire · 15 min", icone: planet, vignette: /images/site/jeux/planete-connaissance.jpg }
 
 outils:

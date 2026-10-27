@@ -85,6 +85,7 @@ jeux_copies:
     vers: /jeux/
     elements:
       - radarnaque
+      - agorateur
       - agora
       - arene-rhetorique
       - Planète connaissance.html
