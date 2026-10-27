@@ -20,6 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # jeux en accès libre, recopiés sous antoninatger.com/jeux/… (site.yaml → jeux_copies)
+      - uses: actions/checkout@v4
+        with:
+          repository: antoninatger/jeux
+          path: _sources/jeux
+      - uses: actions/checkout@v4
+        with:
+          repository: antoninatger/fakemetre
+          path: _sources/fakemetre
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

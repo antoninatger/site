@@ -74,3 +74,29 @@ blog:
 
 espace_formations: https://formations.amanalat.workers.dev   # petit rond discret en bas de page (espace protégé par code)
 jeux_url: https://antoninatger.github.io/jeux      # à remettre sur https://jeux.antoninatger.com quand Cloudflare sera prêt
+
+# Jeux en accès libre servis sur antoninatger.com/jeux/… (pour le référencement).
+# Ils restent écrits dans leurs propres dépôts (antoninatger/jeux, antoninatger/fakemetre) : à chaque
+# construction, ces fichiers sont recopiés dans le site. GitHub Actions récupère les dépôts dans _sources/ ;
+# en local, construire_site.py les cherche aussi dans les dossiers voisins (..\jeux, ..\fakemetre).
+# Les anciennes adresses antoninatger.github.io/… renvoient ici (partage.js, dans le dépôt jeux).
+jeux_copies:
+  - depot: jeux
+    vers: /jeux/
+    elements:
+      - radarnaque
+      - agora
+      - arene-rhetorique
+      - Planète connaissance.html
+      - planete-connaissance.js
+      - planete-connaissance-en.js
+      - ressources/faux-messages.html
+      - collection.css
+      - collection.js
+      - i18n.js
+      - retours.js
+      - partage.js
+      - fonts
+  - depot: fakemetre
+    vers: /jeux/fakemetre/
+    exclure: [Vidéos, Instagram posts FR, Instagram posts EN, Nouveau dossier]
