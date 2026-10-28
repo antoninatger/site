@@ -46,4 +46,4 @@ La trilogie *Interfeel* (Pocket Jeunesse, 2018-2020), la postface de *La mécani
 
 ## Partenaires institutionnels
 
-Unicef, Institut français de Croatie, Ambassade de France en Croatie, Assemblée nationale, Métropole de Lyon, Département du Val-d'Oise, Département de la Loire, Réseau Canopé, Erasme.
+Unicef, Institut français de Croatie, Ambassade de France en Croatie, Assemblée nationale, Métropole de Lyon, Département du Val-d'Oise, Département de la Drôme, Réseau Canopé, Erasme.

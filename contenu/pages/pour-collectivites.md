@@ -5,10 +5,10 @@ titre_seo: "Désinformation et esprit critique : conférences et formations pour
 eyebrow: Communes · départements · métropoles · politique de la ville
 lead: >-
   Former les agents, sensibiliser les habitants, monter un projet d'éducation aux médias sur un territoire :
-  j'ai déjà travaillé avec la Métropole de Lyon, le Département du Val-d'Oise et le Département de la Loire.
+  j'ai déjà travaillé avec la Métropole de Lyon, le Département du Val-d'Oise et le Département de la Drôme.
 description: >-
   Conférences, formations et projets d'éducation aux médias pour les collectivités : agents, élus, habitants, jeunes.
-  Références : Métropole de Lyon, Département du Val-d'Oise, Département de la Loire.
+  Références : Métropole de Lyon, Département du Val-d'Oise, Département de la Drôme.
 faq:
   - q: Comment financer une intervention ?
     r: >-
@@ -30,7 +30,7 @@ La désinformation abîme la confiance entre les habitants et leurs institutions
 
 - **Métropole de Lyon** : la conférence [Fake news et questions environnementales](/interventions/fake-news-environnement/) pour le personnel, et le projet [Self Data](/parcours/#self-data) avec des collèges de la Métropole, Erasme et Réseau Canopé, prix européen Voices 2025.
 - **Département du Val-d'Oise** : une conférence sur les fake news pour les bibliothèques du département ([la vidéo](/presse-et-medias/#conferences)).
-- **Département de la Loire**, avec lequel j'ai également collaboré.
+- **Département de la Drôme** : une intervention sur le harcèlement scolaire devant les élus collégiens du conseil départemental des jeunes ([la vidéo](/presse-et-medias/#conferences)).
 
 ## Ce que je peux faire pour vous
 
