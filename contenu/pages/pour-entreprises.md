@@ -9,6 +9,7 @@ lead: >-
 description: >-
   Conférences et formations en entreprise : désinformation, arnaques et fraude, images générées par IA, rhétorique,
   communication en équipe. Sur place à Lyon et Paris, ou à distance.
+photos: [tedx-saint-etienne-2024, bastia-conference-emprise, ficelles-invisibles-iscpa]
 faq:
   - q: Quelle durée ?
     r: >-

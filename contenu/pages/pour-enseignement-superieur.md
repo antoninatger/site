@@ -9,6 +9,7 @@ lead: >-
 description: >-
   Conférences et cours sur la désinformation, le complotisme et la rhétorique pour BTS, universités et écoles :
   Aix-Marseille Université, HEP Lyon, HEIP, Sup de Pub. Sur place ou à distance.
+photos: [ficelles-invisibles-iscpa, bastia-table-ronde, tedx-saint-etienne-2024]
 faq:
   - q: Peut-on intégrer l'intervention dans un cours existant ?
     r: >-

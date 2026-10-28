@@ -9,6 +9,7 @@ lead: >-
 description: >-
   Intervenant fake news et esprit critique en Île-de-France : collèges et lycées des académies de Paris, Créteil et Versailles
   (ADAGE, pass Culture), médiathèques, collectivités, entreprises. École alsacienne, lycée Lakanal, Val-d'Oise.
+photos: [tedx-saint-etienne-2024, bron-au-tableau, peyruis-mediatheque-fake-news, bastia-conference-emprise]
 faq:
   - q: Intervenez-vous dans toute l'Île-de-France ?
     r: >-

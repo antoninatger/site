@@ -9,6 +9,7 @@ lead: >-
 description: >-
   Conférences, formations et projets d'éducation aux médias pour les collectivités : agents, élus, habitants, jeunes.
   Références : Métropole de Lyon, Département du Val-d'Oise, Département de la Drôme.
+photos: [tedx-saint-etienne-2024, venissieux-college-balzac, bastia-table-ronde]
 faq:
   - q: Comment financer une intervention ?
     r: >-

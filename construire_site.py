@@ -578,9 +578,12 @@ def construire(verifier=False):
         ctx.setdefault("canonique", CONF["url"].rstrip("/") + url)
         ecrire(url, env.get_template(gabarit).render(**ctx))
 
-    # pages
+    # pages ; « photos: » dans l'en-tête = noms de fichiers de la galerie, affichés sous le texte
+    galerie_par_nom = {g["fichier"]: g for g in charger_galerie()}
     for nom, p in pages.items():
-        rendre(p["gabarit"], p["url"], page=p, titre=p.get("titre", ""), description=p.get("description", ""), image=p.get("image"))
+        p["galerie"] = [galerie_par_nom[f] for f in p.get("photos") or [] if f in galerie_par_nom]
+        image = p.get("image") or (f"/images/galerie/{p['galerie'][0]['fichier']}.jpg" if p["galerie"] else None)
+        rendre(p["gabarit"], p["url"], page=p, titre=p.get("titre", ""), description=p.get("description", ""), image=image)
     # interventions
     rendre("interventions.html", "/interventions/", titre="Interventions", titre_seo="Interventions scolaires sur les fake news, la désinformation et l'esprit critique", description="Conférences et ateliers d'esprit critique, du CM1 au lycée, en médiathèque, en centre social et en entreprise. À Lyon, à Paris, et à distance partout ailleurs.", fiches=fiches, galerie=charger_galerie())
     for i, f in enumerate(fiches):

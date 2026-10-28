@@ -9,6 +9,7 @@ lead: >-
 description: >-
   Conférences et ateliers d'esprit critique en médiathèque : fake news, arnaques en ligne, désinformation sur le climat,
   écriture. Lyon, Île-de-France et à distance.
+photos: [peyruis-mediatheque-fake-news, ferney-voltaire-mediatheque, bastia-conference-emprise]
 faq:
   - q: Quel est le tarif ?
     r: >-

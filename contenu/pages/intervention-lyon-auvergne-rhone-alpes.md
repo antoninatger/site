@@ -9,6 +9,7 @@ lead: >-
 description: >-
   Intervenant fake news et esprit critique à Lyon et en Auvergne-Rhône-Alpes : collèges, lycées (ADAGE, pass Culture),
   médiathèques, Métropole de Lyon, entreprises. Projet Self Data, prix européen Voices 2025.
+photos: [bron-fake-news-esprit-critique-3, venissieux-college-balzac, villeurbanne-rentree-des-auteurs-1, trevoux-college-jean-moulin]
 faq:
   - q: Intervenez-vous en dehors de la métropole de Lyon ?
     r: >-

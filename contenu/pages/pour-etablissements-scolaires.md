@@ -9,6 +9,7 @@ lead: >-
 description: >-
   Interventions d'esprit critique pour les écoles, collèges et lycées : fake news, désinformation, rhétorique,
   influenceurs, arnaques. Réservables sur ADAGE (part collective du pass Culture). Lyon, Paris et à distance.
+photos: [bron-fake-news-esprit-critique-3, venissieux-college-balzac, trevoux-college-jean-moulin, bourg-en-bresse-lycee-carriat]
 faq:
   - q: Comment réserver une intervention avec le pass Culture ?
     r: >-
