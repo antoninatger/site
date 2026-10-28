@@ -12,7 +12,7 @@ Toutes mes interventions sont réservables sur ADAGE, dans le cadre de la part c
 
 ### Pour une médiathèque, un centre social, une association, une entreprise
 
-Un devis simple, au tarif de la Charte des auteurs pour les médiathèques. Dites-moi votre public, la période envisagée et ce que vous avez en tête : je vous propose la formule qui convient.
+Un devis simple, avec un tarif adapté au nombre de séances. Dites-moi votre public, la période envisagée et ce que vous avez en tête : je vous propose la formule qui convient.
 
 ### Où
 

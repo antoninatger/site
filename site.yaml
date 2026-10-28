@@ -28,6 +28,15 @@ pied:
         - { titre: Parcours et projets sur mesure, url: /parcours/ }
         - { titre: Interventions à distance, url: /interventions/a-distance/ }
         - { titre: Formations, url: /formations/ }
+    - titre: Pour vous
+      liens:
+        - { titre: "Écoles, collèges, lycées", url: /pour/etablissements-scolaires/ }
+        - { titre: Médiathèques, url: /pour/mediatheques/ }
+        - { titre: Collectivités, url: /pour/collectivites/ }
+        - { titre: Entreprises, url: /pour/entreprises/ }
+        - { titre: Enseignement supérieur, url: /pour/enseignement-superieur/ }
+        - { titre: Paris et Île-de-France, url: /interventions/paris-ile-de-france/ }
+        - { titre: Lyon et Auvergne-Rhône-Alpes, url: /interventions/lyon-auvergne-rhone-alpes/ }
     - titre: Découvrir
       liens:
         - { titre: Jeux pédagogiques, url: /jeux/ }
