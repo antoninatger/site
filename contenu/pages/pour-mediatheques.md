@@ -8,11 +8,11 @@ lead: >-
   l'écriture, pour le grand public, les familles et les ados. 36 médiathèques m'ont déjà accueilli.
 description: >-
   Conférences et ateliers d'esprit critique en médiathèque : fake news, arnaques en ligne, désinformation sur le climat,
-  écriture. Tarif de la Charte des auteurs. Lyon, Île-de-France et à distance.
+  écriture. Lyon, Île-de-France et à distance.
 faq:
   - q: Quel est le tarif ?
     r: >-
-      Je travaille sur devis, au tarif de la Charte des auteurs pour les médiathèques.
+      Je travaille sur devis, avec un tarif adapté au nombre de séances.
       Dites-moi votre public, la période et le format envisagés : je vous envoie une proposition.
   - q: Pour quel public ?
     r: >-

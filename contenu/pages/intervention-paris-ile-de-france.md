@@ -21,7 +21,7 @@ faq:
       classes sur une ou deux journées.
   - q: Quel est le tarif pour une médiathèque ou une collectivité ?
     r: >-
-      Sur devis, au tarif de la Charte des auteurs pour les médiathèques. Plusieurs bibliothèques d'un même réseau
+      Sur devis, avec un tarif adapté au nombre de séances. Plusieurs bibliothèques d'un même réseau
       peuvent se regrouper sur une même période.
 ---
 Basé à Lyon, je me déplace en Île-de-France pour les établissements scolaires, les médiathèques, les collectivités et les entreprises, en regroupant volontiers plusieurs séances sur une même période. Mes séances sont interactives, sans culpabiliser personne, et s'appuient sur mes recherches en psychologie : énigmes, illusions, jeux et exemples tirés de l'actualité.

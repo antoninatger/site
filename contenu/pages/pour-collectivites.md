@@ -12,7 +12,7 @@ description: >-
 faq:
   - q: Comment financer une intervention ?
     r: >-
-      Sur devis simple, ou dans le cadre de vos dispositifs : appels à projets d'éducation aux médias et à
+      Sur devis, avec un tarif adapté au nombre de séances, ou dans le cadre de vos dispositifs : appels à projets d'éducation aux médias et à
       l'information, contrats de ville, Classes culturelles numériques, plan de formation des agents (CNFPT).
       Je peux vous aider à construire le dossier.
   - q: Pour quels publics ?

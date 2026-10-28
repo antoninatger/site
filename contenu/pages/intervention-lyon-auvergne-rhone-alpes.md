@@ -18,7 +18,7 @@ faq:
       Oui, c'est le format le plus courant en établissement : trois ou quatre classes dans la journée.
   - q: Quel est le tarif pour une médiathèque ou une collectivité ?
     r: >-
-      Sur devis, au tarif de la Charte des auteurs pour les médiathèques ; les établissements scolaires réservent
+      Sur devis, avec un tarif adapté au nombre de séances ; les établissements scolaires réservent
       sur ADAGE, sans rien avancer.
 ---
 Lyon est ma ville : j'y ai travaillé sept ans pour le Département du Rhône puis la Métropole de Lyon, et j'y ai mené mes projets les plus longs.

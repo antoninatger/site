@@ -20,7 +20,7 @@ faq:
       et une version vidéo peut être partagée ensuite avec les absents.
   - q: Comment se passe la commande ?
     r: >-
-      Sur devis. Dites-moi la taille du groupe, la date envisagée et l'objectif (sensibilisation, cybersécurité,
+      Sur devis, avec un tarif adapté au nombre de séances. Dites-moi la taille du groupe, la date envisagée et l'objectif (sensibilisation, cybersécurité,
       communication interne) : je vous fais une proposition adaptée.
 ---
 Vos équipes reçoivent chaque jour des informations qu'elles n'ont pas le temps de vérifier, des e-mails qui imitent un fournisseur, des images générées par IA plus vraies que nature. Mes interventions leur donnent des réflexes concrets, sans jargon et sans les culpabiliser : tout le monde est influençable, la première étape est de le savoir.
