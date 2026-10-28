@@ -61,7 +61,7 @@ pied:
 # Formulaires : un service tiers reçoit les envois (le site est statique).
 # Créer un formulaire sur formspree.io (gratuit) et coller son adresse ici.
 # Mesure d'audience (Cloudflare Web Analytics, sans cookie) : coller ici le jeton donné par Cloudflare.
-mesure_audience: ""
+mesure_audience: "7f86ceb242884f82981e001d34969a5e"
 
 admin:
   # Adresse du petit serveur Cloudflare (back-office /admin/ et bouton « Publier » des commentaires).
