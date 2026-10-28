@@ -5,9 +5,14 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # chaque heure : les billets programmés depuis le Séquenceur apparaissent à leur date
+  # Toutes les 15 minutes : les billets programmés depuis le Séquenceur apparaissent
+  # à leur date, et les jeux recopiés depuis antoninatger/jeux sont rafraîchis.
+  # GitHub saute beaucoup de déclenchements planifiés (un seul passage toutes les
+  # 4 à 7 heures avec l'ancien rythme horaire) : en multiplier les créneaux
+  # rattrape une partie de ces trous. Le vrai déclencheur reste le dispatch envoyé
+  # par le dépôt jeux après chaque mise en ligne (secret SITE_TOKEN).
   schedule:
-    - cron: "17 * * * *"
+    - cron: "7,22,37,52 * * * *"
 permissions:
   contents: read
   pages: write
