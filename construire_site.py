@@ -131,6 +131,10 @@ def charger_pages():
         meta["html"] = rendre_md(corps)
         meta.setdefault("gabarit", "page.html")
         meta.setdefault("description", extrait_de(meta["html"], 160))
+        # questions fréquentes (« faq: » dans l'en-tête) : affichées par page.html et balisées FAQPage
+        for item in meta.get("faq") or []:
+            item["r_html"] = rendre_md(item["r"])
+        meta["faq_ld"] = [{"@type": "Question", "name": i["q"], "acceptedAnswer": {"@type": "Answer", "text": extrait_de(i["r_html"], 1000)}} for i in meta.get("faq") or []]
         pages[f.stem] = meta
     return pages
 

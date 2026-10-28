@@ -34,7 +34,14 @@
    "jobTitle": "Conférencier et formateur en esprit critique et éducation aux médias",
    "description": site.description,
    "knowsAbout": ["fake news", "désinformation", "esprit critique", "éducation aux médias et à l'information", "complotisme", "théories du complot", "rhétorique", "influenceurs", "arnaques en ligne", "intelligence artificielle"],
+   "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Brunel University London"}, {"@type": "CollegeOrUniversity", "name": "Aix-Marseille Université"}, {"@type": "CollegeOrUniversity", "name": "University of British Columbia"}, {"@type": "CollegeOrUniversity", "name": "Université Jean Moulin Lyon 3"}],
+   "award": ["Prix européen Voices 2025, catégorie Data Wellbeing (Zagreb)", "Prix Media Education Relevance, hackathon GenderED", "Prix CLA Books Awards 2019", "Prix Chimère 2019"],
    "sameAs": reseaux},
+  {"@type": "ProfessionalService", "@id": site.url ~ "/#interventions", "name": site.auteur ~ ", conférences et formations en esprit critique",
+   "url": site.url ~ "/", "image": site.url ~ site.image_par_defaut, "description": site.description, "founder": {"@id": site.url ~ "/#antonin"},
+   "address": {"@type": "PostalAddress", "addressLocality": "Lyon", "addressRegion": "Auvergne-Rhône-Alpes", "addressCountry": "FR"},
+   "areaServed": [{"@type": "AdministrativeArea", "name": "Auvergne-Rhône-Alpes"}, {"@type": "AdministrativeArea", "name": "Île-de-France"}, {"@type": "Country", "name": "France"}],
+   "knowsAbout": ["esprit critique", "fake news", "désinformation", "rhétorique", "éducation aux médias et à l'information", "arnaques en ligne"]},
   {"@type": "WebSite", "@id": site.url ~ "/#site", "name": site.titre, "url": site.url ~ "/", "inLanguage": "fr-FR", "publisher": {"@id": site.url ~ "/#antonin"}}
 ]} | tojson }}</script>
 {% block donnees %}{% endblock %}
@@ -79,7 +86,7 @@
   <div class="wrap">
     <div>
       <a class="brand" href="/"><span class="brand__nom">{{ site.titre }}</span></a>
-      <p class="small" style="margin-top:8px">Auteur, doctorant en psychologie, conférencier. Interventions en Auvergne-Rhône-Alpes, en déplacement selon les regroupements, et à distance partout.</p>
+      <p class="small" style="margin-top:8px">Auteur, doctorant en psychologie, conférencier. Interventions en Auvergne-Rhône-Alpes et en Île-de-France, ailleurs en regroupant les dates, et à distance partout.</p>
     </div>
     {% for col in site.pied.colonnes %}
     <div>

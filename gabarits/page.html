@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block donnees %}
+{# Questions fréquentes : « faq: » dans l'en-tête d'une page (liste de { q, r }), affichées en bas et balisées pour Google. #}
+{% if page.faq %}<script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": page.faq_ld} | tojson }}</script>{% endif %}
+{% endblock %}
 {% block contenu %}
 <div class="wrap">
   <header class="page-tete">
@@ -8,6 +12,11 @@
   </header>
   <div class="{{ 'prose' if not page.large else '' }}">
     {{ page.html | safe }}
+    {% if page.faq %}
+    <h2 id="questions">Questions fréquentes</h2>
+    {% for item in page.faq %}<details class="faq"><summary>{{ item.q }}</summary>{{ item.r_html | safe }}</details>
+    {% endfor %}
+    {% endif %}
   </div>
 </div>
 {% endblock %}

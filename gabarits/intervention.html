@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "_icones.html" as ic %}
 {% block donnees %}
-{% set zone = [{"@type": "City", "name": "Lyon"}, {"@type": "City", "name": "Paris"}] + ([{"@type": "Country", "name": "France"}] if page.distance else []) %}
+{% set zone = [{"@type": "City", "name": "Lyon"}, {"@type": "City", "name": "Paris"}, {"@type": "AdministrativeArea", "name": "Auvergne-Rhône-Alpes"}, {"@type": "AdministrativeArea", "name": "Île-de-France"}] + ([{"@type": "Country", "name": "France"}] if page.distance else []) %}
 <script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": [
   {"@type": "Service", "name": page.titre, "description": page.description, "url": canonique,
    "serviceType": "Intervention d'éducation aux médias et à l'esprit critique",
