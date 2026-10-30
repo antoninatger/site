@@ -204,6 +204,56 @@ def facettes(meta):
     return {"ages": ages, "cadre": cadre, "formats": formats, "modes": modes}
 
 
+# Retours : à quelle intervention et dans quel type de lieu (22 octobre 2026).
+# Sert aux filtres « Intervention » et « Lieu » des retours (page Interventions et fiches).
+# Le lieu vient de la colonne « Cadre » de Retours.xlsx quand elle est remplie, sinon du
+# nom de l'établissement ; un retour sans lieu reconnaissable prend celui des autres retours
+# de la même séance (même date, même intervention).
+LIEUX = [  # (slug, libellé au pluriel pour le filtre, motif reconnu dans « Cadre » ou l'établissement)
+    ("scolaire", "Établissements scolaires", r"scolaire|college|lycee|ecole|\berea\b|\blp\b|institution|cite scolaire|\bbts\b|universit"),
+    ("mediatheque", "Médiathèques", r"mediath|biblioth|\bmemo\b"),
+    ("centre-social", "Centres sociaux", r"centre social|centres sociaux|\bmjc\b|maison de quartier|maison pour tous"),
+    ("entreprise", "Entreprises", r"entreprise|societe"),
+    ("collectivite", "Collectivités", r"collectivit|mairie|metropole|departement|region"),
+]
+
+
+def _lieu_de(*textes):
+    t = _sans_accents(" ".join(str(x or "") for x in textes))
+    for slug, _, motif in LIEUX:
+        if re.search(motif, t):
+            return slug
+    return ""
+
+
+def classer_retours(retours, fiches):
+    titres = [(_sans_accents(f["titre"]), f) for f in fiches]
+    for r in retours:
+        r["intervention"] = r["intervention_titre"] = r["lieu"] = ""
+        if r.get("type") == "jeu":
+            continue
+        sujet = _sans_accents(r.get("sujet")).strip()
+        f = next((f for t, f in titres if t == sujet), None) or next((f for t, f in titres if sujet and t.startswith(sujet)), None)
+        if f:
+            r["intervention"], r["intervention_titre"] = f["slug"], f["titre"]
+        r["lieu"] = _lieu_de(r.get("cadre")) or _lieu_de(r.get("etablissement")) or ("scolaire" if r.get("type") == "eleve" else "")
+    for r in retours:
+        if r.get("type") != "jeu" and not r["lieu"]:
+            r["lieu"] = next((x["lieu"] for x in retours if x["lieu"] and x.get("date") == r.get("date")
+                              and x.get("sujet") == r.get("sujet")), "")
+    libelles = {slug: lib for slug, lib, _ in LIEUX}
+    for r in retours:
+        r["lieu_libelle"] = libelles.get(r["lieu"], "")
+    return retours
+
+
+def filtres_retours(liste):
+    """Les choix des filtres : seulement ce qui a au moins un retour, dans l'ordre des fiches et de LIEUX."""
+    interventions = list(dict.fromkeys((r["intervention"], r["intervention_titre"].split(" : ")[0]) for r in liste if r["intervention"]))
+    lieux = [(slug, lib) for slug, lib, _ in LIEUX if any(r["lieu"] == slug for r in liste)]
+    return {"intervention": interventions, "lieu": lieux}
+
+
 def charger_interventions():
     fiches = []
     for f in sorted((ICI / "contenu/interventions").glob("*.md")):
@@ -519,6 +569,8 @@ def construire(verifier=False):
         print(f"Retours : non mis à jour ({e}).")
     f_retours = ICI / "contenu/retours.yaml"
     retours = (yaml.safe_load(f_retours.read_text(encoding="utf-8")) or {}).get("retours", []) if f_retours.exists() else []
+    classer_retours(retours, fiches)
+    env.globals["filtres_retours"] = filtres_retours
 
     # catégories du blog : nom → {slug, description, billets}
     categories = {}

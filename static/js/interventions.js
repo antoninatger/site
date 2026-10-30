@@ -35,8 +35,8 @@
     raz.hidden = !actif;
     vide.hidden = n > 0;
     if (majAdresse) {
-      const q = new URLSearchParams();
-      GROUPES.forEach(g => { if (c[g]) q.set(g, c[g].join(',')); });
+      const q = new URLSearchParams(location.search);   // garde les filtres des retours
+      GROUPES.forEach(g => { if (c[g]) q.set(g, c[g].join(',')); else q.delete(g); });
       history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash);
     }
   }

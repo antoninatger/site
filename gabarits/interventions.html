@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "_retours.html" as rt %}
 {% block main_attr %} class="pilier-intervenant fond-teinte"{% endblock %}
 {% block contenu %}
 <div class="wrap">
@@ -45,6 +46,13 @@
   </section>
   {% endif %}
   {% endfor %}
+  {% set retours_seances = (retours or []) | rejectattr('type', 'equalto', 'jeu') | list %}
+  {% if retours_seances %}
+  <section class="section section--tight" id="retours">
+    <div class="section-head"><h2>Ce qu'en disent les participants</h2><span class="muted small">Retours reçus après les séances</span></div>
+    {{ rt.bloc(retours_seances) }}
+  </section>
+  {% endif %}
   <section class="section section--tight">
     <div class="encart">
       <h3>Parcours et projets sur mesure</h3>
@@ -63,5 +71,6 @@
   {% endif %}
 </div>
 <script src="/static/js/interventions.js" defer></script>
+<script src="/static/js/retours.js" defer></script>
 {% if galerie %}<script src="/static/js/galerie.js" defer></script>{% endif %}
 {% endblock %}
