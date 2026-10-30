@@ -200,6 +200,7 @@ th, td { text-align: left; padding: .5em .6em; border-bottom: 1px solid var(--bo
 .article__corps h2 { font-size: 1.8rem; margin-top: 1.4em; }
 .article__corps h3 { font-size: 1.4rem; margin-top: 1.2em; }
 .article__pied { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+.article__abonnement { max-width: var(--mesure); margin-top: 40px; scroll-margin-top: 96px; }
 .article__nav { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; font-size: .95rem; }
 .article__nav a { display: block; color: var(--ink); }
 .article__nav small { display: block; color: var(--ink-soft); }
