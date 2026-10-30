@@ -92,6 +92,13 @@ recherche:
       Comprendre et déjouer les techniques manipulatoires, de Benoît Judde et Amélie Dumaine. Ma postface établit les liens
       entre emprise, désinformation et complotisme : les mêmes mécanismes cognitifs qui rendent une personne vulnérable
       à l'influence d'un groupe la rendent perméable aux récits complotistes.
+  - titre: Science et pseudo-sciences n° 358
+    type: Revue de l'AFIS · octobre 2026 · rubrique Esprit critique
+    image: /images/uploads/2026/10/2026-10-17-etre-complotiste-permet-il-de-seduire-1.jpg
+    texte: >-
+      « Complotisme et applications de rencontre » : être complotiste aide-t-il à séduire sur les applications
+      de rencontre ? En partant de cette question, l'article éclaire les raisons qui poussent à croire aux théories du complot.
+    lien: { titre: "Le numéro sur le site de l'AFIS →", url: "https://www.afis.org/358-Octobre-2026" }
   - titre: Science et pseudo-sciences n° 357
     type: Revue de l'AFIS · juillet 2026 · deux articles
     image: /images/uploads/2026/07/photo-principale-3.jpg
