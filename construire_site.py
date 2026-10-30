@@ -13,6 +13,7 @@ Entrées (tout est du texte, versionné) :
   · contenu/themes.yaml           thèmes des chroniques (page /chroniques/)
   · contenu/ecrits.yaml           page « Nouvelles et poèmes » (/ecrits/)
   · contenu/retours.yaml          retours d'intervention choisis dans Retours.xlsx (extraire_retours.py)
+  · contenu/confiance.yaml        « Ils m'ont fait confiance » et compteurs, nourris par le Hub (synchroniser_confiance.py)
   · gabarits/*.html               les gabarits Jinja2
   · static/, images/              copiés tels quels
   · outils/                        copié à la racine du site (pages HTML autonomes)
@@ -59,9 +60,36 @@ def slugifier(s):
     return s or "sans-titre"
 
 
+# Compteurs écrits [[etablissements]], [[mediatheques]], [[structures]], [[interventions]]
+# dans les pages et references.yaml : remplacés par les chiffres de contenu/confiance.yaml.
+RE_CHIFFRE = re.compile(r"\[\[(etablissements|mediatheques|structures|interventions)\]\]")
+_CONFIANCE = {}
+
+
+def confiance():
+    if not _CONFIANCE:
+        try:
+            import synchroniser_confiance
+            synchroniser_confiance.mettre_a_jour()
+        except Exception as e:
+            print(f"Confiance : non mis à jour ({e}).")
+        c = yaml.safe_load((ICI / "contenu/confiance.yaml").read_text(encoding="utf-8")) or {}
+        for k in ("etablissements", "mediatheques", "autres"):
+            c[k] = c.get(k) or []
+        c["chiffres"] = {"etablissements": len(c["etablissements"]), "mediatheques": len(c["mediatheques"]),
+                         "structures": len(c["etablissements"]) + len(c["mediatheques"]),
+                         "interventions": int(c.get("interventions") or 0)}
+        _CONFIANCE.update(c)
+    return _CONFIANCE
+
+
+def avec_chiffres(txt):
+    return RE_CHIFFRE.sub(lambda m: str(confiance()["chiffres"][m.group(1)]), txt) if "[[" in txt else txt
+
+
 def lire_md(chemin):
     """→ (métadonnées, corps markdown)."""
-    txt = chemin.read_text(encoding="utf-8")
+    txt = avec_chiffres(chemin.read_text(encoding="utf-8"))
     m = RE_FRONT.match(txt)
     meta = yaml.safe_load(m.group(1)) if m else {}
     corps = txt[m.end():] if m else txt
@@ -558,7 +586,7 @@ def construire(verifier=False):
     fiches = charger_interventions()
     cats = charger_categories()
     billets = charger_billets(cats)
-    refs = yaml.safe_load((ICI / "contenu/references.yaml").read_text(encoding="utf-8"))
+    refs = yaml.safe_load(avec_chiffres((ICI / "contenu/references.yaml").read_text(encoding="utf-8")))
     redirs = yaml.safe_load((ICI / "contenu/redirections.yaml").read_text(encoding="utf-8")) or {}
     # Retours d'intervention : relus dans Retours.xlsx quand il est là (sur le PC),
     # sinon on garde le retours.yaml déjà publié (sur GitHub).
@@ -588,6 +616,7 @@ def construire(verifier=False):
     env.globals["pages"] = pages
     env.globals["refs"] = refs
     env.globals["retours"] = retours
+    env.globals["confiance"] = confiance()
     env.globals["galerie_accueil"] = charger_galerie()[:6]   # accueil : bande qui défile au scroll
     # vrai si le fichier existe dans le site (ex. image pas encore rapatriée → on ne l'affiche pas)
     env.tests["existe"] = lambda chemin: bool(chemin) and ((ICI / chemin.lstrip("/")).exists() or (ICI / "static" / chemin.lstrip("/")).exists())
