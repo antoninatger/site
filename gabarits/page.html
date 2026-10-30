@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% block donnees %}
+{# Questions fréquentes : « faq: » dans l'en-tête d'une page (liste de { q, r }), affichées en bas et balisées pour Google. #}
+{% if page.faq %}<script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": page.faq_ld} | tojson }}</script>{% endif %}
+{% endblock %}
+{% block tete %}{% if page.galerie %}<script src="/static/js/galerie.js" defer></script>{% endif %}{% endblock %}
 {% block contenu %}
 <div class="wrap">
   <header class="page-tete">
@@ -8,6 +13,18 @@
   </header>
   <div class="{{ 'prose' if not page.large else '' }}">
     {{ page.html | safe }}
+    {% if page.galerie %}
+    <h2 id="en-intervention">En intervention</h2>
+    <div class="galerie" data-galerie>
+      {% for p in page.galerie %}<figure><a href="/images/galerie/{{ p.fichier }}.jpg"><img src="/images/galerie/{{ p.fichier }}-vignette.jpg" alt="{{ p.legende }}" width="720" height="540" loading="lazy"></a><figcaption>{{ p.legende }}</figcaption></figure>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if page.faq %}
+    <h2 id="questions">Questions fréquentes</h2>
+    {% for item in page.faq %}<details class="faq"><summary>{{ item.q }}</summary>{{ item.r_html | safe }}</details>
+    {% endfor %}
+    {% endif %}
   </div>
 </div>
 {% endblock %}

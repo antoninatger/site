@@ -2,6 +2,38 @@
 # choisir, retirer ou corriger un retour : Hub › accueil › « 📖 Tous les retours »
 # (ou colonnes « Sur le site » / « Texte pour le site » de l'Excel).
 retours:
+- type: prof
+  texte: L'intervenant était dynamique et passionnant. Les jeunes étaient encouragés à participer et ont aimé mener l'enquête, proposer leurs idées et donner leur avis.
+  qui: Léa HENNETEAU, organisatrice
+  etablissement: Espace Fontaines
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  note: 18
+  date: '2026-10-20'
+- type: prof
+  texte: Instructif pour les enfants et les organisateurs
+  qui: Aaliyah GROSSET, organisateur
+  etablissement: Maison de l'Europe
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  note: 17
+  date: '2026-10-20'
+- type: jeu
+  texte: Merci beaucoup pour ce super outil ! Je suis journaliste spécialisée en éducation aux médias et ce jeu me sera très utile pour illustrer mes propos concernant les fausses informations, la vérification et les sources :)
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  note: null
+  date: '2026-10-19'
+- type: jeu
+  texte: Bravo pour l'idée et le contenu
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  note: null
+  date: '2026-10-19'
 - type: eleve
   texte: Merci pour cette intervention autour des fake news et de l’esprit critique. Cette intervention pousse à se questionner et à porter un regard différent sur les informations qui nous entourent au quotidien.
   qui: Élève de DECESF
@@ -14,6 +46,14 @@ retours:
   texte: Bonne interactivité , fluide , intéressant
   qui: Élève de BTS SP3S
   etablissement: Notre Dame De Menimur a Vannes
+  mode: Distanciel
+  sujet: Fake News et esprit critique
+  note: 17
+  date: '2026-10-14'
+- type: eleve
+  texte: Intervention très intéressante et interactive. Merci
+  qui: Élève de BTS SP3S 2
+  etablissement: Pôle sup Notre-Dame Le Ménimur
   mode: Distanciel
   sujet: Fake News et esprit critique
   note: 17

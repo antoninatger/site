@@ -16,6 +16,7 @@ Entrées (tout est du texte, versionné) :
   · gabarits/*.html               les gabarits Jinja2
   · static/, images/              copiés tels quels
   · outils/                        copié à la racine du site (pages HTML autonomes)
+  · _sources/jeux, _sources/fakemetre   jeux en accès libre recopiés sous /jeux/ (site.yaml → jeux_copies)
 
 Sortie : `_site/` — à servir tel quel (GitHub Pages, ou `python -m http.server` en local).
 
@@ -130,6 +131,10 @@ def charger_pages():
         meta["html"] = rendre_md(corps)
         meta.setdefault("gabarit", "page.html")
         meta.setdefault("description", extrait_de(meta["html"], 160))
+        # questions fréquentes (« faq: » dans l'en-tête) : affichées par page.html et balisées FAQPage
+        for item in meta.get("faq") or []:
+            item["r_html"] = rendre_md(item["r"])
+        meta["faq_ld"] = [{"@type": "Question", "name": i["q"], "acceptedAnswer": {"@type": "Answer", "text": extrait_de(i["r_html"], 1000)}} for i in meta.get("faq") or []]
         pages[f.stem] = meta
     return pages
 
@@ -385,6 +390,80 @@ def copier_dossier(src, dst):
             shutil.copy2(a, b)
 
 
+# ---------------------------------------------------------------- jeux copiés depuis leurs dépôts
+
+JEUX_EXCLUS = {".git", ".github", ".claude", "_prive", "__pycache__"}
+JEUX_EXT_EXCLUES = {".md", ".py", ".ps1", ".bat", ".docx", ".txt", ".pst", ".xlsx"}
+JEUX_TEXTE = {".html", ".js", ".css"}
+RE_CANONIQUE = re.compile(r'<link[^>]+rel=["\']canonical', re.I)
+
+
+def trouver_depot(nom):
+    """_sources/nom (GitHub Actions), sinon le dossier voisin ..\\nom ou ..\\jeux\\nom (poste d'Antonin)."""
+    for d in (ICI / "_sources" / nom, ICI.parent / nom, ICI.parent / "jeux" / nom):
+        if d.is_dir() and any(d.glob("*.html")):
+            return d
+    return None
+
+
+def copier_jeux():
+    """Recopie les jeux en accès libre (site.yaml → jeux_copies) sous /jeux/…, adresses réécrites vers antoninatger.com.
+    Renvoie les adresses des pages copiées, pour le plan du site."""
+    import urllib.parse
+    urls = []
+    for bloc in CONF.get("jeux_copies") or []:
+        src = trouver_depot(bloc["depot"])
+        if not src:
+            print(f"  ! jeux : dépôt « {bloc['depot']} » introuvable (_sources/{bloc['depot']} ou ..\\{bloc['depot']}) : non copié")
+            continue
+        vers = bloc["vers"]
+        ancienne = f"https://antoninatger.github.io/{bloc['depot']}/"
+        exclus = JEUX_EXCLUS | set(bloc.get("exclure") or [])
+        elements = bloc.get("elements")
+        # adresses github.io à réécrire : tout le dépôt, ou seulement les éléments copiés
+        remplacements = [("https://antoninatger.github.io/jeux/partage.js", "/jeux/partage.js")]
+        if elements:
+            for e in elements:
+                for forme in {e, urllib.parse.quote(e)}:
+                    remplacements.append((ancienne + forme, CONF["url"] + vers + forme))
+        else:
+            remplacements.append((ancienne, CONF["url"] + vers))
+        remplacements.append(("https://antoninatger.github.io/fakemetre/", CONF["url"] + "/jeux/fakemetre/"))
+        fichiers = []
+        for e in elements or [p.name for p in src.iterdir()]:
+            p = src / e
+            if p.name in exclus or not p.exists():
+                if not p.exists():
+                    print(f"  ! jeux : {bloc['depot']}/{e} n'existe pas")
+                continue
+            fichiers += [p] if p.is_file() else [f for f in p.rglob("*") if f.is_file()]
+        n = 0
+        for f in fichiers:
+            rel = f.relative_to(src)
+            if any(part in exclus or part.startswith("_") for part in rel.parts) or f.suffix.lower() in JEUX_EXT_EXCLUES:
+                continue
+            dest = SORTIE / vers.strip("/") / rel
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            if f.suffix.lower() in JEUX_TEXTE:
+                s = f.read_text(encoding="utf-8")
+                for a, b in remplacements:
+                    s = s.replace(a, b)
+                url_page = vers + "/".join(urllib.parse.quote(x) for x in rel.parts)
+                if f.suffix.lower() == ".html":
+                    if url_page.endswith("/index.html"):
+                        url_page = url_page[:-len("index.html")]
+                    if 'http-equiv="refresh"' not in s:
+                        urls.append(url_page)
+                        if not RE_CANONIQUE.search(s):
+                            s = s.replace("</head>", f'<link rel="canonical" href="{CONF["url"]}{url_page}">\n</head>', 1)
+                dest.write_text(s, encoding="utf-8")
+            else:
+                shutil.copy2(f, dest)
+            n += 1
+        print(f"  jeux : {n} fichiers de « {bloc['depot']} » → {vers}")
+    return urls
+
+
 GALERIE_DEPOT = ICI / "galerie-a-ajouter"
 GALERIE_IMG = ICI / "images" / "galerie"
 GALERIE_YAML = ICI / "contenu" / "galerie.yaml"
@@ -551,9 +630,12 @@ def construire(verifier=False):
         ctx.setdefault("canonique", CONF["url"].rstrip("/") + url)
         ecrire(url, env.get_template(gabarit).render(**ctx))
 
-    # pages
+    # pages ; « photos: » dans l'en-tête = noms de fichiers de la galerie, affichés sous le texte
+    galerie_par_nom = {g["fichier"]: g for g in charger_galerie()}
     for nom, p in pages.items():
-        rendre(p["gabarit"], p["url"], page=p, titre=p.get("titre", ""), description=p.get("description", ""), image=p.get("image"))
+        p["galerie"] = [galerie_par_nom[f] for f in p.get("photos") or [] if f in galerie_par_nom]
+        image = p.get("image") or (f"/images/galerie/{p['galerie'][0]['fichier']}.jpg" if p["galerie"] else None)
+        rendre(p["gabarit"], p["url"], page=p, titre=p.get("titre", ""), description=p.get("description", ""), image=image)
     # interventions
     rendre("interventions.html", "/interventions/", titre="Interventions", titre_seo="Interventions scolaires sur les fake news, la désinformation et l'esprit critique", description="Conférences et ateliers d'esprit critique, du CM1 au lycée, en médiathèque, en centre social et en entreprise. À Lyon, à Paris, et à distance partout ailleurs.", fiches=fiches, galerie=charger_galerie())
     for i, f in enumerate(fiches):
@@ -584,6 +666,7 @@ def construire(verifier=False):
     # flux, plan, robots, 404, redirections, CNAME
     ecrire("/feed.xml", env.get_template("feed.xml").render(billets=billets[:20], maj=datetime.datetime.now()))
     urls = ["/", "/interventions/", "/blog/", "/chroniques/", "/ecrits/"] + [p["url"] for p in pages.values() if p["url"] != "/"] + [f["url"] for f in fiches] + [c["url"] for c in cats_ordonnees] + [b["url"] for b in billets]
+    urls += copier_jeux()
     ecrire("/sitemap.xml", env.get_template("sitemap.xml").render(urls=urls))
     ecrire("/robots.txt", f"User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: {CONF['url']}/sitemap.xml\n")
     # index des commentaires affichés (pour la page de modération du serveur), les plus récents d'abord

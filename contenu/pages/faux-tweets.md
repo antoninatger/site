@@ -56,4 +56,4 @@ Les heures (« 12 min », « 3 h ») et les chiffres se calculent tout seuls ; l
 
 - Tout reste sur votre ordinateur. « Enregistrer » crée un petit fichier pour reprendre l'échange plus tard ou le partager avec un collègue.
 - Les images téléchargées portent la mention discrète « Échange fictif », pour qu'elles ne puissent pas passer pour une vraie capture.
-- Pour une publication Facebook et ses commentaires, utilisez les [Faux posts Facebook](/jeux/faux-facebook/) ; pour une conversation privée (WhatsApp, SMS, messages Instagram), les [Fausses conversations](/jeux/fausses-conversations/).
+- Pour une publication Facebook et ses commentaires, utilisez les [Faux posts Facebook](/jeux/faux-facebook/) ; pour un profil Instagram, les [Fausses pages Instagram](/jeux/fausse-page-instagram/) ; pour une conversation privée (WhatsApp, SMS, messages Instagram), les [Fausses conversations](/jeux/fausses-conversations/).

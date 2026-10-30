@@ -8,7 +8,7 @@ lead: >-
   « en train d'écrire », ou téléchargez-la en image. Pour parler d'arnaques, de rumeurs ou d'emprise à partir d'un
   exemple qui ressemble à ce que vivent les élèves.
 description: "Créez gratuitement une fausse conversation WhatsApp, SMS ou Instagram pour la classe : à projeter message par message ou à télécharger en image."
-outil_url: "https://antoninatger.github.io/jeux/ressources/faux-messages.html"
+outil_url: "/jeux/ressources/faux-messages.html"
 outil_bouton: Créer une conversation
 vignette: /images/site/jeux/fausses-conversations.jpg
 vignette_alt: "Trois fausses conversations : une arnaque sur WhatsApp, un message d'emprise, une rumeur dans un groupe Instagram"
@@ -53,3 +53,4 @@ Vous avez déjà le dialogue sur papier ou dans un document ? **Scannez-le** : p
 
 - Tout reste sur votre ordinateur. « Enregistrer » crée un petit fichier pour reprendre la conversation plus tard ou la partager avec un collègue.
 - Les images téléchargées portent la mention discrète « Conversation fictive », pour qu'elles ne puissent pas passer pour une vraie capture.
+- Pour une page Instagram (profil, grille de photos, publication commentée), utilisez les [Fausses pages Instagram](/jeux/fausse-page-instagram/) ; pour un échange public, les [Faux échanges X](/jeux/faux-tweets/) ou les [Faux posts Facebook](/jeux/faux-facebook/).

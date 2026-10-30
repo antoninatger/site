@@ -93,7 +93,7 @@ th, td { text-align: left; padding: .5em .6em; border-bottom: 1px solid var(--bo
 .brand__nom { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; line-height: 1; }
 .brand__accroche { font-size: .7rem; color: var(--ink-soft); letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
 .nav { display: flex; align-items: center; gap: 20px; font-size: .95rem; font-weight: 500; }
-.nav > a, .menu-jeux__bouton { white-space: nowrap; }
+.nav > a, .menu-jeux__lien { white-space: nowrap; }
 .nav a { color: var(--ink); }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--accent); text-decoration: none; }
 .nav .btn { min-height: 44px; padding: .45em 1.1em; }
@@ -245,7 +245,7 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 
 /* ---------- pied de page ---------- */
 .site-footer { background: var(--surface); border-top: 1px solid var(--border); margin-top: 48px; font-size: .92rem; color: var(--ink-soft); }
-.site-footer .wrap { padding: 36px 0 30px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 28px; }
+.site-footer .wrap { padding: 36px 0 30px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 28px; }
 .site-footer h4, .site-footer .pied-titre { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin: 4px 0; }
@@ -313,13 +313,16 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 .progression { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); z-index: 60; pointer-events: none; }
 
 /* menu Jeux : colonne des jeux gratuits */
-.menu-jeux { position: relative; }
-.menu-jeux__bouton { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-.menu-jeux__bouton:hover, .menu-jeux__bouton[aria-expanded="true"], .menu-jeux__bouton[aria-current="page"] { color: var(--accent); }
+/* « Jeux et outils » mène à sa page ; la flèche à côté ouvre la liste */
+.menu-jeux { position: relative; display: inline-flex; align-items: center; gap: 2px; }
+.menu-jeux:hover .menu-jeux__lien, .menu-jeux.ouvert .menu-jeux__lien { color: var(--accent); }
+.menu-jeux__bouton { background: none; border: 0; padding: 6px 4px; font: inherit; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; border-radius: 4px; }
+.menu-jeux__bouton:hover, .menu-jeux__bouton[aria-expanded="true"], .menu-jeux:has(.menu-jeux__lien[aria-current="page"]) .menu-jeux__bouton { color: var(--accent); }
 .menu-jeux__bouton svg { transition: transform .25s; }
 .menu-jeux__bouton[aria-expanded="true"] svg { transform: rotate(180deg); }
-.panneau-jeux { position: absolute; top: calc(100% + 18px); left: 50%; width: 340px; margin-left: -170px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 24px 50px -24px rgba(20,34,44,.35); padding: 14px; display: grid; gap: 2px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .25s, transform .25s, visibility .25s; z-index: 55; }
-.panneau-jeux::before { content: ""; position: absolute; top: -18px; left: 0; right: 0; height: 18px; }
+.panneau-jeux { position: absolute; top: calc(100% + 18px); left: 50%; width: 340px; margin-left: -170px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 24px 50px -24px rgba(20,34,44,.35); padding: 14px; max-height: calc(100vh - 110px); overflow-y: auto; overscroll-behavior: contain; display: grid; gap: 2px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .25s, transform .25s, visibility .25s; z-index: 55; }
+/* pont invisible entre le menu et la liste, pour que le survol ne la referme pas */
+@media (min-width: 1081px) { .menu-jeux.ouvert::after { content: ""; position: absolute; top: 100%; left: -30px; right: -30px; height: 22px; } }
 .menu-jeux.ouvert .panneau-jeux { opacity: 1; visibility: visible; transform: none; }
 .panneau-jeux__titre { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); padding: 4px 8px 8px; font-weight: 500; }
 .nav .pj { display: flex; gap: 12px; align-items: center; padding: 9px 8px; border-radius: 6px; color: var(--ink); border: 0; }
@@ -333,9 +336,10 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 .nav .panneau-jeux__bas a { color: var(--accent); border: 0; padding: 0; }
 @media (max-width: 1080px) {
   .nav { max-height: calc(100vh - 76px); overflow-y: auto; }
-  .menu-jeux { border-top: 1px solid var(--border); }
-  .menu-jeux__bouton { width: 100%; justify-content: space-between; padding: 12px 4px; }
-  .panneau-jeux { position: static; width: auto; margin: 0; box-shadow: none; border: 0; padding: 0 0 10px; display: none; opacity: 1; visibility: visible; transform: none; }
+  .menu-jeux { border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 0; }
+  .nav .menu-jeux__lien { flex: 1; border-top: 0; }
+  .menu-jeux__bouton { width: 48px; justify-content: center; align-self: stretch; padding: 0; }
+  .panneau-jeux { flex-basis: 100%; position: static; width: auto; margin: 0; max-height: none; overflow: visible; box-shadow: none; border: 0; padding: 0 0 10px; display: none; opacity: 1; visibility: visible; transform: none; }
   .menu-jeux.ouvert .panneau-jeux { display: grid; }
   .nav .pj { padding: 9px 4px; }
   .nav .panneau-jeux__bas a { padding: 4px; }
