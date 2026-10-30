@@ -95,6 +95,11 @@ etablissements:
 - Collège Privé Notre-Dame
 - Collège Vallon
 - Lycée Polyvalent Félix Mayer (Creutzwald).
+- Lycée Polyvalent Félix Mayer
+- Lycée Paul Langevin
+- Lycée Professionnel Privé Carrel
+- Collège Joliot-Curie
+- Lycée Notre-Dame le Ménimur
 mediatheques:
 - Médiathèque de Pollionnay
 - Médiathèque de Saint-Aubin-lès-Elbeuf
@@ -132,6 +137,7 @@ mediatheques:
 - Médiathèque Visages du Monde
 - Médiathèque La MéMo
 - Bibliothèque de Mâcon.
+- Bibliothèque départementale du Val-d'Oise
 autres:
 - Métropole de Lyon
 - Département du Val-d'Oise
@@ -157,4 +163,29 @@ autres:
 - Lycée français international de Hong Kong
 - Alliance française de Hong Kong
 - Léo Lagrange (ALAE Georges Dagneaux, Perpignan)
+- Institut Français de Hong Kong
+- ASTEC
+- Mairie de Mâcon
+- Association des élèves de Polytech Paris-UPMC
+- Mairie de Franconville
 deja_comptees:
+- 12821df9dd0e
+- 1c7b71190232
+- 1d981c2f1b22
+- 3234396c3a48
+- 37777fc44795
+- 38a8f41fbfb7
+- 402191cc2429
+- 40d1defb173d
+- 41fb3c852f41
+- 53354e436468
+- 6a8ca5f2e71f
+- 7e8f38781c60
+- 875990f8522c
+- a08e6150b449
+- b77f721102af
+- c5a8c5150315
+- d881807c2e08
+- decfed0af26f
+- f5b3027ce897
+- fbb5a2c40628
