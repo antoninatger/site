@@ -1,0 +1,160 @@
+# « Ils m'ont fait confiance » et compteur d'interventions.
+# Mis à jour par synchroniser_confiance.py à partir de l'export du Hub (Interventions-site.json),
+# à chaque construction du site sur le PC. On peut aussi corriger ici à la main (orthographe, ordre) :
+# un nom déjà présent n'est jamais ajouté deux fois.
+#   interventions : total des séances affiché sur le site (+1 ou +2 par nouvelle intervention du Hub)
+#   etablissements / mediatheques : comptés dans « N établissements », « N médiathèques », « N structures »
+#   autres : collectivités, institutions, événements (listés, pas comptés)
+#   deja_comptees : empreintes des interventions du Hub déjà ajoutées (rien de lisible, ne pas toucher)
+interventions: 200
+etablissements:
+- Lycée Pierre Termier
+- Collège Gérard de Nerval
+- Collège Lestonnac
+- Collège Français Blue Pool Road
+- Collège Français Tseung Kwan O
+- Lycée Français de Köpenick
+- EREA de Sorbier
+- École Maz de la Raz
+- EREA Nelson Mandela
+- Collège Champollion
+- Lycée Jean-Paul Sartre
+- Lycée Tony Garnier
+- Collège Théodore Monod
+- Collège Champagnat
+- Collège Le Paruthiol
+- Lycée Charles de Gaulle
+- Lycée Jean Hanzelet
+- Collège Léon-Marie
+- Lycée Colbert
+- Collège Nelson Mandela
+- Lycée Hector Guimard
+- Collège Jean Moulin
+- Ensemble scolaire Saint-Gatien La Salle
+- Collège Lamartine
+- Collège Dargent
+- Lycée Albert Camus
+- Lycée Charlie Chaplin
+- Lycée Aristide Bergès
+- CDI Lycée Saint-Joseph
+- Lycée Becquerel
+- Collège Georges Brassens
+- Lycée du Premier Film
+- Lycée La Favorite
+- Lycée Fays
+- Lycée Henri Laurens
+- Lycée du Golf
+- Collège Alex Mezenc
+- Collège Simone Veil
+- Lycée Saint-Exupéry
+- Lycée Saint-Marc
+- Collège Yvon Morandat
+- Collège Saint-François d'Assise
+- Lycée Marcel Sembat
+- Collège du Pays de Gavot
+- Collège Geneviève Anthonioz-de-Gaulle
+- Collège Alphonse Daudet
+- Lycée Robert Doisneau
+- Lycée Français International de Hong Kong
+- Institution Saint-Joseph
+- Lycée Professionnel Jacques Vaucanson
+- Lycée Ferdinand Buisson
+- Lycée Privé Montesquieu
+- Lycée Adam de Craponne
+- Lycée Lakanal
+- Lycée Rosa Parks
+- Collège Charles de Gaulle
+- Lycée Chevreul Lestonnac
+- Collège François Couperin
+- Collège Pasteur
+- Collège Maryse Bastié
+- Cité scolaire Claude Bernard
+- Collège Hélène Boucher
+- Lycée Alexandre Dumas
+- École Alsacienne
+- Collège Bellecombe
+- Collège du Sauveur
+- Collège de la Côte Roannaise
+- Collège Mayorga
+- Notre-Dame Saint-François
+- Lycée Gaspard Monge
+- LP Saint-Joseph Vierzon
+- Lycée Vauban
+- Collège Lafayette
+- Collège La Salle
+- Centre scolaire Notre-Dame Ozanam
+- Lycée Condorcet
+- Collège du Klosterwald
+- École Massillon
+- Institution Le Bois-Robert
+- Lycée Hôtelier de l'Hermitage
+- Lycée International
+- Lycée Ozanam
+- Collège Jean de Verrazzane
+- Notre-Dame Saint-Joseph
+- Collège Privé Notre-Dame
+- Collège Vallon
+- Lycée Polyvalent Félix Mayer (Creutzwald).
+mediatheques:
+- Médiathèque de Pollionnay
+- Médiathèque de Saint-Aubin-lès-Elbeuf
+- Bibliothèque de Huningue
+- Médiathèque de Bourgoin-Jallieu
+- Médiathèque de Salon-de-Provence
+- Bibliothèque Méjanes
+- Médiathèque de Châtillon-sur-Chalaronne
+- Médiathèque de Charvieu-Chavagneux
+- Médiathèque du Viviers
+- Médiathèque Jacques et Aimé Bertrand
+- Médiathèque de Pusignan
+- Médiathèque d'Évian-les-Bains
+- Bibliothèque de Pusignan
+- Médiathèque Simone Veil
+- Bibliothèque de Ternay
+- Médiathèque de Voreppe
+- Bibliothèque Méjanes Allumettes
+- Bibliothèque des Deux Mondes
+- Médiathèque de Langeac
+- Médiathèque Michel Courot
+- Médiathèque d'Ambilly
+- Médiathèque de Trets
+- Médiathèque de Grézieu-la-Varenne
+- Médiathèque Paul Éluard
+- Bibliothèque de Montanay
+- Bibliothèque Jean Giono
+- Médiathèque de Chirens
+- Médiathèque de Saint-Genis-Pouilly
+- Médiathèque Léo Ferré
+- Médiathèque Champollion
+- Bibliothèque Départementale du Val-d'Oise
+- Médiathèque de Vif
+- Bibliothèque de la Part-Dieu
+- Médiathèque Visages du Monde
+- Médiathèque La MéMo
+- Bibliothèque de Mâcon.
+autres:
+- Métropole de Lyon
+- Département du Val-d'Oise
+- Département de la Loire
+- Département de la Drôme
+- Assemblée nationale
+- Ambassade de France en Croatie
+- UNICEF
+- Institut français de Croatie
+- Réseau Canopé
+- Erasme
+- Rencontres de l'Esprit Critique (Toulouse)
+- TEDx Saint-Étienne
+- La Tronche en Biais (Nuit Zététique)
+- ASTEC (congrès Prisme)
+- Amis du Monde Diplomatique (Aix-en-Provence)
+- HEP de Lyon
+- ISCPA Lyon
+- HEIP
+- Sup de Pub
+- MASNI (Aix-Marseille Université)
+- Cres et Osijek Summer Schools (Croatie)
+- Lycée français international de Hong Kong
+- Alliance française de Hong Kong
+- Léo Lagrange (ALAE Georges Dagneaux, Perpignan)
+deja_comptees:

@@ -11,7 +11,8 @@
 | Une fiche par intervention (15) | `contenu/interventions/*.md` |
 | Les billets du blog (importés de WordPress) | `contenu/blog/*.md` |
 | Catégories du blog (4 au lieu de 14) | `contenu/categories.yaml` |
-| Références, témoignages, listes « ils m'ont fait confiance », jeux | `contenu/references.yaml` |
+| Références, témoignages, jeux | `contenu/references.yaml` |
+| « Ils m'ont fait confiance » et compteurs (nourris par le Hub) | `contenu/confiance.yaml` |
 | Anciennes adresses WordPress → nouvelles | `contenu/redirections.yaml` |
 | Mise en page (Jinja2) | `gabarits/*.html` |
 | Style, script, favicon | `static/` |
@@ -95,3 +96,17 @@ La galerie est en bas de la page Interventions.
    Une photo sans légende n'est pas affichée : vérifiez qu'aucun visage d'élève n'est reconnaissable.
 
 Pour retirer ou réordonner une photo, supprimez ou déplacez ses trois lignes dans `contenu/galerie.yaml`.
+
+## Établissements et compteurs nourris par le Hub (30 octobre 2026)
+
+La liste « Ils m'ont fait confiance » (`/a-propos/#confiance`) et les chiffres du site (établissements,
+médiathèques, structures, séances) viennent tous de `contenu/confiance.yaml`. Dans les pages et
+`references.yaml`, on écrit `[[etablissements]]`, `[[mediatheques]]`, `[[structures]]` (les deux
+additionnés) ou `[[interventions]]` : la construction remplace par le bon nombre.
+
+Le Hub reste privé. Il écrit seulement `Web apps\Interventions-site.json` (nom de l'établissement, type,
+date, nombre de séances ; rien d'autre). À chaque construction sur le PC, `synchroniser_confiance.py`
+lit ce fichier : un établissement nouveau entre dans la liste, et le compteur augmente de 1 ou 2 selon
+les séances, une seule fois par intervention et seulement une fois la date passée. Sur GitHub, le
+fichier n'existe pas : c'est le `confiance.yaml` publié qui sert. `4 - Publier.bat` met donc le site à jour.
+Format du fichier : voir l'en-tête de `synchroniser_confiance.py`.

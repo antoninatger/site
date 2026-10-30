@@ -5,7 +5,7 @@ titre_seo: "Intervention fake news et esprit critique en collège et lycée"
 eyebrow: Établissements scolaires · du CM1 au BTS
 lead: >-
   Des interventions interactives sur les fake news, la désinformation, la rhétorique, les influenceurs et
-  les arnaques en ligne, réservables sur ADAGE. 87 établissements m'ont déjà accueilli, en France et à l'étranger.
+  les arnaques en ligne, réservables sur ADAGE. [[etablissements]] établissements m'ont déjà accueilli, en France et à l'étranger.
 description: >-
   Interventions d'esprit critique pour les écoles, collèges et lycées : fake news, désinformation, rhétorique,
   influenceurs, arnaques. Réservables sur ADAGE (part collective du pass Culture). Lyon, Paris et à distance.

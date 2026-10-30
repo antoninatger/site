@@ -32,9 +32,9 @@ manifeste: >-
 # Les compteurs qui défilent de 0 au nombre
 chiffres:
   - { nombre: 10, texte: "ans d'interventions" }
-  - { nombre: 200, suffixe: "+", texte: "séances, du CM1 à l'université" }
-  - { nombre: 87, texte: "établissements scolaires" }
-  - { nombre: 36, texte: "médiathèques" }
+  - { nombre: "[[interventions]]", suffixe: "+", texte: "séances, du CM1 à l'université" }
+  - { nombre: "[[etablissements]]", texte: "établissements scolaires" }
+  - { nombre: "[[mediatheques]]", texte: "médiathèques" }
 
 # La section noire : une photo par temps, qui change au défilement
 temps_titre: Se tromper, comprendre, s'entraîner.
@@ -79,7 +79,7 @@ facettes:
     lien: { titre: "Mon parcours →", url: /a-propos/ }
   - nom: Intervenant
     sous_titre: Classes, médiathèques, entreprises
-    accroche: "Plus de 200 séances, du CM1 à l'université, en France et à l'étranger."
+    accroche: "Plus de [[interventions]] séances, du CM1 à l'université, en France et à l'étranger."
     ouverte: true
     visuel: /images/uploads/2025/03/img-20250301-wa0005-edited-1.jpg
     points:
@@ -91,7 +91,7 @@ facettes:
       - { an: "Juin 2025", texte: "Auditionné par l'Assemblée nationale sur les réseaux sociaux et les jeunes.", url: "/presse-et-medias/#assemblee" }
       - { an: "Novembre 2025", texte: "Conférence à Zagreb pour l'Ambassade de France en Croatie et l'UNICEF.", vignette: /images/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg, url: "/2025/11/04/comment-transmettre-linformation/" }
     lieux:
-      chiffres: "87 établissements · 36 médiathèques"
+      chiffres: "[[etablissements]] établissements · [[mediatheques]] médiathèques"
       exemples: "Lycée français international de Hong Kong, lycée français de Berlin, École alsacienne, lycée Lakanal, bibliothèque de la Part-Dieu, bibliothèque Méjanes, bibliothèque départementale du Val-d'Oise…"
       lien: { titre: "Tous les lieux →", url: "/a-propos/#confiance" }
     lien: { titre: "Les projets →", url: /parcours/ }

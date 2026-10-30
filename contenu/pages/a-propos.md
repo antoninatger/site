@@ -8,7 +8,7 @@ lead: >-
   apprendre à ne pas se faire avoir.
 description: >-
   Antonin Atger, auteur de la trilogie Interfeel et doctorant en psychologie : dix ans d'interventions sur l'esprit critique,
-  TEDx, audition à l'Assemblée nationale, prix européen Voices 2025, 123 structures en France.
+  TEDx, audition à l'Assemblée nationale, prix européen Voices 2025, [[structures]] structures en France.
 image: /images/uploads/2024/12/tedx2024_by_fred_giraud-21281291258691058558378665.jpg
 portrait: /images/uploads/2026/10/portrait-antonin-atger-2026.jpg
 portrait_credit: "Photo : Guillaume Atger"
@@ -19,7 +19,7 @@ photo_legende: Conférence à Zagreb pour l'Ambassade de France en Croatie et l'
 
 Une intervention, c'est une heure ou deux pendant lesquelles les élèves se font piéger, puis comprennent pourquoi. Illusions d'optique, énigmes, fausses informations vraisemblables, vraies informations incroyables : je m'appuie sur ce que la psychologie sait de notre cerveau pour montrer que nous sommes tous influençables, et que ce n'est ni une honte ni une fatalité. On repart avec des réflexes, pas avec une leçon de morale.
 
-J'ai donné ces séances plus de deux cents fois, du CM1 à la terminale, en BTS, à l'université, en médiathèque, en centre social, en entreprise, en France et à l'étranger. À ce jour, [123 structures](#confiance) m'ont accueilli. Et parce qu'une séance ne suffit pas, les élèves peuvent ensuite rejouer à [mes jeux pédagogiques](/jeux/) en accès libre.
+J'ai donné ces séances plus de [[interventions]] fois, du CM1 à la terminale, en BTS, à l'université, en médiathèque, en centre social, en entreprise, en France et à l'étranger. À ce jour, [[[structures]] structures](#confiance) m'ont accueilli. Et parce qu'une séance ne suffit pas, les élèves peuvent ensuite rejouer à [mes jeux pédagogiques](/jeux/) en accès libre.
 
 ## D'où je parle
 
