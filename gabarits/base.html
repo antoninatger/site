@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{% set titre_onglet = titre_seo or (page.titre_seo if page is defined and page else '') %}<title>{% if titre_onglet %}{{ titre_onglet }} | {{ site.titre }}{% elif titre and url != '/' %}{{ titre }} | {{ site.titre }}{% else %}{{ site.titre }} | {{ site.accroche }}{% endif %}</title>
-<meta name="description" content="{{ (description or site.description) | striptags | truncate(300) }}">
+{% set titre_onglet = titre_seo or (page.titre_seo if page is defined and page else '') %}{% set suffixe_page = (' – page ' ~ page_num) if page_num is defined and page_num > 1 else '' %}<title>{% if titre_onglet %}{{ titre_onglet }}{{ suffixe_page }} | {{ site.titre }}{% elif titre and url != '/' %}{{ titre }}{{ suffixe_page }} | {{ site.titre }}{% else %}{{ site.titre }} | {{ site.accroche }}{% endif %}</title>
+<meta name="description" content="{{ (description or site.description) | striptags | truncate(300) }}{% if suffixe_page %} (page {{ page_num }}){% endif %}">
 <link rel="canonical" href="{{ canonique }}">
 <meta property="og:type" content="{% block og_type %}website{% endblock %}">
 <meta property="og:title" content="{{ titre or site.titre }}">

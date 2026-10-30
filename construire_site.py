@@ -127,7 +127,8 @@ def rendre_md(corps):
 
 def extrait_de(html_txt, n=200):
     t = re.sub(r"<[^>]+>", " ", html_txt)
-    t = html.unescape(re.sub(r"\s+", " ", t)).strip()
+    t = re.sub(r"https?://\S+", " ", html.unescape(t))   # adresses nues : illisibles dans un résumé
+    t = re.sub(r"\s+", " ", t).strip()
     return t if len(t) <= n else t[: n].rsplit(" ", 1)[0] + "…"
 
 
@@ -344,9 +345,11 @@ def charger_billets(cats):
             nouvelles = [c for c in nouvelles if c]
         meta["categories"] = nouvelles or [defaut]
         meta["html"] = rendre_md(corps)
-        meta.setdefault("extrait", "")
-        if not meta["extrait"]:
-            meta["extrait"] = extrait_de(meta["html"], 220)
+        # extraits WordPress du type « Découvrez ici… Continuer la lecture → » : trop pauvres
+        # pour Google, on reprend alors le début du billet
+        meta["extrait"] = re.sub(r"\s*Continuer la lecture\s*(→|&rarr;)?\s*$", "", meta.get("extrait") or "").strip()
+        if len(meta["extrait"]) < 70:   # (sans les citations, souvent un tweet en tête de billet)
+            meta["extrait"] = extrait_de(re.sub(r"<blockquote.*?</blockquote>", "", meta["html"], flags=re.S), 220)
         meta["image_une"] = normaliser_image(meta.get("image_une") or "")
         # vignette (accueil) : l'image à la une, sinon la première image du billet
         m_img = re.search(r'<img[^>]+src="([^"]+)"', meta["html"])
@@ -696,7 +699,8 @@ def construire(verifier=False):
     ecrire("/feed.xml", env.get_template("feed.xml").render(billets=billets[:20], maj=datetime.datetime.now()))
     urls = ["/", "/interventions/", "/blog/", "/chroniques/", "/ecrits/"] + [p["url"] for p in pages.values() if p["url"] != "/"] + [f["url"] for f in fiches] + [c["url"] for c in cats_ordonnees] + [b["url"] for b in billets]
     urls += copier_jeux()
-    ecrire("/sitemap.xml", env.get_template("sitemap.xml").render(urls=urls))
+    dates = {b["url"]: f"{b['dt']:%Y-%m-%d}" for b in billets}
+    ecrire("/sitemap.xml", env.get_template("sitemap.xml").render(urls=urls, dates=dates))
     ecrire("/robots.txt", f"User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: {CONF['url']}/sitemap.xml\n")
     # index des commentaires affichés (pour la page de modération du serveur), les plus récents d'abord
     index = [{"cle": c["cle"], "titre": b["titre"], "url": b["url"], "nom": c["nom"], "date_fr": c.get("date_fr", ""), "dt": c["dt"],
