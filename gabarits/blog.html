@@ -41,21 +41,7 @@
   </nav>
   {% endif %}
   <section class="section section--tight" id="abonnement">
-    <div class="encart">
-      <h3>Recevoir les nouveaux billets</h3>
-      <p class="muted">Par e-mail, un billet par semaine environ, aucune publicité. Le <a href="/feed.xml">flux RSS</a> est aussi disponible.</p>
-      <form class="form form--inline" method="post" action="https://subscribe.wordpress.com" accept-charset="utf-8" id="subscribe-blog">
-        <input type="hidden" name="action" value="subscribe">
-        <input type="hidden" name="blog_id" value="{{ site.blog.wordpress_id }}">
-        <input type="hidden" name="source" value="{{ site.url }}/blog/">
-        <input type="hidden" name="sub-type" value="widget">
-        <input type="hidden" name="redirect_fragment" value="abonnement">
-        <div><label for="ab-email">Adresse e-mail</label><input type="email" id="ab-email" name="email" required placeholder="vous@exemple.fr"></div>
-        <button class="btn btn--primary" type="submit">S'abonner</button>
-      </form>
-      <p class="small muted" style="margin:10px 0 0">Vous recevrez un e-mail de confirmation (la liste est gérée par WordPress.com). Désabonnement en un clic dans chaque envoi.</p>
-      <p class="alerte" data-message-abonnement hidden style="margin-top:12px"></p>
-    </div>
+    {% set source_abonnement = site.url ~ "/blog/" %}{% include "_abonnement.html" %}
   </section>
 </div>
 {% endblock %}

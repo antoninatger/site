@@ -28,6 +28,9 @@
     <div class="article__corps">
       {{ page.html | safe }}
     </div>
+    <section class="article__abonnement" id="abonnement">
+      {% set source_abonnement = site.url ~ page.url %}{% include "_abonnement.html" %}
+    </section>
     <section class="commentaires" id="commentaires" aria-labelledby="titre-commentaires">
       <h2 id="titre-commentaires">{% if page.commentaires %}{{ page.commentaires|length }} commentaire{{ 's' if page.commentaires|length > 1 }}{% else %}Commentaires{% endif %}</h2>
       {% if page.commentaires %}
