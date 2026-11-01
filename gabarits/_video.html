@@ -1,7 +1,10 @@
 {#- Lecteur vidéo du site (1er novembre 2026), commun à toutes les pages qui présentent un jeu ou un outil.
     La vidéo est hébergée sur le site lui-même (images/site/videos/), ni YouTube ni Vimeo.
-    Pas de lecture automatique, rien n'est téléchargé avant le clic (preload="none") : seule l'affiche est chargée.
-    Usage : {% import "_video.html" as vid %}{{ vid.lecteur(page.video) }}
+    Lecture automatique en muet quand la vidéo arrive à l'écran, pause quand on la quitte (static/js/site.js,
+    data-auto) ; rien n'est téléchargé avant l'approche (preload="none"), sauf l'affiche. Pas de lecture automatique
+    si l'appareil demande moins d'animations.
+    Usage : {% import "_video.html" as vid %}{{ vid.lecteur(page.video) }} (bloc complet) ou vid.video(page.video)
+    (la balise seule). outil.html la met en tête de page, à la place du visuel, avec la vignette comme aperçu.
     avec, dans l'en-tête de la page :
       video:
         src: /images/site/videos/nom.mp4      (H.264 + AAC, faststart)
@@ -10,6 +13,14 @@
         duree: "1 min 30"                     (facultatif)
         texte: "Une phrase sous le titre"     (facultatif)
 -#}
+{#- La balise seule. affiche : image d'aperçu imposée (sinon v.affiche). -#}
+{% macro video(v, affiche=None) -%}
+<video controls preload="none" playsinline data-auto width="1920" height="1080"{% if affiche or v.affiche %} poster="{{ affiche or v.affiche }}"{% endif %} aria-label="{{ v.titre or 'Vidéo de présentation' }}">
+  <source src="{{ v.src }}" type="video/mp4">
+  <a href="{{ v.src }}">Télécharger la vidéo</a>
+</video>
+{%- endmacro %}
+{#- Un bloc complet (titre, texte, durée, vidéo), pour une page qui n'a pas de visuel en tête. -#}
 {% macro lecteur(v) -%}
 {% if v and v.src %}
 <section class="video-presentation" aria-label="{{ v.titre or 'Vidéo de présentation' }}">
@@ -18,10 +29,7 @@
     {% if v.duree or v.texte %}<p>{% if v.texte %}{{ v.texte }}{% endif %}{% if v.duree %}<span class="video-presentation__duree">{{ v.duree }}</span>{% endif %}</p>{% endif %}
   </div>
   <div class="video-presentation__cadre">
-    <video controls preload="none" playsinline width="1920" height="1080"{% if v.affiche %} poster="{{ v.affiche }}"{% endif %}>
-      <source src="{{ v.src }}" type="video/mp4">
-      <a href="{{ v.src }}">Télécharger la vidéo</a>
-    </video>
+    {{ video(v) }}
   </div>
 </section>
 {% endif %}

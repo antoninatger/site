@@ -148,6 +148,46 @@
     var m = document.querySelector('[data-message-envoye]');
     if (m) { m.hidden = false; m.scrollIntoView({ block: 'center' }); }
   }
+  // Vidéos de présentation (gabarits/_video.html, 1er novembre 2026) : elles se lancent en
+  // muet quand elles arrivent à l'écran (les navigateurs n'acceptent la lecture automatique
+  // que sans le son) et se mettent en pause quand on les quitte. Rien n'est téléchargé avant
+  // l'approche de la vidéo. Pas de lecture automatique si l'appareil demande moins
+  // d'animations, ni si la personne a mis la vidéo en pause elle-même.
+  var videos = document.querySelectorAll('video[data-auto]');
+  var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (videos.length && !calme && 'IntersectionObserver' in window) {
+    var approche = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.preload = 'auto'; approche.unobserve(e.target); }
+      });
+    }, { rootMargin: '400px 0px' });
+    var vue = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.intersectionRatio >= 0.5) {
+          if (v.paused && !v.dataset.pauseVoulue && !v.ended) {
+            v.muted = true;
+            v.dataset.auto = 'lecture';
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          }
+        } else if (!v.paused) {
+          v.dataset.auto = 'sortie';
+          v.pause();
+        }
+      });
+    }, { threshold: [0, 0.5] });
+    videos.forEach(function (v) {
+      v.addEventListener('pause', function () {
+        // pause demandée par la personne (et non par la sortie de l'écran) : on ne relance plus
+        if (v.dataset.auto === 'sortie') v.dataset.auto = '1'; else if (!v.ended) v.dataset.pauseVoulue = '1';
+      });
+      v.addEventListener('play', function () { delete v.dataset.pauseVoulue; });
+      approche.observe(v);
+      vue.observe(v);
+    });
+  }
+
   // Abonnement au blog : subscribe.wordpress.com renvoie ici avec ?subscribe=…
   var ab = q.get('subscribe');
   if (ab) {
