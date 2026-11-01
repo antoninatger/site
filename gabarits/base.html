@@ -63,7 +63,7 @@
         <a class="menu-jeux__lien" href="{{ m.url }}"{% if url.startswith('/jeux/') %} aria-current="page"{% endif %}>{{ m.titre }}</a><button class="menu-jeux__bouton" type="button" aria-expanded="false" aria-controls="panneau-jeux" aria-label="Afficher la liste des jeux et outils"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="panneau-jeux" id="panneau-jeux">
           <div class="panneau-jeux__titre">En accès libre, gratuitement</div>
-          {% for j in refs.jeux_libres %}<a class="pj" href="{{ j.url }}" target="_blank" rel="noopener"><span class="pj__ico">{{ ic.icone(j.icone) }}</span><span><b>{{ j.titre }}</b><small>{{ j.niveau }}</small></span></a>{% endfor %}
+          {% for j in refs.jeux_libres %}<a class="pj" href="{{ j.page or j.url }}"{% if not j.page %} target="_blank" rel="noopener"{% endif %}><span class="pj__ico">{{ ic.icone(j.icone) }}</span><span><b>{{ j.titre }}</b><small>{{ j.niveau }}</small></span></a>{% endfor %}
           {% if refs.outils %}<div class="panneau-jeux__titre" style="margin-top:8px">Outils pour les profs</div>
           {% for r in refs.outils %}<a class="pj" href="{{ r.page }}"><span class="pj__ico">{{ ic.icone(r.icone) }}</span><span><b>{{ r.titre }}</b><small>{{ r.court }}</small></span></a>{% endfor %}{% endif %}
           <div class="panneau-jeux__bas">
