@@ -101,6 +101,8 @@ jeux_copies:
       - planete-connaissance.js
       - planete-connaissance-en.js
       - ressources/faux-messages.html
+      - ressources/faux-documents.html
+      - vendor/html2canvas.min.js
       - collection.css
       - collection.js
       - i18n.js
