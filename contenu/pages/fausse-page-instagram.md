@@ -10,7 +10,7 @@ lead: >-
   d'arnaques, de faux conseils ou de comptes « confessions ».
 description: "Créez gratuitement une fausse page Instagram pour la classe : un profil avec sa bio et sa grille de photos, puis une publication et ses commentaires, à projeter ou à télécharger en image."
 partage_texte: "Fausses pages Instagram, un outil gratuit pour créer un faux profil Instagram et une publication commentée à projeter en classe"
-outil_url: "/jeux/fausse-page-instagram/creer/"
+outil_url: "/jeux/fausses-conversations/creer/#profil"
 outil_bouton: Créer une page
 vignette: /images/site/jeux/fausse-page-instagram.jpg
 vignette_alt: "Trois fausses pages Instagram : un influenceur qui promet l'argent facile, un compte « confessions » qui se moque d'un élève, un faux conseil beauté signalé comme information fausse"

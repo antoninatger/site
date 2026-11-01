@@ -2,20 +2,21 @@
 titre: Fausses conversations
 url: /jeux/fausses-conversations/
 gabarit: outil.html
-eyebrow: WhatsApp, SMS, Instagram
+eyebrow: WhatsApp, SMS, Instagram, X, Facebook
 lead: >-
-  Écrivez une conversation comme sur un vrai téléphone, puis projetez-la message par message, avec les petits points
-  « en train d'écrire », ou téléchargez-la en image. Pour parler d'arnaques, de rumeurs ou d'emprise à partir d'un
+  Tous les faux échanges sur une seule page : choisissez l'application en haut (WhatsApp, SMS, messages Instagram,
+  X, Facebook ou profil Instagram), écrivez comme sur un vrai téléphone, puis projetez message par message
+  ou téléchargez en image. Pour parler d'arnaques, de rumeurs ou d'emprise à partir d'un
   exemple qui ressemble à ce que vivent les élèves.
-description: "Créez gratuitement une fausse conversation WhatsApp, SMS ou Instagram pour la classe : à projeter message par message ou à télécharger en image."
-outil_url: "/jeux/ressources/faux-messages.html"
+description: "Créez gratuitement une fausse conversation pour la classe, sur une seule page : WhatsApp, SMS, Instagram, X (Twitter) ou Facebook, à projeter message par message ou à télécharger en image."
+outil_url: "/jeux/fausses-conversations/creer/"
 outil_bouton: Créer une conversation
 vignette: /images/site/jeux/fausses-conversations.jpg
 vignette_alt: "Trois fausses conversations : une arnaque sur WhatsApp, un message d'emprise, une rumeur dans un groupe Instagram"
 icone: bulle
 faits:
   - ["5 minutes", "pour écrire dix messages, ou une photo d'un dialogue"]
-  - ["3 applications", "WhatsApp, SMS d'iPhone, Instagram, en clair ou sombre"]
+  - ["6 applications", "WhatsApp, SMS, Instagram, X, Facebook, profil Instagram, sur une seule page"]
   - ["Lecture en classe", "plein écran, un message à chaque clic"]
   - ["Gratuit", "sans inscription, rien n'est envoyé sur Internet"]
 fin: "Commencez par un exemple : l'arnaque « Coucou maman » est prête à projeter."
@@ -23,6 +24,16 @@ fin: "Commencez par un exemple : l'arnaque « Coucou maman » est prête à proj
 ## À quoi ça sert ?
 
 Les élèves lisent des conversations toute la journée ; ils savent moins les analyser. Une fausse conversation permet d'étudier **une arnaque, une rumeur qui enfle dans un groupe de classe, une relation d'emprise** sans jamais exposer de vrais échanges d'élèves. Le réalisme capte l'attention, et le déroulé message par message laisse le temps de s'arrêter : « Là, qu'est-ce qui cloche ? Qu'est-ce que tu répondrais ? »
+
+## Six applications, une seule page
+
+En haut de l'outil, une rangée de boutons choisit l'application. On passe de l'une à l'autre sans rien perdre : chaque conversation reste ouverte.
+
+- **Messages privés** : **WhatsApp**, **SMS** d'iPhone (bulles bleues ou vertes) et **messages Instagram**, en clair ou sombre.
+- **Échanges publics** : un post **X (Twitter)** et ses réponses, avec @pseudos et badges certifiés ([mode d'emploi](/jeux/faux-tweets/)) ; une publication **Facebook** et ses commentaires, avec réactions ([mode d'emploi](/jeux/faux-facebook/)).
+- **Profil Instagram** : la bio, les abonnés, la grille de photos, puis une publication commentée ([mode d'emploi](/jeux/fausse-page-instagram/)).
+
+On peut aussi donner un lien direct vers une application : par exemple `/jeux/fausses-conversations/creer/#x` ouvre X, `#facebook` Facebook, `#sms` les SMS.
 
 ## Écrire une conversation
 
@@ -53,4 +64,4 @@ Vous avez déjà le dialogue sur papier ou dans un document ? **Scannez-le** : p
 
 - Tout reste sur votre ordinateur. « Enregistrer » crée un petit fichier pour reprendre la conversation plus tard ou la partager avec un collègue.
 - Les images téléchargées portent la mention discrète « Conversation fictive », pour qu'elles ne puissent pas passer pour une vraie capture.
-- Pour une page Instagram (profil, grille de photos, publication commentée), utilisez les [Fausses pages Instagram](/jeux/fausse-page-instagram/) ; pour un échange public, les [Faux échanges X](/jeux/faux-tweets/) ou les [Faux posts Facebook](/jeux/faux-facebook/).
+- Chaque application garde son brouillon dans le navigateur : en revenant sur la page, on retrouve la dernière application utilisée et ce qu'on avait écrit.

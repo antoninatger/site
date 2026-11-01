@@ -10,7 +10,7 @@ lead: >-
   d'arnaques, de faux remèdes.
 description: "Créez gratuitement un faux post Facebook pour la classe : une publication et ses commentaires, avec photos, noms et réactions, à projeter commentaire par commentaire ou à télécharger en image."
 partage_texte: "Faux posts Facebook, un outil gratuit pour créer une fausse publication et ses commentaires à projeter en classe"
-outil_url: "/jeux/faux-facebook/creer/"
+outil_url: "/jeux/fausses-conversations/creer/#facebook"
 outil_bouton: Créer une publication
 vignette: /images/site/jeux/faux-facebook.jpg
 vignette_alt: "Trois fausses publications Facebook : un faux remède de grand-mère, la rumeur de la camionnette blanche signalée comme information fausse, un faux jeu-concours"
