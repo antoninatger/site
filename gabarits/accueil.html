@@ -232,9 +232,9 @@
     <p class="muted" data-rv>{{ refs.jeux_libres|length }} jeux gratuits, sans inscription : cliquez et jouez.</p>
     <div class="grille-jeux">
       {% for j in refs.jeux_libres %}
-      <a class="jeu" data-rv="zoom" style="--d:{{ '%.1f' % (loop.index0 * 0.1) }}s" href="{{ j.url }}" target="_blank" rel="noopener">
+      <a class="jeu" data-rv="zoom" style="--d:{{ '%.1f' % (loop.index0 * 0.1) }}s" href="{{ j.page or j.url }}"{% if not j.page %} target="_blank" rel="noopener"{% endif %}>
         {% if j.vignette and existe(j.vignette) %}<span class="jeu__visuel"><img src="{{ j.vignette }}" alt="" loading="lazy"><span class="jeu__anim" aria-hidden="true">{{ aj.anim(j.icone) }}</span></span>{% else %}<span class="ico">{{ ic.icone(j.icone) }}</span>{% endif %}<h3>{{ j.titre }}</h3><p>{{ j.texte }}</p>
-        <span class="jeu__pied"><span class="tag">{{ j.niveau }}</span><span class="jouer">Jouer →</span></span>
+        <span class="jeu__pied"><span class="tag">{{ j.niveau }}</span><span class="jouer">{{ "Découvrir" if j.page else "Jouer" }} →</span></span>
       </a>
       {% endfor %}
     </div>
