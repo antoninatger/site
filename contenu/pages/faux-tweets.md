@@ -9,7 +9,7 @@ lead: >-
   une à une, ou téléchargez-le en image. Pour parler de fausses infos, de comptes « certifiés », de moqueries qui dégénèrent.
 description: "Créez gratuitement un faux échange X (Twitter) pour la classe : un post et ses réponses, avec photos, pseudos et badges, à projeter réponse par réponse ou à télécharger en image."
 partage_texte: "Faux échanges X, un outil gratuit pour créer un faux post Twitter et ses réponses à projeter en classe"
-outil_url: "/jeux/faux-tweets/creer/"
+outil_url: "/jeux/fausses-conversations/creer/#x"
 outil_bouton: Créer un échange
 vignette: /images/site/jeux/faux-tweets.jpg
 vignette_alt: "Trois faux posts X : une moquerie sous un dessin, une fausse étude sur le chocolat, une fausse citation d'Einstein corrigée par une note de la communauté"
