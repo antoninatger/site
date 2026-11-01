@@ -737,6 +737,15 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .outil-corps .pas-a-pas { counter-reset: e; list-style: none; padding: 0; }
 .outil-corps .pas-a-pas li { counter-increment: e; position: relative; padding-left: 46px; margin: 0 0 14px; }
 .outil-corps .pas-a-pas li::before { content: counter(e); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: grid; place-items: center; }
+/* Lecteur vidéo de présentation (gabarits/_video.html), hébergé sur le site */
+.video-presentation { margin: 30px 0 8px; }
+.video-presentation__tete { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 12px; }
+.video-presentation__tete h2 { margin: 0; font-size: 1.35rem; }
+.video-presentation__tete p { margin: 0; color: var(--ink-mute); }
+.video-presentation__duree { display: inline-block; margin-left: 8px; padding: 2px 10px; border-radius: 99px; background: var(--accent-light); color: var(--accent-dark); font-size: .85rem; font-weight: 500; }
+.video-presentation__tete p .video-presentation__duree:first-child { margin-left: 0; }
+.video-presentation__cadre { border-radius: 12px; overflow: hidden; background: #111; box-shadow: 0 30px 60px -34px rgba(20,34,44,.6); aspect-ratio: 16 / 9; }
+.video-presentation video { display: block; width: 100%; height: 100%; background: #111; object-fit: contain; }
 /* Faire connaître un outil : partage */
 .partage { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 28px; align-items: center; margin: 34px 0 10px; padding: 22px 24px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 12px; }
 .partage h2 { margin: 0 0 4px; font-size: 1.25rem; }
