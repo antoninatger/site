@@ -423,6 +423,8 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 .jeu-card--image:hover .jeu-card__visuel img { transform: scale(1.06); }
 .jeu-card__badge { position: absolute; top: 10px; left: 10px; background: rgba(12,22,30,.8); color: #fff; font-size: .75rem; font-weight: 500; padding: .3em .7em; border-radius: 20px; }
 .jeu-card__badge--libre { background: var(--accent); }
+/* Badge « ▶ Vidéo » : la page de présentation du jeu ou de l'outil a une vidéo (champ video: true de references.yaml) */
+.jeu-card__badge--video { left: auto; right: 10px; background: rgba(12,22,30,.82); }
 .jeu-card__pied { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
 .jeu-card__jouer { color: var(--accent); font-weight: 600; font-size: .92rem; }
 .jeu-card--reserve.jeu-card--image .jeu-card__visuel img { filter: saturate(.85); }
@@ -669,6 +671,7 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 .jeux-libres .jeu-card h3 { font-size: 1.7rem; }
 .jeux-libres .jeu-card p { font-size: 1.02rem; }
 .jeux-libres .jeu-card__badge { font-size: .85rem; top: 14px; left: 14px; }
+.jeux-libres .jeu-card__badge--video { left: auto; right: 14px; }
 .jeux-libres .jeu-card__anim { width: 104px; height: 104px; right: 16px; bottom: 16px; }
 .jeux-libres .jeu-card__anim .aj { width: 86px; height: 86px; }
 .jeux-libres .jeu-card__jouer { font-size: 1.05rem; }

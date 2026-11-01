@@ -40,13 +40,13 @@ partenaires:
   - Erasme
 
 jeux_libres:
-  - { titre: Fakemètre, texte: "Mesurer la fiabilité d'une information, source par source. Trois niveaux et un mode créateur.", url: "/jeux/fakemetre/", page: /fakemetre/, niveau: "Dès le CM2 · 15 min", icone: gauge, vignette: /images/site/jeux/fakemetre.jpg }
+  - { titre: Fakemètre, texte: "Mesurer la fiabilité d'une information, source par source. Trois niveaux et un mode créateur.", url: "/jeux/fakemetre/", page: /fakemetre/, video: true, niveau: "Dès le CM2 · 15 min", icone: gauge, vignette: /images/site/jeux/fakemetre.jpg }
   - { titre: Radar'naque, texte: "Repérer les arnaques : SMS, e-mails, faux conseiller, deepfakes.", url: "/jeux/radarnaque/", niveau: "Tout âge · 15 min", icone: shield, vignette: /images/site/jeux/radarnaque.jpg }
   - { titre: Agorateur, texte: "Reconnaître les procédés rhétoriques et les sophismes dans un discours.", url: "/jeux/agorateur/", niveau: "Collège – lycée · 20 min", icone: swords, vignette: /images/site/jeux/arene-rhetorique.jpg }
   - { titre: Planète connaissance, texte: "Distinguer les faits des opinions, en mission sur une planète inconnue.", url: "/jeux/Plan%C3%A8te%20connaissance.html", niveau: "Primaire · 15 min", icone: planet, vignette: /images/site/jeux/planete-connaissance.jpg }
 
 outils:
-  - { titre: Sésame, texte: "Vos QCM deviennent un escape game : des leviers à abaisser, des interrupteurs à armer ou des pierres magiques à placer. Le message secret ne s'ouvre que si tout est juste.", page: /jeux/sesame/, url: "/jeux/sesame/atelier/", niveau: "Du CM1 au lycée · 30 min de préparation", action: "Découvrir", court: "Vos QCM en escape game", icone: '', vignette: /images/site/jeux/sesame.jpg }
-  - { titre: Fausses conversations, texte: "Tous les faux échanges sur une seule page : WhatsApp, SMS, messages Instagram, post X (Twitter), publication Facebook ou profil Instagram, à projeter message par message ou à télécharger en image. Pour parler arnaques, rumeurs, emprise ou fausses infos.", page: /jeux/fausses-conversations/, url: "/jeux/fausses-conversations/creer/", niveau: "Dès le CM2 · 5 min de préparation", action: "Découvrir", court: "WhatsApp, SMS, Instagram, X, Facebook", icone: bulle, vignette: /images/site/jeux/fausses-conversations.jpg }
+  - { titre: Sésame, texte: "Vos QCM deviennent un escape game : des leviers à abaisser, des interrupteurs à armer ou des pierres magiques à placer. Le message secret ne s'ouvre que si tout est juste.", page: /jeux/sesame/, video: true, url: "/jeux/sesame/atelier/", niveau: "Du CM1 au lycée · 30 min de préparation", action: "Découvrir", court: "Vos QCM en escape game", icone: '', vignette: /images/site/jeux/sesame.jpg }
+  - { titre: Fausses conversations, texte: "Tous les faux échanges sur une seule page : WhatsApp, SMS, messages Instagram, post X (Twitter), publication Facebook ou profil Instagram, à projeter message par message ou à télécharger en image. Pour parler arnaques, rumeurs, emprise ou fausses infos.", page: /jeux/fausses-conversations/, video: true, url: "/jeux/fausses-conversations/creer/", niveau: "Dès le CM2 · 5 min de préparation", action: "Découvrir", court: "WhatsApp, SMS, Instagram, X, Facebook", icone: bulle, vignette: /images/site/jeux/fausses-conversations.jpg }
 
 # Les listes « Ils m'ont fait confiance » sont dans confiance.yaml (nourri par le Hub).
