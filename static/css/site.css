@@ -711,6 +711,12 @@ a.jeu-card--image:hover .jeu-card__visuel::after { transition: transform .9s eas
 @keyframes aj-levier2 { 0%,24% { transform: translateY(0); } 34%,100% { transform: translateY(13px); } }
 @keyframes aj-levier3 { 0%,40% { transform: translateY(0); } 50%,100% { transform: translateY(-13px); } }
 @keyframes aj-voyant { 0%,55% { fill: #e74c3c; } 60%,92% { fill: #2ecc71; } 100% { fill: #e74c3c; } }
+.aj--frise .aj-axe { stroke: #ffcf6b; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 52; animation: aj-axe 4.2s cubic-bezier(.65,0,.25,1) infinite; }
+.aj--frise .aj-m rect { fill: #fff; } .aj--frise .aj-m circle { fill: #ffcf6b; }
+.aj--frise .aj-m { transform-box: fill-box; opacity: 0; animation: aj-msg 4.2s cubic-bezier(.2,.7,.2,1) infinite; transform-origin: 50% 50%; }
+.aj--frise .aj-m2 { animation-delay: .7s; } .aj--frise .aj-m3 { animation-delay: 1.4s; }
+@media (prefers-reduced-motion: reduce) { .aj--frise .aj-m { opacity: 1; } .aj--frise .aj-axe { stroke-dasharray: none; } }
+@keyframes aj-axe { 0% { stroke-dashoffset: 52; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 52; } }
 .aj--conv .aj-m rect { fill: #fff; }
 .aj--conv .aj-m2 rect { fill: #25d366; }
 .aj--conv .aj-pt { fill: #8a8f98; animation: aj-scintille 1s ease-in-out infinite; }
