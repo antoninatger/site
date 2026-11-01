@@ -20,6 +20,12 @@ faits:
   - ["Lecture en classe", "plein écran, un message à chaque clic"]
   - ["Gratuit", "sans inscription, rien n'est envoyé sur Internet"]
 fin: "Commencez par un exemple : l'arnaque « Coucou maman » est prête à projeter."
+video:
+  src: /images/site/videos/fausses-conversations.mp4
+  affiche: /images/site/videos/fausses-conversations.jpg
+  titre: Fausses conversations en vidéo
+  duree: 2 min
+  texte: "Écrire une conversation, passer de WhatsApp à X ou Facebook, puis la projeter message par message en classe."
 ---
 ## À quoi ça sert ?
 
