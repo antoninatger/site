@@ -1,0 +1,28 @@
+{#- Lecteur vidéo du site (1er novembre 2026), commun à toutes les pages qui présentent un jeu ou un outil.
+    La vidéo est hébergée sur le site lui-même (images/site/videos/), ni YouTube ni Vimeo.
+    Pas de lecture automatique, rien n'est téléchargé avant le clic (preload="none") : seule l'affiche est chargée.
+    Usage : {% import "_video.html" as vid %}{{ vid.lecteur(page.video) }}
+    avec, dans l'en-tête de la page :
+      video:
+        src: /images/site/videos/nom.mp4      (H.264 + AAC, faststart)
+        affiche: /images/site/videos/nom.jpg  (image d'aperçu 16/9)
+        titre: "Le jeu en vidéo"              (facultatif)
+        duree: "1 min 30"                     (facultatif)
+        texte: "Une phrase sous le titre"     (facultatif)
+-#}
+{% macro lecteur(v) -%}
+{% if v and v.src %}
+<section class="video-presentation" aria-label="{{ v.titre or 'Vidéo de présentation' }}">
+  <div class="video-presentation__tete">
+    <h2>{{ v.titre or "En vidéo" }}</h2>
+    {% if v.duree or v.texte %}<p>{% if v.texte %}{{ v.texte }}{% endif %}{% if v.duree %}<span class="video-presentation__duree">{{ v.duree }}</span>{% endif %}</p>{% endif %}
+  </div>
+  <div class="video-presentation__cadre">
+    <video controls preload="none" playsinline width="1920" height="1080"{% if v.affiche %} poster="{{ v.affiche }}"{% endif %}>
+      <source src="{{ v.src }}" type="video/mp4">
+      <a href="{{ v.src }}">Télécharger la vidéo</a>
+    </video>
+  </div>
+</section>
+{% endif %}
+{%- endmacro %}
