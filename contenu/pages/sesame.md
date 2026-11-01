@@ -27,6 +27,12 @@ faits:
   - ["30 minutes", "pour préparer un jeu, ou moins avec un fichier Word"]
   - ["En ligne ou hors ligne", "un lien pour les élèves, le tableau de la classe, ou un fichier"]
   - ["Gratuit", "sans inscription, rien n'est envoyé sur Internet"]
+video:
+  src: /images/site/videos/sesame.mp4
+  affiche: /images/site/videos/sesame.jpg
+  titre: Sésame en vidéo
+  duree: 1 min 10
+  texte: "De l'atelier à la classe : on écrit ses questions, on choisit un univers, et les élèves cherchent la bonne combinaison."
 fin: "Votre premier jeu : choisissez un exemple dans l'atelier, changez les questions, essayez-le."
 ---
 ## À quoi ça sert ?
