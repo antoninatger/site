@@ -26,6 +26,9 @@
             <option>Autre chose</option>
           </select></div>
         <div><label for="c-message">Votre message</label><textarea id="c-message" name="message" required placeholder="Le public, la période envisagée, ce que vous avez en tête…"></textarea></div>
+        <!-- Case « Je ne suis pas un robot » (hCaptcha fourni gratuitement par Web3Forms, 2 novembre 2026).
+             Le script ajoute au formulaire le champ h-captcha-response, vérifié par Web3Forms. -->
+        <div class="h-captcha" data-captcha="true" data-lang="fr"></div>
         <button class="btn btn--primary" type="submit">Envoyer</button>
         <p class="aide">Vos coordonnées ne servent qu'à vous répondre.</p>
       </form>
@@ -36,6 +39,7 @@
     </div>
   </div>
 </div>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <style>@media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr !important; } }</style>
 <script>
   (function(){ var s = new URLSearchParams(location.search).get('sujet'); var ta = document.getElementById('c-message'); if (s && ta && !ta.value) { ta.value = 'Intervention souhaitée : ' + s + '\n\n'; } })();

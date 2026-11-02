@@ -109,11 +109,24 @@
       var donnees = {};
       new FormData(form).forEach(function (v, k) { donnees[k] = typeof v === 'string' ? v.trim() : v; });
       if (donnees.botcheck) return;                       // robot : on ne fait rien
+      var erreur = form.querySelector('.form-erreur');
+      var signaler = function (texte) {
+        if (!erreur) { erreur = document.createElement('p'); erreur.className = 'alerte form-erreur'; erreur.setAttribute('role', 'alert'); form.appendChild(erreur); }
+        erreur.textContent = texte;
+        erreur.hidden = false;
+      };
+      // case « Je ne suis pas un robot » (hCaptcha via Web3Forms) : rien ne part tant qu'elle n'est pas cochée.
+      // Si le script hCaptcha n'a pas pu se charger (bloqueur, réseau), on n'empêche pas l'envoi ici :
+      // c'est Web3Forms qui tranche, pour ne pas laisser quelqu'un devant une case qui n'existe pas.
+      var captcha = window.hcaptcha ? form.querySelector('.h-captcha') : null;
+      if (captcha && !donnees['h-captcha-response']) {
+        signaler("Cochez d'abord la case « Je ne suis pas un robot », juste au-dessus du bouton.");
+        return;
+      }
       delete donnees.botcheck; delete donnees.redirect;
       var morceaux = (form.getAttribute('data-objet-champs') || '').split(' ').map(function (k) { return donnees[k]; }).filter(Boolean);
       donnees.subject = form.getAttribute('data-web3') + ' ' + (morceaux.join(' | ') || 'Message depuis antoninatger.com');
       if (donnees.nom) donnees.name = donnees.nom;
-      var erreur = form.querySelector('.form-erreur');
       if (erreur) erreur.hidden = true;
       if (bouton) { bouton.disabled = true; bouton.textContent = 'Envoi…'; }
       // commentaire : le serveur fournit un lien « Publier » signé, ajouté au mail (si le serveur ne répond pas, le mail part quand même)
@@ -136,9 +149,11 @@
         })
         .catch(function () {
           if (bouton) { bouton.disabled = false; bouton.textContent = texteBouton; }
-          if (!erreur) { erreur = document.createElement('p'); erreur.className = 'alerte form-erreur'; erreur.setAttribute('role', 'alert'); form.appendChild(erreur); }
-          erreur.textContent = "Le message n'est pas parti (connexion ou service indisponible). Réessayez dans un instant ; votre texte est toujours là.";
-          erreur.hidden = false;
+          // la validation hCaptcha ne sert qu'une fois : on remet la case à zéro pour le nouvel essai
+          if (captcha && window.hcaptcha) { try { window.hcaptcha.reset(); } catch (x) {} }
+          signaler(captcha
+            ? "Le message n'est pas parti. Recochez la case « Je ne suis pas un robot » puis réessayez ; votre texte est toujours là."
+            : "Le message n'est pas parti (connexion ou service indisponible). Réessayez dans un instant ; votre texte est toujours là.");
         });
     });
   });
