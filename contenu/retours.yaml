@@ -83,6 +83,15 @@ retours:
   cadre: ''
   note: null
   date: '2026-11-04'
+- type: eleve
+  texte: C'était super, j'ai aimé apprendre à voir les vidéos sur internet d'un autre oeil.
+  qui: Élève de Secondes 7
+  etablissement: Lycée de La Vallée De Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 20
+  date: '2026-11-03'
 - type: jeu
   texte: Bravo, pas mal en apprend des choses en même temps de s'exercer
   qui: Partie de Fakemètre, niveau junior
