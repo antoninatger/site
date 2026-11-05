@@ -6,7 +6,7 @@
 #   etablissements / mediatheques : comptés dans « N établissements », « N médiathèques », « N structures »
 #   autres : collectivités, institutions, événements (listés, pas comptés)
 #   deja_comptees : empreintes des interventions du Hub déjà ajoutées (rien de lisible, ne pas toucher)
-interventions: 200
+interventions: 205
 etablissements:
 - Lycée Pierre Termier
 - Collège Gérard de Nerval
@@ -100,6 +100,8 @@ etablissements:
 - Lycée Professionnel Privé Carrel
 - Collège Joliot-Curie
 - Lycée Notre-Dame le Ménimur
+- Lycee Gen et Technologique Paul Claudel
+- Lycée de la Vallée de Chevreuse
 mediatheques:
 - Médiathèque de Pollionnay
 - Médiathèque de Saint-Aubin-lès-Elbeuf
@@ -170,6 +172,7 @@ autres:
 - Mairie de Franconville
 deja_comptees:
 - 12821df9dd0e
+- 1346993019b3
 - 1c7b71190232
 - 1d981c2f1b22
 - 3234396c3a48
@@ -179,8 +182,10 @@ deja_comptees:
 - 40d1defb173d
 - 41fb3c852f41
 - 53354e436468
+- 60d906fa8f8a
 - 6a8ca5f2e71f
 - 7e8f38781c60
+- 86b4fe334e7a
 - 875990f8522c
 - a08e6150b449
 - b77f721102af
@@ -189,3 +194,4 @@ deja_comptees:
 - decfed0af26f
 - f5b3027ce897
 - fbb5a2c40628
+- fe465de53742

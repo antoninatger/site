@@ -3,6 +3,114 @@
 # (ou colonnes « Sur le site » / « Texte pour le site » de l'Excel).
 retours:
 - type: prof
+  texte: Une intervention de grande qualité et vraiment passionnante. Les élèves ont été très actifs et intéressés. Je souhaite renouveler l'expérience l'année prochaine.
+  qui: Séverine Tournoux, enseignante
+  etablissement: lycée de la Vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 20
+  date: '2026-11-04'
+- type: eleve
+  texte: Intervention captivante et enrichissante. Les explications étaient claires et accompagnées de nombreux exemples et petits jeux. Je me suis également amusé car les jeux étaient surprenants .
+  qui: Élève de Seconde 4
+  etablissement: Lycée de la vallée de chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 19
+  date: '2026-11-04'
+- type: eleve
+  texte: J'ai beaucoup aimé cette intervention et cela m'a appris beaucoup de chose
+  qui: Élève de 2nd
+  etablissement: Lycée de la vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 19
+  date: '2026-11-04'
+- type: eleve
+  texte: Merci beaucoup pour votre intervention. Elle sera très utile pour notre examen de CGE. Bonne continuation !
+  qui: Élève de STS2
+  etablissement: Lycée de la vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 17
+  date: '2026-11-04'
+- type: eleve
+  texte: Cette intervention a été la meillieure qui c'est passé dans un établissement scolaire.
+  qui: Élève de STS2 (BTS 2ème année)
+  etablissement: Lycée de la valée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 20
+  date: '2026-11-04'
+- type: eleve
+  texte: Intervention très intéressante, facile a comprendre , interactive. J'ai appris que l'on peut rassembler les bonnes informations pour comprendre et pour que l'information soit vraie.
+  qui: Élève de STS2
+  etablissement: Lycée de la vallée de chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 19
+  date: '2026-11-04'
+- type: eleve
+  texte: Intervention très intéressante, mélangeant expérience sociale et apprentissage de l'être humain. Un grand merci pour votre intervention.
+  qui: Élève de STS2
+  etablissement: Lycée de la Vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
+  date: '2026-11-04'
+- type: eleve
+  texte: Cette intervention était pertinente, grace au jeux et aux explications claires et intéressantes j'ai appris des choses que je ne savais pas. Ça se voit que vous aimez votre travail et ça le rend encore plus dynamique. Merci
+  qui: Élève de 2nd4
+  etablissement: Lycée LVC
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 17
+  date: '2026-11-04'
+- type: jeu
+  texte: C'est super, je l'utiliserai avec mes élèves !
+  qui: Partie de Fakemètre, niveau pro
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  cadre: ''
+  note: null
+  date: '2026-11-04'
+- type: jeu
+  texte: Bravo, pas mal en apprend des choses en même temps de s'exercer
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  cadre: ''
+  note: null
+  date: '2026-11-03'
+- type: eleve
+  texte: Echanges dynamiques, intéressants et captivants. Une bonne séance qui change des cours.
+  qui: Élève de BTS sam alternant
+  etablissement: lycée Paul Claudel
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
+  date: '2026-11-02'
+- type: jeu
+  texte: Ce jeu est super, on apprend beaucoup de choses
+  qui: Partie de Fakemètre, niveau junior
+  etablissement: ''
+  mode: ''
+  sujet: Fakemètre
+  cadre: ''
+  note: null
+  date: '2026-10-27'
+- type: prof
   texte: L'intervenant était dynamique et passionnant. Les jeunes étaient encouragés à participer et ont aimé mener l'enquête, proposer leurs idées et donner leur avis.
   qui: Léa HENNETEAU, organisatrice
   etablissement: Espace Fontaines
