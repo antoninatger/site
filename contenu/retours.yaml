@@ -74,6 +74,42 @@ retours:
   cadre: Établissement scolaire
   note: 17
   date: '2026-11-04'
+- type: eleve
+  texte: Intervention intéressante pour apprendre à avoir un esprit de plus en plus critique
+  qui: Élève de S04
+  etablissement: Lycée de la vallée de chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 20
+  date: '2026-11-04'
+- type: eleve
+  texte: J'ai beaucoup aimé cela m'a permis d'apprendre plein de chose.
+  qui: Élève de S 04
+  etablissement: LVC
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
+  date: '2026-11-04'
+- type: eleve
+  texte: C’était trop bien ça fait beaucoup réfléchir.
+  qui: Élève de S04
+  etablissement: Vallée de chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 19
+  date: '2026-11-04'
+- type: eleve
+  texte: C'était super intéressant car j'ai appris plein de choses
+  qui: Élève de Seconde
+  etablissement: Lycée de la vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
+  date: '2026-11-04'
 - type: jeu
   texte: C'est super, je l'utiliserai avec mes élèves !
   qui: Partie de Fakemètre, niveau pro
@@ -91,6 +127,15 @@ retours:
   sujet: Fake News et esprit critique
   cadre: Établissement scolaire
   note: 20
+  date: '2026-11-03'
+- type: eleve
+  texte: L'intervention que nous avons eu été très bien expliquée, il était facile de comprendre comment une simple photo ou vidéo pouvait être détournée de son but original, grâce à une musique ou dont la manière que celle-ci a été prise.
+  qui: Élève de Seconde
+  etablissement: Lycée de la Vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
   date: '2026-11-03'
 - type: jeu
   texte: Bravo, pas mal en apprend des choses en même temps de s'exercer
