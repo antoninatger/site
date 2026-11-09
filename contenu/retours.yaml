@@ -110,6 +110,15 @@ retours:
   cadre: Établissement scolaire
   note: 18
   date: '2026-11-04'
+- type: eleve
+  texte: Présentation passionnante que je recommande fortement.
+  qui: Élève de S04
+  etablissement: Lycée de la Vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 20
+  date: '2026-11-04'
 - type: jeu
   texte: C'est super, je l'utiliserai avec mes élèves !
   qui: Partie de Fakemètre, niveau pro
@@ -137,6 +146,33 @@ retours:
   cadre: Établissement scolaire
   note: 18
   date: '2026-11-03'
+- type: eleve
+  texte: J’ai trouvé cette intervention très intéressante car le sujet est actuel et qu’on peut se poser beaucoup de questions
+  qui: Élève de Seconde
+  etablissement: Lycée de la vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
+  date: '2026-11-03'
+- type: eleve
+  texte: J’ai trouvé ça intervention très intéressante.
+  qui: Élève de s7
+  etablissement: lycée de la vallée de chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 19
+  date: '2026-11-03'
+- type: eleve
+  texte: C’était interessant et le dialogue avec la personne étais vraiment bien.
+  qui: Élève de Seconde 12
+  etablissement: Lycée de la vallée de Chevreuse
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
+  date: '2026-11-03'
 - type: jeu
   texte: Bravo, pas mal en apprend des choses en même temps de s'exercer
   qui: Partie de Fakemètre, niveau junior
@@ -150,6 +186,15 @@ retours:
   texte: Echanges dynamiques, intéressants et captivants. Une bonne séance qui change des cours.
   qui: Élève de BTS sam alternant
   etablissement: lycée Paul Claudel
+  mode: Présentiel
+  sujet: Fake News et esprit critique
+  cadre: Établissement scolaire
+  note: 18
+  date: '2026-11-02'
+- type: eleve
+  texte: J'ai appris beaucoup de choses sur notre cerveau , Merci.
+  qui: Élève de BTS SAM 2
+  etablissement: lycée Paul Claudel Laon
   mode: Présentiel
   sujet: Fake News et esprit critique
   cadre: Établissement scolaire
@@ -317,39 +362,3 @@ retours:
   cadre: Médiathèque
   note: 18
   date: '2026-10-06'
-- type: jeu
-  texte: ce jeu est très éducatif Merci
-  qui: Partie de Fakemètre, niveau junior
-  etablissement: ''
-  mode: ''
-  sujet: Fakemètre
-  cadre: ''
-  note: null
-  date: '2026-10-02'
-- type: jeu
-  texte: C’était intéressant et ça permet de nous habituer à bien regarder si nos sources sont fiables
-  qui: Partie de Fakemètre, niveau junior
-  etablissement: ''
-  mode: ''
-  sujet: Fakemètre
-  cadre: ''
-  note: null
-  date: '2026-09-24'
-- type: eleve
-  texte: C’était bien, on nous a fait remarquer des choses qu’on ne remarquait pas avant sur les fake news.
-  qui: Élève de 4e
-  etablissement: Collège du Klosterwald
-  mode: ''
-  sujet: Fake News et esprit critique
-  cadre: ''
-  note: 18
-  date: '2026-06-08'
-- type: eleve
-  texte: Super ! Antonin a été très intéressant, c’était fluide et bien expliqué !
-  qui: Élève de 4e
-  etablissement: Collège du Klosterwald Villé
-  mode: ''
-  sujet: Fake News et esprit critique
-  cadre: ''
-  note: 19
-  date: '2026-06-08'

@@ -6,7 +6,7 @@
 #   etablissements / mediatheques : comptés dans « N établissements », « N médiathèques », « N structures »
 #   autres : collectivités, institutions, événements (listés, pas comptés)
 #   deja_comptees : empreintes des interventions du Hub déjà ajoutées (rien de lisible, ne pas toucher)
-interventions: 205
+interventions: 207
 etablissements:
 - Lycée Pierre Termier
 - Collège Gérard de Nerval
@@ -190,6 +190,7 @@ deja_comptees:
 - a08e6150b449
 - b77f721102af
 - c5a8c5150315
+- d456e931fc1d
 - d881807c2e08
 - decfed0af26f
 - f5b3027ce897
