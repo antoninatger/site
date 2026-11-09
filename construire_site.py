@@ -727,10 +727,52 @@ def construire(verifier=False):
     if (ICI / "images").exists():
         copier_dossier(ICI / "images", SORTIE / "images")
 
+    completer_balises()
+
     n_html = sum(1 for _ in SORTIE.rglob("*.html"))
     print(f"Site construit : {n_html} pages HTML, {len(billets)} billets, {len(fiches)} interventions, {len(cats_ordonnees)} catégories → {SORTIE}")
     if verifier:
         verifier_liens()
+
+
+RE_ROBOTS_NOINDEX = re.compile(r'<meta[^>]+name=["\']robots["\'][^>]*noindex[^>]*>\n?', re.I)
+RE_CANONIQUE_HREF = re.compile(r'(<link[^>]+rel=["\']canonical["\'][^>]*href=["\'])([^"\']+)', re.I)
+
+
+def completer_balises():
+    """Dernière passe sur _site/, pour Google (Search Console, 9 novembre 2026) :
+    · pages de redirection (meta refresh à 0) : sans « noindex », que Google les traite comme des
+      redirections permanentes vers la nouvelle adresse, avec une adresse canonique absolue ;
+    · autres pages sans adresse canonique (outils autonomes copiés tels quels depuis outils/) :
+      on leur donne la leur, sinon Google choisit seul entre pages voisines (« doublon sans URL
+      canonique sélectionnée par l'utilisateur »).
+    Les pages volontairement en « noindex » (404, admin, écran d'attente de Sésame) restent telles quelles."""
+    import urllib.parse
+    for f in SORTIE.rglob("*.html"):
+        rel = f.relative_to(SORTIE).as_posix()
+        if rel.startswith("google") or rel == "404.html":
+            continue
+        s = f.read_text(encoding="utf-8", errors="replace")
+        url_page = "/" + "/".join(urllib.parse.quote(x) for x in rel.split("/"))
+        if url_page.endswith("/index.html"):
+            url_page = url_page[:-len("index.html")]
+        t = s
+        if re.search(r'http-equiv=["\']refresh["\']', s, re.I):
+            t = RE_ROBOTS_NOINDEX.sub("", t)
+            def absolue(m):
+                cible = urllib.parse.urljoin(CONF["url"] + url_page, m.group(2))
+                if cible.endswith("/index.html"):
+                    cible = cible[:-len("index.html")]
+                return m.group(1) + cible
+            t = RE_CANONIQUE_HREF.sub(absolue, t, count=1)
+        elif not RE_CANONIQUE.search(s) and not RE_ROBOTS_NOINDEX.search(s):
+            balise = f'<link rel="canonical" href="{CONF["url"]}{url_page}">'
+            if "</head>" in s:
+                t = s.replace("</head>", balise + "\n</head>", 1)
+            else:
+                t = re.sub(r'(<meta charset=[^>]*>)', lambda m: m.group(1) + "\n" + balise, s, count=1, flags=re.I)
+        if t != s:
+            f.write_text(t, encoding="utf-8")
 
 
 def verifier_liens():
