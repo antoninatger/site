@@ -437,6 +437,9 @@ def trouver_depot(nom):
     return None
 
 
+JEUX_ABSENTS = []   # préfixes (/jeux/…) des dépôts introuvables en local : copiés en ligne par GitHub Actions
+
+
 def copier_jeux():
     """Recopie les jeux en accès libre (site.yaml → jeux_copies) sous /jeux/…, adresses réécrites vers antoninatger.com.
     Renvoie les adresses des pages copiées, pour le plan du site."""
@@ -445,7 +448,8 @@ def copier_jeux():
     for bloc in CONF.get("jeux_copies") or []:
         src = trouver_depot(bloc["depot"])
         if not src:
-            print(f"  ! jeux : dépôt « {bloc['depot']} » introuvable (_sources/{bloc['depot']} ou ..\\{bloc['depot']}) : non copié")
+            print(f"  jeux : dépôt « {bloc['depot']} » absent en local : pas copié ici, GitHub le recopie à la mise en ligne")
+            JEUX_ABSENTS.append(bloc["vers"])
             continue
         vers = bloc["vers"]
         ancienne = f"https://antoninatger.github.io/{bloc['depot']}/"
@@ -778,7 +782,7 @@ def completer_balises():
 def verifier_liens():
     """Chaque lien interne doit mener à un fichier de _site/."""
     import urllib.parse
-    casses, images = {}, {}
+    casses, images, en_ligne = {}, {}, set()
     for f in SORTIE.rglob("*.html"):
         s = f.read_text(encoding="utf-8")
         for h in re.findall(r'(?:href|src)="(/[^"#?]*)', s):
@@ -789,6 +793,9 @@ def verifier_liens():
             if chemin.endswith("/"):
                 cible = cible / "index.html"
             if not cible.exists() and not (cible.with_suffix("") / "index.html").exists():
+                if any(chemin.startswith(v) for v in JEUX_ABSENTS):
+                    en_ligne.add(h)   # jeu recopié seulement en ligne : pas vérifiable ici
+                    continue
                 (images if chemin.startswith("/images/") else casses).setdefault(h, []).append(str(f.relative_to(SORTIE)))
     if images:
         print(f"\n{len(images)} image(s) manquante(s) sous /images/ (lancer « 1 - Importer le blog.bat » ; sinon, fichier absent de l'export) :")
@@ -796,6 +803,8 @@ def verifier_liens():
             print(f"  {h}   ← {pages[0]}")
         if len(images) > 15:
             print(f"  … et {len(images) - 15} autres")
+    if en_ligne:
+        print(f"\n{len(en_ligne)} lien(s) vers les jeux non vérifié(s) ici : les jeux sont ajoutés par GitHub à la mise en ligne.")
     if casses:
         print(f"\n{len(casses)} lien(s) interne(s) cassé(s) :")
         for h, pages in sorted(casses.items()):
