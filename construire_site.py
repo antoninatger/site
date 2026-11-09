@@ -718,6 +718,9 @@ def construire(verifier=False):
     ecrire("/admin/config.yml", env.get_template("admin-config.yml").render(site=CONF, themes=themes_bo, pages_simples=simples))
     ecrire("/admin/", env.get_template("admin.html").render(site=CONF))
     (SORTIE / "404.html").write_text(env.get_template("404.html").render(titre="Page introuvable", url="/404.html", canonique=CONF["url"] + "/404.html"), encoding="utf-8")
+    for ancienne, nouvelle in anciennes_adresses_wordpress(billets, categories, redirs).items():
+        if not (SORTIE / ancienne.strip("/") / "index.html").exists():
+            ecrire(ancienne, env.get_template("redirection.html").render(vers=nouvelle))
     for ancienne, nouvelle in redirs.items():
         ecrire(ancienne if ancienne.endswith("/") else ancienne + "/", env.get_template("redirection.html").render(vers=nouvelle))
     if (ICI / "CNAME").exists():
@@ -731,12 +734,64 @@ def construire(verifier=False):
     if (ICI / "images").exists():
         copier_dossier(ICI / "images", SORTIE / "images")
 
+    # PDF de l'ancien WordPress encore demandés à leur adresse d'origine (/wp-content/uploads/…) :
+    # une meta refresh ne marche pas pour un PDF, on en sert une copie (3 fichiers, moins de 4 Mo).
+    for pdf in (ICI / "images" / "uploads").rglob("*.pdf"):
+        dest = SORTIE / "wp-content" / "uploads" / pdf.relative_to(ICI / "images" / "uploads")
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(pdf, dest)
     completer_balises()
 
     n_html = sum(1 for _ in SORTIE.rglob("*.html"))
     print(f"Site construit : {n_html} pages HTML, {len(billets)} billets, {len(fiches)} interventions, {len(cats_ordonnees)} catégories → {SORTIE}")
     if verifier:
         verifier_liens()
+
+
+def slug_wordpress(s):
+    """Slug d'étiquette à la manière de WordPress : apostrophes supprimées (« L'odyssée » → lodyssee)."""
+    return slugifier(re.sub(r"['’]", "", str(s)))
+
+
+def anciennes_adresses_wordpress(billets, categories, redirs):
+    """Archives de l'ancien WordPress que Google visite encore (export Search Console des 404, 9 novembre 2026) :
+    étiquettes, pages d'archives, pages auteur et flux de chaque billet. Une page de redirection pour chacune,
+    vers l'équivalent le plus proche. Les entrées écrites à la main dans redirections.yaml restent prioritaires.
+    Les paramètres (?share=twitter, ?mon=7&yr=2023…) n'ont pas besoin d'être traités : GitHub Pages les ignore."""
+    par_nom = {c["nom"]: c["url"] for c in categories.values()}
+    vers = {}
+    # /page/N/ (accueil paginé) et /author/antoninatger/page/N/ → le blog
+    n_pages = max(2, math.ceil(len(billets) / 10)) + 5
+    for n in range(2, n_pages + 1):
+        vers[f"/page/{n}/"] = "/blog/"
+        vers[f"/author/antoninatger/page/{n}/"] = "/blog/"
+    # /category/x/page/N/ → même destination que /category/x/
+    for ancienne, nouvelle in redirs.items():
+        if ancienne.startswith("/category/"):
+            for n in range(2, n_pages + 1):
+                vers[f"{ancienne.rstrip('/')}/page/{n}/"] = nouvelle
+    # /AAAA/MM/JJ/billet/feed/ → le billet
+    for b in billets:
+        vers[b["url"].rstrip("/") + "/feed/"] = b["url"]
+    # /tag/x/ (et ses pages, son flux) → la catégorie la plus fréquente parmi les billets qui portaient l'étiquette
+    compte = {}
+    for b in billets:
+        for e in b.get("etiquettes") or []:
+            slug = slug_wordpress(e)
+            if slug == "sans-titre":
+                continue
+            c = compte.setdefault(slug, {})
+            for nom in b["categories"]:
+                c[nom] = c.get(nom, 0) + 1
+            c[""] = c.get("", 0) + 1
+    for slug, c in compte.items():
+        total = c.pop("")
+        cible = par_nom.get(max(c, key=c.get), "/blog/") if c else "/blog/"
+        vers[f"/tag/{slug}/"] = cible
+        vers[f"/tag/{slug}/feed/"] = cible
+        for n in range(2, math.ceil(total / 10) + 1):
+            vers[f"/tag/{slug}/page/{n}/"] = cible
+    return {a: v for a, v in vers.items() if a not in redirs}
 
 
 RE_ROBOTS_NOINDEX = re.compile(r'<meta[^>]+name=["\']robots["\'][^>]*noindex[^>]*>\n?', re.I)
