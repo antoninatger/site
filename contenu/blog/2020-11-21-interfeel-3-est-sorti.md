@@ -12,7 +12,7 @@ id_wordpress: 3665
 
 Interfeel 3 est sortit depuis une semaine ! Malgré la situation et le click & collect, beaucoup ont déjà dévoré la suite des aventures de nos héros !
 
-[![](https://i0.wp.com/antoninatger.com/wp-content/uploads/2020/11/interfeel-3_couverture_epais.jpg)](https://i0.wp.com/antoninatger.com/wp-content/uploads/2020/11/interfeel-3_couverture_epais.jpg?ssl=1)
+[![](/images/uploads/2020/11/interfeel-3_couverture_epais-e1605952617721.jpg)](/images/uploads/2020/11/interfeel-3_couverture_epais-e1605952617721.jpg)
 *Tadam !*
 
 Merci d’ailleurs de m’avoir contacté pour me dire tout le bien que vous pensiez de ce volume, ça fait chaud au coeur !
