@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>L'arbre des oursons · hérédité</title>
-<meta name="description" content="Un outil pour comprendre l'hérédité avec des oursons en gélatine : retrouver l'arbre généalogique, colorier l'enfant de deux parents, créer sa propre famille.">
+<meta name="description" content="Un outil pour comprendre l'hérédité avec des oursons en gélatine : retrouver l'arbre généalogique, créer l'enfant de deux parents, créer sa propre famille.">
 <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
 <style>
 /* L'arbre des oursons : outil d'hérédité pour la classe.
@@ -642,7 +642,7 @@ function majModes(){
   const b = (k, txt) => `<button data-mode="${k}" aria-pressed="${mode === k}" class="${reussis[k] ? "reussi" : ""}">${txt}<span class="ok">✓</span></button>`;
   nav.innerHTML = NIVEAUX.map((n, i) => b("n" + i, n.nom)).join("") +
     (famillePerso ? b("perso", "Famille de la classe") : "") +
-    `<span class="sep"></span>` + b("colorier", "Colorier un enfant") + b("creer", "Créer ma famille");
+    `<span class="sep"></span>` + b("colorier", "Créer l'enfant") + b("creer", "Créer ma famille");
   nav.querySelectorAll("button").forEach(x => x.addEventListener("click", () => choisirMode(x.dataset.mode)));
 }
 function boutons(html){ $("#outils").innerHTML = html; }
@@ -703,8 +703,8 @@ function modeColorier(nouveau){
   if (nouveau || !col.parents){ col.parents = DEFIS_C[col.defi].f(); col.enfant = Array(8).fill(VIDE); }
   const [pa, pb] = col.parents;
   const dispo = ORDRE_C;
-  $("#titre").textContent = `Colorier un enfant · ${col.defi + 1}. ${DEFIS_C[col.defi].titre}`;
-  $("#texte").textContent = "Voici deux parents. Choisis une couleur, puis touche les morceaux de l'ourson du bas pour le colorier comme un de leurs enfants possibles.";
+  $("#titre").textContent = `Créer l'enfant · ${col.defi + 1}. ${DEFIS_C[col.defi].titre}`;
+  $("#texte").textContent = "Voici deux parents. Choisis une couleur, puis touche les morceaux de l'ourson du bas pour lui donner les couleurs d'un de leurs enfants possibles.";
   boutons(`<button class="btn primaire" id="cVerif">Vérifier</button><button class="btn" id="cEffacer">Effacer</button><button class="btn" id="cAutre">Autres parents</button><button class="btn" id="cExemple">Un exemple</button>` + boutonsCommuns());
   lierCommuns();
   const z = $("#coloriage");
@@ -717,7 +717,7 @@ function modeColorier(nouveau){
     </div>
     <div class="descente"></div>
     <div class="enfant-c">
-      <div class="grand" id="grandOurs">${oursSVG(col.enfant, {label: "L'enfant à colorier"})}</div>
+      <div class="grand" id="grandOurs">${oursSVG(col.enfant, {label: "L'enfant à créer"})}</div>
       <div class="palette"><p>Ta couleur</p><div class="rang">${dispo.map(c => `<button data-c="${c}" style="background:${COUL[c].c};color:${COUL[c].txt}" aria-pressed="${col.pinceau === c}" aria-label="${COUL[c].nom}" title="${COUL[c].nom}"><span class="lettre-p">${c}</span></button>`).join("")}</div>
       <p style="font-weight:400;max-width:240px">Astuce : un côté du corps vient d'un parent, l'autre côté de l'autre parent.</p></div>
     </div>
@@ -743,7 +743,7 @@ function brancherZones(){
 function verifierColoriage(){
   const e = col.enfant, [pa, pb] = col.parents;
   const vides = e.filter(c => c === VIDE).length;
-  if (vides){ dire(`Il reste ${vides} morceau${vides > 1 ? "x" : ""} à colorier.`, ""); return; }
+  if (vides){ dire(`Il reste ${vides} morceau${vides > 1 ? "x" : ""} sans couleur.`, ""); return; }
   if (enfantPossible(e, pa, pb)){
     noterReussi("colorier");
     confettis();
