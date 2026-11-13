@@ -70,6 +70,7 @@ details.regle li{margin:3px 0}
 .message .suite{margin-top:8px}
 
 /* ---------- plateau ---------- */
+.astuce-tactile{margin:10px 0 0;padding:10px 14px;border-radius:12px;background:#fff8e6;border:1px solid #f0d9a0;font-size:14.5px;color:#6b4e00}
 .plateau-cadre{margin-top:12px;border-radius:16px;background:var(--table);border:1px solid #d9d0c0;overflow-x:auto;overflow-y:hidden;position:relative;
   box-shadow:inset 0 2px 10px rgba(80,60,30,.08)}
 .scene{position:relative;transform-origin:0 0}
@@ -204,7 +205,8 @@ body.lettres .lettre-p{display:inline}
 
   <div class="message" id="message" role="status" aria-live="polite"></div>
 
-  <div class="plateau-cadre" id="cadre"><div class="scene" id="scene"></div></div>
+  <p class="astuce-tactile cache" id="astuce">Sur écran tactile : touche un ourson, puis touche la place où tu veux le mettre. Sur téléphone, tourne-le à l'horizontale pour voir les oursons en plus grand.</p>
+  <div class="plateau-cadre" id="cadre"><div id="boite" style="position:relative;overflow:hidden"><div class="scene" id="scene"></div></div></div>
   <div class="coloriage cache" id="coloriage"></div>
   <div class="creer cache" id="creer"></div>
 
@@ -368,7 +370,7 @@ function construirePartie(fam, intrus, graine){
   // recadrer horizontalement
   const minX = Math.min(...noeuds.map(n => n.x)), maxX = Math.max(...noeuds.map(n => n.x));
   const dx = SW / 2 + MARGE + 10 - minX;
-  const W = Math.max(720, maxX + dx + SW / 2 + MARGE + 10);
+  const W = Math.max(560, maxX + dx + SW / 2 + MARGE + 10);
   const places = noeuds.map(n => ({id: n.id, g: n.g, cx: n.x + dx, x: n.x + dx - SW / 2, y: MARGE + n.g * DY, coul: n.coul || null, ours: null}));
   const P = id => places.find(p => p.id === id);
   // génome de chacun, dans l'ordre des couples
@@ -472,11 +474,14 @@ function ajusterEchelle(){
   if (echelle < .42) echelle = .42;
   scene.style.transform = `scale(${echelle})`;
   scene.style.width = etat.W + "px";
-  scene.style.marginLeft = Math.max(0, (dispo - etat.W * echelle) / 2) + "px";
-  cadre.style.height = (etat.H * echelle) + "px";
-  scene.parentElement.scrollLeft = 0;
+  const boite = $("#boite");
+  boite.style.width = etat.W * echelle + "px"; boite.style.height = etat.H * echelle + "px";
+  boite.style.marginLeft = Math.max(0, (dispo - etat.W * echelle) / 2) + "px";
+  cadre.style.height = "";
 }
-addEventListener("resize", ajusterEchelle);
+// sur téléphone, « resize » part aussi quand la barre d'adresse se cache : on ne recalcule que si la largeur change
+let largeurVue = innerWidth;
+addEventListener("resize", () => { if (innerWidth !== largeurVue){ largeurVue = innerWidth; ajusterEchelle(); } });
 document.addEventListener("fullscreenchange", () => setTimeout(ajusterEchelle, 50));
 
 function majPlaces(){ etat.places.forEach(p => p.el.classList.toggle("prise", !!p.ours)); }
@@ -570,14 +575,20 @@ function verifier(){
   effacerMarques(); choisir(null);
   const vides = etat.places.filter(p => !p.ours).length;
   const fautes = [];
+  // les places sans parents (ancêtres, oursons qui entrent par mariage) : un ourson d'une seule couleur
   etat.places.forEach(p => {
+    if (etat.parents[p.id] || !p.ours) return;
+    const o = oursDansPlace(p.id);
+    if (!estPur(o.cells)){ o.el.classList.add("faux"); fautes.push("il est mélangé, il a donc forcément des parents. Il ne peut pas aller à une place sans trait au-dessus : ces places sont pour les ancêtres et les oursons qui entrent dans la famille, tout d'une couleur."); }
+  });
+  etat.places.slice().sort((u, v) => u.g - v.g || u.cx - v.cx).forEach(p => {
     const par = etat.parents[p.id]; if (!par || !p.ours) return;
     const o = oursDansPlace(p.id), a = oursDansPlace(par[0]), b = oursDansPlace(par[1]);
     if (!a || !b) return;
     if (enfantPossible(o.cells, a.cells, b.cells)){ o.el.classList.add("juste"); return; }
     o.el.classList.add("faux");
     const r = pourquoiPas(o.cells, a.cells, b.cells, ["le parent entouré en orange", "le parent entouré en orange"]);
-    let texte = r.texte;
+    let texte = "il ne peut pas être l'enfant de ses parents : " + r.texte;
     if (r.suspect !== null && !fautes.length){
       const sus = [a, b][r.suspect], autre = [a, b][1 - r.suspect];
       sus.el.classList.add("suspect");
@@ -600,7 +611,7 @@ function verifier(){
     return;
   }
   let m = "";
-  if (fautes.length) m += `<b>${fautes.length === 1 ? "L'ourson entouré en rouge ne peut pas être l'enfant de ses parents" : fautes.length + " oursons entourés en rouge ne peuvent pas être les enfants de leurs parents. Le premier"}</b> : ${fautes[0]} `;
+  if (fautes.length) m += `<b>${fautes.length === 1 ? "L'ourson entouré en rouge n'est pas à sa place" : fautes.length + " oursons entourés en rouge ne sont pas à leur place. Le plus haut"}</b> : ${fautes[0]} `;
   if (vides) m += `${fautes.length ? "Et il" : "Pas encore : il"} reste ${vides} place${vides > 1 ? "s" : ""} vide${vides > 1 ? "s" : ""}. `;
   if (!fautes.length && vides) m += "Les oursons entourés en vert sont déjà bien placés par rapport à leurs parents.";
   dire(m, fautes.length ? "ko" : "");
@@ -683,6 +694,7 @@ function choisirMode(k, garderGraine){
   majModes();
   const partie = k.startsWith("n") || k === "perso";
   cadre.classList.toggle("cache", !partie);
+  $("#astuce").classList.toggle("cache", !partie || !matchMedia("(pointer: coarse)").matches);
   $("#coloriage").classList.toggle("cache", k !== "colorier");
   $("#creer").classList.toggle("cache", k !== "creer");
   $("#regle").classList.toggle("cache", k === "creer");
@@ -826,6 +838,8 @@ function modeCreer(){
   z.querySelectorAll(".choix-c").forEach(s => s.querySelectorAll("button").forEach(btn => btn.onclick = () => {
     const nom = s.dataset.nom, c = btn.dataset.c;
     if (nom === "a0") b.gens[0].a = c; else if (nom === "b0") b.gens[0].b = c; else b.gens[+nom.slice(4)].conj = c;
+    // deux parents de la même couleur donneraient des enfants unis : on change l'autre parent
+    if (b.gens[0].a === b.gens[0].b){ const autre = ORDRE_C.find(x => x !== c && x !== "N"); if (nom === "a0") b.gens[0].b = autre; else b.gens[0].a = autre; }
     modeCreer();
   }));
   z.querySelectorAll("select[data-nom]").forEach(s => s.onchange = () => { b.gens[+s.dataset.nom.slice(1)].n = +s.value; modeCreer(); });
@@ -872,7 +886,7 @@ function decoder(h){
   const okC = c => ORDRE_C.includes(c);
   for (let i = 0; i < parts.length && i < 4; i++){
     const p = parts[i];
-    if (i === 0){ if (!/^[A-Z]{2}[1-4]$/.test(p) || !okC(p[0]) || !okC(p[1])) return null; gens.push({a: p[0], b: p[1], n: +p[2]}); }
+    if (i === 0){ if (!/^[A-Z]{2}[1-4]$/.test(p) || !okC(p[0]) || !okC(p[1])) return null; gens.push({a: p[0], b: p[1] === p[0] ? ORDRE_C.find(x => x !== p[0]) : p[1], n: +p[2]}); }
     else { if (!/^[A-Z][1-4]$/.test(p) || !okC(p[0])) return null; gens.push({conj: p[0], n: +p[1]}); }
   }
   const n = Math.min(2, Math.max(0, parseInt(q.get("i") || "0", 10) || 0));
@@ -885,6 +899,7 @@ function majLien(){
 }
 
 /* ================================================================ démarrage */
+if (matchMedia("(pointer: coarse)").matches) $("#astuce").classList.remove("cache");
 try { if (localStorage.getItem("oursons-lettres")) document.body.classList.add("lettres"); } catch(e) {}
 $("#teteOurs").innerHTML = [pur("R"), naissance(pur("R"), pur("B")), pur("B")].map(c => oursSVG(c)).join("");
 const depuisLien = decoder(location.hash);
