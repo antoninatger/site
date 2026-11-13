@@ -7,23 +7,23 @@ lead: >-
   Un tas d'oursons, certains tout rouges, d'autres tout blancs, d'autres moitié-moitié… À vos élèves de reconstituer l'arbre généalogique
   en devinant qui est l'enfant de qui. On attrape chaque ourson à la souris ou du doigt, on le pose dans l'arbre, et l'outil vérifie.
   Pour comprendre, en les manipulant, que chacun tient la moitié de son héritage de chaque parent.
-description: "L'arbre des oursons : un outil gratuit pour expliquer l'hérédité en classe avec des oursons en gélatine. Les élèves reconstituent l'arbre généalogique, colorient l'enfant de deux parents ou jouent sur la famille créée par le professeur."
+description: "L'arbre des oursons : un outil gratuit pour expliquer l'hérédité en classe avec des oursons en gélatine. Les élèves reconstituent l'arbre généalogique, créent l'enfant de deux parents ou jouent sur la famille créée par le professeur."
 partage_texte: "L'arbre des oursons, un outil gratuit pour expliquer l'hérédité en classe avec des oursons en gélatine"
 outil_url: "/jeux/oursons/jouer/"
 outil_bouton: Ouvrir l'outil
 exemple_url: "/jeux/oursons/jouer/?mode=colorier"
-exemple_texte: Colorier un enfant
+exemple_texte: Créer l'enfant
 vignette: /images/site/jeux/oursons.jpg
 vignette_alt: "Un arbre généalogique d'oursons en gélatine sur quatre générations : rouge et blanc, puis vert, puis orange"
 diaporama:
   - ["/images/site/jeux/oursons-arbre.jpg", "L'arbre reconstitué : quatre générations d'oursons"]
   - ["/images/site/jeux/oursons-jeu.jpg", "En cours de partie : deux familles et un intrus dans le tas"]
-  - ["/images/site/jeux/oursons-colorier.jpg", "La variante inversée : colorier l'enfant de deux parents"]
+  - ["/images/site/jeux/oursons-colorier.jpg", "La variante inversée : créer l'enfant de deux parents"]
   - ["/images/site/jeux/oursons-creer.jpg", "Créer sa famille et l'envoyer aux élèves par un lien"]
 icone: ''
 faits:
   - ["5 niveaux", "d'une famille de cinq oursons à un grand arbre avec des intrus"]
-  - ["Variante inversée", "colorier l'enfant possible de deux parents"]
+  - ["Variante inversée", "créer l'enfant possible de deux parents"]
   - ["Votre famille", "vos couleurs, vos générations, un lien pour les élèves"]
   - ["Gratuit", "souris, tablette ou tableau interactif, sans inscription"]
 fin: "Commencez par le niveau 1 au tableau, puis laissez les élèves continuer seuls."
@@ -38,7 +38,7 @@ Les élèves ne lisent pas la règle : ils la **découvrent en cherchant**. Pour
 
 <ol class="pas-a-pas">
 <li><b>Reconstituer l'arbre</b> : un tas d'oursons, un arbre vide. On fait glisser chaque ourson à sa place (souris, doigt ou clavier), puis « Vérifier ». Les oursons qui ne peuvent pas être les enfants de leurs parents sont entourés en rouge, avec la raison (« il a du vert, mais aucun de ses parents n'en a »). Cinq niveaux, de la famille de cinq oursons au grand arbre de quatre générations où se cachent deux intrus. « Autres oursons » refait naître de nouveaux enfants : on peut rejouer sans retrouver la même famille.</li>
-<li><b>Colorier un enfant</b> (la variante inversée) : on montre deux parents, les élèves colorient un enfant possible, morceau par morceau. L'outil dit si c'est possible, et montre d'autres frères et sœurs qui auraient pu naître. Quatre défis, des parents unis aux parents très mélangés.</li>
+<li><b>Créer l'enfant</b> (la variante inversée) : on montre deux parents, les élèves fabriquent un de leurs enfants possibles en choisissant la couleur de chaque morceau. L'outil dit si c'est possible, et montre d'autres frères et sœurs qui auraient pu naître. Quatre défis, des parents unis aux parents très mélangés.</li>
 <li><b>Créer sa famille</b> : vous choisissez les couleurs du premier couple, le nombre d'enfants, les mariages à chaque génération et le nombre d'intrus. L'aperçu montre la solution. « Copier le lien » donne une adresse à envoyer aux élèves : ils trouvent exactement les mêmes oursons, mélangés dans le tas.</li>
 </ol>
 
