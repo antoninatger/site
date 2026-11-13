@@ -57,6 +57,7 @@ L'outil vérifie la règle, pas une réponse unique : si deux frères identiques
 - **Indice** place un ourson au bon endroit ; **Solution** montre tout l'arbre (et les intrus restés dans le tas).
 - **Lettres** écrit l'initiale de chaque couleur sur les oursons, pour les élèves daltoniens.
 - On peut aussi toucher un ourson, puis toucher la place où on veut le mettre.
+- **Sur téléphone**, tout fonctionne mais les grands arbres rendent les oursons petits : mieux vaut une tablette, un ordinateur, ou le téléphone tenu à l'horizontale.
 
 ## Pour aller plus loin
 
