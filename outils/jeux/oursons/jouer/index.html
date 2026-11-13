@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L'arbre des oursons · hérédité</title>
+<meta name="description" content="Un outil pour comprendre l'hérédité avec des oursons en gélatine : retrouver l'arbre généalogique, colorier l'enfant de deux parents, créer sa propre famille.">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<style>
+/* L'arbre des oursons : outil d'hérédité pour la classe.
+   Chaque ourson a 8 morceaux de couleur (4 à gauche, 4 à droite, de la tête aux pieds).
+   Un enfant reçoit un côté de chaque parent : 4 morceaux tirés au hasard parmi les 8 de ce parent. */
+@font-face{font-family:'Space Grotesk';font-weight:600;font-display:swap;src:url(/static/polices/space-grotesk-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Space Grotesk';font-weight:700;font-display:swap;src:url(/static/polices/space-grotesk-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:400;font-display:swap;src:url(/static/polices/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:500;font-display:swap;src:url(/static/polices/inter-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:600;font-display:swap;src:url(/static/polices/inter-latin-600-normal.woff2) format('woff2')}
+:root{
+  --fond:#f4f6f8; --surface:#fff; --doux:#f8fafb;
+  --ink:#14222c; --ink-soft:#3d4f5c; --ink-mute:#5d6d79;
+  --accent:#1b6a8f; --accent-dark:#134f6b; --accent-light:#e3f1f7;
+  --bord:#d3dce3; --bord-fort:#aab8c3;
+  --ok:#127942; --ok-clair:#e2f4ea; --ko:#b3361e; --ko-clair:#fdeae5;
+  --table:#efe9de; --table-2:#e6dfd2; --trait:#2b2622;
+  --f-titre:'Space Grotesk','Segoe UI',Helvetica,Arial,sans-serif;
+  --f-texte:'Inter','Segoe UI',Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--fond);color:var(--ink);font-family:var(--f-texte);font-size:16px;line-height:1.5;min-height:100vh}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 16px 80px}
+.retour{display:inline-block;margin:0 0 10px;color:var(--accent);font-size:14px;font-weight:500;text-decoration:none}
+.retour:hover{text-decoration:underline}
+header.plate{background:var(--surface);border:1px solid var(--bord);border-top:5px solid var(--accent);border-radius:14px;padding:16px clamp(16px,3vw,28px);display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+header.plate h1{margin:0;font-family:var(--f-titre);font-weight:700;font-size:clamp(24px,3.6vw,40px);letter-spacing:-.01em;line-height:1.05}
+header.plate p{margin:4px 0 0;color:var(--ink-soft);font-size:clamp(14px,1.4vw,17px)}
+.tete-ours{display:flex;gap:2px;flex-shrink:0}
+.tete-ours svg{width:34px;height:48px}
+
+nav.modes{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 10px}
+nav.modes button{border:1px solid var(--bord-fort);background:var(--surface);border-radius:999px;padding:7px 14px;font-size:14.5px;font-weight:500;cursor:pointer}
+nav.modes button:hover{border-color:var(--accent);color:var(--accent-dark)}
+nav.modes button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+nav.modes button .ok{display:none;margin-left:4px}
+nav.modes button.reussi .ok{display:inline}
+nav.modes .sep{width:1px;background:var(--bord);margin:2px 4px}
+
+.btn{background:var(--surface);border:1px solid var(--bord-fort);border-radius:8px;padding:8px 14px;cursor:pointer;color:var(--ink);font-size:14.5px;font-weight:500;line-height:1.3}
+.btn:hover{border-color:var(--accent);color:var(--accent-dark)}
+.btn.primaire{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.btn.primaire:hover{background:var(--accent-dark);color:#fff}
+.btn[aria-pressed=true]{background:var(--accent-light);border-color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:default}
+
+.consigne{background:var(--surface);border:1px solid var(--bord);border-radius:14px;padding:14px clamp(14px,2.4vw,24px);display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between}
+.consigne h2{margin:0;font-family:var(--f-titre);font-size:clamp(19px,2vw,24px);letter-spacing:-.005em}
+.consigne p{margin:4px 0 0;color:var(--ink-soft);max-width:760px}
+.outils{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+
+details.regle{margin:10px 0 0;background:var(--accent-light);border:1px solid #c5e0ec;border-radius:12px;padding:10px 16px}
+details.regle summary{cursor:pointer;font-weight:600;color:var(--accent-dark)}
+details.regle ol{margin:8px 0 4px;padding-left:22px}
+details.regle li{margin:3px 0}
+
+.message{min-height:0;margin:10px 0 0;border-radius:12px;padding:0 16px;font-weight:500;transition:background .2s}
+.message:not(:empty){padding:12px 16px;border:1px solid var(--bord);background:var(--surface)}
+.message.ok{background:var(--ok-clair);border-color:#a9dcbf;color:#0c4f2b}
+.message.ko{background:var(--ko-clair);border-color:#f2b9aa;color:#7a2312}
+.message .suite{margin-top:8px}
+
+/* ---------- plateau ---------- */
+.plateau-cadre{margin-top:12px;border-radius:16px;background:var(--table);border:1px solid #d9d0c0;overflow-x:auto;overflow-y:hidden;position:relative;
+  box-shadow:inset 0 2px 10px rgba(80,60,30,.08)}
+.scene{position:relative;transform-origin:0 0}
+.scene svg.traits{position:absolute;left:0;top:0;pointer-events:none}
+.traits path{fill:none;stroke:var(--trait);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.tas{position:absolute;left:12px;right:12px;border:2px dashed #cbbfa9;border-radius:16px;background:rgba(255,255,255,.28)}
+.tas span{position:absolute;left:14px;top:8px;font-size:14px;font-weight:600;color:#7b6c55;letter-spacing:.02em}
+.place{position:absolute;width:84px;height:112px;border:2px dashed #b7a98f;border-radius:18px;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;color:#b0a186;font:700 30px var(--f-titre);cursor:pointer}
+.place:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.place.cible{border-color:var(--accent);background:rgba(27,106,143,.12);color:var(--accent)}
+.place.prise{border-color:transparent;background:transparent;color:transparent}
+.ours{position:absolute;width:72px;height:101px;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;transition:transform .18s, filter .18s;filter:drop-shadow(0 3px 2px rgba(60,40,20,.28))}
+.ours svg{width:100%;height:100%;display:block;overflow:visible}
+.ours.prendre{cursor:grabbing;transition:none;filter:drop-shadow(0 12px 10px rgba(60,40,20,.35));z-index:999!important}
+.ours.choisi{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 6px var(--accent)) drop-shadow(0 0 3px var(--accent))}
+.ours:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:12px}
+.ours.faux::after,.ours.juste::after{content:"";position:absolute;inset:-7px -7px;border-radius:20px;border:3px solid var(--ko);pointer-events:none}
+.ours.juste::after{border-color:var(--ok)}
+.ours.saute{animation:saute .6s ease}
+@keyframes saute{0%,100%{translate:0 0}40%{translate:0 -16px}70%{translate:0 2px}}
+.lettre{display:none;font:700 12px var(--f-texte);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+body.lettres .lettre{display:block}
+.lettre-p{display:none}
+body.lettres .lettre-p{display:inline}
+.legende-c{display:inline-flex;align-items:center;gap:6px;margin-right:10px;font-size:14px}
+.pastille{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.25);display:inline-block}
+
+/* ---------- colorier ---------- */
+.coloriage{margin-top:12px;background:var(--table);border:1px solid #d9d0c0;border-radius:16px;padding:18px clamp(10px,3vw,30px)}
+.couple-c{display:flex;align-items:flex-end;justify-content:center;gap:clamp(8px,3vw,40px);flex-wrap:nowrap}
+.couple-c .p{text-align:center}
+.couple-c .p svg{width:clamp(70px,14vw,120px);height:auto;filter:drop-shadow(0 3px 2px rgba(60,40,20,.28))}
+.couple-c .p small{display:block;font-size:13px;color:#6d604c;font-weight:600}
+.couple-c .lien{width:clamp(20px,6vw,70px);height:3px;background:var(--trait);margin-bottom:clamp(40px,8vw,80px)}
+.descente{width:3px;height:26px;background:var(--trait);margin:0 auto}
+.enfant-c{display:flex;justify-content:center;gap:clamp(12px,3vw,40px);align-items:center;flex-wrap:wrap;margin-top:4px}
+.enfant-c .grand svg{width:clamp(140px,30vw,210px);height:auto;filter:drop-shadow(0 4px 3px rgba(60,40,20,.25))}
+.enfant-c .grand .zone{cursor:pointer}
+.palette{display:flex;flex-direction:column;gap:8px}
+.palette p{margin:0;font-size:14px;font-weight:600;color:#6d604c}
+.palette .rang{display:flex;flex-wrap:wrap;gap:8px;max-width:260px}
+.palette button{width:46px;height:46px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.2);cursor:pointer;position:relative;font:700 14px var(--f-texte)}
+.palette button[aria-pressed=true]{box-shadow:0 0 0 3px var(--accent)}
+.freres{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:12px}
+.freres svg{width:60px;height:84px;filter:drop-shadow(0 3px 2px rgba(60,40,20,.25))}
+
+/* ---------- créer ---------- */
+.creer{margin-top:12px;background:var(--surface);border:1px solid var(--bord);border-radius:14px;padding:16px clamp(14px,2.4vw,24px)}
+.creer h3{margin:0 0 6px;font-family:var(--f-titre);font-size:18px}
+.gen{border:1px solid var(--bord);border-radius:12px;padding:10px 14px;margin:10px 0;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:var(--doux)}
+.gen b{min-width:120px}
+.choix-c{display:flex;gap:6px;flex-wrap:wrap}
+.choix-c button{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25);cursor:pointer}
+.choix-c button[aria-pressed=true]{box-shadow:0 0 0 3px var(--accent)}
+.gen label{font-size:14px;display:flex;gap:6px;align-items:center}
+.gen select{padding:5px 8px;border-radius:8px;border:1px solid var(--bord-fort);background:#fff}
+.lien-partage{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.lien-partage input{flex:1;min-width:220px;padding:8px 10px;border-radius:8px;border:1px solid var(--bord-fort);font-size:13px;color:var(--ink-soft)}
+.cache{display:none!important}
+.confettis{position:fixed;inset:0;pointer-events:none;z-index:2000;overflow:hidden}
+.confettis i{position:absolute;top:-20px;width:10px;height:14px;border-radius:3px;animation:tombe linear forwards}
+@keyframes tombe{to{transform:translateY(110vh) rotate(720deg)}}
+@media (max-width:640px){
+  .wrap{padding:12px 10px 60px}
+  header.plate{padding:12px 14px}
+  .tete-ours{display:none}
+  nav.modes button{padding:6px 11px;font-size:13.5px}
+  .consigne{padding:12px}
+}
+@media (prefers-reduced-motion:reduce){.ours,.ours.saute{transition:none;animation:none}.confettis{display:none}}
+:fullscreen .wrap{max-width:none}
+:fullscreen body,body:fullscreen{overflow:auto}
+</style>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="silhouette" clipPathUnits="userSpaceOnUse">
+      <circle cx="26" cy="15" r="11"/><circle cx="74" cy="15" r="11"/>
+      <ellipse cx="50" cy="33" rx="31" ry="26"/>
+      <ellipse cx="50" cy="86" rx="31" ry="34"/>
+      <ellipse cx="19" cy="72" rx="11" ry="17" transform="rotate(28 19 72)"/>
+      <ellipse cx="81" cy="72" rx="11" ry="17" transform="rotate(-28 81 72)"/>
+      <ellipse cx="29" cy="121" rx="16" ry="17"/><ellipse cx="71" cy="121" rx="16" ry="17"/>
+    </clipPath>
+    <g id="forme">
+      <circle cx="26" cy="15" r="11"/><circle cx="74" cy="15" r="11"/>
+      <ellipse cx="50" cy="33" rx="31" ry="26"/>
+      <ellipse cx="50" cy="86" rx="31" ry="34"/>
+      <ellipse cx="19" cy="72" rx="11" ry="17" transform="rotate(28 19 72)"/>
+      <ellipse cx="81" cy="72" rx="11" ry="17" transform="rotate(-28 81 72)"/>
+      <ellipse cx="29" cy="121" rx="16" ry="17"/><ellipse cx="71" cy="121" rx="16" ry="17"/>
+    </g>
+    <radialGradient id="brillance" cx="35%" cy="25%" r="75%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+      <stop offset=".35" stop-color="#fff" stop-opacity=".12"/>
+      <stop offset=".75" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<div class="wrap" id="haut">
+  <a class="retour" href="/jeux/oursons/">← L'arbre des oursons : présentation</a>
+  <header class="plate">
+    <div>
+      <h1>L'arbre des oursons</h1>
+      <p>L'hérédité expliquée avec des oursons en gélatine.</p>
+    </div>
+    <div class="tete-ours" id="teteOurs" aria-hidden="true"></div>
+  </header>
+
+  <nav class="modes" id="modes" aria-label="Choisir une activité"></nav>
+
+  <div class="consigne">
+    <div>
+      <h2 id="titre"></h2>
+      <p id="texte"></p>
+    </div>
+    <div class="outils" id="outils"></div>
+  </div>
+
+  <details class="regle" id="regle">
+    <summary>La règle du jeu</summary>
+    <ol>
+      <li>Les oursons <b>tout d'une couleur</b> n'ont pas de parents dans l'arbre : ce sont les ancêtres, ou les oursons qui entrent dans la famille en se mariant.</li>
+      <li>Chaque enfant reçoit <b>un côté de son corps de chaque parent</b> : la moitié gauche vient de l'un, la moitié droite de l'autre.</li>
+      <li>Chaque parent donne <b>4 de ses 8 morceaux de couleur, tirés au hasard</b>. C'est pour ça que des frères et sœurs ne se ressemblent pas tout à fait.</li>
+      <li>Un enfant ne peut donc avoir <b>que des couleurs que ses parents ont déjà</b>.</li>
+    </ol>
+  </details>
+
+  <div class="message" id="message" role="status" aria-live="polite"></div>
+
+  <div class="plateau-cadre" id="cadre"><div class="scene" id="scene"></div></div>
+  <div class="coloriage cache" id="coloriage"></div>
+  <div class="creer cache" id="creer"></div>
+
+  <p style="margin-top:14px;font-size:14px;color:var(--ink-mute)" id="legende"></p>
+</div>
+
+<script>
+"use strict";
+/* ================================================================ couleurs */
+const COUL = {
+  R:{nom:"rouge",  c:"#d6283c", txt:"#fff"},
+  B:{nom:"blanc",  c:"#f4ede0", txt:"#6b5e4a"},
+  V:{nom:"vert",   c:"#8fc23a", txt:"#24400a"},
+  O:{nom:"orange", c:"#f57f17", txt:"#fff"},
+  J:{nom:"jaune",  c:"#ffd23a", txt:"#6b5200"},
+  N:{nom:"noir",   c:"#3b2b2e", txt:"#fff"},
+};
+const ORDRE_C = ["R","B","V","O","J","N"];
+const VIDE = "_";
+
+/* ================================================================ hasard reproductible */
+function rngDe(graine){ let a = graine >>> 0; return function(){ a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+let rnd = Math.random;
+const entier = n => Math.floor(rnd() * n);
+function melange(t){ t = t.slice(); for (let i = t.length - 1; i > 0; i--){ const j = entier(i + 1); [t[i], t[j]] = [t[j], t[i]]; } return t; }
+const nouvelleGraine = () => Math.floor(Math.random() * 1e9);
+
+/* ================================================================ génétique */
+// 8 morceaux : 0-3 côté gauche (tête, poitrine, ventre, jambes), 4-7 côté droit.
+const pur = c => Array(8).fill(c);
+function quatreDe(cells){ const idx = melange([0,1,2,3,4,5,6,7]).slice(0,4).sort((a,b)=>a-b); return idx.map(i => cells[i]); }
+function naissance(pa, pb){ const [g, d] = rnd() < .5 ? [pa, pb] : [pb, pa]; return quatreDe(g).concat(quatreDe(d)); }
+function compte(t){ const m = {}; t.forEach(c => m[c] = (m[c] || 0) + 1); return m; }
+function inclus(moitie, parent){ const a = compte(moitie), b = compte(parent); return Object.keys(a).every(k => (b[k] || 0) >= a[k]); }
+function enfantPossible(e, pa, pb){ const g = e.slice(0,4), d = e.slice(4); return (inclus(g,pa) && inclus(d,pb)) || (inclus(g,pb) && inclus(d,pa)); }
+const couleursDe = t => [...new Set(t)];
+const estPur = t => t.every(c => c === t[0]);
+const cle = t => [t.slice(0,4).slice().sort().join(""), t.slice(4).slice().sort().join("")].sort().join("|");
+function nomsCouleurs(liste){ const n = liste.map(c => COUL[c].nom); return n.length < 2 ? n.join("") : n.slice(0,-1).join(", ") + " et " + n[n.length-1]; }
+function pourquoiPas(e, pa, pb){
+  const manque = couleursDe(e).filter(c => !pa.includes(c) && !pb.includes(c));
+  if (manque.length) return `il a du ${nomsCouleurs(manque)}, mais aucun de ses deux parents n'en a`;
+  return "ses couleurs ne viennent pas moitié-moitié de ses deux parents : un côté de son corps doit venir de l'un, l'autre côté de l'autre";
+}
+function composition(t){ const m = compte(t); return ORDRE_C.filter(c => m[c]).map(c => `${Math.round(m[c] / 8 * 100)} % ${COUL[c].nom}`).join(", "); }
+
+/* ================================================================ dessin d'un ourson */
+const LIGNES = [[0,52],[52,80],[80,106],[106,142]];
+function oursSVG(cells, opts = {}){
+  const zones = cells.map((c, i) => {
+    const col = i < 4 ? 0 : 50, [y0, y1] = LIGNES[i % 4];
+    const f = c === VIDE ? "#fbf8f2" : COUL[c].c;
+    return `<rect class="zone" data-i="${i}" x="${col - (col ? .3 : 0)}" y="${y0 - .3}" width="${50.6}" height="${y1 - y0 + .6}" fill="${f}"/>`;
+  }).join("");
+  const sep = cells.some(c => c === VIDE) ? `<path d="M50 0V142M0 52H100M0 80H100M0 106H100" stroke="#b7a98f" stroke-width="1.2" stroke-dasharray="3 3" fill="none" clip-path="url(#silhouette)" pointer-events="none"/>` : "";
+  const lettres = cells.map((c, i) => {
+    if (c === VIDE) return "";
+    const [y0, y1] = LIGNES[i % 4], x = i < 4 ? 32 : 68;
+    return `<text class="lettre" x="${x}" y="${(y0 + y1) / 2 + (i % 4 === 0 ? 8 : 0)}" fill="${COUL[c].txt}">${c}</text>`;
+  }).join("");
+  const titre = opts.titre ? `<title>${opts.titre}</title>` : "";
+  return `<svg viewBox="-4 -4 108 150" role="img" aria-label="${opts.label || "Ourson : " + composition(cells.filter(c => c !== VIDE).length ? cells : ["B"])}">${titre}
+    <use href="#forme" fill="none" stroke="rgba(70,40,25,.35)" stroke-width="3.5"/>
+    <g clip-path="url(#silhouette)">${zones}
+      <rect x="0" y="0" width="100" height="142" fill="url(#brillance)" pointer-events="none"/>
+      <ellipse cx="50" cy="42" rx="11" ry="7.5" fill="#fff" opacity=".22" pointer-events="none"/>
+      <ellipse cx="50" cy="90" rx="17" ry="20" fill="#fff" opacity=".12" pointer-events="none"/>
+      <ellipse cx="36" cy="18" rx="9" ry="5" fill="#fff" opacity=".35" transform="rotate(-25 36 18)" pointer-events="none"/>
+    </g>
+    <g pointer-events="none" opacity=".55"><circle cx="39" cy="30" r="3" fill="#2a1a12"/><circle cx="61" cy="30" r="3" fill="#2a1a12"/><ellipse cx="50" cy="39" rx="3.4" ry="2.4" fill="#2a1a12"/></g>
+    ${sep}${lettres}</svg>`;
+}
+
+/* ================================================================ niveaux */
+// Une famille « en chaîne » : un couple, ses enfants ; le dernier enfant se marie, etc.
+// gens : [{a, b, n}, {conj, n}, ...]
+function familleChaine(gens){
+  const noeuds = [], couples = [];
+  let id = 0, nv = () => "n" + (id++);
+  const A = {id: nv(), g: 0, x: 0, coul: gens[0].a}, Bn = {id: nv(), g: 0, x: 160, coul: gens[0].b};
+  noeuds.push(A, Bn);
+  let pa = A, pb = Bn;
+  gens.forEach((gen, k) => {
+    if (k > 0){ const conj = {id: nv(), g: k, x: pa.x + 160, coul: gen.conj}; noeuds.push(conj); pb = conj; }
+    const m = (pa.x + pb.x) / 2, n = gen.n, enfants = [];
+    for (let i = 0; i < n; i++){ const e = {id: nv(), g: k + 1, x: m - (n - 1) * 70 + i * 140}; noeuds.push(e); enfants.push(e.id); }
+    couples.push({p: [pa.id, pb.id], k: enfants});
+    pa = noeuds.find(x => x.id === enfants[enfants.length - 1]);
+  });
+  // le dernier enfant ne se marie que s'il y a une génération de plus : rien à faire
+  return {noeuds, couples};
+}
+const NIVEAUX = [
+  {nom: "Niveau 1", titre: "Une première famille",
+   texte: "Deux oursons ont eu trois enfants. Fais glisser chaque ourson à sa place dans l'arbre : qui sont les parents, qui sont les enfants ?",
+   fam: () => familleChaine([{a: "R", b: "B", n: 3}]), intrus: [],
+   bravo: "Chaque enfant a une moitié rouge et une moitié blanche : il tient la moitié de ses couleurs de chaque parent. Chez les humains, c'est pareil : on reçoit la moitié de ses chromosomes de sa mère, l'autre moitié de son père."},
+  {nom: "Niveau 2", titre: "Un mariage dans la famille",
+   texte: "Un des enfants s'est marié avec un ourson vert, et ils ont eu trois petits. Reconstitue l'arbre sur trois générations.",
+   fam: () => familleChaine([{a: "R", b: "B", n: 2}, {conj: "V", n: 3}]), intrus: [],
+   bravo: "Les petits-enfants ont tous un côté vert, celui de leur parent vert. Mais l'autre côté mélange le rouge et le blanc au hasard : les frères et sœurs ne se ressemblent pas tout à fait, comme dans une vraie famille."},
+  {nom: "Niveau 3", titre: "Quatre générations",
+   texte: "La famille s'agrandit encore : un petit-enfant épouse un ourson orange. Retrouve qui descend de qui.",
+   fam: () => familleChaine([{a: "R", b: "B", n: 2}, {conj: "V", n: 3}, {conj: "O", n: 4}]), intrus: [],
+   bravo: "Plus on descend dans l'arbre, plus les mélanges sont variés. Les arrière-petits-enfants ont reçu un huitième de chaque arrière-grand-parent en moyenne… mais parfois plus, et parfois rien du tout : regarde, certains n'ont plus de rouge ou plus de blanc !"},
+  {nom: "Niveau 4", titre: "Deux familles se rencontrent",
+   texte: "Deux familles, puis un mariage entre elles. Attention : un ourson du tas n'appartient à aucune des deux familles. Laisse-le dans le tas.",
+   fam: () => ({
+     noeuds: [
+       {id: "a", g: 0, x: 90, coul: "R"}, {id: "b", g: 0, x: 250, coul: "B"}, {id: "p", g: 0, x: 600, coul: "V"}, {id: "q", g: 0, x: 760, coul: "J"},
+       {id: "c", g: 1, x: 110}, {id: "d", g: 1, x: 300}, {id: "e", g: 1, x: 520}, {id: "f", g: 1, x: 710},
+       {id: "g", g: 2, x: 200}, {id: "h", g: 2, x: 340}, {id: "i", g: 2, x: 480}, {id: "j", g: 2, x: 620}],
+     couples: [{p: ["a","b"], k: ["c","d"]}, {p: ["p","q"], k: ["e","f"]}, {p: ["d","e"], k: ["g","h","i","j"]}]}),
+   intrus: ["couleur"],
+   bravo: "Bien vu ! Les quatre petits-enfants ont reçu un côté rouge et blanc d'un parent, un côté vert et jaune de l'autre. L'intrus, lui, avait du noir : aucun parent ne pouvait lui en donner."},
+  {nom: "Niveau 5", titre: "Le grand arbre",
+   texte: "Le plus difficile : deux familles, quatre générations et deux intrus cachés dans le tas. L'un des deux est très sournois…",
+   fam: () => ({
+     noeuds: [
+       {id: "a", g: 0, x: 90, coul: "R"}, {id: "b", g: 0, x: 250, coul: "B"}, {id: "p", g: 0, x: 560, coul: "V"}, {id: "q", g: 0, x: 720, coul: "J"},
+       {id: "c", g: 1, x: 100}, {id: "d", g: 1, x: 300}, {id: "e", g: 1, x: 470}, {id: "f", g: 1, x: 680},
+       {id: "g", g: 2, x: 230}, {id: "i", g: 2, x: 370}, {id: "h", g: 2, x: 510}, {id: "r", g: 2, x: 670, coul: "O"},
+       {id: "j", g: 3, x: 450}, {id: "k", g: 3, x: 590}, {id: "l", g: 3, x: 730}],
+     couples: [{p: ["a","b"], k: ["c","d"]}, {p: ["p","q"], k: ["e","f"]}, {p: ["d","e"], k: ["g","i","h"]}, {p: ["h","r"], k: ["j","k","l"]}]}),
+   intrus: ["couleur", "subtil"],
+   bravo: "Bravo, détective ! Le premier intrus avait une couleur absente de la famille. Le second n'avait que des couleurs de la famille, mais dans des proportions impossibles : aucun couple ne pouvait lui donner un côté entier de chacun."},
+];
+
+/* ================================================================ état */
+const $ = s => document.querySelector(s);
+const scene = $("#scene"), cadre = $("#cadre");
+const SW = 84, SH = 112, BW = 72, BH = 101, DY = 165, MARGE = 26;
+let etat = null;     // partie en cours
+let mode = "n0";     // n0..n4, perso, colorier, creer
+let selection = null;
+let reussis = {};
+try { reussis = JSON.parse(localStorage.getItem("oursons-reussis") || "{}"); } catch(e) {}
+function noterReussi(k){ reussis[k] = 1; try { localStorage.setItem("oursons-reussis", JSON.stringify(reussis)); } catch(e) {} majModes(); }
+
+/* ================================================================ construire une partie */
+function construirePartie(fam, intrus, graine){
+  rnd = rngDe(graine);
+  const {noeuds, couples} = fam;
+  // recadrer horizontalement
+  const minX = Math.min(...noeuds.map(n => n.x)), maxX = Math.max(...noeuds.map(n => n.x));
+  const dx = SW / 2 + MARGE + 10 - minX;
+  const W = Math.max(720, maxX + dx + SW / 2 + MARGE + 10);
+  const places = noeuds.map(n => ({id: n.id, g: n.g, cx: n.x + dx, x: n.x + dx - SW / 2, y: MARGE + n.g * DY, coul: n.coul || null, ours: null}));
+  const P = id => places.find(p => p.id === id);
+  // génome de chacun, dans l'ordre des couples
+  const genome = {};
+  places.forEach(p => { if (p.coul) genome[p.id] = pur(p.coul); });
+  couples.forEach(c => c.k.forEach(k => { genome[k] = naissance(genome[c.p[0]], genome[c.p[1]]); }));
+  const parents = {};
+  couples.forEach(c => c.k.forEach(k => parents[k] = c.p));
+  let ours = places.map((p, i) => ({id: "o" + i, cells: genome[p.id], sol: p.id, place: null, x: 0, y: 0, rot: 0}));
+  // intrus
+  const famCoul = couleursDe([].concat(...ours.map(o => o.cells)));
+  intrus.forEach((type, i) => {
+    let cells = null;
+    if (type === "subtil"){
+      for (let essai = 0; essai < 800 && !cells; essai++){
+        const t = Array.from({length: 8}, () => famCoul[entier(famCoul.length)]);
+        if (estPur(t) || couleursDe(t).length < 2) continue;
+        let ok = true;
+        for (const a of ours){ for (const b of ours){ if (a !== b && enfantPossible(t, a.cells, b.cells)){ ok = false; break; } } if (!ok) break; }
+        if (ok) cells = t;
+      }
+    }
+    if (!cells){
+      const absente = ORDRE_C.filter(c => !famCoul.includes(c));
+      const etr = absente.includes("N") ? "N" : absente[entier(absente.length)];
+      const base = ours[ours.length - 1 - entier(3)].cells.slice();
+      const g = rnd() < .5 ? 0 : 4; for (let j = 0; j < 4; j++) if (j === 1 || j === 2 || rnd() < .3) base[g + j] = etr;
+      cells = base;
+    }
+    ours.push({id: "x" + i, cells, sol: null, place: null, x: 0, y: 0, rot: 0});
+  });
+  // le tas
+  const hautArbre = MARGE + (Math.max(...places.map(p => p.g)) + 1) * DY - 30;
+  const parRang = Math.max(4, Math.floor((W - 60) / 96));
+  const rangs = Math.ceil(ours.length / parRang);
+  const tas = {y: hautArbre + 18, h: rangs * 122 + 46};
+  const H = tas.y + tas.h + 14;
+  ours = melange(ours);
+  ours.forEach((o, i) => {
+    const r = Math.floor(i / parRang), c = i % parRang;
+    const nb = Math.min(parRang, ours.length - r * parRang);
+    const x0 = W / 2 - (nb * 96) / 2;
+    o.x = x0 + c * 96 + 12 + (rnd() - .5) * 14;
+    o.y = tas.y + 38 + r * 122 + (rnd() - .5) * 12;
+    o.rot = (rnd() - .5) * 24;
+    o.depart = {x: o.x, y: o.y, rot: o.rot};
+  });
+  rnd = Math.random;
+  return {W, H, places, couples, parents, ours, tas, P, graine};
+}
+
+/* ================================================================ affichage du plateau */
+function dessinerPlateau(){
+  const e = etat;
+  scene.innerHTML = "";
+  scene.style.width = e.W + "px"; scene.style.height = e.H + "px";
+  // traits de l'arbre
+  let d = "";
+  e.couples.forEach(c => {
+    const [a, b] = c.p.map(e.P).sort((u, v) => u.cx - v.cx);
+    const ym = a.y + SH / 2;
+    d += `M${a.x + SW + 4} ${ym}H${b.x - 4}`;
+    const mx = (a.x + SW + b.x) / 2;
+    const ks = c.k.map(e.P), yb = ks[0].y - 26;
+    const xs = ks.map(k => k.cx).concat(mx);
+    d += `M${mx} ${ym}V${yb}M${Math.min(...xs)} ${yb}H${Math.max(...xs)}`;
+    ks.forEach(k => d += `M${k.cx} ${yb}V${k.y - 4}`);
+  });
+  scene.insertAdjacentHTML("beforeend", `<svg class="traits" width="${e.W}" height="${e.H}" viewBox="0 0 ${e.W} ${e.H}"><path d="${d}"/></svg>`);
+  scene.insertAdjacentHTML("beforeend", `<div class="tas" style="top:${e.tas.y}px;height:${e.tas.h}px"><span>Le tas d'oursons</span></div>`);
+  e.places.forEach(p => {
+    const el = document.createElement("div");
+    el.className = "place"; el.textContent = "?"; el.dataset.place = p.id;
+    el.style.left = p.x + "px"; el.style.top = p.y + "px";
+    el.tabIndex = 0; el.setAttribute("role", "button");
+    el.setAttribute("aria-label", p.g === 0 ? "Place d'un ancêtre" : (e.parents[p.id] ? "Place d'un enfant" : "Place d'un ourson qui entre dans la famille"));
+    el.addEventListener("click", () => poserSelection(p.id));
+    el.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); poserSelection(p.id); } });
+    scene.appendChild(el); p.el = el;
+  });
+  e.ours.forEach((o, i) => {
+    const el = document.createElement("div");
+    el.className = "ours"; el.innerHTML = oursSVG(o.cells); el.dataset.ours = o.id;
+    el.tabIndex = 0; el.style.zIndex = 10 + i;
+    el.addEventListener("pointerdown", ev => attraper(ev, o));
+    el.addEventListener("keydown", ev => {
+      if (ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); choisir(selection === o ? null : o); }
+      if (ev.key === "Escape") choisir(null);
+    });
+    scene.appendChild(el); o.el = el;
+    placerEl(o);
+  });
+  ajusterEchelle();
+}
+function placerEl(o){ o.el.style.left = o.x + "px"; o.el.style.top = o.y + "px"; o.el.style.transform = `rotate(${o.rot}deg)`; }
+let echelle = 1;
+function ajusterEchelle(){
+  if (!etat || cadre.classList.contains("cache")) return;
+  const dispo = cadre.clientWidth;
+  echelle = Math.min(document.fullscreenElement ? 1.4 : 1.05, dispo / etat.W);
+  if (echelle < .5) echelle = .5;
+  scene.style.transform = `scale(${echelle})`;
+  scene.style.width = etat.W + "px";
+  scene.style.marginLeft = Math.max(0, (dispo - etat.W * echelle) / 2) + "px";
+  cadre.style.height = (etat.H * echelle) + "px";
+  scene.parentElement.scrollLeft = 0;
+}
+addEventListener("resize", ajusterEchelle);
+document.addEventListener("fullscreenchange", () => setTimeout(ajusterEchelle, 50));
+
+function majPlaces(){ etat.places.forEach(p => p.el.classList.toggle("prise", !!p.ours)); }
+function effacerMarques(){ etat.ours.forEach(o => o.el.classList.remove("faux", "juste")); }
+function oursDansPlace(id){ return etat.ours.find(o => o.place === id) || null; }
+
+function mettreDans(o, placeId){
+  const p = etat.P(placeId);
+  const occupant = oursDansPlace(placeId);
+  const ancienne = o.place;
+  if (occupant && occupant !== o){
+    if (ancienne){ mettreDans(occupant, ancienne); }
+    else { renvoyerAuTas(occupant, o.departDrag || occupant.depart); }
+  }
+  if (ancienne && ancienne !== placeId){ const ap = etat.P(ancienne); ap.ours = null; }
+  o.place = placeId; p.ours = o.id;
+  o.x = p.cx - BW / 2; o.y = p.y + (SH - BH) / 2; o.rot = 0;
+  placerEl(o); majPlaces();
+}
+function renvoyerAuTas(o, pos){
+  if (o.place){ etat.P(o.place).ours = null; o.place = null; }
+  pos = pos || o.depart;
+  o.x = pos.x; o.y = pos.y; o.rot = pos.rot || 0;
+  placerEl(o); majPlaces();
+}
+function choisir(o){
+  if (selection) selection.el.classList.remove("choisi");
+  selection = o;
+  if (o) o.el.classList.add("choisi");
+}
+function poserSelection(placeId){
+  if (!selection) return;
+  effacerMarques(); dire("");
+  const o = selection; choisir(null);
+  mettreDans(o, placeId);
+}
+
+/* ---------------- glisser-déposer (souris, doigt, stylet) */
+let prise = null;
+function pointScene(ev){ const r = scene.getBoundingClientRect(); return {x: (ev.clientX - r.left) / echelle, y: (ev.clientY - r.top) / echelle}; }
+function attraper(ev, o){
+  if (ev.button !== undefined && ev.button > 0) return;
+  ev.preventDefault();
+  o.el.setPointerCapture(ev.pointerId);
+  const pt = pointScene(ev);
+  prise = {o, dx: pt.x - o.x, dy: pt.y - o.y, x0: ev.clientX, y0: ev.clientY, bouge: false, id: ev.pointerId};
+  o.departDrag = {x: o.x, y: o.y, rot: o.rot};
+  o.el.addEventListener("pointermove", deplacer);
+  o.el.addEventListener("pointerup", lacher);
+  o.el.addEventListener("pointercancel", lacher);
+}
+function placeProche(o){
+  const cx = o.x + BW / 2, cy = o.y + BH / 2;
+  let best = null, dmin = 75;
+  etat.places.forEach(p => { const d = Math.hypot(p.cx - cx, p.y + SH / 2 - cy); if (d < dmin){ dmin = d; best = p; } });
+  return best;
+}
+function deplacer(ev){
+  if (!prise || ev.pointerId !== prise.id) return;
+  const o = prise.o;
+  if (!prise.bouge && Math.hypot(ev.clientX - prise.x0, ev.clientY - prise.y0) < 5) return;
+  if (!prise.bouge){ prise.bouge = true; o.el.classList.add("prendre"); effacerMarques(); dire(""); choisir(null); }
+  const pt = pointScene(ev);
+  o.x = Math.max(-10, Math.min(etat.W - BW + 10, pt.x - prise.dx));
+  o.y = Math.max(-10, Math.min(etat.H - BH + 10, pt.y - prise.dy));
+  o.rot = 0; placerEl(o);
+  const p = placeProche(o);
+  etat.places.forEach(q => q.el.classList.toggle("cible", q === p));
+}
+function lacher(ev){
+  if (!prise || ev.pointerId !== prise.id) return;
+  const o = prise.o, bouge = prise.bouge;
+  o.el.removeEventListener("pointermove", deplacer);
+  o.el.removeEventListener("pointerup", lacher);
+  o.el.removeEventListener("pointercancel", lacher);
+  o.el.classList.remove("prendre");
+  etat.places.forEach(q => q.el.classList.remove("cible"));
+  prise = null;
+  if (!bouge){ choisir(selection === o ? null : o); return; }
+  o.el.style.zIndex = ++zMax;
+  const p = placeProche(o);
+  if (p) mettreDans(o, p.id);
+  else { if (o.place){ etat.P(o.place).ours = null; o.place = null; majPlaces(); } }
+}
+let zMax = 500;
+
+/* ---------------- vérifier, indice, solution */
+function verifier(){
+  effacerMarques(); choisir(null);
+  const vides = etat.places.filter(p => !p.ours).length;
+  const fautes = [];
+  etat.places.forEach(p => {
+    const par = etat.parents[p.id]; if (!par || !p.ours) return;
+    const o = oursDansPlace(p.id), a = oursDansPlace(par[0]), b = oursDansPlace(par[1]);
+    if (!a || !b) return;
+    if (enfantPossible(o.cells, a.cells, b.cells)) o.el.classList.add("juste");
+    else { o.el.classList.add("faux"); fautes.push(pourquoiPas(o.cells, a.cells, b.cells)); }
+  });
+  if (!fautes.length && !vides){
+    etat.ours.filter(o => o.place).forEach((o, i) => setTimeout(() => { o.el.classList.remove("saute"); void o.el.offsetWidth; o.el.classList.add("saute"); }, i * 60));
+    confettis();
+    const niv = mode.startsWith("n") ? NIVEAUX[+mode.slice(1)] : null;
+    if (niv) noterReussi(mode);
+    const suivant = niv && +mode.slice(1) < NIVEAUX.length - 1;
+    dire(`<b>L'arbre est juste !</b> ${niv ? niv.bravo : "Chaque enfant tient bien un côté de chacun de ses parents."}` +
+      `<div class="suite">${suivant ? `<button class="btn primaire" onclick="choisirMode('n${+mode.slice(1) + 1}')">Niveau suivant →</button> ` : ""}<button class="btn" onclick="recommencer()">Rejouer avec d'autres oursons</button></div>`, "ok");
+    return;
+  }
+  let m = "";
+  if (fautes.length) m += `<b>${fautes.length === 1 ? "Un ourson entouré en rouge ne peut pas être l'enfant de ses parents" : fautes.length + " oursons entourés en rouge ne peuvent pas être les enfants de leurs parents"}</b> : ${fautes[0]}. `;
+  if (vides) m += `${fautes.length ? "Et il" : "Pas encore : il"} reste ${vides} place${vides > 1 ? "s" : ""} vide${vides > 1 ? "s" : ""}. `;
+  if (!fautes.length && vides) m += "Les oursons entourés en vert sont déjà bien placés par rapport à leurs parents.";
+  dire(m, fautes.length ? "ko" : "");
+}
+function equivalent(o, sol){ return o && cle(o.cells) === cle(sol.cells); }
+function placerEquivalent(placeId){
+  const sol = etat.ours.find(o => o.sol === placeId);
+  const cands = etat.ours.filter(o => equivalent(o, sol));
+  const o = cands.find(c => !c.place) || cands.find(c => c.place && !placeJuste(c.place)) || sol;
+  const occupant = oursDansPlace(placeId);
+  if (occupant && occupant !== o) renvoyerAuTas(occupant);
+  if (o.place && o.place !== placeId){ etat.P(o.place).ours = null; o.place = null; }
+  o.el.style.zIndex = ++zMax;
+  mettreDans(o, placeId);
+  o.el.classList.add("saute");
+}
+function placeJuste(id){
+  const o = oursDansPlace(id); if (!o) return false;
+  const par = etat.parents[id];
+  if (!par) return estPur(o.cells);
+  const a = oursDansPlace(par[0]), b = oursDansPlace(par[1]);
+  return !!(a && b && enfantPossible(o.cells, a.cells, b.cells));
+}
+function indice(){
+  effacerMarques(); choisir(null);
+  const ordre = etat.places.slice().sort((u, v) => u.g - v.g || u.cx - v.cx);
+  for (const p of ordre){
+    const o = oursDansPlace(p.id);
+    const par = etat.parents[p.id];
+    if (!o){ placerEquivalent(p.id); dire("Un ourson a été mis à sa place. À toi de continuer !"); return; }
+    if (par && !placeJuste(p.id)){
+      const a = oursDansPlace(par[0]), b = oursDansPlace(par[1]);
+      if (!a || !b) continue;
+      const solA = etat.ours.find(x => x.sol === par[0]), solB = etat.ours.find(x => x.sol === par[1]);
+      for (const pid of par){
+        const occ = oursDansPlace(pid);
+        if (!equivalent(occ, solA) && !equivalent(occ, solB)){ placerEquivalent(pid); dire("Un parent n'était pas le bon : il a été remplacé."); return; }
+      }
+      placerEquivalent(p.id); dire("Cet ourson n'était pas à la bonne place : il a été remplacé."); return;
+    }
+    if (!par && !estPur(o.cells)){ placerEquivalent(p.id); dire("Les oursons tout d'une couleur sont les ancêtres : un ourson a été remplacé."); return; }
+  }
+  dire("Tout a l'air bien placé : clique sur « Vérifier » !");
+}
+function solution(){
+  effacerMarques(); choisir(null);
+  etat.ours.forEach(o => { if (o.place){ etat.P(o.place).ours = null; o.place = null; } });
+  etat.ours.forEach(o => { if (o.sol) mettreDans(o, o.sol); else renvoyerAuTas(o); });
+  dire("Voici la solution. Les oursons restés dans le tas sont les intrus.");
+}
+
+/* ---------------- messages et confettis */
+function dire(html, cls){ const m = $("#message"); m.innerHTML = html; m.className = "message" + (cls ? " " + cls : ""); }
+function confettis(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const box = document.createElement("div"); box.className = "confettis";
+  const cs = ["R","B","V","O","J"].map(c => COUL[c].c);
+  for (let i = 0; i < 70; i++){
+    const c = document.createElement("i");
+    c.style.left = Math.random() * 100 + "vw"; c.style.background = cs[i % cs.length];
+    c.style.animationDuration = (1.8 + Math.random() * 1.6) + "s"; c.style.animationDelay = Math.random() * .6 + "s";
+    box.appendChild(c);
+  }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 4200);
+}
+
+/* ================================================================ modes */
+let famillePerso = null; // {gens, intrus, graine}
+function majModes(){
+  const nav = $("#modes");
+  const b = (k, txt) => `<button data-mode="${k}" aria-pressed="${mode === k}" class="${reussis[k] ? "reussi" : ""}">${txt}<span class="ok">✓</span></button>`;
+  nav.innerHTML = NIVEAUX.map((n, i) => b("n" + i, n.nom)).join("") +
+    (famillePerso ? b("perso", "Famille de la classe") : "") +
+    `<span class="sep"></span>` + b("colorier", "Colorier un enfant") + b("creer", "Créer ma famille");
+  nav.querySelectorAll("button").forEach(x => x.addEventListener("click", () => choisirMode(x.dataset.mode)));
+}
+function boutons(html){ $("#outils").innerHTML = html; }
+function choisirMode(k, garderGraine){
+  mode = k; selection = null; dire("");
+  majModes();
+  const partie = k.startsWith("n") || k === "perso";
+  cadre.classList.toggle("cache", !partie);
+  $("#coloriage").classList.toggle("cache", k !== "colorier");
+  $("#creer").classList.toggle("cache", k !== "creer");
+  $("#regle").classList.toggle("cache", k === "creer");
+  if (partie){
+    let fam, intrus, titre, texte, graine;
+    if (k === "perso"){
+      fam = familleChaine(famillePerso.gens); intrus = famillePerso.intrus; graine = famillePerso.graine;
+      titre = famillePerso.titre || "La famille de la classe";
+      texte = "Une famille préparée par ton professeur. Fais glisser chaque ourson à sa place dans l'arbre." + (intrus.length ? ` Attention : ${intrus.length === 1 ? "un intrus se cache" : intrus.length + " intrus se cachent"} dans le tas.` : "");
+    } else {
+      const n = NIVEAUX[+k.slice(1)];
+      fam = n.fam(); intrus = n.intrus; titre = `${n.nom} · ${n.titre}`; texte = n.texte;
+      graine = garderGraine || nouvelleGraine();
+    }
+    etat = construirePartie(fam, intrus, graine);
+    $("#titre").textContent = titre; $("#texte").textContent = texte;
+    boutons(`<button class="btn primaire" id="bVerif">Vérifier</button><button class="btn" id="bIndice">Indice</button><button class="btn" id="bRejouer">${k === "perso" ? "Tout remettre dans le tas" : "Autres oursons"}</button><button class="btn" id="bSol">Solution</button>` + boutonsCommuns());
+    $("#bVerif").onclick = verifier; $("#bIndice").onclick = indice; $("#bSol").onclick = solution;
+    $("#bRejouer").onclick = () => k === "perso" ? choisirMode("perso") : recommencer();
+    lierCommuns();
+    dessinerPlateau();
+  }
+  if (k === "colorier") modeColorier(true);
+  if (k === "creer") modeCreer();
+  legende();
+}
+function recommencer(){ choisirMode(mode); }
+function boutonsCommuns(){
+  return `<button class="btn" id="bLettres" aria-pressed="${document.body.classList.contains("lettres")}" title="Écrit l'initiale de chaque couleur sur les oursons (utile pour les élèves daltoniens)">Lettres</button>` +
+         (document.fullscreenEnabled ? `<button class="btn" id="bPlein" title="Plein écran, pour projeter">Plein écran</button>` : "");
+}
+function lierCommuns(){
+  $("#bLettres").onclick = e => { const on = document.body.classList.toggle("lettres"); e.currentTarget.setAttribute("aria-pressed", on); try { localStorage.setItem("oursons-lettres", on ? "1" : ""); } catch(_){} };
+  const p = $("#bPlein"); if (p) p.onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
+}
+function legende(){
+  $("#legende").innerHTML = ORDRE_C.map(c => `<span class="legende-c"><span class="pastille" style="background:${COUL[c].c}"></span>${c} = ${COUL[c].nom}</span>`).join("") +
+    " · Souris, doigt ou clavier : on peut aussi toucher un ourson puis toucher une place.";
+}
+
+/* ================================================================ colorier un enfant */
+const DEFIS_C = [
+  {titre: "Deux parents d'une seule couleur", f: () => [pur("R"), pur("B")]},
+  {titre: "Un parent mélangé", f: () => { const c = naissance(pur("R"), pur("B")); return rnd() < .5 ? [c, pur("V")] : [pur("V"), c]; }},
+  {titre: "Deux parents mélangés", f: () => [naissance(pur("R"), pur("B")), naissance(pur("V"), pur("J"))]},
+  {titre: "Deux parents très mélangés", f: () => { const g1 = naissance(naissance(pur("R"), pur("B")), pur("V")); const g2 = naissance(pur("O"), pur("J")); return [g1, g2]; }},
+];
+let col = {defi: 0, parents: null, enfant: null, pinceau: "R"};
+function modeColorier(nouveau){
+  if (nouveau || !col.parents){ col.parents = DEFIS_C[col.defi].f(); col.enfant = Array(8).fill(VIDE); }
+  const [pa, pb] = col.parents;
+  const dispo = ORDRE_C;
+  $("#titre").textContent = `Colorier un enfant · ${col.defi + 1}. ${DEFIS_C[col.defi].titre}`;
+  $("#texte").textContent = "Voici deux parents. Choisis une couleur, puis touche les morceaux de l'ourson du bas pour le colorier comme un de leurs enfants possibles.";
+  boutons(`<button class="btn primaire" id="cVerif">Vérifier</button><button class="btn" id="cEffacer">Effacer</button><button class="btn" id="cAutre">Autres parents</button><button class="btn" id="cExemple">Un exemple</button>` + boutonsCommuns());
+  lierCommuns();
+  const z = $("#coloriage");
+  z.innerHTML = `
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:12px">${DEFIS_C.map((d, i) => `<button class="btn" data-defi="${i}" aria-pressed="${i === col.defi}">${i + 1}. ${d.titre}</button>`).join("")}</div>
+    <div class="couple-c">
+      <div class="p">${oursSVG(pa)}<small>Parent 1</small></div>
+      <div class="lien"></div>
+      <div class="p">${oursSVG(pb)}<small>Parent 2</small></div>
+    </div>
+    <div class="descente"></div>
+    <div class="enfant-c">
+      <div class="grand" id="grandOurs">${oursSVG(col.enfant, {label: "L'enfant à colorier"})}</div>
+      <div class="palette"><p>Ta couleur</p><div class="rang">${dispo.map(c => `<button data-c="${c}" style="background:${COUL[c].c};color:${COUL[c].txt}" aria-pressed="${col.pinceau === c}" aria-label="${COUL[c].nom}" title="${COUL[c].nom}"><span class="lettre-p">${c}</span></button>`).join("")}</div>
+      <p style="font-weight:400;max-width:240px">Astuce : un côté du corps vient d'un parent, l'autre côté de l'autre parent.</p></div>
+    </div>
+    <div id="freres"></div>`;
+  z.querySelectorAll("[data-defi]").forEach(b => b.onclick = () => { col.defi = +b.dataset.defi; dire(""); modeColorier(true); });
+  z.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { col.pinceau = b.dataset.c; z.querySelectorAll("[data-c]").forEach(x => x.setAttribute("aria-pressed", x === b)); });
+  brancherZones();
+  $("#cVerif").onclick = verifierColoriage;
+  $("#cEffacer").onclick = () => { col.enfant = Array(8).fill(VIDE); dire(""); modeColorier(false); };
+  $("#cAutre").onclick = () => { dire(""); modeColorier(true); };
+  $("#cExemple").onclick = () => { col.enfant = naissance(pa, pb); dire("Voici un enfant possible. Il y en a beaucoup d'autres : clique encore pour en voir un nouveau."); modeColorier(false); };
+}
+let peint = false;
+addEventListener("pointerup", () => { peint = false; });
+addEventListener("pointercancel", () => { peint = false; });
+function brancherZones(){
+  const g = $("#grandOurs");
+  const peindre = t => { const i = t && t.dataset && t.dataset.i; if (i === undefined || !g.contains(t)) return; col.enfant[+i] = col.pinceau; t.setAttribute("fill", COUL[col.pinceau].c); };
+  g.style.touchAction = "none";
+  g.addEventListener("pointerdown", ev => { if (!ev.target.classList.contains("zone")) return; ev.preventDefault(); peint = true; peindre(ev.target); dire(""); });
+  g.addEventListener("pointermove", ev => { if (!peint) return; peindre(document.elementFromPoint(ev.clientX, ev.clientY)); });
+}
+function verifierColoriage(){
+  const e = col.enfant, [pa, pb] = col.parents;
+  const vides = e.filter(c => c === VIDE).length;
+  if (vides){ dire(`Il reste ${vides} morceau${vides > 1 ? "x" : ""} à colorier.`, ""); return; }
+  if (enfantPossible(e, pa, pb)){
+    noterReussi("colorier");
+    confettis();
+    rnd = Math.random;
+    const freres = Array.from({length: 5}, () => naissance(pa, pb));
+    dire(`<b>Oui, c'est un enfant possible !</b> Il a ${composition(e)}. Ses frères et sœurs pourraient ressembler à ça :` +
+      `<div class="freres">${freres.map(f => oursSVG(f)).join("")}</div>` +
+      `<div class="suite">${col.defi < DEFIS_C.length - 1 ? `<button class="btn primaire" id="cSuiv">Défi suivant →</button> ` : ""}<button class="btn" id="cEncore">Autres parents</button></div>`, "ok");
+    const s = $("#cSuiv"); if (s) s.onclick = () => { col.defi++; dire(""); modeColorier(true); };
+    $("#cEncore").onclick = () => { dire(""); modeColorier(true); };
+  } else {
+    dire(`<b>Cet ourson ne peut pas être leur enfant</b> : ${pourquoiPas(e, pa, pb)}.`, "ko");
+  }
+}
+
+/* ================================================================ créer sa famille */
+let brouillon = {titre: "", gens: [{a: "R", b: "B", n: 2}, {conj: "V", n: 3}], intrus: 0, graine: nouvelleGraine()};
+function choixCouleur(nom, val){ return `<span class="choix-c" data-nom="${nom}">${ORDRE_C.map(c => `<button type="button" data-c="${c}" aria-pressed="${val === c}" style="background:${COUL[c].c}" title="${COUL[c].nom}" aria-label="${COUL[c].nom}"></button>`).join("")}</span>`; }
+function choixNombre(nom, val){ return `<label>Enfants <select data-nom="${nom}">${[1,2,3,4].map(n => `<option ${n === val ? "selected" : ""}>${n}</option>`).join("")}</select></label>`; }
+function modeCreer(){
+  $("#titre").textContent = "Créer ma famille";
+  $("#texte").textContent = "Choisissez les couleurs et le nombre d'enfants à chaque génération. Les enfants naissent selon la règle de l'hérédité. Puis lancez le défi, ou copiez le lien pour l'envoyer aux élèves.";
+  boutons(boutonsCommuns()); lierCommuns();
+  const b = brouillon;
+  const z = $("#creer");
+  z.innerHTML = `
+    <label style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-weight:600">Nom de la famille <input id="cTitre" type="text" maxlength="60" placeholder="La famille Gélatine" value="${(b.titre || "").replace(/"/g, "&quot;")}" style="flex:1;min-width:200px;padding:8px 10px;border-radius:8px;border:1px solid var(--bord-fort)"></label>
+    ${b.gens.map((g, i) => `<div class="gen">
+       <b>${i === 0 ? "Le premier couple" : `Génération ${i + 1}`}</b>
+       ${i === 0 ? `<label>Parent 1 ${choixCouleur("a0", g.a)}</label><label>Parent 2 ${choixCouleur("b0", g.b)}</label>`
+                 : `<label>Le dernier enfant épouse un ourson ${choixCouleur("conj" + i, g.conj)}</label>`}
+       ${choixNombre("n" + i, g.n)}
+       ${i > 0 && i === b.gens.length - 1 ? `<button class="btn" id="cRetirer">Retirer</button>` : ""}
+     </div>`).join("")}
+    <div class="outils">
+      ${b.gens.length < 4 ? `<button class="btn" id="cAjouter">+ Ajouter une génération</button>` : ""}
+      <label style="font-size:14px;display:flex;gap:6px;align-items:center">Intrus dans le tas <select id="cIntrus">${[0,1,2].map(n => `<option ${n === b.intrus ? "selected" : ""}>${n}</option>`).join("")}</select></label>
+      <button class="btn" id="cTirer">Faire naître d'autres enfants</button>
+    </div>
+    <h3 style="margin-top:16px">Aperçu de l'arbre (la solution)</h3>
+    <div class="plateau-cadre" id="apercuCadre" style="margin-top:6px"><div class="scene" id="apercu"></div></div>
+    <div class="lien-partage">
+      <button class="btn primaire" id="cLancer">Lancer le défi →</button>
+      <input id="cLien" type="text" readonly aria-label="Lien du défi pour les élèves">
+      <button class="btn" id="cCopier">Copier le lien</button>
+    </div>
+    <p class="small" style="font-size:13.5px;color:var(--ink-mute);margin:8px 0 0">Le lien contient toute la famille : les élèves qui l'ouvrent trouvent exactement les mêmes oursons, mélangés dans le tas. Rien n'est enregistré sur Internet.</p>`;
+  z.querySelectorAll(".choix-c").forEach(s => s.querySelectorAll("button").forEach(btn => btn.onclick = () => {
+    const nom = s.dataset.nom, c = btn.dataset.c;
+    if (nom === "a0") b.gens[0].a = c; else if (nom === "b0") b.gens[0].b = c; else b.gens[+nom.slice(4)].conj = c;
+    modeCreer();
+  }));
+  z.querySelectorAll("select[data-nom]").forEach(s => s.onchange = () => { b.gens[+s.dataset.nom.slice(1)].n = +s.value; modeCreer(); });
+  const aj = $("#cAjouter"); if (aj) aj.onclick = () => { const deja = new Set(b.gens.flatMap(g => [g.a, g.b, g.conj])); b.gens.push({conj: ORDRE_C.find(c => !deja.has(c) && c !== "N") || "J", n: 3}); modeCreer(); };
+  const re = $("#cRetirer"); if (re) re.onclick = () => { b.gens.pop(); modeCreer(); };
+  $("#cIntrus").onchange = e => { b.intrus = +e.target.value; modeCreer(); };
+  $("#cTirer").onclick = () => { b.graine = nouvelleGraine(); modeCreer(); };
+  $("#cTitre").oninput = e => { b.titre = e.target.value; majLien(); };
+  $("#cLancer").onclick = () => { famillePerso = specPerso(); choisirMode("perso"); window.scrollTo({top: 0, behavior: "smooth"}); };
+  $("#cCopier").onclick = () => { const i = $("#cLien"); i.select(); (navigator.clipboard ? navigator.clipboard.writeText(i.value) : Promise.reject()).then(() => { $("#cCopier").textContent = "Lien copié ✓"; }).catch(() => { document.execCommand("copy"); $("#cCopier").textContent = "Lien copié ✓"; }); };
+  // aperçu : la solution, avec les intrus à côté
+  const e = construirePartie(familleChaine(b.gens), intrusDe(b.intrus), b.graine);
+  const ap = $("#apercu"), apC = $("#apercuCadre");
+  const hArbre = e.tas.y + (e.ours.some(o => !o.sol) ? 140 : 0);
+  ap.style.width = e.W + "px"; ap.style.height = hArbre + "px";
+  let d = "";
+  e.couples.forEach(c => {
+    const [a, bb] = c.p.map(e.P).sort((u, v) => u.cx - v.cx);
+    const ym = a.y + SH / 2, mx = (a.x + SW + bb.x) / 2, ks = c.k.map(e.P), yb = ks[0].y - 26, xs = ks.map(k => k.cx).concat(mx);
+    d += `M${a.x + SW + 4} ${ym}H${bb.x - 4}M${mx} ${ym}V${yb}M${Math.min(...xs)} ${yb}H${Math.max(...xs)}`;
+    ks.forEach(k => d += `M${k.cx} ${yb}V${k.y - 4}`);
+  });
+  let h = `<svg class="traits" width="${e.W}" height="${hArbre}"><path d="${d}"/></svg>`;
+  e.ours.forEach(o => { if (o.sol){ const p = e.P(o.sol); h += `<div class="ours" style="left:${p.cx - BW / 2}px;top:${p.y + 5}px;cursor:default">${oursSVG(o.cells)}</div>`; } });
+  e.ours.filter(o => !o.sol).forEach((o, i) => { h += `<div class="ours" style="left:${30 + i * 100}px;top:${e.tas.y + 20}px;cursor:default">${oursSVG(o.cells)}</div>`; });
+  if (e.ours.some(o => !o.sol)) h += `<div style="position:absolute;left:${40 + e.ours.filter(o => !o.sol).length * 100}px;top:${e.tas.y + 58}px;font-weight:600;color:#7b6c55">← ${b.intrus > 1 ? "les intrus" : "l'intrus"}</div>`;
+  ap.innerHTML = h;
+  const s = Math.min(1, (apC.clientWidth || 800) / e.W);
+  ap.style.transform = `scale(${s})`; apC.style.height = hArbre * s + "px";
+  majLien();
+}
+function intrusDe(n){ return n === 0 ? [] : n === 1 ? ["couleur"] : ["couleur", "subtil"]; }
+function specPerso(){ return {gens: brouillon.gens.map(g => ({...g})), intrus: intrusDe(brouillon.intrus), graine: brouillon.graine, titre: brouillon.titre.trim()}; }
+function encoder(spec){
+  const g = spec.gens.map((x, i) => i === 0 ? x.a + x.b + x.n : x.conj + x.n).join("-");
+  let s = `f=${g}&i=${spec.intrus.length}&s=${spec.graine}`;
+  if (spec.titre) s += "&t=" + encodeURIComponent(spec.titre);
+  return s;
+}
+function decoder(h){
+  const q = new URLSearchParams(h.replace(/^#/, ""));
+  const f = q.get("f"); if (!f) return null;
+  const parts = f.split("-"); const gens = [];
+  const okC = c => ORDRE_C.includes(c);
+  for (let i = 0; i < parts.length && i < 4; i++){
+    const p = parts[i];
+    if (i === 0){ if (!/^[A-Z]{2}[1-4]$/.test(p) || !okC(p[0]) || !okC(p[1])) return null; gens.push({a: p[0], b: p[1], n: +p[2]}); }
+    else { if (!/^[A-Z][1-4]$/.test(p) || !okC(p[0])) return null; gens.push({conj: p[0], n: +p[1]}); }
+  }
+  const n = Math.min(2, Math.max(0, parseInt(q.get("i") || "0", 10) || 0));
+  return {gens, intrus: intrusDe(n), graine: (parseInt(q.get("s") || "1", 10) || 1) >>> 0, titre: (q.get("t") || "").slice(0, 60)};
+}
+function majLien(){
+  const i = $("#cLien"); if (!i) return;
+  i.value = location.origin + location.pathname + "#" + encoder(specPerso());
+  const c = $("#cCopier"); if (c) c.textContent = "Copier le lien";
+}
+
+/* ================================================================ démarrage */
+try { if (localStorage.getItem("oursons-lettres")) document.body.classList.add("lettres"); } catch(e) {}
+$("#teteOurs").innerHTML = [pur("R"), naissance(pur("R"), pur("B")), pur("B")].map(c => oursSVG(c)).join("");
+const depuisLien = decoder(location.hash);
+if (depuisLien){ famillePerso = depuisLien; choisirMode("perso"); }
+else {
+  const q = new URLSearchParams(location.search);
+  const m = q.get("mode");
+  choisirMode(m === "colorier" || m === "creer" ? m : (/^n[0-4]$/.test(m || "") ? m : "n0"));
+}
+</script>
+</body>
+</html>
