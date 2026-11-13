@@ -39,7 +39,7 @@ Les élèves ne lisent pas la règle : ils la **découvrent en cherchant**. Pour
 <ol class="pas-a-pas">
 <li><b>Reconstituer l'arbre</b> : un tas d'oursons, un arbre vide. On fait glisser chaque ourson à sa place (souris, doigt ou clavier), puis « Vérifier ». Les oursons qui ne peuvent pas être les enfants de leurs parents sont entourés en rouge, avec la raison (« il a du vert, mais aucun de ses parents n'en a »). Cinq niveaux, de la famille de cinq oursons au grand arbre de quatre générations où se cachent deux intrus. « Autres oursons » refait naître de nouveaux enfants : on peut rejouer sans retrouver la même famille.</li>
 <li><b>Créer l'enfant</b> (la variante inversée) : on montre deux parents, les élèves fabriquent un de leurs enfants possibles en choisissant la couleur de chaque morceau. L'outil dit si c'est possible, et montre d'autres frères et sœurs qui auraient pu naître. Quatre défis, des parents unis aux parents très mélangés.</li>
-<li><b>Créer sa famille</b> : vous choisissez les couleurs du premier couple, le nombre d'enfants, les mariages à chaque génération et le nombre d'intrus. L'aperçu montre la solution. « Copier le lien » donne une adresse à envoyer aux élèves : ils trouvent exactement les mêmes oursons, mélangés dans le tas.</li>
+<li><b>Créer sa famille</b> : vous choisissez les couleurs du premier couple, le nombre d'enfants, les mariages à chaque génération et le nombre d'intrus. L'aperçu montre la solution. « Copier le lien » donne une adresse à envoyer aux élèves : ils trouvent exactement les mêmes oursons, mélangés dans le tas. Une case permet de leur cacher « Indice » et « Solution ».</li>
 </ol>
 
 ## La règle du jeu
@@ -57,7 +57,7 @@ L'outil vérifie la règle, pas une réponse unique : si deux frères identiques
 - **Indice** place un ourson au bon endroit ; **Solution** montre tout l'arbre (et les intrus restés dans le tas).
 - **Lettres** écrit l'initiale de chaque couleur sur les oursons, pour les élèves daltoniens.
 - On peut aussi toucher un ourson, puis toucher la place où on veut le mettre.
-- **Sur téléphone**, tout fonctionne mais les grands arbres rendent les oursons petits : mieux vaut une tablette, un ordinateur, ou le téléphone tenu à l'horizontale.
+- **Sur téléphone**, l'arbre se resserre pour tenir dans l'écran ; une tablette ou un ordinateur restent plus confortables pour les grands arbres.
 
 ## Pour aller plus loin
 
