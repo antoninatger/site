@@ -88,6 +88,7 @@ details.regle li{margin:3px 0}
 .ours:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:12px}
 .ours.faux::after,.ours.juste::after{content:"";position:absolute;inset:-7px -7px;border-radius:20px;border:3px solid var(--ko);pointer-events:none}
 .ours.juste::after{border-color:var(--ok)}
+.ours.suspect::after{content:"";position:absolute;inset:-7px -7px;border-radius:20px;border:3px dashed #e07b00;pointer-events:none}
 .ours.saute{animation:saute .6s ease}
 @keyframes saute{0%,100%{translate:0 0}40%{translate:0 -16px}70%{translate:0 2px}}
 .lettre{display:none;font:700 12px var(--f-texte);text-anchor:middle;dominant-baseline:central;pointer-events:none}
@@ -243,10 +244,27 @@ const couleursDe = t => [...new Set(t)];
 const estPur = t => t.every(c => c === t[0]);
 const cle = t => [t.slice(0,4).slice().sort().join(""), t.slice(4).slice().sort().join("")].sort().join("|");
 function nomsCouleurs(liste){ const n = liste.map(c => COUL[c].nom); return n.length < 2 ? n.join("") : n.slice(0,-1).join(", ") + " et " + n[n.length-1]; }
-function pourquoiPas(e, pa, pb){
+function nomPluriel(c, k){ const n = COUL[c].nom; return k > 1 && c !== "O" ? n + "s" : n; }
+// Explique pourquoi e ne peut pas être l'enfant de pa et pb. noms = [nom de pa, nom de pb].
+// Renvoie {texte, suspect} : suspect = 0 ou 1 (le parent qui ne peut pas donner le côté), ou null.
+function pourquoiPas(e, pa, pb, noms){
   const manque = couleursDe(e).filter(c => !pa.includes(c) && !pb.includes(c));
-  if (manque.length) return `il a du ${nomsCouleurs(manque)}, mais aucun de ses deux parents n'en a`;
-  return "ses couleurs ne viennent pas moitié-moitié de ses deux parents : un côté de son corps doit venir de l'un, l'autre côté de l'autre";
+  if (manque.length) return {texte: `il a du ${nomsCouleurs(manque)}, mais aucun de ses deux parents n'en a`, suspect: null};
+  const cotes = [["gauche", e.slice(0,4)], ["droit", e.slice(4)]];
+  let best = null;
+  [[0,1],[1,0]].forEach(([iG, iD]) => {
+    const par = [pa, pb], defs = [];
+    [[0, iG], [1, iD]].forEach(([ci, pi]) => {
+      const m = compte(cotes[ci][1]), h = compte(par[pi]);
+      Object.keys(m).forEach(c => { if ((h[c] || 0) < m[c]) defs.push({cote: cotes[ci][0], c, k: m[c], h: h[c] || 0, pi}); });
+    });
+    if (!best || defs.length < best.length) best = defs;
+  });
+  const d = best[0];
+  const morceaux = k => `${k} morceau${k > 1 ? "x" : ""} ${nomPluriel(d.c, k)}`;
+  const texte = `son côté ${d.cote} a ${morceaux(d.k)}. Or un côté vient toujours d'un seul parent, et ${noms[d.pi]} ` +
+    (d.h === 0 ? `n'a pas de ${COUL[d.c].nom}` : d.h === 1 ? `n'a qu'un seul morceau ${COUL[d.c].nom} à donner` : `n'a que ${morceaux(d.h)} à donner`);
+  return {texte, suspect: d.pi};
 }
 function composition(t){ const m = compte(t); return ORDRE_C.filter(c => m[c]).map(c => `${Math.round(m[c] / 8 * 100)} % ${COUL[c].nom}`).join(", "); }
 
@@ -451,7 +469,7 @@ function ajusterEchelle(){
   if (!etat || cadre.classList.contains("cache")) return;
   const dispo = cadre.clientWidth;
   echelle = Math.min(document.fullscreenElement ? 1.4 : 1.05, dispo / etat.W);
-  if (echelle < .5) echelle = .5;
+  if (echelle < .42) echelle = .42;
   scene.style.transform = `scale(${echelle})`;
   scene.style.width = etat.W + "px";
   scene.style.marginLeft = Math.max(0, (dispo - etat.W * echelle) / 2) + "px";
@@ -462,18 +480,20 @@ addEventListener("resize", ajusterEchelle);
 document.addEventListener("fullscreenchange", () => setTimeout(ajusterEchelle, 50));
 
 function majPlaces(){ etat.places.forEach(p => p.el.classList.toggle("prise", !!p.ours)); }
-function effacerMarques(){ etat.ours.forEach(o => o.el.classList.remove("faux", "juste")); }
+function effacerMarques(){ etat.ours.forEach(o => o.el.classList.remove("faux", "juste", "suspect")); }
 function oursDansPlace(id){ return etat.ours.find(o => o.place === id) || null; }
 
 function mettreDans(o, placeId){
   const p = etat.P(placeId);
   const occupant = oursDansPlace(placeId);
   const ancienne = o.place;
+  // détacher d'abord l'ourson déplacé, pour pouvoir échanger deux oursons déjà placés
+  if (ancienne){ etat.P(ancienne).ours = null; o.place = null; }
   if (occupant && occupant !== o){
-    if (ancienne){ mettreDans(occupant, ancienne); }
-    else { renvoyerAuTas(occupant, o.departDrag || occupant.depart); }
+    occupant.place = null; p.ours = null;
+    if (ancienne && ancienne !== placeId) mettreDans(occupant, ancienne);
+    else renvoyerAuTas(occupant, o.departDrag || occupant.depart);
   }
-  if (ancienne && ancienne !== placeId){ const ap = etat.P(ancienne); ap.ours = null; }
   o.place = placeId; p.ours = o.id;
   o.x = p.cx - BW / 2; o.y = p.y + (SH - BH) / 2; o.rot = 0;
   placerEl(o); majPlaces();
@@ -554,8 +574,20 @@ function verifier(){
     const par = etat.parents[p.id]; if (!par || !p.ours) return;
     const o = oursDansPlace(p.id), a = oursDansPlace(par[0]), b = oursDansPlace(par[1]);
     if (!a || !b) return;
-    if (enfantPossible(o.cells, a.cells, b.cells)) o.el.classList.add("juste");
-    else { o.el.classList.add("faux"); fautes.push(pourquoiPas(o.cells, a.cells, b.cells)); }
+    if (enfantPossible(o.cells, a.cells, b.cells)){ o.el.classList.add("juste"); return; }
+    o.el.classList.add("faux");
+    const r = pourquoiPas(o.cells, a.cells, b.cells, ["le parent entouré en orange", "le parent entouré en orange"]);
+    let texte = r.texte;
+    if (r.suspect !== null && !fautes.length){
+      const sus = [a, b][r.suspect], autre = [a, b][1 - r.suspect];
+      sus.el.classList.add("suspect");
+      // un frère ou une sœur du parent suspect pourrait-il être le vrai parent ?
+      const parSus = etat.parents[sus.place];
+      const freres = parSus ? etat.ours.filter(x => x !== sus && x.place && etat.parents[x.place] && etat.parents[x.place].join() === parSus.join()) : [];
+      if (freres.some(f => enfantPossible(o.cells, f.cells, autre.cells))) texte += `. Regarde bien ses frères et sœurs : et si c'était l'un d'eux qui s'était marié ?`;
+    else texte += ".";
+    }
+    fautes.push(texte);
   });
   if (!fautes.length && !vides){
     etat.ours.filter(o => o.place).forEach((o, i) => setTimeout(() => { o.el.classList.remove("saute"); void o.el.offsetWidth; o.el.classList.add("saute"); }, i * 60));
@@ -568,7 +600,7 @@ function verifier(){
     return;
   }
   let m = "";
-  if (fautes.length) m += `<b>${fautes.length === 1 ? "Un ourson entouré en rouge ne peut pas être l'enfant de ses parents" : fautes.length + " oursons entourés en rouge ne peuvent pas être les enfants de leurs parents"}</b> : ${fautes[0]}. `;
+  if (fautes.length) m += `<b>${fautes.length === 1 ? "L'ourson entouré en rouge ne peut pas être l'enfant de ses parents" : fautes.length + " oursons entourés en rouge ne peuvent pas être les enfants de leurs parents. Le premier"}</b> : ${fautes[0]} `;
   if (vides) m += `${fautes.length ? "Et il" : "Pas encore : il"} reste ${vides} place${vides > 1 ? "s" : ""} vide${vides > 1 ? "s" : ""}. `;
   if (!fautes.length && vides) m += "Les oursons entourés en vert sont déjà bien placés par rapport à leurs parents.";
   dire(m, fautes.length ? "ko" : "");
@@ -755,7 +787,7 @@ function verifierColoriage(){
     const s = $("#cSuiv"); if (s) s.onclick = () => { col.defi++; dire(""); modeColorier(true); };
     $("#cEncore").onclick = () => { dire(""); modeColorier(true); };
   } else {
-    dire(`<b>Cet ourson ne peut pas être leur enfant</b> : ${pourquoiPas(e, pa, pb)}.`, "ko");
+    dire(`<b>Cet ourson ne peut pas être leur enfant</b> : ${pourquoiPas(e, pa, pb, ["le parent 1", "le parent 2"]).texte}.`, "ko");
   }
 }
 
