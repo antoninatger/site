@@ -10,9 +10,9 @@
   <div class="prose">{{ page.html | safe }}</div>
   <section class="section section--tight" id="en-ligne">
     <div class="encart">
-      <div class="eyebrow">Bientôt</div>
+      <div class="eyebrow">En préparation</div>
       <h3>Formations en ligne</h3>
-      <p class="muted">Enseigner l'esprit critique en six séances clés en main, un atelier pour les parents sur les influenceurs, un cycle « arnaques en ligne » pour les structures qui accompagnent les seniors : les formations en ligne arrivent. Laissez votre adresse pour être prévenu à l'ouverture, et dites-moi ce qui vous serait le plus utile.</p>
+      <p class="muted">Enseigner l'esprit critique en six séances clés en main, un atelier pour les parents sur les influenceurs, un cycle « arnaques en ligne » pour les structures qui accompagnent les seniors : voilà les formations en ligne que je prépare. Laissez votre adresse pour être prévenu dès l'ouverture, et dites-moi ce qui vous serait le plus utile.</p>
       <form class="form" method="post" action="{{ site.formulaires.service }}" data-web3="[Liste d'attente formations]" data-objet-champs="profil email">
         <input type="hidden" name="access_key" value="{{ site.formulaires.cle }}">
         <input type="hidden" name="from_name" value="Site antoninatger.com">
@@ -30,6 +30,8 @@
             <option>Autre</option>
           </select></div>
         <div><label for="la-besoin">Ce qui vous serait le plus utile (facultatif)</label><textarea id="la-besoin" name="besoin" style="min-height:90px"></textarea></div>
+        <input type="hidden" name="articles" value="non">
+        <label class="case-cocher" for="la-articles"><input type="checkbox" id="la-articles" name="articles" value="oui"> Je veux aussi recevoir mes articles par e-mail (facultatif)</label>
         <button class="btn btn--primary" type="submit">Me prévenir à l'ouverture</button>
       </form>
       <p class="alerte" data-message-envoye hidden style="margin-top:12px">Merci, vous serez prévenu·e à l'ouverture.</p>
