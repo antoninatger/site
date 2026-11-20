@@ -2,7 +2,7 @@
 titre: Politique de confidentialité
 description: Ce que ce site collecte, et ce qu'il ne collecte pas.
 ---
-*Dernière mise à jour : septembre 2026.*
+*Dernière mise à jour : novembre 2026.*
 
 Ce site est fait de pages statiques : il n'a pas de compte utilisateur, pas de base de données, et il ne dépose aucun cookie de son propre fait. Voici ce qui est collecté, par qui, et pourquoi.
 
@@ -12,7 +12,7 @@ Antonin Atger, éditeur du site antoninatger.com. Pour toute question ou demande
 
 ## 2. Ce qui est collecté
 
-**Le formulaire de contact, les formulaires d'inscription et les avis sur les jeux et outils.** Quand vous m'écrivez, que vous donnez votre avis sur un jeu ou un outil, ou que vous vous inscrivez à une liste d'attente, les informations que vous saisissez (nom, adresse e-mail, structure, message) sont transmises par le service de formulaires Web3Forms puis me parviennent par e-mail. Elles servent uniquement à vous répondre ou à vous prévenir de l'ouverture de ce à quoi vous vous êtes inscrit. Base légale : votre consentement, et l'exécution de votre demande. Conservation : le temps de traiter votre demande, puis dans ma messagerie pour l'historique de nos échanges ; un an au plus pour une liste d'attente. Web3Forms traite les envois selon [sa propre politique](https://web3forms.com/privacy). Le formulaire de contact comporte une case « Je ne suis pas un robot » fournie par hCaptcha, qui vérifie que l'envoi vient d'une personne ; hCaptcha traite pour cela des données techniques de votre navigateur selon [sa propre politique](https://www.hcaptcha.com/privacy).
+**Le formulaire de contact, les formulaires d'inscription et les avis sur les jeux et outils.** Quand vous m'écrivez, que vous donnez votre avis sur un jeu ou un outil, ou que vous vous inscrivez à une liste d'attente, les informations que vous saisissez (nom, adresse e-mail, structure, message) sont transmises par le service de formulaires Web3Forms puis me parviennent par e-mail. Elles servent uniquement à vous répondre ou à vous prévenir de l'ouverture de ce à quoi vous vous êtes inscrit. Base légale : votre consentement, et l'exécution de votre demande. Conservation : le temps de traiter votre demande, puis dans ma messagerie pour l'historique de nos échanges ; un an au plus pour une liste d'attente. Si, en vous inscrivant à la liste d'attente des formations en ligne, vous cochez la case pour recevoir aussi mes articles, votre adresse sert également à vous les envoyer, jusqu'à ce que vous me demandiez d'arrêter (une réponse au mail suffit). Web3Forms traite les envois selon [sa propre politique](https://web3forms.com/privacy). Le formulaire de contact comporte une case « Je ne suis pas un robot » fournie par hCaptcha, qui vérifie que l'envoi vient d'une personne ; hCaptcha traite pour cela des données techniques de votre navigateur selon [sa propre politique](https://www.hcaptcha.com/privacy).
 
 **Les commentaires.** Si vous réagissez à un billet, votre prénom ou pseudo et votre commentaire me parviennent par e-mail (Web3Forms), et votre adresse e-mail aussi si vous la donnez ; elle n'est jamais affichée. Le commentaire n'est publié qu'après ma relecture, avec votre prénom ou pseudo et la date ; il reste en ligne tant que vous ne me demandez pas de le retirer. Pour préparer la publication, le commentaire transite par un petit serveur hébergé chez Cloudflare, qui ne conserve rien.
 

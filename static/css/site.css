@@ -238,6 +238,8 @@ details.faq p { margin: 8px 0 0; color: var(--ink-soft); font-size: .95rem; }
 .form label { font-size: .85rem; font-weight: 500; letter-spacing: .03em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 6px; }
 .form input, .form textarea, .form select { width: 100%; font: inherit; padding: 12px 14px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); color: var(--ink); }
 .form textarea { min-height: 160px; resize: vertical; }
+.form label.case-cocher { display: flex; align-items: flex-start; gap: 10px; text-transform: none; letter-spacing: 0; font-size: .95rem; font-weight: 400; color: var(--ink); margin: 0; cursor: pointer; }
+.form label.case-cocher input { width: auto; margin-top: 4px; padding: 0; flex: none; }
 .form .aide { font-size: .85rem; color: var(--ink-mute); margin: 0; }
 .form .btn { align-self: flex-start; }
 .form--inline { flex-direction: row; align-items: flex-end; flex-wrap: wrap; }
