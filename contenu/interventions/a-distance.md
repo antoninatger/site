@@ -17,7 +17,7 @@ visuel: /images/interventions/a-distance.jpg
 visuel_alt: "Antonin Atger devant un public qui filme avec un téléphone et des enfants qui lèvent la main"
 ---
 
-Je suis basé à Lyon et je me déplace partout en France, mais tout le monde ne peut pas faire venir un intervenant. Quatre interventions existent donc en version à distance : [Fake news et esprit critique](/interventions/fake-news-et-esprit-critique/), [Désinformation : au-delà des fake news](/interventions/desinformation-au-dela-des-fake-news/), [Se protéger des arnaques en ligne](/interventions/arnaques-en-ligne/) et [Déjouer les pièges de la rhétorique](/interventions/dejouer-les-pieges-de-la-rhetorique/).
+Je suis basé à Lyon et je me déplace partout en France, mais tout le monde ne peut pas faire venir un intervenant. Quatre interventions existent donc en version à distance : [Fake news et esprit critique](/interventions/fake-news-et-esprit-critique/), [Désinformation : comment manipuler l’opinion](/interventions/desinformation-au-dela-des-fake-news/), [Se protéger des arnaques en ligne](/interventions/arnaques-en-ligne/) et [Déjouer les pièges de la rhétorique](/interventions/dejouer-les-pieges-de-la-rhetorique/).
 
 <blockquote class="inquietude"><p>« Une intervention en visio, avec une classe ? J'ai peur que les élèves décrochent au bout de dix minutes… »</p></blockquote>
 

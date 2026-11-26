@@ -62,6 +62,14 @@
         <a class="btn btn--primary" href="/contact/?sujet={{ page.titre | urlencode }}">Proposer une date</a>
         <p class="small muted" style="margin:0">Pendant la séance, on joue ensemble aux jeux pédagogiques ; après, vos participants peuvent rejouer aux quatre jeux en accès libre, en classe ou à la maison.</p>
       </div>
+      {% if page.visuels_com %}
+      <div class="card visuels-com">
+        <h3>Visuels pour annoncer la séance</h3>
+        <img src="{{ page.visuels_com.apercu }}" alt="Visuel d'annonce : {{ page.titre }}, avec Antonin Atger" width="1080" height="1350" loading="lazy">
+        <p class="small muted" style="margin:0">Pour votre affiche, votre site, ADAGE ou vos réseaux. Cliquez sur un format pour le télécharger.</p>
+        <ul>{% for f in page.visuels_com.formats %}<li><a href="{{ f.fichier }}" download>{{ f.nom }}</a></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
       {% if page.pdf %}
       <a class="card" style="padding:16px 18px;display:flex;gap:12px;align-items:center;color:var(--ink)" href="{{ page.pdf }}">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="stroke:var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>

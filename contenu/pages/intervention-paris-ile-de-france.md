@@ -40,7 +40,7 @@ Basé à Lyon, je me déplace en Île-de-France pour les établissements scolair
 ## Les interventions
 
 - **[Fake news et esprit critique](/interventions/fake-news-et-esprit-critique/)**, du CM1 au lycée et pour le grand public.
-- **[Désinformation : au-delà des fake news](/interventions/desinformation-au-dela-des-fake-news/)**, pour les lycéens et les étudiants.
+- **[Désinformation : comment manipuler l’opinion](/interventions/desinformation-au-dela-des-fake-news/)**, pour les lycéens et les étudiants.
 - **[Déjouer les pièges de la rhétorique](/interventions/dejouer-les-pieges-de-la-rhetorique/)** et **[Le piège des influenceurs](/interventions/le-piege-des-influenceurs/)**.
 - **[Fake news et écologie](/interventions/fake-news-environnement/)**, donnée à Cergy et à Osny.
 - **[Se protéger des arnaques en ligne](/interventions/arnaques-en-ligne/)** et la **[conférence parents](/interventions/conference-parents/)**.

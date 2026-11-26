@@ -24,7 +24,7 @@ Les étudiants sont la cible privilégiée des campagnes de désinformation et, 
 
 ## Ce que je propose
 
-- **[Désinformation : au-delà des fake news](/interventions/desinformation-au-dela-des-fake-news/)** : manipuler sans mentir, cadrage, astroturfing, fabrique du doute. Une version longue, « Désinformation et neutralité journalistique », est donnée à l'HEIP et à l'ISCPA.
+- **[Désinformation : comment manipuler l’opinion](/interventions/desinformation-au-dela-des-fake-news/)** : manipuler sans mentir, cadrage, astroturfing, fabrique du doute. Une version longue, « Désinformation et neutralité journalistique », est donnée à l'HEIP et à l'ISCPA.
 - **[Déjouer les pièges de la rhétorique](/interventions/dejouer-les-pieges-de-la-rhetorique/)** : éthos, pathos, logos, sophismes, et des exercices de persuasion en groupe.
 - **[Fake news et écologie](/interventions/fake-news-environnement/)** : pourquoi la désinformation prospère sur le climat.
 - **[In English](/interventions/en-anglais/)** : les mêmes contenus en anglais, pour les cursus internationaux.

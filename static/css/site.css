@@ -214,6 +214,11 @@ th, td { text-align: left; padding: .5em .6em; border-bottom: 1px solid var(--bo
 .fiche__aside { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 18px; }
 .organiser { padding: 24px; display: flex; flex-direction: column; gap: 14px; border-color: #cfd9e0; box-shadow: 0 8px 30px rgba(20,34,44,.06); }
 .organiser h3 { margin: 0; font-size: 1.6rem; }
+.visuels-com { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.visuels-com h3 { margin: 0; font-size: 1.25rem; }
+.visuels-com img { width: 100%; height: auto; border-radius: 10px; }
+.visuels-com ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.visuels-com a { font-size: .95rem; }
 .kv { display: grid; grid-template-columns: 110px 1fr; gap: 6px 12px; font-size: .92rem; margin: 0; }
 .kv dt { color: var(--ink-soft); } .kv dd { margin: 0; }
 @media (max-width: 900px) { .fiche { grid-template-columns: 1fr; } .fiche__aside { position: static; } }
