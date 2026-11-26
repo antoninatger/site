@@ -1,5 +1,5 @@
 ---
-titre: "Désinformation : comment manipuler l’opinion"
+titre: "Désinformation : comment manipuler l'opinion"
 titre_seo: "Intervention désinformation au lycée : comment manipuler l’opinion"
 sous_titre: Manipuler sans mentir, les techniques invisibles de l'infox
 duree: 1 h à 2 h
