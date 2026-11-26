@@ -37,7 +37,7 @@ Les élèves passent des heures sur des contenus que personne ne vérifie pour e
 Les trois interventions phares forment une progression cohérente, mais chacune est autonome et peut être donnée seule :
 
 1. **[Fake news et esprit critique](/interventions/fake-news-et-esprit-critique/)** (du CM1 au lycée) : pourquoi notre cerveau se fait piéger, comment vérifier une information, faits et opinions.
-2. **[Désinformation : au-delà des fake news](/interventions/desinformation-au-dela-des-fake-news/)** (lycée, BTS) : manipuler sans mentir, cadrage, astroturfing, fabrique du doute.
+2. **[Désinformation : comment manipuler l’opinion](/interventions/desinformation-au-dela-des-fake-news/)** (lycée, BTS) : manipuler sans mentir, cadrage, astroturfing, fabrique du doute.
 3. **[Déjouer les pièges de la rhétorique](/interventions/dejouer-les-pieges-de-la-rhetorique/)** (collège, lycée) : éthos, pathos, logos, sophismes, et comment débattre honnêtement.
 
 ## Les autres thèmes
